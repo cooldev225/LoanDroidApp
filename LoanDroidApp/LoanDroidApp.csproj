@@ -1,0 +1,91 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};</ProjectTypeGuids>
+    <ProductName>LoanDroidApp</ProductName>
+    <ProductVersion>1.0.0</ProductVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200204123107_Init.cs" />
+    <Compile Remove="Migrations\20200204123107_Init.Designer.cs" />
+    <Compile Remove="Migrations\20200212144145_add2tbls.cs" />
+    <Compile Remove="Migrations\20200212144145_add2tbls.Designer.cs" />
+    <Compile Remove="Migrations\20200212201923_01.cs" />
+    <Compile Remove="Migrations\20200212201923_01.Designer.cs" />
+    <Compile Remove="Migrations\20200212202603_init.cs" />
+    <Compile Remove="Migrations\20200212202603_init.Designer.cs" />
+    <Compile Remove="Migrations\20200212202847_init.cs" />
+    <Compile Remove="Migrations\20200212202847_init.Designer.cs" />
+    <Compile Remove="Migrations\20200213181144_init.cs" />
+    <Compile Remove="Migrations\20200213181144_init.Designer.cs" />
+    <Compile Remove="Migrations\20200217053139_init.cs" />
+    <Compile Remove="Migrations\20200217053139_init.Designer.cs" />
+    <Compile Remove="Migrations\20200223163454_init.cs" />
+    <Compile Remove="Migrations\20200223163454_init.Designer.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="DbSetup\" />
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
+    <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
+    <PackageReference Include="RestSharp" Version="106.11.7" />
+    <PackageReference Include="RichardSzalay.MockHttp" Version="6.0.0" />
+    <PackageReference Include="WebPush" Version="1.0.11" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Compile Update="Resources\CommonResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommonResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="appsettings.Production.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\CommonResources.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\CommonResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CommonResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

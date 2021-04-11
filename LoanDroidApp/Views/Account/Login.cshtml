@@ -1,0 +1,156 @@
+﻿@using Models
+@using Models.data
+@using Microsoft.AspNetCore.Identity
+@using System.Collections.Generic
+@using System.Linq
+@using Microsoft.AspNetCore.Http
+@model LoginViewModel
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    ViewData["Title"] = "Log in | LoanDroidApp";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="csrf-token" content="token">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="loandroidapp.com" property="og:site_name">
+    <meta content="loandroidapp.com" property="og:url">
+    <meta content="summary" name="twitter:card">
+    <meta content="Préstamos personales con las tasas más bajas e inversiones entre personas donde ganas buenos rendimientos. Olvídate de los bancos, ¡conoce loandroidapp.com!" name="description">
+    <meta content="Préstamos personales con las tasas más bajas e inversiones entre personas donde ganas buenos rendimientos. Olvídate de los bancos, ¡conoce loandroidapp.com!" property="og:description">
+    <meta content="Préstamos personales con las tasas más bajas e inversiones entre personas donde ganas buenos rendimientos. Olvídate de los bancos, ¡conoce loandroidapp.com!" name="twitter:description">
+    <meta content="invertir, quiero invertir, prestamos, quiero un prestamo" name="keywords">
+    <meta content="Préstamos personales e inversiones entre personas | loandroidapp.com" property="og:title">
+    <meta content="Préstamos personales e inversiones entre personas | loandroidapp.com" name="twitter:title">
+    <title>@ViewData["Title"]</title>
+    <!-- Bootstrap core CSS -->
+    <link href="~/account/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/account/css/style.css">
+    <link rel="stylesheet" type="text/css" href="~/fonts/font-awesome-4.7.0/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/account/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="~/account/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/account/css/main.css">
+    <link rel="stylesheet" href="~/account/css/login.css">
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <div class="left-content">
+            <div class="logo"><img src="~/images/logo.png" /></div>
+            <p class="f1">Welcome back!</p>
+            <div style="padding-bottom: 39px;">
+                <!-- style="background-image: url(screen.png);background-repeat: no-repeat;">-->
+                <span class="f2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span>
+
+            </div>
+            <p>
+                <table style="width:110%;">
+                    <tr>
+                        <td>
+                            <a>
+                                <span class="f4">
+                                    HOME
+                                </span>
+                            </a>
+                        </td>
+                        <td>
+                            <a>
+                                <span class="f4">
+                                    ABOUT
+                                </span>
+                            </a>
+                        </td>
+                        <td>
+                            <a>
+                                <span class="f4">
+                                    SERVICES
+                                </span>
+                            </a>
+                        </td>
+                        <td>
+                            <a>
+                                <span class="f4">
+                                    COMPEENCIES
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </p>
+
+        </div>
+        <div class="right-content">
+            <div class="login100-pic js-tilt" data-tilt style="padding-bottom: 30px;">
+                <img src="~/images/logo.png" alt="IMG">
+            </div>
+
+            <form asp-route-returnurl="@ViewData["ReturnUrl"]" autocomplete="off" method="post" class="login100-form validate-form" id="login-form">
+                <div asp-validation-summary="All" class="text-danger" style="padding-left: 10px;"></div>
+                <div class="wrap-input100 validate-input">
+                    <input asp-for="Email" class="input100" type="text" id="username">
+
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+                <div class="wrap-input100 validate-input">
+                    <input asp-for="Password" class="input100" type="password" id="password">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <input class="login100-form-btn" type="submit" value="Login" />
+                </div>
+                <!--
+                <div class="login-agileits-bottom" style="padding-top: 9px;padding-left: 17px;">
+                    <h6><a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" style="color: #fbfdfc;">Register as a new user?</a></h6>
+                </div>
+                -->
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
+<script src="~/account/js/jquery.min.js"></script>
+<script src="~/account/js/superplaceholder.js"></script>
+<script src="~/account/js/jquery.validate.min.js"></script>
+<script src="~/account/js/jquery.validate.unobtrusive.min.js"></script>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScripts")
+}
+<script>
+    (function () {
+        //var test = document.createElement('input');
+        document.getElementById('username').value = '';
+        document.getElementById('Password').value = '';
+    });
+    superplaceholder({
+        el: username,
+        sentences: ['Username'],
+        options: {
+            loop: true,
+            startOnFocus: false
+        }
+    })
+    superplaceholder({
+        el: password,
+        sentences: ['Password'],
+        options: {
+            loop: true,
+            startOnFocus: false
+        }
+    });
+
+
+</script>

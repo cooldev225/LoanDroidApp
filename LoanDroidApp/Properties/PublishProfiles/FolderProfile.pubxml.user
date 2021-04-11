@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>E:\2020-development\chatclient_1_29\publish-folder</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="wwwroot/css/.DS_Store">
+      <publishTime>07/05/2019 00:59:44</publishTime>
+    </File>
+    <File Include="wwwroot/css/AdminLTE.min.css">
+      <publishTime>12/03/2019 06:32:25</publishTime>
+    </File>
+    <File Include="wwwroot/css/animate.css">
+      <publishTime>08/31/2017 13:02:26</publishTime>
+    </File>
+    <File Include="wwwroot/css/bootstrap-grid.css">
+      <publishTime>07/05/2019 00:59:44</publishTime>
+    </File>
+    <File Include="wwwroot/css/bootstrap-grid.css.map">
+      <publishTime>07/05/2019 00:59:44</publishTime>
+    </File>
+    <File Include="wwwroot/css/bootstrap-grid.min.css">
+      <publishTime>07/05/2019 00:59:44</publishTime>
+    </File>
+    <File Include="wwwroot/css/bootstrap-grid.min.css.map">
+      <publishTime>07/05/2019 00:59:44</publishTime>
+    </File>
+    <File Include="wwwroot/css/bootstrap-reboot.css">
+      <publishTime>07/05/2019 00:59:44</publishTime>
+    </File>
+    <File Include="wwwroot/css/bootstrap-reboot.css.map">
+      <publishTime>07/05/2019 00:59:44</publishTime>
+    </File>
+    <File Include="wwwroot/css/bootstrap-reboot.min.css">
+      <publishTime>07/05/2019 00:59:44</publishTime>
+    </File>
+    <File Include="wwwroot/css/bootstrap-reboot.min.css.map">
+      <publishTime>07/05/2019 00:59:44</publishTime>
+    </File>
+    <File Include="wwwroot/css/bootstrap.css">
+      <publishTime>07/05/2019 00:59:44</publishTime>
+    </File>
+    <File Include="wwwroot/css/bootstrap.css.map">
+      <publishTime>07/05/2019 00:59:46</publishTime>
+    </File>
+    <File Include="wwwroot/css/bootstrap.min.css">
+      <publishTime>12/01/2019 05:37:23</publishTime>
+    </File>
+    <File Include="wwwroot/css/bootstrap.min.css.map">
+      <publishTime>07/05/2019 00:59:46</publishTime>
+    </File>
+    <File Include="wwwroot/css/bootstrap1.css.map">
+      <publishTime>12/03/2019 07:22:50</publishTime>
+    </File>
+    <File Include="wwwroot/css/bootstrap1.min.css">
+      <publishTime>12/03/2019 07:46:43</publishTime>
+    </File>
+    <File Include="wwwroot/css/dashboard.css">
+      <publishTime>07/21/2019 23:34:58</publishTime>
+    </File>
+    <File Include="wwwroot/css/login-3d.css">
+      <publishTime>01/21/2020 17:40:58</publishTime>
+    </File>
+    <File Include="wwwroot/css/login.css">
+      <publishTime>02/05/2020 06:27:43</publishTime>
+    </File>
+    <File Include="wwwroot/css/main.css">
+      <publishTime>02/05/2020 06:48:59</publishTime>
+    </File>
+    <File Include="wwwroot/css/modals.less">
+      <publishTime>12/03/2019 21:16:59</publishTime>
+    </File>
+    <File Include="wwwroot/css/style.css">
+      <publishTime>12/03/2019 08:52:49</publishTime>
+    </File>
+    <File Include="wwwroot/css/util.css">
+      <publishTime>12/13/2017 15:44:00</publishTime>
+    </File>
+    <File Include="wwwroot/css/_all-skins.min.css">
+      <publishTime>12/03/2019 06:38:30</publishTime>
+    </File>
+    <File Include="wwwroot/favicon.ico">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/css/font-awesome.css">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+      <publishTime>05/23/2017 17:43:54</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/fonts/fontawesome-webfont.eot">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/fonts/fontawesome-webfont.svg">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/fonts/fontawesome-webfont.ttf">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/fonts/fontawesome-webfont.woff">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/fonts/fontawesome-webfont.woff2">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/fonts/FontAwesome.otf">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/HELP-US-OUT.txt">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/less/animated.less">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/less/bordered-pulled.less">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/less/core.less">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/less/fixed-width.less">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/less/font-awesome.less">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/less/icons.less">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/less/larger.less">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/less/list.less">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/less/mixins.less">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/less/path.less">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/less/rotated-flipped.less">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/less/screen-reader.less">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/less/stacked.less">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/less/variables.less">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/scss/font-awesome.scss">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/scss/_animated.scss">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/scss/_bordered-pulled.scss">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/scss/_core.scss">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/scss/_fixed-width.scss">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/scss/_icons.scss">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/scss/_larger.scss">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/scss/_list.scss">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/scss/_mixins.scss">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/scss/_path.scss">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/scss/_rotated-flipped.scss">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/scss/_screen-reader.scss">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/scss/_stacked.scss">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/font-awesome-4.7.0/scss/_variables.scss">
+      <publishTime>05/23/2017 17:43:52</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/glyphicons-halflings-regular.eot">
+      <publishTime>07/05/2019 00:59:44</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/glyphicons-halflings-regular.svg">
+      <publishTime>07/05/2019 00:59:44</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>07/05/2019 00:59:44</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/glyphicons-halflings-regular.woff">
+      <publishTime>07/05/2019 00:59:44</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/glyphicons-halflings-regular.woff2">
+      <publishTime>07/05/2019 00:59:44</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/montserrat/Montserrat-Black.ttf">
+      <publishTime>12/13/2011 00:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/montserrat/Montserrat-BlackItalic.ttf">
+      <publishTime>12/13/2011 00:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/montserrat/Montserrat-Bold.ttf">
+      <publishTime>12/13/2011 00:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/montserrat/Montserrat-BoldItalic.ttf">
+      <publishTime>12/13/2011 00:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/montserrat/Montserrat-ExtraBold.ttf">
+      <publishTime>12/13/2011 00:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/montserrat/Montserrat-ExtraBoldItalic.ttf">
+      <publishTime>12/13/2011 00:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/montserrat/Montserrat-ExtraLight.ttf">
+      <publishTime>12/13/2011 00:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/montserrat/Montserrat-ExtraLightItalic.ttf">
+      <publishTime>12/13/2011 00:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/montserrat/Montserrat-Italic.ttf">
+      <publishTime>12/13/2011 00:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/montserrat/Montserrat-Light.ttf">
+      <publishTime>12/13/2011 00:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/montserrat/Montserrat-LightItalic.ttf">
+      <publishTime>12/13/2011 00:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/montserrat/Montserrat-Medium.ttf">
+      <publishTime>12/13/2011 00:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/montserrat/Montserrat-MediumItalic.ttf">
+      <publishTime>12/13/2011 00:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/montserrat/Montserrat-Regular.ttf">
+      <publishTime>12/13/2011 00:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/montserrat/Montserrat-SemiBold.ttf">
+      <publishTime>12/13/2011 00:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/montserrat/Montserrat-SemiBoldItalic.ttf">
+      <publishTime>12/13/2011 00:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/montserrat/Montserrat-Thin.ttf">
+      <publishTime>12/13/2011 00:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/montserrat/Montserrat-ThinItalic.ttf">
+      <publishTime>12/13/2011 00:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/montserrat/OFL.txt">
+      <publishTime>12/13/2011 00:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/poppins/Poppins-Black.ttf">
+      <publishTime>06/03/2015 01:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/poppins/Poppins-BlackItalic.ttf">
+      <publishTime>06/03/2015 01:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/poppins/Poppins-Bold.ttf">
+      <publishTime>06/03/2015 01:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/poppins/Poppins-BoldItalic.ttf">
+      <publishTime>06/03/2015 01:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/poppins/Poppins-ExtraBold.ttf">
+      <publishTime>06/03/2015 01:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/poppins/Poppins-ExtraBoldItalic.ttf">
+      <publishTime>06/03/2015 01:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/poppins/Poppins-ExtraLight.ttf">
+      <publishTime>06/03/2015 01:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/poppins/Poppins-ExtraLightItalic.ttf">
+      <publishTime>06/03/2015 01:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/poppins/Poppins-Italic.ttf">
+      <publishTime>06/03/2015 01:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/poppins/Poppins-Light.ttf">
+      <publishTime>06/03/2015 01:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/poppins/Poppins-LightItalic.ttf">
+      <publishTime>06/03/2015 01:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/poppins/Poppins-Medium.ttf">
+      <publishTime>06/03/2015 01:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/poppins/Poppins-MediumItalic.ttf">
+      <publishTime>06/03/2015 01:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/poppins/Poppins-Regular.ttf">
+      <publishTime>06/03/2015 01:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/poppins/Poppins-SemiBold.ttf">
+      <publishTime>06/03/2015 01:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/poppins/Poppins-SemiBoldItalic.ttf">
+      <publishTime>06/03/2015 01:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/poppins/Poppins-Thin.ttf">
+      <publishTime>06/03/2015 01:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/fonts/poppins/Poppins-ThinItalic.ttf">
+      <publishTime>06/03/2015 01:00:00</publishTime>
+    </File>
+    <File Include="wwwroot/images/greeting.png">
+      <publishTime>01/22/2020 07:39:23</publishTime>
+    </File>
+    <File Include="wwwroot/images/logo.png">
+      <publishTime>02/05/2020 05:38:04</publishTime>
+    </File>
+    <File Include="wwwroot/images/Logo_Biologid.png">
+      <publishTime>07/09/2019 20:49:42</publishTime>
+    </File>
+    <File Include="wwwroot/images/user-login.png">
+      <publishTime>01/21/2020 03:34:37</publishTime>
+    </File>
+    <File Include="wwwroot/images/user.png">
+      <publishTime>01/14/2020 02:59:11</publishTime>
+    </File>
+    <File Include="wwwroot/js/.DS_Store">
+      <publishTime>07/05/2019 00:59:46</publishTime>
+    </File>
+    <File Include="wwwroot/js/adminlte.min.js">
+      <publishTime>12/03/2019 06:01:26</publishTime>
+    </File>
+    <File Include="wwwroot/js/bootstrap.bundle.min.js">
+      <publishTime>07/05/2019 00:59:46</publishTime>
+    </File>
+    <File Include="wwwroot/js/bootstrap.min.js">
+      <publishTime>12/03/2019 06:05:35</publishTime>
+    </File>
+    <File Include="wwwroot/js/bootstrap1.min.js">
+      <publishTime>12/03/2019 07:47:28</publishTime>
+    </File>
+    <File Include="wwwroot/js/jquery.js">
+      <publishTime>07/05/2019 00:59:46</publishTime>
+    </File>
+    <File Include="wwwroot/js/jquery.min.js">
+      <publishTime>07/05/2019 00:59:46</publishTime>
+    </File>
+    <File Include="wwwroot/js/jquery.min.map">
+      <publishTime>07/05/2019 00:59:46</publishTime>
+    </File>
+    <File Include="wwwroot/js/jquery.slim.js">
+      <publishTime>07/05/2019 00:59:46</publishTime>
+    </File>
+    <File Include="wwwroot/js/jquery.slim.min.js">
+      <publishTime>07/05/2019 00:59:46</publishTime>
+    </File>
+    <File Include="wwwroot/js/jquery.slim.min.map">
+      <publishTime>07/05/2019 00:59:46</publishTime>
+    </File>
+    <File Include="wwwroot/js/superplaceholder.js">
+      <publishTime>08/07/2019 14:13:15</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap.css">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap.css.map">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap.min.css">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.js">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.js.map">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.min.js">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/bootstrap/LICENSE">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/jquery-validation/dist/additional-methods.js">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/jquery-validation/dist/additional-methods.min.js">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/jquery-validation/dist/jquery.validate.js">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/jquery-validation/dist/jquery.validate.min.js">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/jquery-validation/LICENSE.md">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/jquery/dist/jquery.js">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/jquery/dist/jquery.min.js">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/jquery/dist/jquery.min.map">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+    <File Include="wwwroot/lib/jquery/LICENSE.txt">
+      <publishTime>02/01/2020 06:07:12</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,321 @@
+﻿@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+@using System.Globalization;
+@using System.Security.Claims;
+@inject IHtmlLocalizer<LoanDroidApp.CommonResources> SharedLocalizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
+@{ var requestCulture = CultureInfo.CurrentCulture.ToString();
+    var cultureItems = LocOptions.Value.SupportedUICultures
+        .Select(c => new SelectListItem { Value = c.Name, Text = c.DisplayName })
+        .ToList();
+    var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}";
+    var current_url = Context.Request.Path; 
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="csrf-token" content="token">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="loandroidapp.com" property="og:site_name">
+    <meta content="loandroidapp.com" property="og:url">
+    <meta content="summary" name="twitter:card">
+    <meta content="Préstamos personales con las tasas más bajas e inversiones entre personas donde ganas buenos rendimientos. Olvídate de los bancos, ¡conoce loandroidapp.com!" name="description">
+    <meta content="Préstamos personales con las tasas más bajas e inversiones entre personas donde ganas buenos rendimientos. Olvídate de los bancos, ¡conoce loandroidapp.com!" property="og:description">
+    <meta content="Préstamos personales con las tasas más bajas e inversiones entre personas donde ganas buenos rendimientos. Olvídate de los bancos, ¡conoce loandroidapp.com!" name="twitter:description">
+    <meta content="invertir, quiero invertir, prestamos, quiero un prestamo" name="keywords">
+    <meta content="Préstamos personales e inversiones entre personas | loandroidapp.com" property="og:title">
+    <meta content="Préstamos personales e inversiones entre personas | loandroidapp.com" name="twitter:title">
+    <title>@ViewData["Title"]</title>
+
+    <!-- Bootstrap -->
+    <link href="~/home/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="~/home/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/fonts/font-awesome-5.11.2/css/all.css">
+    <link href="~/home/css/fontello.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+    <!-- owl Carousel Css -->
+    <link href="~/home/css/owl.carousel.css" rel="stylesheet">
+    <link href="~/home/css/owl.theme.css" rel="stylesheet">
+    <link href="~/home/css/navbar.css" rel="stylesheet">
+    <link href="~/home/css/custom.css" rel="stylesheet">
+    <link rel="shortcut icon" href="~/images/logo.ico" />
+</head>
+<body>
+    <div class="sticky-top">
+        <div class="collapse searchbar" id="searchbar">
+            <div class="search-area bg-white">
+                <div class="container">
+                    <div class="row">
+                        <div class="offset-lg-3 col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search for...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-secondary" type="button">Go!</button>
+                                </span>
+                                <div class="btn-close">
+                                    <a class="close " aria-label="Close" data-toggle="collapse" href="#searchbar" aria-expanded="false">
+                                        <span aria-hidden="true" class="fas fa-times"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- /input-group -->
+                        </div>
+                        <!-- /.col-lg-6 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-topbar">
+            <!-- top-bar -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-5 col-md-4 col-sm-6 col-6 d-none d-xl-block d-lg-block">
+                        <p class="mail-text">@SharedLocalizer["welcome_top_banner"]</p>
+                    </div>
+                    <div class="col-xl-8 col-lg-7 col-md-12 col-sm-12 col-12 text-right">
+                        <div class="top-nav"> <span class="top-text"><a href="#!">@SharedLocalizer["howitworks"]</a> </span> <span class="top-text"><a href="#!">+1800-123-4567</a></span> <span class="top-text"><a href="#!">@SharedLocalizer["LoanCalculator"]</a></span> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.top-bar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+            <div class="container">
+                <a href="index.html" class="navbar-brand"><img src="~/images/logo.png" alt="Loan and Investments "></a>
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icon-bar top-bar mt-0"></span>
+                    <span class="icon-bar middle-bar"></span>
+                    <span class="icon-bar bottom-bar"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" id="navbarHome" href="@Url.Action("wantloan","home")" aria-haspopup="true" aria-expanded="false">
+                                @SharedLocalizer["Iwantloan"]
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link" id="navbarProduct" href="@Url.Action("wantlend","home")" aria-haspopup="true" aria-expanded="false">
+                                @SharedLocalizer["Iwanttolend"]
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="@Url.Action("blog","home")" id="navbarBlog" role="button" aria-haspopup="true" aria-expanded="false">
+                                @SharedLocalizer["Blog"]
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#!" id="navbarFeatures" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @SharedLocalizer["Features"]
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarFeatures">
+                                <li><a class="dropdown-item" href="about.html">About Us</a></li>
+                                <li> <a class="dropdown-item" href="team.html">Team</a></li>
+                                <li> <a class="dropdown-item" href="faq.html">FAQ</a></li>
+                                <li> <a class="dropdown-item" href="testimonial.html">Testimonial</a></li>
+                                <li> <a class="dropdown-item" href="error.html">404 error</a></li>
+                                <li class="dropdown-item dropleft">
+                                    <a class="dropdown-link dropdown-toggle" data-toggle="dropdown" href="#!" aria-expanded="false">
+                                        Gallery
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="gallery-filter-2.html">
+                                            Two Column
+                                        </a>
+                                        <a class="dropdown-item" href="gallery-filter-3.html">
+                                            Three Column
+                                        </a>
+                                        <a class="dropdown-item" href="gallery-masonry.html">
+                                            Masonry
+                                        </a>
+                                        <a class="dropdown-item" href="gallery-zoom.html">
+                                            Zoom
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="dropdown-item dropleft">
+                                    <a class="dropdown-link dropdown-toggle" data-toggle="dropdown" href="#!" aria-expanded="false">
+                                        Shortcode
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="shortcodes-tables.html">
+                                            Table
+                                        </a>
+                                        <a class="dropdown-item" href="shortcodes-tabs.html">
+                                            Tab
+                                        </a>
+                                        <a class="dropdown-item" href="shortcodes-accordion.html">
+                                            Accordions
+                                        </a>
+                                        <a class="dropdown-item" href="shortcodes-alert.html">
+                                            Alert
+                                        </a>
+                                        <a class="dropdown-item" href="shortcodes-button.html">
+                                            Button
+                                        </a>
+
+                                    </div>
+                                </li>
+                                <li><a class="dropdown-item" href="about.html">@SharedLocalizer["Contactus"]</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="dropdown show multi-lang">
+                        <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px" aria-expanded="true">
+                            <div class="btn btn-icon btn-clean btn-lg mr-1">
+                                <img class="h-20px w-20px rounded-sm" src="/metronic/media/svg/flags/@(requestCulture + ".svg")" alt="">
+                            </div>
+                        </div>
+
+                        <div class="dropdown-menu p-0 m-0 dropdown-menu-anim-up dropdown-menu-sm dropdown-menu-right " x-placement="bottom-end" style="position: absolute; transform: translate3d(-117px, 65px, 0px); top: 0px; left: 0px; will-change: transform;">
+                            <ul class="navi navi-hover py-4">
+                                @foreach (var culture in cultureItems)
+                                {
+                                    <li class="navi-item @(requestCulture.Equals(culture.Value.ToString())?"active":"")">
+                                        <a asp-controller="Account" asp-action="SetLanguage" asp-route-returnUrl="@returnUrl" asp-route-culture="@culture.Value" class="navi-link">
+                                            <span class="symbol symbol-20 mr-3">
+                                                <img src="/metronic/media/svg/flags/@(culture.Value+".svg")" alt="">
+                                            </span>
+                                            <span class="navi-text">@culture.Text.Split("(")[0]</span>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="search-nav ml-lg-3 ml-0"> <a class="search-btn" role="button" data-toggle="collapse" href="#searchbar" aria-expanded="false"><i class="fa fa-search"></i></a> </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- /.navigation start-->
+    <!-- /.search start-->
+    @RenderBody()
+    <div class="footer section-space100">
+        <!-- footer -->
+        <div class="container ">
+            <div class="row ">
+                <div class="col-xl-4 col-lg-4 d-md-none col-sm-12 col-12  ">
+                    <div class="footer-logo ">
+                        <!-- Footer Logo -->
+                        <img src="~/images/home/ft-logo.png" alt="Loan and Investments s ">
+                    </div>
+                    <!-- /.Footer Logo -->
+                </div>
+                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 ">
+                    <div class="row ">
+                        <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 ">
+                            <h3 class="newsletter-title ">Signup Our Newsletter</h3>
+                        </div>
+                        <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12 ">
+                            <div class="newsletter-form ">
+                                <!-- Newsletter Form -->
+                                <form action="" method="post">
+                                    <div class="input-group">
+                                        <input type="email" class="form-control border-0 shadow-none" id="newsletter"
+                                               name="newsletter" placeholder="Write E-Mail Address" required>
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-secondary" type="submit">Go!</button>
+                                        </span>
+                                    </div>
+                                    <!-- /input-group -->
+                                </form>
+                            </div>
+                            <!-- /.Newsletter Form -->
+                        </div>
+                    </div>
+                    <!-- /.col-lg-6 -->
+                </div>
+            </div>
+            <hr class="dark-line ">
+            <div class="row ">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
+                    <div class="widget-text mt40 ">
+                        <!-- widget text -->
+                        <p>Our goal at Loan Company is to provide access to personal loans and education loan, car loan, home loan at insight competitive interest rates lorem ipsums. We are the loan provider, you can use our loan product.</p>
+                        <div class="row ">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 ">
+                                <p class="address-text "><span><i class="icon-placeholder-3 icon-1x "></i> </span>3895 Sycamore Road Arlington, 97812 </p>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 ">
+                                <p class="call-text "><span><i class="icon-phone-call icon-1x "></i></span>800-123-456</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.widget text -->
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 ">
+                    <div class="widget-footer mt40 ">
+                        <!-- widget footer -->
+                        <ul class="listnone ">
+                            <li><a href="# ">Home</a></li>
+                            <li><a href="# ">Services</a></li>
+                            <li><a href="# ">About Us</a></li>
+                            <li><a href="# ">News</a></li>
+                            <li><a href="# ">Faq</a></li>
+                            <li><a href="# ">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <!-- /.widget footer -->
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 ">
+                    <div class="widget-footer mt40 ">
+                        <!-- widget footer -->
+                        <ul class="listnone ">
+                            <li><a href="# ">Car Loan</a></li>
+                            <li><a href="# ">Personal Loan</a></li>
+                            <li><a href="# ">Education Loan</a></li>
+                            <li><a href="# ">Business Loan</a></li>
+                            <li><a href="# ">Home Loan</a></li>
+                            <li><a href="# ">Debt Consolidation</a></li>
+                        </ul>
+                    </div>
+                    <!-- /.widget footer -->
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 ">
+                    <div class="widget-social mt40 ">
+                        <!-- widget footer -->
+                        <ul class="listnone ">
+                            <li><a href="#!"><i class="fab fa-facebook-f "></i>Facebook</a></li>
+                            <li><a href="#!"><i class="fab fa-google-plus "></i>Google Plus</a></li>
+                            <li><a href="#!"><i class="fab fa-twitter "></i>Twitter</a></li>
+                            <li><a href="#!"><i class="fab fa-linkedin "></i>Linked In</a></li>
+                        </ul>
+                    </div>
+                    <!-- /.widget footer -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.footer -->
+    <div class="tiny-footer">
+        <!-- tiny footer -->
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <p>© Copyright 2020 | Loan Company</p>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-right">
+                    <p>Terms of use | Privacy Policy</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- back to top icon -->
+    <a href="#0" class="cd-top" title="Go to top">Top</a>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="~/home/js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="~/home/js/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- slider script -->
+    <script src="~/home/js/owl.carousel.min.js"></script>
+    <script src="~/home/js/main.js"></script>
+    <!-- Back to top script -->
+    <script src="~/home/js/back-to-top.js"></script>
+
+</body>
+</html>

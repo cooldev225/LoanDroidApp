@@ -1,0 +1,28 @@
+.navbar .navbar-brand img {
+max-width:126px;
+}
+.w-20px {
+    width:20px;
+}
+.h-20px {
+    height: 20px;
+}
+.multi-lang .btn-lg {
+    padding: 0px 0px 0px 10px;
+}
+.multi-lang .dropdown-menu a img {
+    width:20px;
+    height:20px;
+}
+.multi-lang .navi li {
+    display:flex;
+}
+.multi-lang .dropdown-menu {
+    width:118px;
+}
+.multi-lang .navi {
+    padding: 20px 20px 0px 20px!important;
+}
+.mr-10 {
+    margin-right:10px;
+}

@@ -1,0 +1,7 @@
+﻿@{
+    var url = ViewContext.HttpContext.Request.Path.Value.ToLower().Replace("home","").Split('/');
+    if (ViewBag.Layout == null)
+        Layout = url[1] + "_Layout";
+    else
+        Layout = ViewBag.Layout;
+}
