@@ -10,12 +10,17 @@ using Models.data;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Models.data.Interfaces;
+using LoanDroidApp.Models;
 
 namespace DBSetup
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
         public string CurrentUserId { get; set; }
+        public DbSet<ApplicationPage> ApplicationPage { get; set; }
+        public DbSet<AccountPayment> AccountPayment { get; set; }
+        public DbSet<LoanRequest> LoanRequest { get; set; }
+        public DbSet<LoanRequestStatus> LoanRequestStatus { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { }
 
@@ -29,7 +34,17 @@ namespace DBSetup
             builder.Entity<ApplicationRole>().HasMany(r => r.Claims).WithOne().HasForeignKey(c => c.RoleId).IsRequired().OnDelete(DeleteBehavior.Cascade);
             builder.Entity<ApplicationRole>().HasMany(r => r.Users).WithOne().HasForeignKey(r => r.RoleId).IsRequired().OnDelete(DeleteBehavior.Cascade);
 
-            //builder.Entity<ChattingLog>().HasIndex(p => p.Id);
+            builder.Entity<ApplicationPage>().HasIndex(p => p.Id);
+            builder.Entity<ApplicationPage>().Property(p => p.Id).ValueGeneratedOnAdd();
+
+            builder.Entity<AccountPayment>().HasIndex(p => p.Id);
+            builder.Entity<AccountPayment>().Property(p => p.Id).ValueGeneratedOnAdd();
+
+            builder.Entity<LoanRequest>().HasIndex(p => p.Id);
+            builder.Entity<LoanRequest>().Property(p => p.Id).ValueGeneratedOnAdd();
+
+            builder.Entity<LoanRequestStatus>().HasIndex(p => p.Id);
+            builder.Entity<LoanRequestStatus>().Property(p => p.Id).ValueGeneratedOnAdd();
         }
         public override int SaveChanges()
         {

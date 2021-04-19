@@ -117,23 +117,155 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="accountholder" xml:space="preserve">
+    <value>Bank account holder</value>
+  </data>
+  <data name="ACCOUNT_" xml:space="preserve">
+    <value>ACCOUNT</value>
+  </data>
+  <data name="Addnewclient" xml:space="preserve">
+    <value>Add new client</value>
+  </data>
+  <data name="Addnewinvestor" xml:space="preserve">
+    <value>Add new investor</value>
+  </data>
+  <data name="address" xml:space="preserve">
+    <value>address</value>
+  </data>
+  <data name="ADDRESS_" xml:space="preserve">
+    <value>ADDRESS</value>
+  </data>
   <data name="AllReserved" xml:space="preserve">
     <value>All Reserved</value>
+  </data>
+  <data name="AVATAR_" xml:space="preserve">
+    <value>AVATAR</value>
+  </data>
+  <data name="bankcity" xml:space="preserve">
+    <value>Bank city</value>
+  </data>
+  <data name="bankcountry" xml:space="preserve">
+    <value>Bank country</value>
+  </data>
+  <data name="bankname" xml:space="preserve">
+    <value>Bank name</value>
+  </data>
+  <data name="bankregion" xml:space="preserve">
+    <value>Bank region</value>
+  </data>
+  <data name="bankstreet" xml:space="preserve">
+    <value>Bank street</value>
+  </data>
+  <data name="bicnumber" xml:space="preserve">
+    <value>Swift Bic number</value>
+  </data>
+  <data name="BICNUMBER_" xml:space="preserve">
+    <value>BIC NUMBER</value>
+  </data>
+  <data name="cardnumber" xml:space="preserve">
+    <value>Card number</value>
+  </data>
+  <data name="CITY_" xml:space="preserve">
+    <value>CITY</value>
+  </data>
+  <data name="ClientDialog" xml:space="preserve">
+    <value>Client Dialog</value>
+  </data>
+  <data name="ClientPaymentDialog" xml:space="preserve">
+    <value>Clinet Payment Option</value>
+  </data>
+  <data name="ClientsManagement" xml:space="preserve">
+    <value>Clients Management</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
   </data>
   <data name="Contactus" xml:space="preserve">
     <value>Contact us</value>
   </data>
+  <data name="Countofclient" xml:space="preserve">
+    <value>Count of clients</value>
+  </data>
+  <data name="Countofinvestor" xml:space="preserve">
+    <value>Count of investors</value>
+  </data>
+  <data name="COUNTRY_" xml:space="preserve">
+    <value>COUNTRY</value>
+  </data>
+  <data name="Createarole" xml:space="preserve">
+    <value>Create a role</value>
+  </data>
+  <data name="Createauser" xml:space="preserve">
+    <value>Create a user</value>
+  </data>
+  <data name="currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="CURRENCY_" xml:space="preserve">
+    <value>CURRENCY</value>
+  </data>
+  <data name="department" xml:space="preserve">
+    <value>department</value>
+  </data>
+  <data name="DEPARTMENT_" xml:space="preserve">
+    <value>DEPARTMENT</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>description</value>
+  </data>
+  <data name="DESCRIPTION_" xml:space="preserve">
+    <value>DESCRIPTION</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>email</value>
+  </data>
+  <data name="EMAIL_" xml:space="preserve">
+    <value>EMAIL</value>
+  </data>
+  <data name="expirationdate" xml:space="preserve">
+    <value>Expiration date</value>
+  </data>
+  <data name="EXPIRATION_" xml:space="preserve">
+    <value>EXPIRATION</value>
+  </data>
   <data name="FastEasyApplicationProcess" xml:space="preserve">
     <value>Fast &amp; Easy Application Process</value>
+  </data>
+  <data name="Financialchart" xml:space="preserve">
+    <value>Financial chart</value>
   </data>
   <data name="FindLoanServicesWeOffers" xml:space="preserve">
     <value>Find Loan Services We Offers</value>
   </data>
+  <data name="firstname" xml:space="preserve">
+    <value>first name</value>
+  </data>
+  <data name="FIRSTNAME_" xml:space="preserve">
+    <value>FIRSTNAME</value>
+  </data>
   <data name="howitworks" xml:space="preserve">
     <value>How does it work?</value>
   </data>
+  <data name="ibannumber" xml:space="preserve">
+    <value>IBAN number</value>
+  </data>
+  <data name="IBANNUMBER_" xml:space="preserve">
+    <value>IBAN NUMBER</value>
+  </data>
+  <data name="Interestofloan" xml:space="preserve">
+    <value>Interest of loan</value>
+  </data>
   <data name="InternalUsers" xml:space="preserve">
     <value>Internal users</value>
+  </data>
+  <data name="Investments" xml:space="preserve">
+    <value>Investments</value>
+  </data>
+  <data name="InvestorDialog" xml:space="preserve">
+    <value>Investor Dialog</value>
+  </data>
+  <data name="InvestorsManagement" xml:space="preserve">
+    <value>Investors Management</value>
   </data>
   <data name="Iwantloan" xml:space="preserve">
     <value>I want a loan</value>
@@ -141,17 +273,119 @@
   <data name="Iwanttolend" xml:space="preserve">
     <value>I want to lend</value>
   </data>
+  <data name="lastname" xml:space="preserve">
+    <value>surname</value>
+  </data>
+  <data name="LASTNAME_" xml:space="preserve">
+    <value>SURNAME</value>
+  </data>
   <data name="LatestNewsfromLoanCompany" xml:space="preserve">
     <value>Latest News from Loan Company</value>
   </data>
   <data name="LoanCalculator" xml:space="preserve">
     <value>Loan Calculator</value>
   </data>
+  <data name="LoanRequest" xml:space="preserve">
+    <value>Loan Request</value>
+  </data>
+  <data name="NAME" xml:space="preserve">
+    <value>NAME</value>
+  </data>
+  <data name="NAME_" xml:space="preserve">
+    <value>NAME</value>
+  </data>
+  <data name="NUMBER_" xml:space="preserve">
+    <value>NUMBER</value>
+  </data>
+  <data name="officenumber" xml:space="preserve">
+    <value>office number</value>
+  </data>
+  <data name="OFFICENUMBER_" xml:space="preserve">
+    <value>OFFICE NUMBER</value>
+  </data>
+  <data name="otherphone" xml:space="preserve">
+    <value>other phone number</value>
+  </data>
+  <data name="OTHERPTHONE_" xml:space="preserve">
+    <value>OTHER NUMBER</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>password</value>
+  </data>
+  <data name="PASSWORD_" xml:space="preserve">
+    <value>PASSWORD</value>
+  </data>
+  <data name="phonenumber" xml:space="preserve">
+    <value>phone number</value>
+  </data>
+  <data name="PHONENUMBER_" xml:space="preserve">
+    <value>PHONE NUMBER</value>
+  </data>
+  <data name="REGION_" xml:space="preserve">
+    <value>REGION</value>
+  </data>
+  <data name="RoleDialog" xml:space="preserve">
+    <value>Role Dialog</value>
+  </data>
+  <data name="rolename" xml:space="preserve">
+    <value>role name</value>
+  </data>
+  <data name="RolesManagement" xml:space="preserve">
+    <value>Roles Management</value>
+  </data>
+  <data name="routingnumber" xml:space="preserve">
+    <value>Routing number</value>
+  </data>
+  <data name="ROUTING_" xml:space="preserve">
+    <value>ROUTING</value>
+  </data>
+  <data name="Savingchanges" xml:space="preserve">
+    <value>Saving changes</value>
+  </data>
+  <data name="Savingofinvest" xml:space="preserve">
+    <value>Saving of invest</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SiteName" xml:space="preserve">
+    <value>Site name</value>
+  </data>
+  <data name="SiteUrl" xml:space="preserve">
+    <value>Site Url</value>
+  </data>
   <data name="slider01_title" xml:space="preserve">
     <value>Loans and &lt;strong class="text-highlight"&gt;investments&lt;/strong&gt;</value>
   </data>
   <data name="SomeofourAwesomeTestimonials" xml:space="preserve">
     <value>Some of our Awesome Testimonials</value>
+  </data>
+  <data name="STREET_" xml:space="preserve">
+    <value>STREET</value>
+  </data>
+  <data name="Successfulloans" xml:space="preserve">
+    <value>Successful loans</value>
+  </data>
+  <data name="surname" xml:space="preserve">
+    <value>Surname</value>
+  </data>
+  <data name="SURNAME_" xml:space="preserve">
+    <value>SURNAME</value>
+  </data>
+  <data name="URL_" xml:space="preserve">
+    <value>URL</value>
+  </data>
+  <data name="UserDialog" xml:space="preserve">
+    <value>User Dialog</value>
+  </data>
+  <data name="username" xml:space="preserve">
+    <value>username</value>
+  </data>
+  <data name="USERNAME_" xml:space="preserve">
+    <value>USERNAME</value>
+  </data>
+  <data name="UsersManagement" xml:space="preserve">
+    <value>Users Management</value>
   </data>
   <data name="WeareHeretoHelpYou" xml:space="preserve">
     <value>We are Here to Help You</value>

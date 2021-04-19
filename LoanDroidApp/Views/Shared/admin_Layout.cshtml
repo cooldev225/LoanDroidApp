@@ -45,6 +45,8 @@
     <script type="text/javascript" src="~/metronic/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
     <script type="text/javascript" src="~/metronic/js/pages/widgets.js"></script>
     <script src="~/metronic/plugins/custom/tinymce/tinymce.bundle.js"></script>
+    <script src="~/admin/js/bootstrap-fileinput.js"></script>
+    <script src="~/admin/js/lang/@(requestCulture+".js")"></script>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <!-- Styles -->
@@ -57,6 +59,7 @@
     <link href="~/metronic/css/themes/layout/header/menu/light.css" rel="stylesheet">
     <link href="~/metronic/css/themes/layout/brand/dark.css" rel="stylesheet">
     <link href="~/metronic/css/themes/layout/aside/dark.css" rel="stylesheet">
+    <link href="~/admin/css/bootstrap-fileinput.css" rel="stylesheet">
     <link href="~/admin/css/common.css" rel="stylesheet">
 
     <link rel="shortcut icon" href="~/images/logo.ico" />
@@ -105,17 +108,12 @@
     <div class="d-flex flex-column flex-root">
         <!--begin::Page-->
         <div class="d-flex flex-row flex-column-fluid page">
-            <!--begin::Aside->
+            <!--begin::Aside>
             <div class="aside aside-left  aside-fixed  d-flex flex-column flex-row-auto"  id="kt_aside">
-                <--begin::Brand->
                 <div class="brand flex-column-auto " id="kt_brand">
-                    <--begin::Logo->
                     <a href="" class="brand-logo">
-                        <img alt="Logo" src="images/logo-1.png" style="width: 170px;" />
+                        <img alt="Logo" src="~/images/logo.png" style="width: 170px;" />
                     </a>
-                    <--end::Logo->
-
-                    <--begin::Toggle->
                     <button class="brand-toggle btn btn-sm px-0" id="kt_aside_toggle">
                         <span class="svg-icon svg-icon svg-icon-xl">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -125,18 +123,45 @@
                                     <path d="M10.7071009,15.7071068 C10.3165766,16.0976311 9.68341162,16.0976311 9.29288733,15.7071068 C8.90236304,15.3165825 8.90236304,14.6834175 9.29288733,14.2928932 L15.2928873,8.29289322 C15.6714663,7.91431428 16.2810527,7.90106866 16.6757187,8.26284586 L22.6757187,13.7628459 C23.0828377,14.1360383 23.1103407,14.7686056 22.7371482,15.1757246 C22.3639558,15.5828436 21.7313885,15.6103465 21.3242695,15.2371541 L16.0300699,10.3841378 L10.7071009,15.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" transform="translate(15.999997, 11.999999) scale(-1, 1) rotate(-270.000000) translate(-15.999997, -11.999999) "/>
                                 </g>
                             </svg>
-                            <--end::Svg Icon->
                         </span>
                     </button>
-                    <--end::Toolbar->
                 </div>
-                <--end::Brand->
-
-                <--begin::Aside Menu->
-                include('frontend.layouts.sidemenu')
-                <--end::Aside Menu->
+                <div class="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper">
+                    <div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
+                        <ul class="menu-nav ">
+                            <li class="menu-item <?php echo Request::path()=='home'||Request::path()==''?'menu-item-active':'';?>" aria-haspopup="true">
+                                <a href="home" class="menu-link ">
+                                    <span class="svg-icon menu-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <polygon points="0 0 24 0 24 24 0 24" />
+                                                <path d="M12.9336061,16.072447 L19.36,10.9564761 L19.5181585,10.8312381 C20.1676248,10.3169571 20.2772143,9.3735535 19.7629333,8.72408713 C19.6917232,8.63415859 19.6104327,8.55269514 19.5206557,8.48129411 L12.9336854,3.24257445 C12.3871201,2.80788259 11.6128799,2.80788259 11.0663146,3.24257445 L4.47482784,8.48488609 C3.82645598,9.00054628 3.71887192,9.94418071 4.23453211,10.5925526 C4.30500305,10.6811601 4.38527899,10.7615046 4.47382636,10.8320511 L4.63,10.9564761 L11.0659024,16.0730648 C11.6126744,16.5077525 12.3871218,16.5074963 12.9336061,16.072447 Z" fill="#000000" fill-rule="nonzero" />
+                                                <path d="M11.0563554,18.6706981 L5.33593024,14.122919 C4.94553994,13.8125559 4.37746707,13.8774308 4.06710397,14.2678211 C4.06471678,14.2708238 4.06234874,14.2738418 4.06,14.2768747 L4.06,14.2768747 C3.75257288,14.6738539 3.82516916,15.244888 4.22214834,15.5523151 C4.22358765,15.5534297 4.2250303,15.55454 4.22647627,15.555646 L11.0872776,20.8031356 C11.6250734,21.2144692 12.371757,21.2145375 12.909628,20.8033023 L19.7677785,15.559828 C20.1693192,15.2528257 20.2459576,14.6784381 19.9389553,14.2768974 C19.9376429,14.2751809 19.9363245,14.2734691 19.935,14.2717619 L19.935,14.2717619 C19.6266937,13.8743807 19.0546209,13.8021712 18.6572397,14.1104775 C18.654352,14.112718 18.6514778,14.1149757 18.6486172,14.1172508 L12.9235044,18.6705218 C12.377022,19.1051477 11.6029199,19.1052208 11.0563554,18.6706981 Z" fill="#000000" opacity="0.3" />
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <span class="menu-text">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="menu-item <?php echo Request::path()=='customer'||Request::path()=='customer/index'?'menu-item-active':'';?>" aria-haspopup="true">
+                                <a href="customer" class="menu-link ">
+                                    <span class="svg-icon menu-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24" />
+                                                <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="9" />
+                                                <path d="M11.7357634,20.9961946 C6.88740052,20.8563914 3,16.8821712 3,12 C3,11.9168367 3.00112797,11.8339369 3.00336944,11.751315 C3.66233009,11.8143341 4.85636818,11.9573854 4.91262842,12.4204038 C4.9904938,13.0609191 4.91262842,13.8615942 5.45804656,14.101772 C6.00346469,14.3419498 6.15931561,13.1409372 6.6267482,13.4612567 C7.09418079,13.7815761 8.34086797,14.0899175 8.34086797,14.6562185 C8.34086797,15.222396 8.10715168,16.1034596 8.34086797,16.2636193 C8.57458427,16.423779 9.5089688,17.54465 9.50920913,17.7048097 C9.50956962,17.8649694 9.83857487,18.6793513 9.74040201,18.9906563 C9.65905192,19.2487394 9.24857641,20.0501554 8.85059781,20.4145589 C9.75315358,20.7620621 10.7235846,20.9657742 11.7357634,20.9960544 L11.7357634,20.9961946 Z M8.28272988,3.80112099 C9.4158415,3.28656421 10.6744554,3 12,3 C15.5114513,3 18.5532143,5.01097452 20.0364482,7.94408274 C20.069657,8.72412177 20.0638332,9.39135321 20.2361262,9.6327358 C21.1131932,10.8600506 18.0995147,11.7043158 18.5573343,13.5605384 C18.7589671,14.3794892 16.5527814,14.1196773 16.0139722,14.886394 C15.4748026,15.6527403 14.1574598,15.137809 13.8520064,14.9904917 C13.546553,14.8431744 12.3766497,15.3341497 12.4789081,14.4995164 C12.5805657,13.664636 13.2922889,13.6156126 14.0555619,13.2719546 C14.8184743,12.928667 15.9189236,11.7871741 15.3781918,11.6380045 C12.8323064,10.9362407 11.963771,8.47852395 11.963771,8.47852395 C11.8110443,8.44901109 11.8493762,6.74109366 11.1883616,6.69207022 C10.5267462,6.64279981 10.170464,6.88841096 9.20435656,6.69207022 C8.23764828,6.49572949 8.44144409,5.85743687 8.2887174,4.48255778 C8.25453994,4.17415686 8.25619136,3.95717082 8.28272988,3.80112099 Z M20.9991771,11.8770357 C20.9997251,11.9179585 21,11.9589471 21,12 C21,16.9406923 17.0188468,20.9515364 12.0895088,20.9995641 C16.970233,20.9503326 20.9337111,16.888438 20.9991771,11.8770357 Z" fill="#000000" opacity="0.3" />
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <span class="menu-text">Company</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <--end::Aside-->
+            <!--end::Aside-->
             <!--begin::Wrapper-->
             <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
                 <!--begin::Header-->
@@ -144,7 +169,7 @@
                     <!--begin::Container-->
                     <div class=" container-fluid  d-flex align-items-stretch justify-content-between">
                         <!--begin::Header Menu Wrapper-->
-                        <div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
+                        <div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper" style="display: inherit;">
                             <!--begin::Header Logo-->
                             <div class="header-logo">
                                 <a href="@Url.Action("index","admin")">
@@ -154,67 +179,107 @@
                             <div id="kt_header_menu" class="header-menu header-menu-mobile  header-menu-layout-default ">
                                 <!--begin::Header Nav-->
                                 <ul class="menu-nav">
-                                    <li class="menu-item menu-item-rel <?php echo Request::path()=='home'||Request::path()=='home/index'?'menu-item-hover':'';?>" data-menu-toggle="click" aria-haspopup="true">
-                                        <a onclick="location.href='@Url.Action("roles","admin")';" class="menu-link menu-toggle">
-                                            <span class="svg-icony svg-icon-2x">
-                                                <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Shopping\Chart-bar3.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                        <rect x="0" y="0" width="24" height="24" />
-                                                        <rect fill="#000000" opacity="0.3" x="7" y="4" width="3" height="13" rx="1.5" />
-                                                        <rect fill="#000000" opacity="0.3" x="12" y="9" width="3" height="8" rx="1.5" />
-                                                        <path d="M5,19 L20,19 C20.5522847,19 21,19.4477153 21,20 C21,20.5522847 20.5522847,21 20,21 L4,21 C3.44771525,21 3,20.5522847 3,20 L3,4 C3,3.44771525 3.44771525,3 4,3 C4.55228475,3 5,3.44771525 5,4 L5,19 Z" fill="#000000" fill-rule="nonzero" />
-                                                        <rect fill="#000000" opacity="0.3" x="17" y="11" width="3" height="6" rx="1.5" />
-                                                    </g>
-                                                </svg><!--end::Svg Icon-->
-                                            </span>
-                                            <span class="menu-text ml-2">@SharedLocalizer["Roles"]</span>
-                                            <i class="menu-arrow"></i>
+                                    <li class="menu-item  menu-item-open menu-item-here menu-item-submenu menu-item-rel menu-item-open menu-item-here menu-item-active" data-menu-toggle="click" aria-haspopup="true">
+                                        <a href="javascript:;" class="menu-link menu-toggle">
+                                            <span class="menu-text">@SharedLocalizer["Pages"]</span><i class="menu-arrow"></i>
                                         </a>
-                                    </li>
-                                    <li class="menu-item menu-item-rel <?php echo Request::path()=='users'||Request::path()=='users/index'?'menu-item-hover':'';?>" data-menu-toggle="click" aria-haspopup="true">
-                                        <a onclick="location.href='@Url.Action("users","admin")';" class="menu-link menu-toggle">
-                                            <span class="svg-icon svg-icon-2x">
-                                                <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\User.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                        <polygon points="0 0 24 0 24 24 0 24" />
-                                                        <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
-                                                        <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fill-rule="nonzero" />
-                                                    </g>
-                                                </svg><!--end::Svg Icon-->
-                                            </span>
-                                            <span class="menu-text ml-2">@SharedLocalizer["InternalUsers"]</span>
-                                            <i class="menu-arrow"></i>
+                                        <div class="menu-submenu menu-submenu-classic menu-submenu-left" data-hor-direction="menu-submenu-left">
+                                            <ul class="menu-subnav">
+                                                <li class="menu-item <?php echo Request::path()=='home'||Request::path()=='home/index'?'menu-item-active':'';?>" aria-haspopup="true">
+                                                    <a onclick="location.href='@Url.Action("roles","admin")';" class="menu-link menu-toggle">
+                                                        <span class="svg-icony svg-icon-2x">
+                                                            <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Lock-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                    <rect x="0" y="0" width="24" height="24" />
+                                                                    <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+                                                                    <path d="M14.5,11 C15.0522847,11 15.5,11.4477153 15.5,12 L15.5,15 C15.5,15.5522847 15.0522847,16 14.5,16 L9.5,16 C8.94771525,16 8.5,15.5522847 8.5,15 L8.5,12 C8.5,11.4477153 8.94771525,11 9.5,11 L9.5,10.5 C9.5,9.11928813 10.6192881,8 12,8 C13.3807119,8 14.5,9.11928813 14.5,10.5 L14.5,11 Z M12,9 C11.1715729,9 10.5,9.67157288 10.5,10.5 L10.5,11 L13.5,11 L13.5,10.5 C13.5,9.67157288 12.8284271,9 12,9 Z" fill="#000000" />
+                                                                </g>
+                                                            </svg><!--end::Svg Icon-->
+                                                        </span>
+                                                        <span class="menu-text ml-2">@SharedLocalizer["Roles"]</span>
+                                                    </a>
+                                                </li>
+                                                <li class="menu-item <?php echo Request::path()=='users'||Request::path()=='users/index'?'menu-item-active':'';?>" aria-haspopup="true">
+                                                    <a onclick="location.href='@Url.Action("users","admin")';" class="menu-link menu-toggle">
+                                                        <span class="svg-icon svg-icon-2x">
+                                                            <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\User.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                    <polygon points="0 0 24 0 24 24 0 24" />
+                                                                    <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                                                    <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fill-rule="nonzero" />
+                                                                </g>
+                                                            </svg><!--end::Svg Icon-->
+                                                        </span>
+                                                        <span class="menu-text ml-2">@SharedLocalizer["InternalUsers"]</span>
+                                                    </a>
+                                                </li>
+                                                <li class="menu-item <?php echo Request::path()=='users'||Request::path()=='users/index'?'menu-item-active':'';?>" aria-haspopup="true">
+                                                    <a onclick="location.href='@Url.Action("clients","admin")';" class="menu-link menu-toggle">
+                                                        <span class="svg-icon svg-icon-2x">
+                                                            <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\User.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                    <polygon points="0 0 24 0 24 24 0 24" />
+                                                                    <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                                                    <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fill-rule="nonzero" />
+                                                                </g>
+                                                            </svg><!--end::Svg Icon-->
+                                                        </span>
+                                                        <span class="menu-text ml-2">@SharedLocalizer["Clients"]</span>
+                                                    </a>
+                                                </li>
+                                                <li class="menu-item <?php echo Request::path()=='users'||Request::path()=='users/index'?'menu-item-active':'';?>" aria-haspopup="true">
+                                                    <a onclick="location.href='@Url.Action("investors","admin")';" class="menu-link menu-toggle">
+                                                        <span class="svg-icon svg-icon-2x">
+                                                            <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\User.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                    <polygon points="0 0 24 0 24 24 0 24" />
+                                                                    <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                                                    <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fill-rule="nonzero" />
+                                                                </g>
+                                                            </svg><!--end::Svg Icon-->
+                                                        </span>
+                                                        <span class="menu-text ml-2">@SharedLocalizer["Investors"]</span>
+                                                    </a>
+                                                </li>
+                                                <li class="menu-item <?php echo Request::path()=='users'||Request::path()=='users/index'?'menu-item-active':'';?>" aria-haspopup="true">
+                                                    <a onclick="location.href='@Url.Action("loanreq","admin")';" class="menu-link menu-toggle">
+                                                        <span class="svg-icon svg-icon-2x">
+                                                            <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Communication\Safe-chat.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                    <rect x="0" y="0" width="24" height="24" />
+                                                                    <path d="M8,17 C8.55228475,17 9,17.4477153 9,18 L9,21 C9,21.5522847 8.55228475,22 8,22 L3,22 C2.44771525,22 2,21.5522847 2,21 L2,18 C2,17.4477153 2.44771525,17 3,17 L3,16.5 C3,15.1192881 4.11928813,14 5.5,14 C6.88071187,14 8,15.1192881 8,16.5 L8,17 Z M5.5,15 C4.67157288,15 4,15.6715729 4,16.5 L4,17 L7,17 L7,16.5 C7,15.6715729 6.32842712,15 5.5,15 Z" fill="#000000" opacity="0.3" />
+                                                                    <path d="M2,11.8650466 L2,6 C2,4.34314575 3.34314575,3 5,3 L19,3 C20.6568542,3 22,4.34314575 22,6 L22,15 C22,15.0032706 21.9999948,15.0065399 21.9999843,15.009808 L22.0249378,15 L22.0249378,19.5857864 C22.0249378,20.1380712 21.5772226,20.5857864 21.0249378,20.5857864 C20.7597213,20.5857864 20.5053674,20.4804296 20.317831,20.2928932 L18.0249378,18 L12.9835977,18 C12.7263047,14.0909841 9.47412135,11 5.5,11 C4.23590829,11 3.04485894,11.3127315 2,11.8650466 Z M6,7 C5.44771525,7 5,7.44771525 5,8 C5,8.55228475 5.44771525,9 6,9 L15,9 C15.5522847,9 16,8.55228475 16,8 C16,7.44771525 15.5522847,7 15,7 L6,7 Z" fill="#000000" />
+                                                                </g>
+                                                            </svg><!--end::Svg Icon-->
+                                                        </span>
+                                                        <span class="menu-text ml-2">@SharedLocalizer["LoanRequest"]</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>                                    
+                                    <li class="menu-item  menu-item-open menu-item-here menu-item-submenu menu-item-rel menu-item-open" data-menu-toggle="click" aria-haspopup="true">
+                                        <a href="javascript:;" class="menu-link menu-toggle">
+                                            <span class="menu-text">@SharedLocalizer["Features"]</span><i class="menu-arrow"></i>
                                         </a>
-                                    </li>
-                                    <li class="menu-item menu-item-rel <?php echo Request::path()=='users'||Request::path()=='users/index'?'menu-item-hover':'';?>" data-menu-toggle="click" aria-haspopup="true">
-                                        <a onclick="location.href='@Url.Action("clients","admin")';" class="menu-link menu-toggle">
-                                            <span class="svg-icon svg-icon-2x">
-                                                <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\User.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                        <polygon points="0 0 24 0 24 24 0 24" />
-                                                        <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
-                                                        <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fill-rule="nonzero" />
-                                                    </g>
-                                                </svg><!--end::Svg Icon-->
-                                            </span>
-                                            <span class="menu-text ml-2">@SharedLocalizer["Clients"]</span>
-                                            <i class="menu-arrow"></i>
-                                        </a>
-                                    </li>
-                                    <li class="menu-item menu-item-rel <?php echo Request::path()=='users'||Request::path()=='users/index'?'menu-item-hover':'';?>" data-menu-toggle="click" aria-haspopup="true">
-                                        <a onclick="location.href='@Url.Action("investors","admin")';" class="menu-link menu-toggle">
-                                            <span class="svg-icon svg-icon-2x">
-                                                <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\User.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                        <polygon points="0 0 24 0 24 24 0 24" />
-                                                        <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
-                                                        <path d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z" fill="#000000" fill-rule="nonzero" />
-                                                    </g>
-                                                </svg><!--end::Svg Icon-->
-                                            </span>
-                                            <span class="menu-text ml-2">@SharedLocalizer["Investors"]</span>
-                                            <i class="menu-arrow"></i>
-                                        </a>
+                                        <div class="menu-submenu menu-submenu-classic menu-submenu-left" data-hor-direction="menu-submenu-left">
+                                            <ul class="menu-subnav">
+                                                <li class="menu-item <?php echo Request::path()=='home'||Request::path()=='home/index'?'menu-item-active':'';?>" aria-haspopup="true">
+                                                    <a onclick="location.href='@Url.Action("roles","admin")';" class="menu-link menu-toggle">
+                                                        <span class="svg-icony svg-icon-2x">
+                                                            <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Lock-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                    <rect x="0" y="0" width="24" height="24" />
+                                                                    <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+                                                                    <path d="M14.5,11 C15.0522847,11 15.5,11.4477153 15.5,12 L15.5,15 C15.5,15.5522847 15.0522847,16 14.5,16 L9.5,16 C8.94771525,16 8.5,15.5522847 8.5,15 L8.5,12 C8.5,11.4477153 8.94771525,11 9.5,11 L9.5,10.5 C9.5,9.11928813 10.6192881,8 12,8 C13.3807119,8 14.5,9.11928813 14.5,10.5 L14.5,11 Z M12,9 C11.1715729,9 10.5,9.67157288 10.5,10.5 L10.5,11 L13.5,11 L13.5,10.5 C13.5,9.67157288 12.8284271,9 12,9 Z" fill="#000000" />
+                                                                </g>
+                                                            </svg><!--end::Svg Icon-->
+                                                        </span>
+                                                        <span class="menu-text ml-2">@SharedLocalizer["Transaction Histories"]</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
@@ -310,6 +375,10 @@
                                     {
                                         <a href="@Url.Action("investors","admin")" class="btn btn-clean font-weight-bold" style="color:#000;font-size:15px;">@SharedLocalizer["Investors"]</a>
                                     }
+                                    else if (current_url.Equals("/admin/loanreq"))
+                                    {
+                                        <a href="@Url.Action("loanreq","admin")" class="btn btn-clean font-weight-bold" style="color:#000;font-size:15px;">@SharedLocalizer["LoanRequest"]</a>
+                                    }
                                 </h5>
                                 <div class="subheader-separator subheader-separator-ver mr-4" style="background-color:#655d5d;font-size:15px;"></div>
                                 <span class="text-muted font-weight-bold mr-4">@SharedLocalizer["InternalUsers"]: @ViewBag.inneraluser_count</span>
@@ -357,7 +426,7 @@
             <!--begin::Header-->
             <div class="d-flex align-items-center mt-5">
                 <div class="symbol symbol-100 mr-5">
-                    <div class="symbol-label" style="background-image:url('/metronic/media/users/<?php echo Auth::user()->avatar!=null?Auth::user()->avatar:'default.jpg';?>')"></div>
+                    <div class="symbol-label" style="background-image: url('data:image/png;base64,@System.Convert.ToBase64String(user.AvatarImage)')"></div>
                     <i class="symbol-badge bg-success"></i>
                 </div>
                 <div class="d-flex flex-column">

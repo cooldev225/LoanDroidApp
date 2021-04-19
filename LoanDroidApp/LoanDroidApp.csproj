@@ -28,12 +28,13 @@
     <Compile Remove="Migrations\20200217053139_init.Designer.cs" />
     <Compile Remove="Migrations\20200223163454_init.cs" />
     <Compile Remove="Migrations\20200223163454_init.Designer.cs" />
+    <Compile Remove="Migrations\20210417013959_accountpayment.cs" />
+    <Compile Remove="Migrations\20210417013959_accountpayment.Designer.cs" />
   </ItemGroup>
 
 
   <ItemGroup>
     <Folder Include="DbSetup\" />
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 

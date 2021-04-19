@@ -61,11 +61,191 @@ namespace LoanDroidApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ACCOUNT.
+        /// </summary>
+        public static string ACCOUNT_ {
+            get {
+                return ResourceManager.GetString("ACCOUNT_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bank account holder.
+        /// </summary>
+        public static string accountholder {
+            get {
+                return ResourceManager.GetString("accountholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add new client.
+        /// </summary>
+        public static string Addnewclient {
+            get {
+                return ResourceManager.GetString("Addnewclient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add new investor.
+        /// </summary>
+        public static string Addnewinvestor {
+            get {
+                return ResourceManager.GetString("Addnewinvestor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to address.
+        /// </summary>
+        public static string address {
+            get {
+                return ResourceManager.GetString("address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ADDRESS.
+        /// </summary>
+        public static string ADDRESS_ {
+            get {
+                return ResourceManager.GetString("ADDRESS_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All Reserved.
         /// </summary>
         public static string AllReserved {
             get {
                 return ResourceManager.GetString("AllReserved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AVATAR.
+        /// </summary>
+        public static string AVATAR_ {
+            get {
+                return ResourceManager.GetString("AVATAR_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bank city.
+        /// </summary>
+        public static string bankcity {
+            get {
+                return ResourceManager.GetString("bankcity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bank country.
+        /// </summary>
+        public static string bankcountry {
+            get {
+                return ResourceManager.GetString("bankcountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bank name.
+        /// </summary>
+        public static string bankname {
+            get {
+                return ResourceManager.GetString("bankname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bank region.
+        /// </summary>
+        public static string bankregion {
+            get {
+                return ResourceManager.GetString("bankregion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bank street.
+        /// </summary>
+        public static string bankstreet {
+            get {
+                return ResourceManager.GetString("bankstreet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Swift Bic number.
+        /// </summary>
+        public static string bicnumber {
+            get {
+                return ResourceManager.GetString("bicnumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BIC NUMBER.
+        /// </summary>
+        public static string BICNUMBER_ {
+            get {
+                return ResourceManager.GetString("BICNUMBER_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Card number.
+        /// </summary>
+        public static string cardnumber {
+            get {
+                return ResourceManager.GetString("cardnumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CITY.
+        /// </summary>
+        public static string CITY_ {
+            get {
+                return ResourceManager.GetString("CITY_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Client Dialog.
+        /// </summary>
+        public static string ClientDialog {
+            get {
+                return ResourceManager.GetString("ClientDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clinet Payment Option.
+        /// </summary>
+        public static string ClientPaymentDialog {
+            get {
+                return ResourceManager.GetString("ClientPaymentDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clients Management.
+        /// </summary>
+        public static string ClientsManagement {
+            get {
+                return ResourceManager.GetString("ClientsManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
             }
         }
         
@@ -79,11 +259,155 @@ namespace LoanDroidApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Count of clients.
+        /// </summary>
+        public static string Countofclient {
+            get {
+                return ResourceManager.GetString("Countofclient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Count of investors.
+        /// </summary>
+        public static string Countofinvestor {
+            get {
+                return ResourceManager.GetString("Countofinvestor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to COUNTRY.
+        /// </summary>
+        public static string COUNTRY_ {
+            get {
+                return ResourceManager.GetString("COUNTRY_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a role.
+        /// </summary>
+        public static string Createarole {
+            get {
+                return ResourceManager.GetString("Createarole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a user.
+        /// </summary>
+        public static string Createauser {
+            get {
+                return ResourceManager.GetString("Createauser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currency.
+        /// </summary>
+        public static string currency {
+            get {
+                return ResourceManager.GetString("currency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CURRENCY.
+        /// </summary>
+        public static string CURRENCY_ {
+            get {
+                return ResourceManager.GetString("CURRENCY_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to department.
+        /// </summary>
+        public static string department {
+            get {
+                return ResourceManager.GetString("department", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DEPARTMENT.
+        /// </summary>
+        public static string DEPARTMENT_ {
+            get {
+                return ResourceManager.GetString("DEPARTMENT_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to description.
+        /// </summary>
+        public static string description {
+            get {
+                return ResourceManager.GetString("description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DESCRIPTION.
+        /// </summary>
+        public static string DESCRIPTION_ {
+            get {
+                return ResourceManager.GetString("DESCRIPTION_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to email.
+        /// </summary>
+        public static string email {
+            get {
+                return ResourceManager.GetString("email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EMAIL.
+        /// </summary>
+        public static string EMAIL_ {
+            get {
+                return ResourceManager.GetString("EMAIL_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EXPIRATION.
+        /// </summary>
+        public static string EXPIRATION_ {
+            get {
+                return ResourceManager.GetString("EXPIRATION_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expiration date.
+        /// </summary>
+        public static string expirationdate {
+            get {
+                return ResourceManager.GetString("expirationdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fast &amp; Easy Application Process.
         /// </summary>
         public static string FastEasyApplicationProcess {
             get {
                 return ResourceManager.GetString("FastEasyApplicationProcess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Financial chart.
+        /// </summary>
+        public static string Financialchart {
+            get {
+                return ResourceManager.GetString("Financialchart", resourceCulture);
             }
         }
         
@@ -97,6 +421,24 @@ namespace LoanDroidApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to first name.
+        /// </summary>
+        public static string firstname {
+            get {
+                return ResourceManager.GetString("firstname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FIRSTNAME.
+        /// </summary>
+        public static string FIRSTNAME_ {
+            get {
+                return ResourceManager.GetString("FIRSTNAME_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to How does it work?.
         /// </summary>
         public static string howitworks {
@@ -106,11 +448,65 @@ namespace LoanDroidApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to IBAN number.
+        /// </summary>
+        public static string ibannumber {
+            get {
+                return ResourceManager.GetString("ibannumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IBAN NUMBER.
+        /// </summary>
+        public static string IBANNUMBER_ {
+            get {
+                return ResourceManager.GetString("IBANNUMBER_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Interest of loan.
+        /// </summary>
+        public static string Interestofloan {
+            get {
+                return ResourceManager.GetString("Interestofloan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Internal users.
         /// </summary>
         public static string InternalUsers {
             get {
                 return ResourceManager.GetString("InternalUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Investments.
+        /// </summary>
+        public static string Investments {
+            get {
+                return ResourceManager.GetString("Investments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Investor Dialog.
+        /// </summary>
+        public static string InvestorDialog {
+            get {
+                return ResourceManager.GetString("InvestorDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Investors Management.
+        /// </summary>
+        public static string InvestorsManagement {
+            get {
+                return ResourceManager.GetString("InvestorsManagement", resourceCulture);
             }
         }
         
@@ -133,6 +529,24 @@ namespace LoanDroidApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to surname.
+        /// </summary>
+        public static string lastname {
+            get {
+                return ResourceManager.GetString("lastname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SURNAME.
+        /// </summary>
+        public static string LASTNAME_ {
+            get {
+                return ResourceManager.GetString("LASTNAME_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Latest News from Loan Company.
         /// </summary>
         public static string LatestNewsfromLoanCompany {
@@ -151,6 +565,213 @@ namespace LoanDroidApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loan Request.
+        /// </summary>
+        public static string LoanRequest {
+            get {
+                return ResourceManager.GetString("LoanRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NAME.
+        /// </summary>
+        public static string NAME {
+            get {
+                return ResourceManager.GetString("NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NAME.
+        /// </summary>
+        public static string NAME_ {
+            get {
+                return ResourceManager.GetString("NAME_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NUMBER.
+        /// </summary>
+        public static string NUMBER_ {
+            get {
+                return ResourceManager.GetString("NUMBER_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to office number.
+        /// </summary>
+        public static string officenumber {
+            get {
+                return ResourceManager.GetString("officenumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OFFICE NUMBER.
+        /// </summary>
+        public static string OFFICENUMBER_ {
+            get {
+                return ResourceManager.GetString("OFFICENUMBER_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to other phone number.
+        /// </summary>
+        public static string otherphone {
+            get {
+                return ResourceManager.GetString("otherphone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OTHER NUMBER.
+        /// </summary>
+        public static string OTHERPTHONE_ {
+            get {
+                return ResourceManager.GetString("OTHERPTHONE_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to password.
+        /// </summary>
+        public static string password {
+            get {
+                return ResourceManager.GetString("password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PASSWORD.
+        /// </summary>
+        public static string PASSWORD_ {
+            get {
+                return ResourceManager.GetString("PASSWORD_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to phone number.
+        /// </summary>
+        public static string phonenumber {
+            get {
+                return ResourceManager.GetString("phonenumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PHONE NUMBER.
+        /// </summary>
+        public static string PHONENUMBER_ {
+            get {
+                return ResourceManager.GetString("PHONENUMBER_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to REGION.
+        /// </summary>
+        public static string REGION_ {
+            get {
+                return ResourceManager.GetString("REGION_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role Dialog.
+        /// </summary>
+        public static string RoleDialog {
+            get {
+                return ResourceManager.GetString("RoleDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to role name.
+        /// </summary>
+        public static string rolename {
+            get {
+                return ResourceManager.GetString("rolename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roles Management.
+        /// </summary>
+        public static string RolesManagement {
+            get {
+                return ResourceManager.GetString("RolesManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ROUTING.
+        /// </summary>
+        public static string ROUTING_ {
+            get {
+                return ResourceManager.GetString("ROUTING_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Routing number.
+        /// </summary>
+        public static string routingnumber {
+            get {
+                return ResourceManager.GetString("routingnumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saving changes.
+        /// </summary>
+        public static string Savingchanges {
+            get {
+                return ResourceManager.GetString("Savingchanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saving of invest.
+        /// </summary>
+        public static string Savingofinvest {
+            get {
+                return ResourceManager.GetString("Savingofinvest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Site name.
+        /// </summary>
+        public static string SiteName {
+            get {
+                return ResourceManager.GetString("SiteName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Site Url.
+        /// </summary>
+        public static string SiteUrl {
+            get {
+                return ResourceManager.GetString("SiteUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loans and &lt;strong class=&quot;text-highlight&quot;&gt;investments&lt;/strong&gt;.
         /// </summary>
         public static string slider01_title {
@@ -165,6 +786,87 @@ namespace LoanDroidApp.Resources {
         public static string SomeofourAwesomeTestimonials {
             get {
                 return ResourceManager.GetString("SomeofourAwesomeTestimonials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to STREET.
+        /// </summary>
+        public static string STREET_ {
+            get {
+                return ResourceManager.GetString("STREET_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successful loans.
+        /// </summary>
+        public static string Successfulloans {
+            get {
+                return ResourceManager.GetString("Successfulloans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Surname.
+        /// </summary>
+        public static string surname {
+            get {
+                return ResourceManager.GetString("surname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SURNAME.
+        /// </summary>
+        public static string SURNAME_ {
+            get {
+                return ResourceManager.GetString("SURNAME_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to URL.
+        /// </summary>
+        public static string URL_ {
+            get {
+                return ResourceManager.GetString("URL_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Dialog.
+        /// </summary>
+        public static string UserDialog {
+            get {
+                return ResourceManager.GetString("UserDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to username.
+        /// </summary>
+        public static string username {
+            get {
+                return ResourceManager.GetString("username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to USERNAME.
+        /// </summary>
+        public static string USERNAME_ {
+            get {
+                return ResourceManager.GetString("USERNAME_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Users Management.
+        /// </summary>
+        public static string UsersManagement {
+            get {
+                return ResourceManager.GetString("UsersManagement", resourceCulture);
             }
         }
         

@@ -7,3 +7,41 @@
 .dropdown-menu.dropdown-menu-sm {
     width: 291px;
 }
+#kt_header {
+    background: #ffffff;
+}
+#kt_subheader {
+    background-color: #1a84ff;
+}
+#kt_subheader h5 a{
+    color: #ffffff !important;
+}
+#kt_subheader h5 a:hover{
+    color: #1a84ff !important;
+}
+#kt_subheader .text-muted {
+    color: #dfe5ec !important;
+}
+#kt_subheader .subheader-separator{
+    background-color: #ffffff !important;
+}
+
+.datatable-paging-loaded {
+    padding-top: 0px !important;
+}
+
+.datatable.datatable-default.datatable-bordered > .datatable-table > .datatable-body .datatable-row-subtable > td {
+    border-width: 1px;
+    border-color: #95e42da1;
+    border-style: solid;
+}
+
+.datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell, .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell, .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell {
+    padding: 5px 5px;
+}
+
+.modal-content .modal-header .card-toolbar ul {
+    position: absolute;
+    margin-top: -27px;
+    right: 70px;
+}

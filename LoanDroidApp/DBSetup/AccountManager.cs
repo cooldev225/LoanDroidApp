@@ -1,8 +1,6 @@
 ﻿// =============================
 // Email: bluestar1027@hotmail.com
-
 // =============================
-
 using DBSetup.Interfaces;
 using Models.data;
 using Microsoft.AspNetCore.Http;
@@ -14,7 +12,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace DBSetup
 {
     public class AccountManager : IAccountManager
@@ -22,8 +19,6 @@ namespace DBSetup
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
-
-
         public AccountManager(
             ApplicationDbContext context,
             UserManager<ApplicationUser> userManager,
@@ -36,10 +31,6 @@ namespace DBSetup
             _roleManager = roleManager;
 
         }
-
-
-
-
         public async Task<ApplicationUser> GetUserByIdAsync(string userId)
         {
             return await _userManager.FindByIdAsync(userId);
@@ -59,8 +50,6 @@ namespace DBSetup
         {
             return await _userManager.GetRolesAsync(user);
         }
-
-
         public async Task<(ApplicationUser User, string[] Roles)?> GetUserAndRolesAsync(string userId)
         {
             var user = await _context.Users
@@ -80,8 +69,6 @@ namespace DBSetup
 
             return (user, roles);
         }
-
-
         public async Task<List<(ApplicationUser User, string[] Roles)>> GetUsersAndRolesAsync(int page, int pageSize)
         {
             IQueryable<ApplicationUser> usersQuery = _context.Users
@@ -106,8 +93,6 @@ namespace DBSetup
                 .Select(u => (u, roles.Where(r => u.Roles.Select(ur => ur.RoleId).Contains(r.Id)).Select(r => r.Name).ToArray()))
                 .ToList();
         }
-
-
         public async Task<(bool Succeeded, string[] Errors)> CreateUserAsync(ApplicationUser user, IEnumerable<string> roles, string password)
         {
             var result = await _userManager.CreateAsync(user, password);
@@ -237,24 +222,14 @@ namespace DBSetup
             var result = await _userManager.DeleteAsync(user);
             return (result.Succeeded, result.Errors.Select(e => e.Description).ToArray());
         }
-
-
-
-
-
-
         public async Task<ApplicationRole> GetRoleByIdAsync(string roleId)
         {
             return await _roleManager.FindByIdAsync(roleId);
         }
-
-
         public async Task<ApplicationRole> GetRoleByNameAsync(string roleName)
         {
             return await _roleManager.FindByNameAsync(roleName);
         }
-
-
         public async Task<ApplicationRole> GetRoleLoadRelatedAsync(string roleName)
         {
             var role = await _context.Roles
@@ -265,8 +240,6 @@ namespace DBSetup
 
             return role;
         }
-
-
         public async Task<List<ApplicationRole>> GetRolesLoadRelatedAsync(int page, int pageSize)
         {
             IQueryable<ApplicationRole> rolesQuery = _context.Roles

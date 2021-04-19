@@ -23,7 +23,6 @@ namespace Models.data
                 return friendlyName;
             }
         }
-
         public Byte[] AvatarImage { get; set; } 
         public string JobTitle { get; set; }
         public string FirstName { get; set; }

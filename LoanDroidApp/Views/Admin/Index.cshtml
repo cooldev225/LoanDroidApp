@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
-@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<LoanDroidApp.CommonResources> SharedLocalizer
 @{
     ViewData["Title"] = "Dashboard";
 }
@@ -23,8 +23,8 @@
                                 </g>
                             </svg><!--end::Svg Icon-->
                         </span>
-                        <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">1</span>
-                        <span class="font-weight-bold text-muted font-size-sm">Total of users</span>
+                        <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">@ViewBag.client_count</span>
+                        <span class="font-weight-bold text-muted font-size-sm">@SharedLocalizer["Countofclient"]</span>
                     </div>
                     <!--end::Body-->
                 </div>
@@ -44,8 +44,8 @@
                                 </g>
                             </svg><!--end::Svg Icon-->
                         </span>
-                        <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">0</span>
-                        <span class="font-weight-bold text-muted font-size-sm">Today boosts used</span>
+                        <span class="card-title font-weight-bolder text-dark-75 font-size-h2 mb-0 mt-6 d-block">@ViewBag.investor_count</span>
+                        <span class="font-weight-bold text-muted font-size-sm">@SharedLocalizer["Countofinvestor"]</span>
                     </div>
                     <!--end::Body-->
                 </div>
@@ -65,8 +65,8 @@
                                 </g>
                             </svg><!--end::Svg Icon-->
                         </span>
-                        <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">0</span>
-                        <span class="font-weight-bold text-white font-size-sm">Today packs bought</span>
+                        <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">0$</span>
+                        <span class="font-weight-bold text-white font-size-sm">@SharedLocalizer["Successfulloans"]</span>
                     </div>
                     <!--end::Body-->
                 </div>
@@ -86,8 +86,8 @@
                                 </g>
                             </svg><!--end::Svg Icon-->
                         </span>
-                        <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">0</span>
-                        <span class="font-weight-bold text-white font-size-sm">Total of packs bought</span>
+                        <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">0$</span>
+                        <span class="font-weight-bold text-white font-size-sm">@SharedLocalizer["Interestofloan"]</span>
                     </div>
                     <!--end::Body-->
                 </div>
@@ -107,8 +107,8 @@
                                 </g>
                             </svg><!--end::Svg Icon-->
                         </span>
-                        <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">0</span>
-                        <span class="font-weight-bold text-white  font-size-sm">Today revenue</span>
+                        <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">0$</span>
+                        <span class="font-weight-bold text-white  font-size-sm">@SharedLocalizer["Investments"]</span>
                     </div>
                     <!--end::Body-->
                 </div>
@@ -128,8 +128,8 @@
                                 </g>
                             </svg><!--end::Svg Icon-->
                         </span>
-                        <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">0</span>
-                        <span class="font-weight-bold text-white font-size-sm">Total of revenue</span>
+                        <span class="card-title font-weight-bolder text-white font-size-h2 mb-0 mt-6 d-block">0$</span>
+                        <span class="font-weight-bold text-white font-size-sm">@SharedLocalizer["Savingofinvest"]</span>
                     </div>
                     <!--end::Body-->
                 </div>
@@ -144,27 +144,18 @@
                     <!--begin::Header-->
                     <div class="card-header h-auto">
                         <!--begin::Title-->
-                        <div class="card-title py-5">
+                        <div class="card-title">
                             <h3 class="card-label">
-                                Packs Bought By Year($)
+                                @SharedLocalizer["Clients"]
                             </h3>
-                            <select class="form-control mr-2" id="chart_pack_os" style="max-width:80px;" name="param">
-                                <option value="0">_ALL_</option>
-                                <option value="1">Android</option>
-                                <option value="2">iOS</option>
-                            </select>
-                            <select class="form-control mr-2" id="chart_pack_name" style="max-width:100px;" name="param">
-                                <option value="0">_ALL_</option>
-                                
-                            </select>
-                            <input type="text" class="form-control" id="chart_pack_date" style="width:60px;" readonly placeholder="Select date" value="2021" />
+                            <input type="text" class="form-control" id="chart_client_date" style="width:100px;" readonly placeholder="Select date" value="@DateTime.Now.ToString("yyyy-MM")" />
                         </div>
                         <!--end::Title-->
                     </div>
                     <!--end::Header-->
                     <div class="card-body">
                         <!--begin::Chart-->
-                        <div id="chart_1"></div>
+                        <div id="chart_client"></div>
                         <!--end::Chart-->
                     </div>
                 </div>
@@ -174,39 +165,39 @@
                 <!--begin::Card-->
                 <div class="card card-custom gutter-b">
                     <div class="card-header">
-                        <div class="card-title">
+                        <div class="card-title h-auto">
                             <h3 class="card-label">
-                                Boost Used By Year(k)
+                                @SharedLocalizer["Investors"]
                             </h3>
-                            <select class="form-control mr-2" id="chart_star_name" style="max-width:100px;" name="param">
-                                <option value="0">_ALL_</option>
-                                
-                            </select>
-                            <input type="text" class="form-control" id="chart_star_date" style="width:60px;" readonly placeholder="Select date" value="2021" />
+                            <input type="text" class="form-control" id="chart_investor_date" readonly placeholder="Select date" value="@DateTime.Now.ToString("yyyy-MM")" />
                         </div>
                     </div>
                     <div class="card-body">
                         <!--begin::Chart-->
-                        <div id="chart_2"></div>
+                        <div id="chart_investor"></div>
                         <!--end::Chart-->
                     </div>
                 </div>
-                <!--end::Card-->
+                <!--end::Card-->                
             </div>
             <div class="col-lg-12">
                 <!--begin::Card-->
                 <div class="card card-custom gutter-b">
                     <div class="card-header">
                         <div class="card-title">
-                            <h3 class="card-label">
-                                Active Users by Month
+                            <h3 class="card-label" style="width:170px;">
+                                @SharedLocalizer["Financialchart"]
                             </h3>
-                            <input type="text" class="form-control" id="chart_users_date" style="width:100px;" readonly placeholder="Select date" value="2021" />
+                            <select class="form-control mr-2" id="chart_user_name" style="max-width:100px;" name="param">
+                                <option value="0">_ALL_</option>
+
+                            </select>
+                            <input type="text" class="form-control" id="chart_finance_date" style="width:100px;" readonly placeholder="Select date" value="@DateTime.Now.ToString("yyyy-MM")" />
                         </div>
                     </div>
                     <div class="card-body">
                         <!--begin::Chart-->
-                        <div id="chart_3"></div>
+                        <div id="chart_finance"></div>
                         <!--end::Chart-->
                     </div>
                 </div>
