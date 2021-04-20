@@ -10,6 +10,7 @@ namespace Models.data
     {
         public long Id { get; set; }
         public long NotificationId { get; set; }
+        public bool IsReaded { get; set; }
         public string CreatedBy { get; set; }
         public string CreatedDevice { get; set; }
         public DateTime CreatedDate { get; set; }

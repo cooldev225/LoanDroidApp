@@ -48,7 +48,24 @@ namespace App.Controllers
             ViewBag.investor_count = _userManager.GetUsersInRoleAsync("inversora").Result.Count();
             ViewBag.inneraluser_count = representantes + contactors + servicemanagers + debuggerdepartments + collectiondepartments;
             ViewBag.UserRoles = "administrator,representante,contactor,servicio,depuracion,coleccion";
-            
+            IQueryable<ApplicationNotification> query = (
+                from a in _context.Set<NotificationReading>()
+                join b in _context.Set<Notification>()
+                on a.NotificationId equals b.Id into g
+                from b in g.DefaultIfEmpty()
+                select new ApplicationNotification
+                {
+                    Id=a.Id,
+                    Text=b.Text,
+
+                    IsReaded=a.IsReaded,
+                    CreatedBy = b.CreatedBy,
+                    CreatedDate = b.CreatedDate,
+                    CreatedDevice = b.CreatedDevice,
+                    UpdatedBy = b.UpdatedBy,
+                    UpdatedDate = b.UpdatedDate,
+                    UpdatedDevice = b.UpdatedDevice
+                });
         }
         public IActionResult Index()
         {
