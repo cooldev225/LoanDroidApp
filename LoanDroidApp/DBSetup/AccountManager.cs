@@ -26,7 +26,7 @@ namespace DBSetup
             IHttpContextAccessor httpAccessor)
         {
             _context = context;
-            _context.CurrentUserId = httpAccessor.HttpContext?.User.FindFirst(ClaimConstants.Subject)?.Value?.Trim();
+            _context.CurrentUserId = httpAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value?.Trim();
             _userManager = userManager;
             _roleManager = roleManager;
 

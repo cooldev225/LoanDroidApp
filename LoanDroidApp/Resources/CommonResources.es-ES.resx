@@ -138,6 +138,12 @@
   <data name="AllReserved" xml:space="preserve">
     <value>Todo reservado</value>
   </data>
+  <data name="amount" xml:space="preserve">
+    <value>Cantidad</value>
+  </data>
+  <data name="AMOUNT_" xml:space="preserve">
+    <value>CANTIDAD</value>
+  </data>
   <data name="AVATAR_" xml:space="preserve">
     <value>AVATAR</value>
   </data>
@@ -189,6 +195,9 @@
   <data name="ClientsManagement" xml:space="preserve">
     <value>Gestión de clientes</value>
   </data>
+  <data name="CLIENT_" xml:space="preserve">
+    <value>CLIENTE</value>
+  </data>
   <data name="Close" xml:space="preserve">
     <value>Cerca</value>
   </data>
@@ -209,6 +218,9 @@
   </data>
   <data name="Createauser" xml:space="preserve">
     <value>Crear una usuaria</value>
+  </data>
+  <data name="CreateInvestment" xml:space="preserve">
+    <value>Crea una inversión</value>
   </data>
   <data name="currency" xml:space="preserve">
     <value>Dinero</value>
@@ -264,6 +276,12 @@
   <data name="FIRSTNAME_" xml:space="preserve">
     <value>PRIMER NOMBRE</value>
   </data>
+  <data name="frequently" xml:space="preserve">
+    <value>Frecuentemente</value>
+  </data>
+  <data name="FREQUENTLY_" xml:space="preserve">
+    <value>FRECUENTEMENTE</value>
+  </data>
   <data name="hi" xml:space="preserve">
     <value>hola</value>
   </data>
@@ -282,8 +300,17 @@
   <data name="Interestofloan" xml:space="preserve">
     <value>Interés del préstamo</value>
   </data>
+  <data name="interestrate" xml:space="preserve">
+    <value>tasa de interés</value>
+  </data>
+  <data name="INTEREST_" xml:space="preserve">
+    <value>INTERESAR</value>
+  </data>
   <data name="InternalUsers" xml:space="preserve">
     <value>Usuarias internas</value>
+  </data>
+  <data name="Investment" xml:space="preserve">
+    <value>Inversión</value>
   </data>
   <data name="Investments" xml:space="preserve">
     <value>Inversiones</value>
@@ -296,6 +323,9 @@
   </data>
   <data name="InvestorsManagement" xml:space="preserve">
     <value>Gestión de inversores</value>
+  </data>
+  <data name="INVESTOR_" xml:space="preserve">
+    <value>INVERSORA</value>
   </data>
   <data name="Iwantloan" xml:space="preserve">
     <value>Quiero un préstamo</value>
@@ -363,11 +393,20 @@
   <data name="Profile" xml:space="preserve">
     <value>Perfil</value>
   </data>
+  <data name="Reason..." xml:space="preserve">
+    <value>Razón...</value>
+  </data>
   <data name="REGION_" xml:space="preserve">
     <value>REGIÓN</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Eliminar</value>
+  </data>
+  <data name="requesteddate" xml:space="preserve">
+    <value>Fecha solicitada</value>
+  </data>
+  <data name="REQUESTEDDATE_" xml:space="preserve">
+    <value>FECHA SOLICITADA</value>
   </data>
   <data name="RoleDialog" xml:space="preserve">
     <value>Diálogo de rol</value>
@@ -393,6 +432,12 @@
   <data name="Savingofinvest" xml:space="preserve">
     <value>Ahorro de invertir</value>
   </data>
+  <data name="savingrate" xml:space="preserve">
+    <value>Tasa de ahorro</value>
+  </data>
+  <data name="SAVINGRATE_" xml:space="preserve">
+    <value>TASA DE AHORRO</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Buscar</value>
   </data>
@@ -414,6 +459,9 @@
   <data name="SomeofourAwesomeTestimonials" xml:space="preserve">
     <value>Algunos de nuestros impresionantes testimonios</value>
   </data>
+  <data name="STATUS_" xml:space="preserve">
+    <value>ESTADO</value>
+  </data>
   <data name="STREET_" xml:space="preserve">
     <value>CALLE</value>
   </data>
@@ -425,6 +473,12 @@
   </data>
   <data name="SURNAME_" xml:space="preserve">
     <value>APELLIDO</value>
+  </data>
+  <data name="times" xml:space="preserve">
+    <value>Tiempo</value>
+  </data>
+  <data name="TIMES_" xml:space="preserve">
+    <value>TIEMPO</value>
   </data>
   <data name="URL_" xml:space="preserve">
     <value>URL</value>

@@ -3,17 +3,12 @@ using Models.data.Interfaces;
 using System;
 namespace LoanDroidApp.Models
 {
-    public class LoanRequest : IAuditableEntity
+    public class InvestmentStatus : IAuditableEntity
     {
         public long Id { get; set; }
-        public string ClientId { get; set; }
-        public double Amount { get; set; }
-        public double InterestingRate { get; set; }
-        public LoanCycle Cycle { get; set; }
-        public int Times { get; set; }
-        public LoanStatus Status { get; set; }
+        public long InvestmenttId { get; set; }
+        public InvestStatus Status { get; set; }
         public string StatusReason { get; set; }
-        public DateTime RequestedDate { get; set; }
 
         public string CreatedBy { get; set; }
         public string CreatedDevice { get; set; }

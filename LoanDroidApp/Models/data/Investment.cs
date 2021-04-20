@@ -3,15 +3,15 @@ using Models.data.Interfaces;
 using System;
 namespace LoanDroidApp.Models
 {
-    public class LoanRequest : IAuditableEntity
+    public class Investment : IAuditableEntity
     {
         public long Id { get; set; }
-        public string ClientId { get; set; }
+        public string InvestorId { get; set; }
         public double Amount { get; set; }
-        public double InterestingRate { get; set; }
+        public double SavingRate { get; set; }
         public LoanCycle Cycle { get; set; }
         public int Times { get; set; }
-        public LoanStatus Status { get; set; }
+        public InvestStatus Status { get; set; }
         public string StatusReason { get; set; }
         public DateTime RequestedDate { get; set; }
 

@@ -138,6 +138,12 @@
   <data name="AllReserved" xml:space="preserve">
     <value>All Reserved</value>
   </data>
+  <data name="amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="AMOUNT_" xml:space="preserve">
+    <value>AMOUNT</value>
+  </data>
   <data name="AVATAR_" xml:space="preserve">
     <value>AVATAR</value>
   </data>
@@ -177,6 +183,9 @@
   <data name="ClientsManagement" xml:space="preserve">
     <value>Clients Management</value>
   </data>
+  <data name="CLIENT_" xml:space="preserve">
+    <value>CLIENT</value>
+  </data>
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
@@ -197,6 +206,9 @@
   </data>
   <data name="Createauser" xml:space="preserve">
     <value>Create a user</value>
+  </data>
+  <data name="CreateInvestment" xml:space="preserve">
+    <value>Create an investment</value>
   </data>
   <data name="currency" xml:space="preserve">
     <value>Currency</value>
@@ -243,6 +255,12 @@
   <data name="FIRSTNAME_" xml:space="preserve">
     <value>FIRSTNAME</value>
   </data>
+  <data name="frequently" xml:space="preserve">
+    <value>Frequently</value>
+  </data>
+  <data name="FREQUENTLY_" xml:space="preserve">
+    <value>FREQUENTLY</value>
+  </data>
   <data name="howitworks" xml:space="preserve">
     <value>How does it work?</value>
   </data>
@@ -255,8 +273,17 @@
   <data name="Interestofloan" xml:space="preserve">
     <value>Interest of loan</value>
   </data>
+  <data name="interestrate" xml:space="preserve">
+    <value>Interest rate</value>
+  </data>
+  <data name="INTEREST_" xml:space="preserve">
+    <value>INTEREST</value>
+  </data>
   <data name="InternalUsers" xml:space="preserve">
     <value>Internal users</value>
+  </data>
+  <data name="Investment" xml:space="preserve">
+    <value>Investment</value>
   </data>
   <data name="Investments" xml:space="preserve">
     <value>Investments</value>
@@ -266,6 +293,9 @@
   </data>
   <data name="InvestorsManagement" xml:space="preserve">
     <value>Investors Management</value>
+  </data>
+  <data name="INVESTOR_" xml:space="preserve">
+    <value>INVESTOR</value>
   </data>
   <data name="Iwantloan" xml:space="preserve">
     <value>I want a loan</value>
@@ -324,6 +354,12 @@
   <data name="REGION_" xml:space="preserve">
     <value>REGION</value>
   </data>
+  <data name="requesteddate" xml:space="preserve">
+    <value>Requested date</value>
+  </data>
+  <data name="REQUESTEDDATE_" xml:space="preserve">
+    <value>REQUESTED DATE</value>
+  </data>
   <data name="RoleDialog" xml:space="preserve">
     <value>Role Dialog</value>
   </data>
@@ -345,6 +381,12 @@
   <data name="Savingofinvest" xml:space="preserve">
     <value>Saving of invest</value>
   </data>
+  <data name="savingrate" xml:space="preserve">
+    <value>Saving rate</value>
+  </data>
+  <data name="SAVINGRATE_" xml:space="preserve">
+    <value>SAVING RATE</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
@@ -360,6 +402,9 @@
   <data name="SomeofourAwesomeTestimonials" xml:space="preserve">
     <value>Some of our Awesome Testimonials</value>
   </data>
+  <data name="STATUS_" xml:space="preserve">
+    <value>STATUS</value>
+  </data>
   <data name="STREET_" xml:space="preserve">
     <value>STREET</value>
   </data>
@@ -371,6 +416,12 @@
   </data>
   <data name="SURNAME_" xml:space="preserve">
     <value>SURNAME</value>
+  </data>
+  <data name="times" xml:space="preserve">
+    <value>Times</value>
+  </data>
+  <data name="TIMES_" xml:space="preserve">
+    <value>TIMES</value>
   </data>
   <data name="URL_" xml:space="preserve">
     <value>URL</value>

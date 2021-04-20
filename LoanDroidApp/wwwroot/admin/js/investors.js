@@ -422,7 +422,7 @@ function UserAddAction() {
     $('#edit_user_phonenumber').val('');
     $('#edit_user_otherphone').val('');
     $('#edit_user_officenumber').val('');
-    $('#edit_user_department').val('');
+    $('#edit_user_address').val('');
 }
 function isValidateEditUserModal() {
     if ($('#edit_user_username').val() == '') {
@@ -454,7 +454,7 @@ function submitUserEditForm() {
     form_data.append('phonenumber', $('#edit_user_phonenumber').val());
     form_data.append('otherphone', $('#edit_user_otherphone').val());
     form_data.append('officenumber', $('#edit_user_officenumber').val());
-    form_data.append('department', $('#edit_user_department').val());
+    form_data.append('address', $('#edit_user_address').val());
     form_data.append('avatarimage', $('#avatar_img').prop('src'));
     form_data.append('role', 'inversora');
     $.ajax({

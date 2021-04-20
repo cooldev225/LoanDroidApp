@@ -13,6 +13,10 @@ using Models.data.Interfaces;
 
 namespace Models.data
 {
+    public class ApplicationUserShort { 
+        public string Id { get; set; }
+        public string UserName { get; set; }
+    }
     public class ApplicationUser : IdentityUser, IAuditableEntity
     {
         public virtual string FriendlyName

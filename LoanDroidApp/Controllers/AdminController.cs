@@ -405,6 +405,7 @@ namespace App.Controllers
             GlobalVariables();
             return View();
         }
+        [HttpPost]
         public DatatableInvestor getInvestorsDataTable()
         {
             int page = Request.Form["pagination[page]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[page]"].FirstOrDefault());
@@ -567,10 +568,568 @@ namespace App.Controllers
                 error = ""
             });
         }
+
         [HttpGet]
-        public IActionResult Loanreq() {
+        public IActionResult Loanreq(){
             GlobalVariables();
+            var query = _userManager.GetUsersInRoleAsync("cliente").Result;
+            ViewBag.Clients = query.Select(u => new ApplicationUserShort { Id=u.Id, UserName=u.UserName }).ToList();
             return View();
         }
+        [HttpPost]
+        public DatatableLoanRequest getLoanRequestsDataTable()
+        {
+            int page = Request.Form["pagination[page]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[page]"].FirstOrDefault());
+            int perpage = Request.Form["pagination[perpage]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[perpage]"].FirstOrDefault());
+            string search = Request.Form["query[generalSearch]"].FirstOrDefault() == null ? "" : Request.Form["query[generalSearch]"].FirstOrDefault();
+            DatatableSort sort = new DatatableSort
+            {
+                field = Request.Form["sort[field]"].FirstOrDefault(),
+                sort = Request.Form["sort[sort]"].FirstOrDefault()
+            };
+            IQueryable<ApplicationLoanRequest> query = (from a in _context.Set<LoanRequest>()
+                     join b in _context.Set<ApplicationUser>()
+                     on a.ClientId equals b.Id into g
+                     from b in g.DefaultIfEmpty()
+                     select new ApplicationLoanRequest { 
+                        Id = a.Id,
+                        ClientId=a.ClientId,
+                        RequestedDate=a.RequestedDate,
+                        Amount=a.Amount,
+                        InterestingRate=a.InterestingRate,
+                        Cycle=a.Cycle,
+                        Times=a.Times,
+                        Status=a.Status,
+                        StatusReason=a.StatusReason,
+                        UserName =b.UserName,
+                        FriendlyName=b.FriendlyName,
+                        AvatarImage=b.AvatarImage,
+                        CreatedBy=a.CreatedBy,
+                        CreatedDate=a.CreatedDate,
+                        CreatedDevice=a.CreatedDevice,
+                        UpdatedBy=a.UpdatedBy,
+                        UpdatedDate=a.UpdatedDate,
+                        UpdatedDevice=a.UpdatedDevice
+                     });
+            int total = query.Count();
+            DatatableLoanRequest res = new DatatableLoanRequest
+            {
+                meta = new DatatablePagination
+                {
+                    total = total,
+                    page = page,
+                    perpage = perpage,
+                    pages = total / perpage + (total % perpage < 5 ? 1 : 0),
+                }
+            };
+            if (!search.Equals(""))
+                query = query.Where(u =>
+                    u.UserName.IndexOf(search) > -1 ||
+                    u.FriendlyName.IndexOf(search) > -1 ||
+                    u.RequestedDate.ToString().IndexOf(search) > -1 ||
+                    u.Amount.ToString().IndexOf(search) > -1 ||
+                    u.InterestingRate.ToString().IndexOf(search) > -1 ||
+                    u.FriendlyName.IndexOf(search) > -1 
+                );
+            if (
+                total > 0 && sort.field != null && sort.sort != null && !sort.Equals("")
+            )
+            {
+                if (sort.sort.Equals("asc"))
+                {
+                    if (sort.field.Equals("userName")) query = query.OrderBy(u => u.UserName);
+                    else if (sort.field.Equals("friendlyName")) query = query.OrderBy(u => u.FriendlyName);
+                    else if (sort.field.Equals("amount")) query = query.OrderBy(u => u.Amount);
+                    else if (sort.field.Equals("requestDate")) query = query.OrderBy(u => u.RequestedDate);
+                    else if (sort.field.Equals("interestingRate")) query = query.OrderBy(u => u.InterestingRate);
+                    else if (sort.field.Equals("cycle")) query = query.OrderBy(u => u.Cycle);
+                }
+                else
+                {
+                    if (sort.field.Equals("userName")) query = query.OrderByDescending(u => u.UserName);
+                    else if (sort.field.Equals("friendlyName")) query = query.OrderByDescending(u => u.FriendlyName);
+                    else if (sort.field.Equals("amount")) query = query.OrderByDescending(u => u.Amount);
+                    else if (sort.field.Equals("requestDate")) query = query.OrderByDescending(u => u.RequestedDate);
+                    else if (sort.field.Equals("interestingRate")) query = query.OrderByDescending(u => u.InterestingRate);
+                    else if (sort.field.Equals("cycle")) query = query.OrderByDescending(u => u.Cycle);
+                }
+            }
+            res.data = query.Skip((page - 1) * perpage)
+                          .Take(perpage)
+                          .ToList();
+            return res;
+        }
+        [HttpPost]
+        public async Task<JsonResult> saveLoanRequest(
+            long id,
+            string clientid,
+            DateTime requesteddate,
+            double amount,
+            double interestingrate,
+            LoanCycle cycle,
+            int times
+        )
+        {
+            LoanRequest req = new LoanRequest
+            {
+                ClientId = clientid,
+                RequestedDate=requesteddate,
+                Amount=amount,
+                InterestingRate= interestingrate,
+                Cycle=cycle,
+                Times=times
+            };
+            if (id==0)
+            {
+                await _context.LoanRequest.AddAsync(req);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                req.Id = id;
+                _context.Entry(req).CurrentValues.SetValues(req);
+                _context.Entry(req).State = EntityState.Modified;
+                _context.SaveChanges();
+            }
+            return Json(new
+            {
+                msg = "ok"
+            });
+        }
+        [HttpPost]
+        public async Task<ActionResult> DeleteLoanRequest(long id)
+        {
+            try
+            {
+                LoanRequest req = await _context.LoanRequest.FindAsync(id);
+                _context.Remove(req);
+                _context.SaveChanges();
+            }
+            catch (Exception e) { Console.WriteLine(e.ToString()); }
+            return Json(new
+            {
+                error = ""
+            });
+        }
+        [HttpPost]
+        public DatatableLoanCalculator getLoanCalculatorDataTable(
+            double amount, double interestingrate, LoanCycle cycle, DateTime requesteddate, int times
+        )
+        {
+            int page = Request.Form["pagination[page]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[page]"].FirstOrDefault());
+            int perpage = Request.Form["pagination[perpage]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[perpage]"].FirstOrDefault());
+            string search = Request.Form["query[generalSearch]"].FirstOrDefault() == null ? "" : Request.Form["query[generalSearch]"].FirstOrDefault();
+            DatatableSort sort = new DatatableSort
+            {
+                field = Request.Form["sort[field]"].FirstOrDefault(),
+                sort = Request.Form["sort[sort]"].FirstOrDefault()
+            };
+            double c = 1, t = 1, b = amount, I;
+            for (int i = 1; i < times; i++)
+            {
+                t *= 1 + interestingrate / 100;
+                c += t;
+            }
+            c = amount / c;
+            DateTime d = requesteddate;
+            List<ApplicationLoanCalcuator> data = new List<ApplicationLoanCalcuator>();
+            for (int i = 0; i < times; i++)
+            {
+                data.Add(new ApplicationLoanCalcuator
+                {
+                    Date = d,
+                    Capital = Math.Round(c, 2),
+                    Interest = Math.Round(b * interestingrate / 100, 2),
+                    Dues = Math.Round(c + b * interestingrate / 100, 2),
+                    Balance = Math.Round(b - c, 2)
+                });
+                b -= c;
+                d = LoanCycleCalculator.NextDate(cycle, d);
+                c = c * (1 + interestingrate / 100);
+            }
+            DatatableLoanCalculator res = new DatatableLoanCalculator
+            {
+                meta = new DatatablePagination
+                {
+                    total = times,
+                    page = page,
+                    perpage = perpage,
+                    pages = times / perpage + (times % perpage < 5 ? 1 : 0),
+                }
+            };
+            res.data = data.Skip((page - 1) * perpage)
+                          .Take(perpage)
+                          .ToList();
+            return res;
+        }
+        [HttpPost]
+        public DatatableLoanRequestStatus getLoanRequestStatusDataTable(
+            long requestId
+        )
+        {
+            int page = Request.Form["pagination[page]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[page]"].FirstOrDefault());
+            int perpage = Request.Form["pagination[perpage]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[perpage]"].FirstOrDefault());
+            string search = Request.Form["query[generalSearch]"].FirstOrDefault() == null ? "" : Request.Form["query[generalSearch]"].FirstOrDefault();
+            DatatableSort sort = new DatatableSort
+            {
+                field = Request.Form["sort[field]"].FirstOrDefault(),
+                sort = Request.Form["sort[sort]"].FirstOrDefault()
+            };
+            IQueryable<ApplicationLoanRequestStatus> query = (
+                from a in _context.Set<LoanRequestStatus>().Where(u=>u.LoanRequestId==requestId)
+                join b in _context.Set<ApplicationUser>()
+                on a.CreatedBy equals b.Id into g
+                from b in g.DefaultIfEmpty()
+                join c in _context.Set<LoanRequest>()
+                on a.LoanRequestId equals c.Id into h
+                from c in h.DefaultIfEmpty()
+                select new ApplicationLoanRequestStatus
+                {
+                    Id = a.Id,
+                    LoanRequestId=a.LoanRequestId,
+                    Status=a.Status,
+                    StatusReason=a.StatusReason,
+                    ByUserName=b.UserName,
+                    ByFriendlyName=b.FriendlyName,
+                    ByAvatarImage=b.AvatarImage,
+                    CreatedBy = a.CreatedBy,
+                    CreatedDate = a.CreatedDate,
+                    CreatedDevice = a.CreatedDevice,
+                    UpdatedBy = a.UpdatedBy,
+                    UpdatedDate = a.UpdatedDate,
+                    UpdatedDevice = a.UpdatedDevice
+                });
+            int total = query.Count();
+            DatatableLoanRequestStatus res = new DatatableLoanRequestStatus
+            {
+                meta = new DatatablePagination
+                {
+                    total = total,
+                    page = page,
+                    perpage = perpage,
+                    pages = total / perpage + (total % perpage < 5 ? 1 : 0),
+                }
+            };
+            res.data = query.Skip((page - 1) * perpage)
+                          .Take(perpage)
+                          .ToList();
+            return res;
+        }
+        [HttpPost]
+        public async Task<JsonResult> saveLoanRequestStatus(
+            long requestid,
+            LoanStatus status,
+            string statusreason
+        )
+        {
+            LoanRequestStatus req = new LoanRequestStatus
+            {
+                Status = status,
+                StatusReason=statusreason,
+                LoanRequestId=requestid
+            };
+            
+            await _context.LoanRequestStatus.AddAsync(req);
+            await _context.SaveChangesAsync();
+
+            LoanRequest lreq = await _context.LoanRequest.FindAsync(requestid);
+            lreq.Status = status;
+            lreq.StatusReason = statusreason;
+            _context.Entry(lreq).CurrentValues.SetValues(lreq);
+            _context.Entry(lreq).State = EntityState.Modified;
+            _context.SaveChanges();
+            return Json(new
+            {
+                msg = "ok"
+            });
+        }
+        [HttpPost]
+        public async Task<ActionResult> deleteLoanRequestStatus(long id)
+        {
+            try
+            {
+                LoanRequestStatus req = await _context.LoanRequestStatus.FindAsync(id);
+                long reqid = req.LoanRequestId;
+                _context.Remove(req);
+                _context.SaveChanges();
+
+                LoanRequest lreq = await _context.LoanRequest.FindAsync(reqid);
+                var query = _context.LoanRequestStatus.Where(u => u.LoanRequestId == reqid).OrderByDescending(u => u.CreatedDate);
+                LoanStatus status = LoanStatus.New;
+                string statusreason = "";
+                if (query.Count() > 0) {
+                    status = query.First().Status;
+                    statusreason = query.First().StatusReason;
+                }
+                lreq.Status = status;
+                lreq.StatusReason = statusreason;
+                _context.Entry(lreq).CurrentValues.SetValues(lreq);
+                _context.Entry(lreq).State = EntityState.Modified;
+                _context.SaveChanges();
+            }
+            catch (Exception e) { Console.WriteLine(e.ToString()); }
+            return Json(new
+            {
+                error = ""
+            });
+        }
+
+        [HttpGet]
+        public IActionResult Investment()
+        {
+            GlobalVariables();
+            var query = _userManager.GetUsersInRoleAsync("inversora").Result;
+            ViewBag.Investors = query.Select(u => new ApplicationUserShort { Id = u.Id, UserName = u.UserName }).ToList();
+            return View();
+        }
+        [HttpPost]
+        public DatatableInvestment getInvestmentDataTable()
+        {
+            int page = Request.Form["pagination[page]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[page]"].FirstOrDefault());
+            int perpage = Request.Form["pagination[perpage]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[perpage]"].FirstOrDefault());
+            string search = Request.Form["query[generalSearch]"].FirstOrDefault() == null ? "" : Request.Form["query[generalSearch]"].FirstOrDefault();
+            DatatableSort sort = new DatatableSort
+            {
+                field = Request.Form["sort[field]"].FirstOrDefault(),
+                sort = Request.Form["sort[sort]"].FirstOrDefault()
+            };
+            IQueryable<ApplicationInvestment> query = (from a in _context.Set<Investment>()
+                                                        join b in _context.Set<ApplicationUser>()
+                                                        on a.InvestorId equals b.Id into g
+                                                        from b in g.DefaultIfEmpty()
+                                                        select new ApplicationInvestment
+                                                        {
+                                                            Id = a.Id,
+                                                            InvestorId = a.InvestorId,
+                                                            RequestedDate = a.RequestedDate,
+                                                            Amount = a.Amount,
+                                                            SavingRate = a.SavingRate,
+                                                            Cycle = a.Cycle,
+                                                            Times = a.Times,
+                                                            Status = a.Status,
+                                                            StatusReason = a.StatusReason,
+                                                            UserName = b.UserName,
+                                                            FriendlyName = b.FriendlyName,
+                                                            AvatarImage = b.AvatarImage,
+                                                            CreatedBy = a.CreatedBy,
+                                                            CreatedDate = a.CreatedDate,
+                                                            CreatedDevice = a.CreatedDevice,
+                                                            UpdatedBy = a.UpdatedBy,
+                                                            UpdatedDate = a.UpdatedDate,
+                                                            UpdatedDevice = a.UpdatedDevice
+                                                        });
+            int total = query.Count();
+            DatatableInvestment res = new DatatableInvestment
+            {
+                meta = new DatatablePagination
+                {
+                    total = total,
+                    page = page,
+                    perpage = perpage,
+                    pages = total / perpage + (total % perpage < 5 ? 1 : 0),
+                }
+            };
+            if (!search.Equals(""))
+                query = query.Where(u =>
+                    u.UserName.IndexOf(search) > -1 ||
+                    u.FriendlyName.IndexOf(search) > -1 ||
+                    u.RequestedDate.ToString().IndexOf(search) > -1 ||
+                    u.Amount.ToString().IndexOf(search) > -1 ||
+                    u.SavingRate.ToString().IndexOf(search) > -1 ||
+                    u.FriendlyName.IndexOf(search) > -1
+                );
+            if (
+                total > 0 && sort.field != null && sort.sort != null && !sort.Equals("")
+            )
+            {
+                if (sort.sort.Equals("asc"))
+                {
+                    if (sort.field.Equals("userName")) query = query.OrderBy(u => u.UserName);
+                    else if (sort.field.Equals("friendlyName")) query = query.OrderBy(u => u.FriendlyName);
+                    else if (sort.field.Equals("amount")) query = query.OrderBy(u => u.Amount);
+                    else if (sort.field.Equals("requestDate")) query = query.OrderBy(u => u.RequestedDate);
+                    else if (sort.field.Equals("savingRate")) query = query.OrderBy(u => u.SavingRate);
+                    else if (sort.field.Equals("cycle")) query = query.OrderBy(u => u.Cycle);
+                }
+                else
+                {
+                    if (sort.field.Equals("userName")) query = query.OrderByDescending(u => u.UserName);
+                    else if (sort.field.Equals("friendlyName")) query = query.OrderByDescending(u => u.FriendlyName);
+                    else if (sort.field.Equals("amount")) query = query.OrderByDescending(u => u.Amount);
+                    else if (sort.field.Equals("requestDate")) query = query.OrderByDescending(u => u.RequestedDate);
+                    else if (sort.field.Equals("savingRate")) query = query.OrderByDescending(u => u.SavingRate);
+                    else if (sort.field.Equals("cycle")) query = query.OrderByDescending(u => u.Cycle);
+                }
+            }
+            res.data = query.Skip((page - 1) * perpage)
+                          .Take(perpage)
+                          .ToList();
+            return res;
+        }
+        [HttpPost]
+        public async Task<JsonResult> saveInvestment(
+            long id,
+            string investorid,
+            DateTime requesteddate,
+            double amount,
+            double savingrate,
+            LoanCycle cycle,
+            int times
+        )
+        {
+            Investment req = new Investment
+            {
+                InvestorId = investorid,
+                RequestedDate = requesteddate,
+                Amount = amount,
+                SavingRate = savingrate,
+                Cycle = cycle,
+                Times = times
+            };
+            if (id == 0)
+            {
+                await _context.Investment.AddAsync(req);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                req.Id = id;
+                _context.Entry(req).CurrentValues.SetValues(req);
+                _context.Entry(req).State = EntityState.Modified;
+                _context.SaveChanges();
+            }
+            return Json(new
+            {
+                msg = "ok"
+            });
+        }
+        [HttpPost]
+        public async Task<ActionResult> DeleteInvestment(long id)
+        {
+            try
+            {
+                Investment req = await _context.Investment.FindAsync(id);
+                _context.Remove(req);
+                _context.SaveChanges();
+            }
+            catch (Exception e) { Console.WriteLine(e.ToString()); }
+            return Json(new
+            {
+                error = ""
+            });
+        }
+        [HttpPost]
+        public DatatableInvestmentStatus getInvestmentStatusDataTable(
+            long investmentId
+        )
+        {
+            int page = Request.Form["pagination[page]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[page]"].FirstOrDefault());
+            int perpage = Request.Form["pagination[perpage]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[perpage]"].FirstOrDefault());
+            string search = Request.Form["query[generalSearch]"].FirstOrDefault() == null ? "" : Request.Form["query[generalSearch]"].FirstOrDefault();
+            DatatableSort sort = new DatatableSort
+            {
+                field = Request.Form["sort[field]"].FirstOrDefault(),
+                sort = Request.Form["sort[sort]"].FirstOrDefault()
+            };
+            IQueryable<ApplicationInvestmentStatus> query = (
+                from a in _context.Set<InvestmentStatus>().Where(u => u.InvestmenttId == investmentId)
+                join b in _context.Set<ApplicationUser>()
+                on a.CreatedBy equals b.Id into g
+                from b in g.DefaultIfEmpty()
+                join c in _context.Set<LoanRequest>()
+                on a.InvestmenttId equals c.Id into h
+                from c in h.DefaultIfEmpty()
+                select new ApplicationInvestmentStatus
+                {
+                    Id = a.Id,
+                    InvestmenttId = a.InvestmenttId,
+                    Status = a.Status,
+                    StatusReason = a.StatusReason,
+                    ByUserName = b.UserName,
+                    ByFriendlyName = b.FriendlyName,
+                    ByAvatarImage = b.AvatarImage,
+                    CreatedBy = a.CreatedBy,
+                    CreatedDate = a.CreatedDate,
+                    CreatedDevice = a.CreatedDevice,
+                    UpdatedBy = a.UpdatedBy,
+                    UpdatedDate = a.UpdatedDate,
+                    UpdatedDevice = a.UpdatedDevice
+                });
+            int total = query.Count();
+            DatatableInvestmentStatus res = new DatatableInvestmentStatus
+            {
+                meta = new DatatablePagination
+                {
+                    total = total,
+                    page = page,
+                    perpage = perpage,
+                    pages = total / perpage + (total % perpage < 5 ? 1 : 0),
+                }
+            };
+            res.data = query.Skip((page - 1) * perpage)
+                          .Take(perpage)
+                          .ToList();
+            return res;
+        }
+        [HttpPost]
+        public async Task<JsonResult> saveInvestmentStatus(
+            long investmentid,
+            InvestStatus status,
+            string statusreason
+        )
+        {
+            InvestmentStatus req = new InvestmentStatus
+            {
+                Status = status,
+                StatusReason = statusreason,
+                InvestmenttId = investmentid
+            };
+
+            await _context.InvestmentStatus.AddAsync(req);
+            await _context.SaveChangesAsync();
+
+            Investment lreq = await _context.Investment.FindAsync(investmentid);
+            lreq.Status = status;
+            lreq.StatusReason = statusreason;
+            _context.Entry(lreq).CurrentValues.SetValues(lreq);
+            _context.Entry(lreq).State = EntityState.Modified;
+            _context.SaveChanges();
+            return Json(new
+            {
+                msg = "ok"
+            });
+        }
+        [HttpPost]
+        public async Task<ActionResult> deleteInvestmentStatus(long id)
+        {
+            try
+            {
+                InvestmentStatus req = await _context.InvestmentStatus.FindAsync(id);
+                long reqid = req.InvestmenttId;
+                _context.Remove(req);
+                _context.SaveChanges();
+
+                Investment lreq = await _context.Investment.FindAsync(reqid);
+                var query = _context.InvestmentStatus.Where(u => u.InvestmenttId == reqid).OrderByDescending(u => u.CreatedDate);
+                InvestStatus status = InvestStatus.New;
+                string statusreason = "";
+                if (query.Count() > 0)
+                {
+                    status = query.First().Status;
+                    statusreason = query.First().StatusReason;
+                }
+                lreq.Status = status;
+                lreq.StatusReason = statusreason;
+                _context.Entry(lreq).CurrentValues.SetValues(lreq);
+                _context.Entry(lreq).State = EntityState.Modified;
+                _context.SaveChanges();
+            }
+            catch (Exception e) { Console.WriteLine(e.ToString()); }
+            return Json(new
+            {
+                error = ""
+            });
+        }
+
     }
 }

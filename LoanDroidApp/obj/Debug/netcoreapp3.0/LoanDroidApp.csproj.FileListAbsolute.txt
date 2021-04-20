@@ -185,3 +185,4 @@ E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Debug\netcoreapp3.0\Razor\Views\Home\wantlend.cshtml.g.cs
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Debug\netcoreapp3.0\Razor\Views\Home\Wantloan.cshtml.g.cs
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Debug\netcoreapp3.0\Razor\Views\Admin\Loanreq.cshtml.g.cs
+E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Debug\netcoreapp3.0\Razor\Views\Admin\Investment.cshtml.g.cs

@@ -168,8 +168,8 @@ namespace App
 
             var supportedCultures = new[]
             {
-                new CultureInfo("en-US"),
-                new CultureInfo("es-ES")
+                new CultureInfo("es-ES"),
+                new CultureInfo("en-US")                
             };
             app.UseRequestLocalization(new RequestLocalizationOptions
             {

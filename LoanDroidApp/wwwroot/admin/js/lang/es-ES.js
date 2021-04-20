@@ -25,6 +25,18 @@ var lang = {
     //investors page
     investors_alert_editauser: "Editar un inversor",
     investors_alert_confirmdeleteauser: "¿Estás segura de eliminar una inversora",
+    //loanrequest
+    amount: "Cantidad",
+    frequently: "Frecuencia",
+    capital: "Capital",
+    interest: "Interes",
+    dues: "Cuotas",
+    balance: "Balance",
+    date: "Fecha",
+    times: "Tiempo",
+    status: "Status",
+    investor: "Inversora",
+    savingRate: "Tasa de ahorro",
 
     client: "Cliente",
     password: "Contraseña",

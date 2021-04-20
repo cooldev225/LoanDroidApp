@@ -21,6 +21,8 @@ namespace DBSetup
         public DbSet<AccountPayment> AccountPayment { get; set; }
         public DbSet<LoanRequest> LoanRequest { get; set; }
         public DbSet<LoanRequestStatus> LoanRequestStatus { get; set; }
+        public DbSet<Investment> Investment { get; set; }
+        public DbSet<InvestmentStatus> InvestmentStatus { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { }
 
@@ -45,6 +47,12 @@ namespace DBSetup
 
             builder.Entity<LoanRequestStatus>().HasIndex(p => p.Id);
             builder.Entity<LoanRequestStatus>().Property(p => p.Id).ValueGeneratedOnAdd();
+
+            builder.Entity<Investment>().HasIndex(p => p.Id);
+            builder.Entity<Investment>().Property(p => p.Id).ValueGeneratedOnAdd();
+
+            builder.Entity<InvestmentStatus>().HasIndex(p => p.Id);
+            builder.Entity<InvestmentStatus>().Property(p => p.Id).ValueGeneratedOnAdd();
         }
         public override int SaveChanges()
         {

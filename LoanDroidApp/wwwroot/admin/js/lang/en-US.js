@@ -25,6 +25,18 @@ var lang = {
     //investors page
     investors_alert_editauser: "Edit an investor",
     investors_alert_confirmdeleteauser: "Are you sure to delete an investor",
+    //loanrequest
+    amount: "Amount",
+    frequently: "Frequently",
+    capital: "Capital",
+    interest: "Interest",
+    dues: "Dues",
+    balance: "Balance",
+    date: "Date",
+    times: "Times",
+    status: "Status",
+    investor: "Investor",
+    savingRate:"Saving Rate",
     
     client: "Client",
     password: "Password",
