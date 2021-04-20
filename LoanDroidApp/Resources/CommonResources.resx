@@ -423,6 +423,9 @@
   <data name="TIMES_" xml:space="preserve">
     <value>TIMES</value>
   </data>
+  <data name="TransactionHistories" xml:space="preserve">
+    <value>Transaction Histories</value>
+  </data>
   <data name="URL_" xml:space="preserve">
     <value>URL</value>
   </data>

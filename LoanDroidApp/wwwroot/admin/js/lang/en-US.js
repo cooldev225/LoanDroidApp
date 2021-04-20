@@ -36,7 +36,12 @@ var lang = {
     times: "Times",
     status: "Status",
     investor: "Investor",
-    savingRate:"Saving Rate",
+    savingRate: "Saving Rate",
+    //transactionhistory
+    from: "From",
+    to: "To",
+    fromOption: "From Option",
+    toOption: "To Option",
     
     client: "Client",
     password: "Password",

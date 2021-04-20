@@ -37,6 +37,11 @@ var lang = {
     status: "Status",
     investor: "Inversora",
     savingRate: "Tasa de ahorro",
+    //transactionhistory
+    from: "De",
+    to: "Para",
+    fromOption: "De Opción",
+    toOption: "A la opción",
 
     client: "Cliente",
     password: "Contraseña",

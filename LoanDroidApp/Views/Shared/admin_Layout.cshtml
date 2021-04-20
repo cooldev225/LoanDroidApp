@@ -279,7 +279,7 @@
                                         <div class="menu-submenu menu-submenu-classic menu-submenu-left" data-hor-direction="menu-submenu-left">
                                             <ul class="menu-subnav">
                                                 <li class="menu-item <?php echo Request::path()=='home'||Request::path()=='home/index'?'menu-item-active':'';?>" aria-haspopup="true">
-                                                    <a onclick="location.href='@Url.Action("roles","admin")';" class="menu-link menu-toggle">
+                                                    <a onclick="location.href='@Url.Action("transhistory","admin")';" class="menu-link menu-toggle">
                                                         <span class="svg-icony svg-icon-2x">
                                                             <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Lock-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -289,7 +289,7 @@
                                                                 </g>
                                                             </svg><!--end::Svg Icon-->
                                                         </span>
-                                                        <span class="menu-text ml-2">@SharedLocalizer["Transaction Histories"]</span>
+                                                        <span class="menu-text ml-2">@SharedLocalizer["TransactionHistories"]</span>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -518,6 +518,10 @@
                                     else if (current_url.Equals("/admin/investment"))
                                     {
                                         <a href="@Url.Action("investment","admin")" class="btn btn-clean font-weight-bold" style="color:#000;font-size:15px;">@SharedLocalizer["Investment"]</a>
+                                    }
+                                    else if (current_url.Equals("/admin/transhistory"))
+                                    {
+                                        <a href="@Url.Action("transhistory","admin")" class="btn btn-clean font-weight-bold" style="color:#000;font-size:15px;">@SharedLocalizer["TransactionHistories"]</a>
                                     }
                                 </h5>
                                 <div class="subheader-separator subheader-separator-ver mr-4" style="background-color:#655d5d;font-size:15px;"></div>

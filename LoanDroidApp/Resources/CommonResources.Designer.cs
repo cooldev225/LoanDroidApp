@@ -979,6 +979,15 @@ namespace LoanDroidApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Transaction Histories.
+        /// </summary>
+        public static string TransactionHistories {
+            get {
+                return ResourceManager.GetString("TransactionHistories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to URL.
         /// </summary>
         public static string URL_ {

@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace Models.data
 {
-    public class Notification: IAuditableEntity
+    public class TransactionHistory : IAuditableEntity
     {
         public long Id { get; set; }
-        public string Text { get; set; }
-        public string Claim { get; set; }
+        public long FromPaymentId { get; set; }
+        public long ToPaymentId { get; set; }
+        public double Amount { get; set; }
+        public double Fee { get; set; }
+        public bool IsSuccess { get; set; }
         public string CreatedBy { get; set; }
         public string CreatedDevice { get; set; }
         public DateTime CreatedDate { get; set; }

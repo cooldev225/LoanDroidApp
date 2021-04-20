@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Models.data
 {
-    public class Notification: IAuditableEntity
+    public class NotificationReading: IAuditableEntity
     {
         public long Id { get; set; }
-        public string Text { get; set; }
-        public string Claim { get; set; }
+        public long NotificationId { get; set; }
         public string CreatedBy { get; set; }
         public string CreatedDevice { get; set; }
         public DateTime CreatedDate { get; set; }

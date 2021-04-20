@@ -48,6 +48,7 @@ namespace App.Controllers
             ViewBag.investor_count = _userManager.GetUsersInRoleAsync("inversora").Result.Count();
             ViewBag.inneraluser_count = representantes + contactors + servicemanagers + debuggerdepartments + collectiondepartments;
             ViewBag.UserRoles = "administrator,representante,contactor,servicio,depuracion,coleccion";
+            
         }
         public IActionResult Index()
         {
@@ -1130,6 +1131,86 @@ namespace App.Controllers
                 error = ""
             });
         }
-
+        [HttpGet]
+        public IActionResult Transhistory()
+        {
+            GlobalVariables();
+            return View();
+        }
+        public DatatableTransactionHistory getTransactionHistoryDataTable() {
+            int page = Request.Form["pagination[page]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[page]"].FirstOrDefault());
+            int perpage = Request.Form["pagination[perpage]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[perpage]"].FirstOrDefault());
+            string search = Request.Form["query[generalSearch]"].FirstOrDefault() == null ? "" : Request.Form["query[generalSearch]"].FirstOrDefault();
+            DatatableSort sort = new DatatableSort
+            {
+                field = Request.Form["sort[field]"].FirstOrDefault(),
+                sort = Request.Form["sort[sort]"].FirstOrDefault()
+            };
+            IQueryable<ApplicationTransactionHistory> query = (
+                from a in _context.Set<TransactionHistory>()
+                join b in _context.Set<AccountPayment>()
+                on a.FromPaymentId equals b.Id into g
+                from b in g.DefaultIfEmpty()
+                join c in _context.Set<ApplicationUser>()
+                on b.UserId equals c.Id into h
+                from c in h.DefaultIfEmpty()
+                join d in _context.Set<AccountPayment>()
+                on a.ToPaymentId equals d.Id into i
+                from d in i.DefaultIfEmpty()
+                join e in _context.Set<ApplicationUser>()
+                on d.UserId equals e.Id into j
+                from e in j.DefaultIfEmpty()
+                select new ApplicationTransactionHistory
+                {
+                    Id = a.Id,
+                    Amount=a.Amount,
+                    Fee=a.Fee,
+                    FromPaymentId=a.FromPaymentId,
+                    ToPaymentId=a.ToPaymentId,
+                    FromUserName=c.UserName,
+                    FromFriendlyName=c.FriendlyName,
+                    FromAvatarImage=c.AvatarImage,
+                    ToUserName=e.UserName,
+                    ToFriendlyName=e.FriendlyName,
+                    ToAvatarImage=e.AvatarImage,
+                    CreatedBy = a.CreatedBy,
+                    CreatedDate = a.CreatedDate,
+                    CreatedDevice = a.CreatedDevice,
+                    UpdatedBy = a.UpdatedBy,
+                    UpdatedDate = a.UpdatedDate,
+                    UpdatedDevice = a.UpdatedDevice
+                });
+            int total = query.Count();
+            DatatableTransactionHistory res = new DatatableTransactionHistory
+            {
+                meta = new DatatablePagination
+                {
+                    total = total,
+                    page = page,
+                    perpage = perpage,
+                    pages = total / perpage + (total % perpage < 5 ? 1 : 0),
+                }
+            };
+            if (!search.Equals(""))
+                //query = (IList<ApplicationUser>)query.Where(u =>
+                //);
+            if (
+                total > 0 && sort.field != null && sort.sort != null && !sort.Equals("")
+            )
+            {
+                if (sort.sort.Equals("asc"))
+                {
+                    
+                }
+                else
+                {
+         
+                }
+            }
+            res.data = query.Skip((page - 1) * perpage)
+                          .Take(perpage)
+                          .ToList();
+            return res;
+        }
     }
 }

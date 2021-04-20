@@ -316,9 +316,6 @@ function datatableInit() {
                 {
                     field: 'createdDate',
                     title: lang.global_tbl_createddate,
-                    template: function (row) {
-                        return getJustDateWIthYear(row.createdDate);
-                    },
                     template: function (row, index) {
                         return '\
                             <span style="width: 121px;">\

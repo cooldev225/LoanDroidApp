@@ -480,6 +480,9 @@
   <data name="TIMES_" xml:space="preserve">
     <value>TIEMPO</value>
   </data>
+  <data name="TransactionHistories" xml:space="preserve">
+    <value>Historias de transacciones</value>
+  </data>
   <data name="URL_" xml:space="preserve">
     <value>URL</value>
   </data>
