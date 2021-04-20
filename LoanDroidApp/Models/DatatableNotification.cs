@@ -8,6 +8,7 @@ namespace LoanDroidApp.Models
 {
     public class ApplicationNotification : Notification{
         public bool IsReaded { get; set; }
+        public string Cliam { get; set; }
     }
     public class DatatableNotification : IDatatable
     {

@@ -234,6 +234,9 @@
   <data name="EMAIL_" xml:space="preserve">
     <value>EMAIL</value>
   </data>
+  <data name="Events" xml:space="preserve">
+    <value>Events</value>
+  </data>
   <data name="expirationdate" xml:space="preserve">
     <value>Expiration date</value>
   </data>
@@ -318,11 +321,17 @@
   <data name="LoanRequest" xml:space="preserve">
     <value>Loan Request</value>
   </data>
+  <data name="Mailbox" xml:space="preserve">
+    <value>Mailbox</value>
+  </data>
   <data name="NAME" xml:space="preserve">
     <value>NAME</value>
   </data>
   <data name="NAME_" xml:space="preserve">
     <value>NAME</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
   </data>
   <data name="NUMBER_" xml:space="preserve">
     <value>NUMBER</value>

@@ -412,6 +412,15 @@ namespace LoanDroidApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Events.
+        /// </summary>
+        public static string Events {
+            get {
+                return ResourceManager.GetString("Events", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to EXPIRATION.
         /// </summary>
         public static string EXPIRATION_ {
@@ -664,6 +673,15 @@ namespace LoanDroidApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mailbox.
+        /// </summary>
+        public static string Mailbox {
+            get {
+                return ResourceManager.GetString("Mailbox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NAME.
         /// </summary>
         public static string NAME {
@@ -678,6 +696,15 @@ namespace LoanDroidApp.Resources {
         public static string NAME_ {
             get {
                 return ResourceManager.GetString("NAME_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        public static string New {
+            get {
+                return ResourceManager.GetString("New", resourceCulture);
             }
         }
         

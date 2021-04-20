@@ -48,24 +48,44 @@ namespace App.Controllers
             ViewBag.investor_count = _userManager.GetUsersInRoleAsync("inversora").Result.Count();
             ViewBag.inneraluser_count = representantes + contactors + servicemanagers + debuggerdepartments + collectiondepartments;
             ViewBag.UserRoles = "administrator,representante,contactor,servicio,depuracion,coleccion";
+            
             IQueryable<ApplicationNotification> query = (
-                from a in _context.Set<NotificationReading>()
-                join b in _context.Set<Notification>()
-                on a.NotificationId equals b.Id into g
-                from b in g.DefaultIfEmpty()
+                from a in _context.Set<Notification>().OrderByDescending(u=>u.CreatedDate)
                 select new ApplicationNotification
                 {
                     Id=a.Id,
-                    Text=b.Text,
-
-                    IsReaded=a.IsReaded,
-                    CreatedBy = b.CreatedBy,
-                    CreatedDate = b.CreatedDate,
-                    CreatedDevice = b.CreatedDevice,
-                    UpdatedBy = b.UpdatedBy,
-                    UpdatedDate = b.UpdatedDate,
-                    UpdatedDevice = b.UpdatedDevice
+                    Text=a.Text,
+                    Claim=a.Claim,
+                    IsReaded=false,
+                    CreatedBy = a.CreatedBy,
+                    CreatedDate = a.CreatedDate,
+                    CreatedDevice = a.CreatedDevice,
+                    UpdatedBy = a.UpdatedBy,
+                    UpdatedDate = a.UpdatedDate,
+                    UpdatedDevice = a.UpdatedDevice
                 });
+            int total = query.Count();
+            int page = 1;
+            int perpage = 10;
+            DatatableNotification notis = new DatatableNotification
+            {
+                meta = new DatatablePagination
+                {
+                    total = total,
+                    page = page,
+                    perpage = perpage,
+                    pages = total / perpage + (total % perpage < 5 ? 1 : 0),
+                }
+            };
+            notis.data = query.Skip((page - 1) * perpage)
+                          .Take(perpage)
+                          .ToList();
+            for (int i = 0; i < perpage; i++) {
+                if (notis.data.Count() <= i) break;
+                IQueryable<NotificationReading> reading = _context.Set<NotificationReading>().Where(u => u.CreatedBy.Equals(_context.CurrentUserId));
+                if (reading.Count() > 0) notis.data[i].IsReaded = reading.First().IsReaded;
+            }
+            ViewBag.Notifications = notis;
         }
         public IActionResult Index()
         {
