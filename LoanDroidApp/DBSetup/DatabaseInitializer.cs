@@ -99,10 +99,12 @@ namespace DBSetup
         }
         public async Task CreatePagesAsync() {
             List<ApplicationPage> pages=new List<ApplicationPage>();
-            pages.Add(new ApplicationPage{Name = "Role Management",PageGroup = PageGroup.Config,Claims = "roles.view,roles.manage,roles.assign",Order = 0,});
-            pages.Add(new ApplicationPage{Name = "User Management",PageGroup = PageGroup.Config,Claims = "users.view,users.gview,users.manage",Order = 0,});
-            pages.Add(new ApplicationPage { Name = "Client Management", PageGroup = PageGroup.Config, Claims = "users.cview,users.cmanage", Order = 0, });
-            pages.Add(new ApplicationPage { Name = "Investor Management", PageGroup = PageGroup.Config, Claims = "users.iview,users.imanage", Order = 0, });
+            pages.Add(new ApplicationPage{Name = "Gestión de roles", PageGroup = PageGroup.Config,Claims = "roles.view,roles.manage,roles.assign",Order = 0,});
+            pages.Add(new ApplicationPage{Name = "Gestión de usuarios", PageGroup = PageGroup.Config,Claims = "users.view,users.gview,users.manage", Order = 1,});
+            pages.Add(new ApplicationPage { Name = "Gestión de clientes", PageGroup = PageGroup.Config, Claims = "users.cview,users.cmanage", Order = 2, });
+            pages.Add(new ApplicationPage { Name = "Gestión de inversores", PageGroup = PageGroup.Config, Claims = "users.iview,users.imanage", Order = 3, });
+            pages.Add(new ApplicationPage { Name = "Gestión de préstamos", PageGroup = PageGroup.Prestamo, Claims = "loan.request,loan.service,loan.debug,loan.collection", Order = 4, });
+            pages.Add(new ApplicationPage { Name = "Gestión de inversiones", PageGroup = PageGroup.Inversion, Claims = "investment.service,investment.debug,investment.collection", Order = 5, });
             try
             {
                 foreach (ApplicationPage page in pages)

@@ -83,15 +83,15 @@ function datatableInit() {
                     template: function (row) {
                         return getJustDateWIthYear(row.updatedDate);
                     },
-                }, {
+                },{
                     field: 'actions',
-                    title: lang.global_tbl_action,
+                    title: $("#managepermission").val() == "true" ?lang.global_tbl_action:'',
                     sortable: false,
-                    overflow: 'visible',
+                    overflow: $("#managepermission").val() == "true" ?'visible':'',
                     autoHide: false,
-                    width: 140,
+                    width: $("#managepermission").val()=="true"?140:10,
                     template: function (row) {
-                        return '\
+                        return $("#managepermission").val() == "false" ? '':'\
                             <div class="dropdown dropdown-inline">\
                             <a data-toggle="modal" data-target="#editUserModal" href="javascript:;" onclick="\
                             $(\'#edit_user_id\').val(\''+ row.id + '\');\
@@ -116,7 +116,7 @@ function datatableInit() {
                             '</div>\
                     ';
                     },
-                }
+                } 
             ],
         translate: trans_pagination,
     });

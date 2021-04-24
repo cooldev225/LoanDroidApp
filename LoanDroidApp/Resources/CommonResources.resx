@@ -210,6 +210,9 @@
   <data name="CreateInvestment" xml:space="preserve">
     <value>Create an investment</value>
   </data>
+  <data name="CreateRequest" xml:space="preserve">
+    <value>Create a request</value>
+  </data>
   <data name="currency" xml:space="preserve">
     <value>Currency</value>
   </data>

@@ -311,6 +311,9 @@
           "LoanDroidApp.dll": {}
         },
         "resources": {
+          "es-DO/LoanDroidApp.resources.dll": {
+            "locale": "es-DO"
+          },
           "es-ES/LoanDroidApp.resources.dll": {
             "locale": "es-ES"
           }

@@ -20,7 +20,7 @@ using RestSharp;
 
 namespace App.Controllers
 {
-    [Authorize(Roles="administrator")]
+    [Authorize]
     //[Route("[controller]/[action]")]
     public class AdminController : Controller
     {
@@ -36,6 +36,26 @@ namespace App.Controllers
             _signInManager = signInManager;            
             _context = context;
             _accountManager = accountManager;
+        }
+        public bool HasPermmision(string Cliam)
+        {
+            return User.HasClaim(c => c.Type.Equals("permission") && c.Value.Equals(Cliam));
+        }
+        public async Task<JsonResult> SaveNotification(string msg, string claim)
+        {
+            var userId =  _context.CurrentUserId;
+            var user = await _userManager.FindByIdAsync(userId);
+            Notification noti = new Notification
+            {
+                Text = msg + " por " + user.UserName,
+                Claim = claim
+            };
+            await _context.Notification.AddAsync(noti);
+            await _context.SaveChangesAsync();
+            return Json(new
+            {
+                msg = "ok"
+            });
         }
         public void GlobalVariables() {
             ViewData["Title"] = "";
@@ -98,12 +118,14 @@ namespace App.Controllers
         }
         public IActionResult Roles()
         {
+            if (!HasPermmision("roles.view")) return Redirect("index");
             GlobalVariables(); 
             return View();
         }
         [HttpPost]
         public DatatableRole getRolesDataTable()
         {
+            if (!HasPermmision("roles.view")) return null;
             int page = Request.Form["pagination[page]"].FirstOrDefault() == null?0:int.Parse(Request.Form["pagination[page]"].FirstOrDefault());
             int perpage = Request.Form["pagination[perpage]"].FirstOrDefault()==null?0:int.Parse(Request.Form["pagination[perpage]"].FirstOrDefault());
             string search= Request.Form["query[generalSearch]"].FirstOrDefault() == null ? "" : Request.Form["query[generalSearch]"].FirstOrDefault(); 
@@ -151,6 +173,7 @@ namespace App.Controllers
         }
         [HttpPost]
         public DatatablePermission getPermissionDataTable(string roleId) {
+            if (!HasPermmision("roles.view")) return null;
             IQueryable<ApplicationPage> query = _context.Set<ApplicationPage>();
             int total = query.Count();
             List<ApplicationRolePermission> res = new List<ApplicationRolePermission>();
@@ -162,7 +185,7 @@ namespace App.Controllers
                         if (claim.Equals(c.Value)) {
                             action +=
                                 (action.Equals("")?"":"") +
-                                "<input type=\"checkbox\" id=\""+roleId+"_"+c.Value+"\" "+
+                                "<input type=\"checkbox\" "+(HasPermmision("roles.assign")?"":"disabled")+" id=\""+roleId+"_"+c.Value+"\" "+
                                 (_context.RoleClaims.Where(u => u.RoleId.Equals(roleId) && u.ClaimValue.Equals(c.Value)).Count() > 0?" checked=\"true\"":"") +
                                 " style=\"margin-left:10px;\" "+
                                 " onchange=\"AssignAction('"+ roleId + "','"+c.Value+"',$(this).prop('checked'));\""+
@@ -186,12 +209,64 @@ namespace App.Controllers
             };
         }
         [HttpPost]
-        public async Task<JsonResult> assignRolePermission(string roleId, string claim, Boolean chk) {
+        public async Task<JsonResult> saveRole(
+            string id,
+            string name,
+            string description
+        )
+        {
+            if (!HasPermmision("roles.manage")) return null;            
+            if (id == null || id.Equals(""))
+            {
+                if ((await _accountManager.GetRoleByNameAsync(name)) == null)
+                {
+                    ApplicationRole applicationRole = new ApplicationRole(name, description);
+                    var result = await _accountManager.CreateRoleAsync(applicationRole, new string[] { });
+                    if (!result.Succeeded)
+                        throw new Exception($"Seeding \"{description}\" role failed. Errors: {string.Join(Environment.NewLine, result.Errors)}");
+                    await SaveNotification("creado role " + name, "roles.manage");
+                }
+            }
+            else {
+                ApplicationRole applicationRole = await _accountManager.GetRoleByIdAsync(id);
+                applicationRole.Name = name;
+                applicationRole.Description = description;
+                _context.Entry(applicationRole).CurrentValues.SetValues(applicationRole);
+                _context.Entry(applicationRole).State = EntityState.Modified;
+                _context.SaveChanges();
+                await SaveNotification("actualizar role " + name, "roles.manage");
+            }
+            return Json(new
+            {
+                error = ""
+            });
+        }
+        [HttpPost]
+        public async Task<JsonResult> deleteRole(
+            string id
+        )
+        {
+            ApplicationRole applicationRole = await _accountManager.GetRoleByIdAsync(id);
+            await _roleManager.DeleteAsync(applicationRole);
+            await SaveNotification("eliminado a role " , "roles.manage");
+            return Json(new
+            {
+                error = ""
+            });
+        }
+            public async Task<JsonResult> assignRolePermission(string roleId, string claim, Boolean chk) {
+            if (!HasPermmision("roles.assign")) return null;
             ApplicationRole role=await _roleManager.FindByIdAsync(roleId);
             if (chk)
+            {
                 await _roleManager.AddClaimAsync(role, new Claim(ClaimConstants.Permission, ApplicationPermissions.GetPermissionByValue(claim)));
+                await SaveNotification("creado permiso "+claim+" a" + role.Name,"roles.assign");
+            }
             else
+            {
                 await _roleManager.RemoveClaimAsync(role, new Claim(ClaimConstants.Permission, ApplicationPermissions.GetPermissionByValue(claim)));
+                await SaveNotification("eliminado el permiso " + claim + " a" + role.Name, "roles.assign");
+            }
             return Json(new
             {
                 msg="ok"
@@ -199,12 +274,24 @@ namespace App.Controllers
         }
         public IActionResult Users()
         {
+            if (!HasPermmision("users.view")) return Redirect("index");
             GlobalVariables();
             return View();
         }
         [HttpPost]
         public DatatableUser getUsersDataTable(string role)
         {
+            if (role.Equals("cliente"))
+            {
+                if (!HasPermmision("users.cview")) return null;
+            }
+            else if (role.Equals("inversora"))
+            {
+                if (!HasPermmision("users.iview")) return null;
+            }
+            else{
+                if (!(HasPermmision("users.view")|| HasPermmision("users.gview"))) return null;
+            }
             int page = Request.Form["pagination[page]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[page]"].FirstOrDefault());
             int perpage = Request.Form["pagination[perpage]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[perpage]"].FirstOrDefault());
             string search = Request.Form["query[generalSearch]"].FirstOrDefault() == null ? "" : Request.Form["query[generalSearch]"].FirstOrDefault();
@@ -289,6 +376,18 @@ namespace App.Controllers
             string avatarimage,
             string role
         ) {
+            if (role.Equals("cliente"))
+            {
+                if (!HasPermmision("users.cmanage")) return null;
+            }
+            else if (role.Equals("inversora"))
+            {
+                if (!HasPermmision("users.imanage")) return null;
+            }
+            else
+            {
+                if (!(HasPermmision("users.manage"))) return null;
+            }
             id = id == null ? "" : id;
             ApplicationUser user = new ApplicationUser
             {
@@ -307,6 +406,7 @@ namespace App.Controllers
             {
                 string password = "tempP@ss123";
                 var result = await _accountManager.CreateUserAsync(user, new string[] {role }, password);
+                await SaveNotification("creado el usuario \"" + user.UserName+"\"", "users.manage");
             }
             else {
                 ApplicationUser cuser = await _userManager.FindByIdAsync(id);
@@ -322,6 +422,8 @@ namespace App.Controllers
                 _context.Entry(cuser).CurrentValues.SetValues(cuser);
                 _context.Entry(cuser).State = EntityState.Modified;
                 _context.SaveChanges();
+
+                await SaveNotification("actualizó el usuario \"" + user.UserName + "\"", "users.manage");
             }
             return Json(new
             {
@@ -334,8 +436,21 @@ namespace App.Controllers
             try
             {
                 ApplicationUser cuser = await _userManager.FindByIdAsync(id);
+                if (cuser.Roles.First().Equals("cliente"))
+                {
+                    if (!HasPermmision("users.cmanage")) return null;
+                }
+                else if (cuser.Roles.First().Equals("inversora"))
+                {
+                    if (!HasPermmision("users.imanage")) return null;
+                }
+                else
+                {
+                    if (!HasPermmision("users.manage")) return null;
+                }
                 _context.Remove(cuser);
                 _context.SaveChanges();
+                await SaveNotification("eliminó el usuario \"" + cuser.UserName + "\"", "users.manage");
             }
             catch (Exception e) { Console.WriteLine(e.ToString()); }
             return Json(new
@@ -349,8 +464,22 @@ namespace App.Controllers
             try
             {
                 ApplicationUser user = await _userManager.FindByIdAsync(id);
+                if (user.Roles.First().Equals("cliente"))
+                {
+                    if (!HasPermmision("users.cmanage")) return null;
+                }
+                else if (user.Roles.First().Equals("inversora"))
+                {
+                    if (!HasPermmision("users.imanage")) return null;
+                }
+                else
+                {
+                    if (!HasPermmision("users.manage")) return null;
+                }
                 await _userManager.RemovePasswordAsync(user);
                 await _userManager.AddPasswordAsync(user, "tempP@ss123");
+
+                await SaveNotification("restablecer la contraseña de usuario \"" + user.UserName + "\"", "users.manage");
             }
             catch (Exception e) { Console.WriteLine(e.ToString()); }
             return Json(new
@@ -361,12 +490,14 @@ namespace App.Controllers
         
         public IActionResult Clients()
         {
+            if (!HasPermmision("users.cview")) return Redirect("index");
             GlobalVariables();
             return View();
         }
         [HttpPost]
         public DatatableClient getClientsDataTable()
         {
+            if (!HasPermmision("users.cview")) return null;
             int page = Request.Form["pagination[page]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[page]"].FirstOrDefault());
             int perpage = Request.Form["pagination[perpage]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[perpage]"].FirstOrDefault());
             string search = Request.Form["query[generalSearch]"].FirstOrDefault() == null ? "" : Request.Form["query[generalSearch]"].FirstOrDefault();
@@ -440,12 +571,14 @@ namespace App.Controllers
         }
         public IActionResult Investors()
         {
+            if (!HasPermmision("users.iview")) return Redirect("index");
             GlobalVariables();
             return View();
         }
         [HttpPost]
         public DatatableInvestor getInvestorsDataTable()
         {
+            if (!HasPermmision("users.iview")) return null;
             int page = Request.Form["pagination[page]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[page]"].FirstOrDefault());
             int perpage = Request.Form["pagination[perpage]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[perpage]"].FirstOrDefault());
             string search = Request.Form["query[generalSearch]"].FirstOrDefault() == null ? "" : Request.Form["query[generalSearch]"].FirstOrDefault();
@@ -546,6 +679,7 @@ namespace App.Controllers
             int type
         )
         {
+            if (!(HasPermmision("users.cmanage")|| HasPermmision("users.imanage"))) return null;
             id = id == null ? "0" : id;
             AccountPayment acc = new AccountPayment
             {
@@ -594,6 +728,7 @@ namespace App.Controllers
         [HttpPost]
         public async Task<ActionResult> deleteAccountPayment(long id)
         {
+            if (!(HasPermmision("users.cmanage") || HasPermmision("users.imanage"))) return null;
             try
             {
                 AccountPayment acc = await _context.AccountPayment.FindAsync(id);
@@ -609,6 +744,7 @@ namespace App.Controllers
 
         [HttpGet]
         public IActionResult Loanreq(){
+            if (!(HasPermmision("loan.request") || HasPermmision("loan.service") || HasPermmision("loan.debug") || HasPermmision("loan.collection"))) return Redirect("index");
             GlobalVariables();
             var query = _userManager.GetUsersInRoleAsync("cliente").Result;
             ViewBag.Clients = query.Select(u => new ApplicationUserShort { Id=u.Id, UserName=u.UserName }).ToList();
@@ -649,6 +785,26 @@ namespace App.Controllers
                         UpdatedDate=a.UpdatedDate,
                         UpdatedDevice=a.UpdatedDevice
                      });
+            if (!HasPermmision("loan.request")) query = query.Where(u =>
+                u.Status != LoanStatus.New &&
+                u.Status != LoanStatus.Contactor_Checking &&
+                u.Status != LoanStatus.Contactor_Rejected);
+            if (!HasPermmision("loan.service")) query = query.Where(u =>
+                u.Status != LoanStatus.Service_Mapping &&
+                u.Status != LoanStatus.Service_rejected);
+            if (!HasPermmision("loan.debug")) query = query.Where(u =>
+                u.Status != LoanStatus.Debug_Processing &&
+                u.Status != LoanStatus.Debug_rejected&&
+                u.Status != LoanStatus.Investor_Piad);
+            if (!HasPermmision("loan.collection")) query = query.Where(u =>
+                u.Status != LoanStatus.Collection_Processing &&
+                u.Status != LoanStatus.Investor_Piad);
+            if (!User.IsInRole("administrator")) {
+                query = query.Where(u =>
+                    u.Status != LoanStatus.Interesting_Process &&
+                    u.Status != LoanStatus.Interesting_completed &&
+                    u.Status != LoanStatus.Interesting_Incompleted);
+            }
             int total = query.Count();
             DatatableLoanRequest res = new DatatableLoanRequest
             {
@@ -717,10 +873,13 @@ namespace App.Controllers
                 Cycle=cycle,
                 Times=times
             };
+            if (!(HasPermmision("loan.request") || HasPermmision("loan.service") || HasPermmision("loan.debug") || HasPermmision("loan.collection"))) return null;
             if (id==0)
             {
                 await _context.LoanRequest.AddAsync(req);
                 await _context.SaveChangesAsync();
+
+                await SaveNotification("creó una solicitud de préstamo", "loan.request");
             }
             else
             {
@@ -737,6 +896,7 @@ namespace App.Controllers
         [HttpPost]
         public async Task<ActionResult> DeleteLoanRequest(long id)
         {
+            if (!(HasPermmision("loan.request") || HasPermmision("loan.service") || HasPermmision("loan.debug") || HasPermmision("loan.collection"))) return null;
             try
             {
                 LoanRequest req = await _context.LoanRequest.FindAsync(id);
@@ -754,6 +914,7 @@ namespace App.Controllers
             double amount, double interestingrate, LoanCycle cycle, DateTime requesteddate, int times
         )
         {
+            if (!(HasPermmision("loan.request") || HasPermmision("loan.service") || HasPermmision("loan.debug") || HasPermmision("loan.collection"))) return null;
             int page = Request.Form["pagination[page]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[page]"].FirstOrDefault());
             int perpage = Request.Form["pagination[perpage]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[perpage]"].FirstOrDefault());
             string search = Request.Form["query[generalSearch]"].FirstOrDefault() == null ? "" : Request.Form["query[generalSearch]"].FirstOrDefault();
@@ -805,6 +966,7 @@ namespace App.Controllers
             long requestId
         )
         {
+            if (!(HasPermmision("loan.request") || HasPermmision("loan.service") || HasPermmision("loan.debug") || HasPermmision("loan.collection"))) return null;
             int page = Request.Form["pagination[page]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[page]"].FirstOrDefault());
             int perpage = Request.Form["pagination[perpage]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[perpage]"].FirstOrDefault());
             string search = Request.Form["query[generalSearch]"].FirstOrDefault() == null ? "" : Request.Form["query[generalSearch]"].FirstOrDefault();
@@ -860,6 +1022,22 @@ namespace App.Controllers
             string statusreason
         )
         {
+            if (!User.IsInRole("administrator")) {
+                if (!HasPermmision("loan.request"))
+                    if (status == LoanStatus.New ||
+                        status == LoanStatus.Contactor_Checking ||
+                        status == LoanStatus.Contactor_Rejected ||
+                        status == LoanStatus.Service_Mapping) return null;
+                if (!HasPermmision("loan.service"))
+                    if (status == LoanStatus.Service_rejected ||
+                        status == LoanStatus.Debug_Processing) return null;
+                if (!HasPermmision("loan.debug"))
+                    if (status == LoanStatus.Debug_rejected ||
+                    status == LoanStatus.Collection_Processing) return null;
+                if (!HasPermmision("loan.collection"))
+                    if (status == LoanStatus.Interesting_completed ||
+                    status == LoanStatus.Interesting_Incompleted) return null;
+            }
             LoanRequestStatus req = new LoanRequestStatus
             {
                 Status = status,
@@ -884,6 +1062,7 @@ namespace App.Controllers
         [HttpPost]
         public async Task<ActionResult> deleteLoanRequestStatus(long id)
         {
+            if (!(HasPermmision("loan.request") || HasPermmision("loan.service") || HasPermmision("loan.debug") || HasPermmision("loan.collection"))) return null;
             try
             {
                 LoanRequestStatus req = await _context.LoanRequestStatus.FindAsync(id);
@@ -915,6 +1094,7 @@ namespace App.Controllers
         [HttpGet]
         public IActionResult Investment()
         {
+            if (!(HasPermmision("investment.service") || HasPermmision("investment.debug") || HasPermmision("investment.collection"))) return null;
             GlobalVariables();
             var query = _userManager.GetUsersInRoleAsync("inversora").Result;
             ViewBag.Investors = query.Select(u => new ApplicationUserShort { Id = u.Id, UserName = u.UserName }).ToList();
@@ -956,6 +1136,23 @@ namespace App.Controllers
                                                             UpdatedDate = a.UpdatedDate,
                                                             UpdatedDevice = a.UpdatedDevice
                                                         });
+            if (!HasPermmision("investment.service")) query = query.Where(u =>
+                u.Status != InvestStatus.Service_Processing &&
+                u.Status != InvestStatus.Service_rejected&&
+                u.Status != InvestStatus.New);
+            if (!HasPermmision("investment.debug")) query = query.Where(u =>
+                u.Status != InvestStatus.Debug_Processing &&
+                u.Status != InvestStatus.Debug_rejected);
+            if (!HasPermmision("investment.collection")) query = query.Where(u =>
+                u.Status != InvestStatus.Collection_Processing &&
+                u.Status != InvestStatus.Completed_Payment &&
+                u.Status != InvestStatus.Created_Milestone);
+            if (!User.IsInRole("administrator"))
+            {
+                query = query.Where(u =>
+                    u.Status != InvestStatus.Completed_Investment &&
+                    u.Status != InvestStatus.Incompleted_Investment);
+            }
             int total = query.Count();
             DatatableInvestment res = new DatatableInvestment
             {
@@ -1015,6 +1212,7 @@ namespace App.Controllers
             int times
         )
         {
+            if (!(HasPermmision("investment.service") || HasPermmision("investment.debug") || HasPermmision("investment.collection"))) return null;
             Investment req = new Investment
             {
                 InvestorId = investorid,
@@ -1028,6 +1226,7 @@ namespace App.Controllers
             {
                 await _context.Investment.AddAsync(req);
                 await _context.SaveChangesAsync();
+                await SaveNotification("creado una inversión", "loan.request");
             }
             else
             {
@@ -1044,6 +1243,7 @@ namespace App.Controllers
         [HttpPost]
         public async Task<ActionResult> DeleteInvestment(long id)
         {
+            if (!(HasPermmision("investment.service") || HasPermmision("investment.debug") || HasPermmision("investment.collection"))) return null;
             try
             {
                 Investment req = await _context.Investment.FindAsync(id);
@@ -1116,6 +1316,20 @@ namespace App.Controllers
             string statusreason
         )
         {
+            if (!User.IsInRole("administrator"))
+            {
+                if (!HasPermmision("investment.service"))
+                    if (status == InvestStatus.Service_Processing ||
+                        status == InvestStatus.Service_rejected ||
+                        status == InvestStatus.Debug_Processing) return null;
+                if (!HasPermmision("investment.debug"))
+                    if (status == InvestStatus.Debug_rejected ||
+                    status == InvestStatus.Collection_Processing) return null;
+                if (!HasPermmision("investment.collection"))
+                    if (status == InvestStatus.Incompleted_Investment ||
+                        status == InvestStatus.Collection_Error ||
+                    status == InvestStatus.Completed_Investment) return null;
+            }
             InvestmentStatus req = new InvestmentStatus
             {
                 Status = status,
@@ -1140,6 +1354,7 @@ namespace App.Controllers
         [HttpPost]
         public async Task<ActionResult> deleteInvestmentStatus(long id)
         {
+            if (!(HasPermmision("investment.service") || HasPermmision("investment.debug") || HasPermmision("investment.collection"))) return null;
             try
             {
                 InvestmentStatus req = await _context.InvestmentStatus.FindAsync(id);

@@ -340,6 +340,15 @@ namespace LoanDroidApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create a request.
+        /// </summary>
+        public static string CreateRequest {
+            get {
+                return ResourceManager.GetString("CreateRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Currency.
         /// </summary>
         public static string currency {

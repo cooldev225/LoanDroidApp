@@ -8,7 +8,8 @@ namespace Models.data
     public enum PageGroup
     {
         Config,
-        Loan,
-        Mailbox
+        Prestamo,
+        Inversion,
+        Buzon
     }
 }

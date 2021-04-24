@@ -39,8 +39,9 @@ function expendDetailBody(e) {
                 title: 'Group',
                 template: function (row, index) {
                     if (row.pageGroup == 0) return "Config";
-                    else if (row.pageGroup == 1) return "Loan";
-                    else if (row.pageGroup == 2) return "Mailbox";
+                    else if (row.pageGroup == 1) return "Préstamo";
+                    else if (row.pageGroup == 2) return "Inversión";
+                    else if (row.pageGroup == 3) return "Buzón";
                 },
                 width: 80,
             },
@@ -121,14 +122,14 @@ function datatableInit() {
                 template: function (row) {
                     return getJustDateWIthYear(row.updatedDate);
                 },
-            }, /*{
+                }, {
                 field: 'actions',
-                title: lang.global_tbl_action,
+                title: $("#managepermission").val() == "true"?lang.global_tbl_action:'',
                 sortable: false,
-                overflow: 'visible',
+                overflow: $("#managepermission").val() == "true" ?'visible':'',
                 autoHide: false,
                 template: function (row) {
-                    return '\
+                    return $("#managepermission").val() == "false" ?'':'\
                         <div class="dropdown dropdown-inline">\
                         <a data-toggle="modal" data-target="#editRoleModal" href="javascript:;" onclick="\
                         $(\'#edit_role_id\').val(\''+ row.id + '\');\
@@ -143,7 +144,7 @@ function datatableInit() {
                         '</div>\
                 ';
                 },
-            }*/
+            }
         ],
         translate: trans_pagination,        
     });
@@ -174,9 +175,6 @@ function AssignAction(roleId, claim, chk) {
 
         }
     });
-}
-function searchAction() {
-    data_table.reload();
 }
 function RoleAddAction() {
     $('#edit_role_id').val('');

@@ -30,6 +30,8 @@
     <Compile Remove="Migrations\20200223163454_init.Designer.cs" />
     <Compile Remove="Migrations\20210417013959_accountpayment.cs" />
     <Compile Remove="Migrations\20210417013959_accountpayment.Designer.cs" />
+    <Compile Remove="Migrations\20210423021815_update-permission.cs" />
+    <Compile Remove="Migrations\20210423021815_update-permission.Designer.cs" />
   </ItemGroup>
 
 
@@ -81,6 +83,9 @@
 
 
   <ItemGroup>
+    <EmbeddedResource Update="Resources\CommonResources.es-DO.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\CommonResources.es-ES.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
