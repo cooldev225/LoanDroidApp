@@ -42,7 +42,7 @@ namespace App
                 .AddDefaultTokenProviders();
 
 
-            var applicationUrl = "http://localhost:8855";
+            var applicationUrl = "http://localhost:8888";
             services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
                 .AddIdentityServerAuthentication(options =>
                 {
