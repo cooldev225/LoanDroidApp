@@ -84,7 +84,6 @@ namespace App.Controllers
                 string ss = ex.ToString();
                 return View();
             }
-
         }
 
         [HttpGet]

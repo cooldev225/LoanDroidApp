@@ -6,19 +6,19 @@
 <div class="slider" id="slider">
     <!-- slider -->
     <div class="slider-img">
-        <img src="~/images/home/slider-1.jpg" alt="   " class="">
+        <img src="~/images/home/index-three-slider-1.jpg" alt="" class="">
         <div class="container">
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                     <div class="slider-captions">
                         <!-- slider-captions -->
-                        <h1 class="slider-title">@SharedLocalizer["slider01_title"]</h1>
-                        <p class="slider-text d-none d-xl-block d-lg-block d-sm-block">
+                        <h1 class="slider-title primary">@SharedLocalizer["slider01_title"]</h1>
+                        <p class="slider-text primary d-none d-xl-block d-lg-block d-sm-block">
                             Loans and investments between people at fair rates
                             <br>
-                            <strong class="text-highlight">(555) 123-4567</strong>
+                            <strong class="text-highlight primary">(555) 123-4567</strong>
                         </p>
-                        <a href="team.html" class="btn btn-secondary mr-10" style="margin-right:10px;">@SharedLocalizer["Iwantaloan"]</a>
+                        <a href="team.html" class="btn btn-primary mr-10" style="margin-right:10px;">@SharedLocalizer["Iwantaloan"]</a>
                         <a href="team.html" class="btn btn-secondary">@SharedLocalizer["Iwanttolend"]</a>
                     </div>
                     <!-- /.slider-captions -->
@@ -28,15 +28,15 @@
     </div>
     <div>
         <div class="slider-img">
-            <img src="~/images/home/slider-2.jpg" alt="Loan and Investments " class="">
+            <img src="~/images/home/index-three-slider-2.jpg" alt="Loan and Investments " class="">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                         <div class="slider-captions">
                             <!-- slider-captions -->
-                            <h1 class="slider-title"> Lowest Car Loan Rate <strong class="text-highlight">9.60%</strong> </h1>
-                            <p class="slider-text d-none d-xl-block d-lg-block d-sm-block"> We provide an excellent service Loan company. Lorem ipsum simple dummy content goes here.</p>
-                            <a href="#!" class="btn btn-secondary">Check Eligiblity</a>
+                            <h1 class="slider-title primary"> Lowest Car Loan Rate <strong class="text-highlight">9.60%</strong> </h1>
+                            <p class="slider-text primary d-none d-xl-block d-lg-block d-sm-block"> We provide an excellent service Loan company. Lorem ipsum simple dummy content goes here.</p>
+                            <a href="#!" class="btn btn-primary">Check Eligiblity</a>
                         </div>
                         <!-- /.slider-captions -->
                     </div>
@@ -46,7 +46,7 @@
     </div>
     <div>
         <div class="slider-img">
-            <img src="~/images/home/slider-3.jpg" alt="Loan and Investments " class="">
+            <img src="~/images/home/index-three-slider-3.jpg" alt="Loan and Investments " class="">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
@@ -71,51 +71,88 @@
         <div class="row">
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
                 <div class="rate-counter-block">
-                    <div class="icon rate-icon  "> <img src="~/images/home/mortgage.svg" alt="Loan and Investments " class="icon-svg-1x"></div>
+                    <div class="icon rate-icon  "> <img src="~/images/home/users.png" alt="Loan and Investments " class="icon-svg-1x"></div>
                     <div class="rate-box">
-                        <h1 class="loan-rate">3.74%</h1>
-                        <small class="rate-title">Home Loans</small>
+                        <h1 class="loan-rate">@(ViewBag.client_count + ViewBag.investor_count)</h1>
+                        <small class="rate-title">@SharedLocalizer["Users"]</small>
                     </div>
                 </div>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
                 <div class="rate-counter-block">
-                    <div class="icon rate-icon  "> <img src="~/images/home/loan.svg" alt="Loan and Investments " class="icon-svg-1x"></div>
+                    <div class="icon rate-icon  "> <img src="~/images/home/svg/loan.svg" alt="Loan and Investments " class="icon-svg-1x"></div>
                     <div class="rate-box">
                         <h1 class="loan-rate">8.96%</h1>
-                        <small class="rate-title">Personal Loans</small>
+                        <small class="rate-title">@SharedLocalizer["LoanRates"]</small>
                     </div>
                 </div>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
                 <div class="rate-counter-block">
-                    <div class="icon rate-icon  "> <img src="~/images/home/car.svg" alt="Loan and Investments " class="icon-svg-1x"></div>
+                    <div class="icon rate-icon  "> <img src="~/images/home/svg/credit-card.svg" alt="Loan and Investments " class="icon-svg-1x"></div>
                     <div class="rate-box">
                         <h1 class="loan-rate">6.70%</h1>
-                        <small class="rate-title">Car Loans</small>
+                        <small class="rate-title">@SharedLocalizer["SavingRates"]</small>
                     </div>
                 </div>
             </div>
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
                 <div class="rate-counter-block">
-                    <div class="icon rate-icon  "> <img src="~/images/home/credit-card.svg" alt="Loan and Investments " class="icon-svg-1x"></div>
+                    <div class="icon rate-icon  "> <img src="~/images/home/svg/piggy-bank.svg" alt="Loan and Investments " class="icon-svg-1x"></div>
                     <div class="rate-box">
-                        <h1 class="loan-rate">9.00%</h1>
-                        <small class="rate-title">Credit card</small>
+                        <h1 class="loan-rate">0</h1>
+                        <small class="rate-title">@SharedLocalizer["Projects"]</small>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="section-space80">
+<div class="section-space80" id="howitworks">
+    <div class="container">
+        <div class="row">
+            <div class="offset-xl-2 col-xl-8 offset-md-2 col-md-8 offset-md-2 col-md-8 col-sm-12 col-12">
+                <div class="section-title mb60 text-center">
+                    <!-- section title start-->
+                    <h1>@SharedLocalizer["howitworks"]</h1>
+                    <p>About Business Loan and How does it work</p>
+                </div>
+                <!-- /.section title start-->
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                <p class="lead">Conectamos directamente a personas que necesitan un préstamo con personas que quieren invertir su dinero. </p>
+                <p>De esta manera logramos que el que pide prestado pague menos intereses y que el que invierte su dinero gane buenos rendimientos.</p>
+                <p>
+                    Tasa de interés anual y fija de 8.9% a 38.9% sin IVA, ésta dependerá del proceso de evaluación y calificación de nuestra área de crédito.
+                </p>
+                <a class="btn btn-primary mb-3 mb-lg-0" href="@Url.Action("login", "home")?page=register" id="navbarBlog" role="button" aria-haspopup="true" aria-expanded="false">
+                    @SharedLocalizer["Signup"]
+                </a>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="section-about-video">
+                    <div class="about-img" style="background: url(../images/home/business-loan-about.jpg); background-size: cover; background-repeat: no-repeat; min-height: 335px; display: flex; justify-content: center;">
+                        <div class="d-flex align-items-center">
+                            <a class="popup-youtube
+                                       text-decoration-none"
+                               href="https://www.youtube.com/watch?v=JRzWRZahOVU">
+                                <img src="../images/home/play-icon.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section-space80 bg-white">
     <div class="container">
         <div class="row">
             <div class="offset-xl-2 col-xl-8 offset-md-2 col-md-8 offset-md-2 col-md-8 col-sm-12 col-12">
                 <div class="mb60 text-center section-title">
                     <!-- section title start-->
                     <h1>@SharedLocalizer["FindLoanServicesWeOffers"]</h1>
-                    <p>We will match you with a loan program that meet your financial need. In short term liquidity, by striving to make funds available to them <strong>within 24 hours of application.</strong></p>
+                    <p>@SharedLocalizer["FindLoanServicesWeOffersText"]</p>
                 </div>
                 <!-- /.section title start-->
             </div>
@@ -124,56 +161,52 @@
             <div class="service" id="service">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="bg-white pinside40 service-block outline mb30">
-                        <div class="icon mb40"> <img src="~/images/home/loan.svg" alt="Loan and Investments " class="icon-svg-2x"> </div>
-                        <h2><a href="#!" class="title">Personal Loan</a></h2>
-                        <p>Lorem ipsum dolor sit ameectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque</p>
-                        <a href="#!" class="btn-link">Read More</a>
+                        <div class="icon mb40"> <img src="~/images/home/users.png" alt="Loan and Investments " class="icon-svg-2x"> </div>
+                        <h2><a href="#!" class="title">@SharedLocalizer["Users"]</a></h2>
+                        <p>
+                            @SharedLocalizer["TrustedClients"]: @ViewBag.client_count<br>
+                            @SharedLocalizer["TrustedInvestors"]: @ViewBag.investor_count<br>
+                            @SharedLocalizer["UsersText"]
+                        </p>
+                        <a href="#!" class="btn-link">@SharedLocalizer["ReadMore"]</a>
                     </div>
                 </div>
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="bg-white pinside40 service-block outline mb30">
-                        <div class="icon mb40"> <img src="~/images/home/mortgage.svg" alt="Loan and Investments " class="icon-svg-2x"></div>
-                        <h2><a href="#!" class="title">Home Loan</a></h2>
-                        <p>Sed ut perspiciatis unde omnis rror sit voluptatem accusan tium dolo remque laudantium, totam rem aperiam, eaque ipsa </p>
-                        <a href="#!" class="btn-link">Read More</a>
+                        <div class="icon mb40"> <img src="~/images/home/svg/loan.svg" alt="Loan and Investments " class="icon-svg-2x"></div>
+                        <h2><a href="#!" class="title">@SharedLocalizer["LoanRates"]</a></h2>
+                        <p>@SharedLocalizer["LoanRatesText"]</p>
+                        <a href="#!" class="btn-link">@SharedLocalizer["ReadMore"]</a>
                     </div>
                 </div>
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="bg-white pinside40 service-block outline mb30">
-                        <div class="icon mb40"> <img src="~/images/home/piggy-bank.svg" alt="Loan and Investments " class="icon-svg-2x"></div>
-                        <h2><a href="#!" class="title">Education Loan</a></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elmodo ligula eget dolor. Aenean massa. Cum sociis natoque</p>
-                        <a href="#!" class="btn-link">Read More</a>
+                        <div class="icon mb40"> <img src="~/images/home/svg/credit-card.svg" alt="Loan and Investments " class="icon-svg-2x"></div>
+                        <h2><a href="#!" class="title">@SharedLocalizer["SavingRates"]</a></h2>
+                        <p>@SharedLocalizer["SavingRatesText"]</p>
+                        <a href="#!" class="btn-link">@SharedLocalizer["ReadMore"]</a>
                     </div>
                 </div>
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="bg-white pinside40 service-block outline mb30">
-                        <div class="icon mb40"> <img src="~/images/home/loan.svg" alt="Loan and Investments " class="icon-svg-2x"></div>
-                        <h2><a href="#!" class="title">Business Loan</a></h2>
-                        <p>Lorem ipsum dolor sit nean commodo ligula eget dolor simple dummyum sociis natoque.amet, consectetuer adipiscing elit. </p>
-                        <a href="#!" class="btn-link">Read More</a>
-                    </div>
-                </div>
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="bg-white pinside40 service-block outline mb30">
-                        <div class="icon mb40"> <img src="~/images/home/car.svg" alt="Loan and Investments " class="icon-svg-2x"></div>
-                        <h2><a href="#!" class="title">Car Loan</a></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque.</p>
-                        <a href="#!" class="btn-link">Read More</a>
+                        <div class="icon mb40"> <img src="~/images/home/svg/piggy-bank.svg" alt="Loan and Investments " class="icon-svg-2x"></div>
+                        <h2><a href="#!" class="title">@SharedLocalizer["Projects"]</a></h2>
+                        <p>@SharedLocalizer["ProjectsText"]</p>
+                        <a href="#!" class="btn-link">@SharedLocalizer["ReadMore"]</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="bg-white section-space80">
+<div class="section-space80">
     <div class="container">
         <div class="row">
             <div class="offset-xl-2 col-xl-8 offset-md-2 col-md-8 offset-md-2 col-md-8 col-sm-12 col-12">
                 <div class="mb100 text-center section-title">
                     <!-- section title start-->
                     <h1>@SharedLocalizer["FastEasyApplicationProcess"]</h1>
-                    <p>Suspendisse aliquet varius nunc atcibus lacus sit amet coed portaeri sque mami luctus viveed congue lobortis faucibus.</p>
+                    <p>@SharedLocalizer["FastEasyApplicationProcessText"]</p>
                 </div>
                 <!-- /.section title start-->
             </div>
@@ -182,31 +215,31 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                 <div class="bg-white pinside40 number-block outline mb60 bg-boxshadow">
                     <div class="circle"><span class="number">1</span></div>
-                    <h3 class="number-title mb-1">Choose Loan Amount</h3>
-                    <p>Suspendisse accumsan imperdue ligula dignissim sit amet vestibulum in mollis etfelis.</p>
+                    <h3 class="number-title mb-1">@SharedLocalizer["FastEasyApplicationProcess1"]</h3>
+                    <p>@SharedLocalizer["FastEasyApplicationProcess1Text"]</p>
                 </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                 <div class="bg-white pinside40 number-block outline mb60 bg-boxshadow">
                     <div class="circle"><span class="number">2</span></div>
-                    <h3 class="number-title mb-1">Approved Your Loan</h3>
-                    <p>Fusce tempor sstibulum varius sem nec mi luctus viverra edcongue lobortis faucibus.</p>
+                    <h3 class="number-title mb-1">@SharedLocalizer["FastEasyApplicationProcess2"]</h3>
+                    <p>@SharedLocalizer["FastEasyApplicationProcess2Text"]</p>
                 </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                 <div class="bg-white pinside40 number-block outline mb60 bg-boxshadow">
                     <div class="circle"><span class="number">3</span></div>
-                    <h3 class="number-title mb-1">Get Your Cash</h3>
-                    <p>Get your money in minutes simtibulm varius semnec mluctus gue lobortis faucibus.</p>
+                    <h3 class="number-title mb-1">@SharedLocalizer["FastEasyApplicationProcess3"]</h3>
+                    <p>@SharedLocalizer["FastEasyApplicationProcess3Text"]</p>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="offset-xl-2 col-xl-8 offset-md-2 col-md-8 offset-md-2 col-md-8 col-sm-12 col-12 text-center"> <a href="#!" class="btn btn-secondary">View Our Loans</a> </div>
+            <div class="offset-xl-2 col-xl-8 offset-md-2 col-md-8 offset-md-2 col-md-8 col-sm-12 col-12 text-center"> <a href="#!" class="btn btn-secondary">@SharedLocalizer["ViewMore"]</a> </div>
         </div>
     </div>
 </div>
-<div class="section-space80">
+<div class="section-space80 bg-white">
     <div class="container">
         <div class="row">
             <div class="offset-xl-2 col-xl-8 offset-md-2 col-md-8 offset-md-2 col-md-8 col-sm-12 col-12">
@@ -338,39 +371,39 @@
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                 <div class="post-block mb30">
                     <div class="post-img">
-                        <a href="blog-single.html" class="imghover"><img src="~/images/home/blog-img.jpg" alt="Loan and Investments " class="img-fluid"></a>
+                        <a href="@Url.Action("blogdetail", "home")?id=1" class="imghover"><img src="~/images/home/blog-img.jpg" alt="Loan and Investments " class="img-fluid"></a>
                     </div>
                     <div class="bg-white pinside40 outline">
-                        <h2><a href="blog-single.html" class="title">Couples Buying New Home Loan</a></h2>
+                        <h2><a href="@Url.Action("blogdetail", "home")?id=1" class="title">Couples Buying New Home Loan</a></h2>
                         <p class="meta"><span class="meta-date">Aug 25, 2017</span><span class="meta-author">By<a href="#!"> Admin</a></span></p>
                         <p>Fusce sed erat libasellus id orci quis ligula pret do lectus velit, a malesuada urna sodales eu.</p>
-                        <a href="blog-single.html" class="btn-link">Read More</a>
+                        <a href="@Url.Action("blogdetail", "home")?id=1" class="btn-link">@SharedLocalizer["ReadMore"]</a>
                     </div>
                 </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                 <div class="post-block mb30">
                     <div class="post-img">
-                        <a href="blog-single.html" class="imghover"><img src="~/images/home/blog-img-1.jpg" alt="Loan and Investments " class="img-fluid"></a>
+                        <a href="@Url.Action("blogdetail", "home")?id=2" class="imghover"><img src="~/images/home/blog-img-1.jpg" alt="Loan and Investments " class="img-fluid"></a>
                     </div>
                     <div class="bg-white pinside40 outline">
-                        <h2><a href="blog-single.html" class="title">Business Man Thinking for Loan</a></h2>
+                        <h2><a href="@Url.Action("blogdetail", "home")?id=2" class="title">Business Man Thinking for Loan</a></h2>
                         <p class="meta"><span class="meta-date">Aug 24, 2017</span><span class="meta-author">By<a href="#!"> Admin</a></span></p>
                         <p>Nulla vehicula nibh vel malesuada dapibus ringilla nunc mi sit amet fbendum sapierttitor nibh. </p>
-                        <a href="blog-single.html" class="btn-link">Read More</a>
+                        <a href="@Url.Action("blogdetail", "home")?id=2" class="btn-link">@SharedLocalizer["ReadMore"]</a>
                     </div>
                 </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                 <div class="post-block mb30">
                     <div class="post-img">
-                        <a href="blog-single.html" class="imghover"><img src="~/images/home/blog-img-2.jpg" alt="Loan and Investments s" class="img-fluid"></a>
+                        <a href="@Url.Action("blogdetail", "home")?id=3" class="imghover"><img src="~/images/home/blog-img-2.jpg" alt="Loan and Investments s" class="img-fluid"></a>
                     </div>
                     <div class="bg-white pinside40 outline">
-                        <h2><a href="blog-single.html" class="title">Are you students looking for loan ?</a></h2>
+                        <h2><a href="@Url.Action("blogdetail", "home")?id=3" class="title">Are you students looking for loan ?</a></h2>
                         <p class="meta"><span class="meta-date">Aug 23, 2017</span><span class="meta-author">By<a href="#!"> Admin</a></span></p>
                         <p>Malesuada urna sodales euusce sed erat libasellus id orci quis ligula pretium co ctus velit.</p>
-                        <a href="blog-single.html" class="btn-link">Read More</a>
+                        <a href="@Url.Action("blogdetail", "home")?id=3" class="btn-link">@SharedLocalizer["ReadMore"]</a>
                     </div>
                 </div>
             </div>

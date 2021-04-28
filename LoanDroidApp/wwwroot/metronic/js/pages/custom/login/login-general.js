@@ -94,27 +94,6 @@ var KTLogin = function() {
 			form,
 			{
 				fields: {
-					first_name: {
-						validators: {
-							notEmpty: {
-								message: lang.req_firstname
-							}
-						}
-					},
-					last_name: {
-						validators: {
-							notEmpty: {
-								message: lang.req_lastname
-							}
-						}
-					},
-					username: {
-						validators: {
-							notEmpty: {
-								message: lang.req_username
-							}
-						}
-					},
 					email: {
                         validators: {
 							notEmpty: {
@@ -292,8 +271,8 @@ jQuery(document).ready(function() {
 			$('input[name ="email"]').removeClass('is-valid');
 			KTUtil.scrollTop();
 		});
-	}else if($('#error').val()=='double_attempt'){
-        swal.fire({
+	} else if ($('#error').val() == 'double_attempt') {
+		swal.fire({
 			text: lang.err_dblaccess,
 			icon: "error",
 			buttonsStyling: false,
@@ -301,10 +280,24 @@ jQuery(document).ready(function() {
 			customClass: {
 				confirmButton: "btn font-weight-bold btn-light-danger"
 			}
-		}).then(function() {
+		}).then(function () {
 			$('input[name ="email"]').val('');
 			$('input[name ="email"]').removeClass('is-valid');
 			KTUtil.scrollTop();
 		});
-    }
+	} else if ($('#error').val() != '')  {
+		swal.fire({
+			text: $('#error').val(),
+			icon: "error",
+			buttonsStyling: false,
+			confirmButtonText: lang.conf_try,
+			customClass: {
+				confirmButton: "btn font-weight-bold btn-light-danger"
+			}
+		}).then(function () {
+			$('input[name ="email"]').val('');
+			$('input[name ="email"]').removeClass('is-valid');
+			KTUtil.scrollTop();
+		});
+	}
 });

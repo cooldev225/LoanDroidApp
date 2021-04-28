@@ -1,6 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.Mvc
 @inject SignInManager<Models.data.ApplicationUser> SignInManager
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IHtmlLocalizer<LoanDroidApp.CommonResources> SharedLocalizer
 @{
     ViewData["Title"] = "Blog | LoanDroidApp";
 }
@@ -10,8 +12,8 @@
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="page-breadcrumb">
                     <ol class="breadcrumb">
-                        <li><a href="index.html">Home</a></li>
-                        <li class="active">Blog Three Columns</li>
+                        <li><a href="index.html">@SharedLocalizer["Home"]</a></li>
+                        <li class="active">@SharedLocalizer["Blog"]</li>
                     </ol>
                 </div>
             </div>
@@ -19,20 +21,17 @@
                 <div class="bg-white pinside30">
                     <div class="row align-items-center">
                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
-                            <h1 class="page-title">Blog Three Columns</h1>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                            <div class="btn-action"> <a href="#!" class="btn btn-secondary">How To Apply</a> </div>
+                            <h1 class="page-title">@SharedLocalizer["MyAccount"]</h1>
                         </div>
                     </div>
                 </div>
                 <div class="sub-nav" id="sub-nav">
                     <ul class="nav nav-justified">
                         <li class="nav-item">
-                            <a href="contact-us.html" class="nav-link">Give me call back</a>
+                            <a href="#!" class="nav-link">@SharedLocalizer["Contactus"]</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#!" class="nav-link">Emi Caculator</a>
+                            <a href="#!" class="nav-link">@SharedLocalizer["LoanCalculator"]</a>
                         </li>
                     </ul>
                 </div>
@@ -50,78 +49,78 @@
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                             <div class="post-block mb30">
                                 <div class="post-img">
-                                    <a href="blog-single.html" class="imghover"><img src="images/blog-img.jpg" alt="- Loan Company Website Template" class="img-fluid"></a>
+                                    <a href="@Url.Action("blogdetail", "home")?id=1" class="imghover"><img src="~/images/home/blog-img.jpg" alt="- Loan Company Website Template" class="img-fluid"></a>
                                 </div>
                                 <div class="bg-white pinside40 outline">
-                                    <h2><a href="blog-single.html" class="title">Couples Happy with Home Loan</a></h2>
+                                    <h2><a href="@Url.Action("blogdetail", "home")?id=1" class="title">Couples Happy with Home Loan</a></h2>
                                     <p class="meta"><span class="meta-date">Aug 25, 2020</span><span class="meta-author">By<a href="#!"> Admin</a></span></p>
                                     <p>Fusce sed erat libasellus id orci quis ligula pret do lectus velit, a malesuada urna sodales.</p>
-                                    <a href="blog-single.html" class="btn-link">Read More</a>
+                                    <a href="@Url.Action("blogdetail", "home")?id=1" class="btn-link">Read More</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                             <div class="post-block mb30">
                                 <div class="post-img">
-                                    <a href="blog-single.html" class="imghover"><img src="images/blog-img-1.jpg" alt="- Loan Company Website Template" class="img-fluid"></a>
+                                    <a href="@Url.Action("blogdetail", "home")?id=2" class="imghover"><img src="~/images/home/blog-img-1.jpg" alt="- Loan Company Website Template" class="img-fluid"></a>
                                 </div>
                                 <div class="bg-white pinside40 outline">
-                                    <h2><a href="blog-single.html" class="title">Family Thinking for Loan</a></h2>
+                                    <h2><a href="@Url.Action("blogdetail", "home")?id=2" class="title">Family Thinking for Loan</a></h2>
                                     <p class="meta"><span class="meta-date">Aug 24, 2020</span><span class="meta-author">By<a href="#!"> Admin</a></span></p>
                                     <p>Nulla vehicula nibh vel malesuada dapibus ringilla nunc mi sit amet fbendum sapierttitor. </p>
-                                    <a href="blog-single.html" class="btn-link">Read More</a>
+                                    <a href="@Url.Action("blogdetail", "home")?id=2" class="btn-link">Read More</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                             <div class="post-block mb30">
                                 <div class="post-img">
-                                    <a href="blog-single.html" class="imghover"><img src="images/blog-img-2.jpg" alt="- Loan Company Website Templates" class="img-fluid"></a>
+                                    <a href="@Url.Action("blogdetail", "home")?id=3" class="imghover"><img src="~/images/home/blog-img-2.jpg" alt="- Loan Company Website Templates" class="img-fluid"></a>
                                 </div>
                                 <div class="bg-white pinside40 outline">
-                                    <h2><a href="blog-single.html" class="title">Are you students looking for loan?</a></h2>
+                                    <h2><a href="@Url.Action("blogdetail", "home")?id=3" class="title">Are you students looking for loan?</a></h2>
                                     <p class="meta"><span class="meta-date">Aug 23, 2020</span><span class="meta-author">By<a href="#!"> Admin</a></span></p>
                                     <p>Malesuada urna sodales euusce sed erat libasellus id orci quis ligula pretium co ctus velit.</p>
-                                    <a href="blog-single.html" class="btn-link">Read More</a>
+                                    <a href="@Url.Action("blogdetail", "home")?id=3" class="btn-link">Read More</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                             <div class="post-block mb30">
                                 <div class="post-img">
-                                    <a href="blog-single.html" class="imghover"><img src="images/blog-img-3.jpg" alt="- Loan Company Website Template" class="img-fluid"></a>
+                                    <a href="@Url.Action("blogdetail", "home")?id=4" class="imghover"><img src="~/images/home/blog-img-3.jpg" alt="- Loan Company Website Template" class="img-fluid"></a>
                                 </div>
                                 <div class="bg-white pinside40 outline">
-                                    <h2><a href="blog-single.html" class="title">Bigger home still the goal</a></h2>
+                                    <h2><a href="@Url.Action("blogdetail", "home")?id=4" class="title">Bigger home still the goal</a></h2>
                                     <p class="meta"><span class="meta-date">Aug 20, 2020</span><span class="meta-author">By<a href="#!"> Admin</a></span></p>
                                     <p>Lorem ipsum dolor sit amet consectetur its lorem adipiscing elitras molestie nunceu its.</p>
-                                    <a href="blog-single.html" class="btn-link">Read More</a>
+                                    <a href="@Url.Action("blogdetail", "home")?id=4" class="btn-link">Read More</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                             <div class="post-block mb30">
                                 <div class="post-img">
-                                    <a href="blog-single.html" class="imghover"><img src="images/blog-img-4.jpg" alt="- Loan Company Website Template" class="img-fluid"></a>
+                                    <a href="@Url.Action("blogdetail", "home")?id=5" class="imghover"><img src="~/images/home/blog-img-4.jpg" alt="- Loan Company Website Template" class="img-fluid"></a>
                                 </div>
                                 <div class="bg-white pinside40 outline">
-                                    <h2><a href="blog-single.html" class="title">5 Essential Financial Habits</a></h2>
+                                    <h2><a href="@Url.Action("blogdetail", "home")?id=5" class="title">5 Essential Financial Habits</a></h2>
                                     <p class="meta"><span class="meta-date">Aug 15, 2020</span><span class="meta-author">By<a href="#!"> Admin</a></span></p>
                                     <p>Pellentesque augue lacus hendr erit sit amet ultricies ahendrerit qui tortousce.</p>
-                                    <a href="blog-single.html" class="btn-link">Read More</a>
+                                    <a href="@Url.Action("blogdetail", "home")?id=5" class="btn-link">Read More</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                             <div class="post-block mb30">
                                 <div class="post-img">
-                                    <a href="blog-single.html" class="imghover"><img src="images/blog-img-5.jpg" alt="- Loan Company Website Template" class="img-fluid"></a>
+                                    <a href="@Url.Action("blogdetail", "home")?id=6" class="imghover"><img src="~/images/home/blog-img-5.jpg" alt="- Loan Company Website Template" class="img-fluid"></a>
                                 </div>
                                 <div class="bg-white pinside40 outline">
-                                    <h2><a href="blog-single.html" class="title">How to Get a Scholarship</a></h2>
+                                    <h2><a href="@Url.Action("blogdetail", "home")?id=6" class="title">How to Get a Scholarship</a></h2>
                                     <p class="meta"><span class="meta-date">Aug 12, 2020</span><span class="meta-author">By<a href="#!"> Admin</a></span></p>
                                     <p>Integer tincidunt quam a nulla aliquet loreml acerad ctum tellus augueac one ntum ut tincidunt.</p>
-                                    <a href="blog-single.html" class="btn-link">Read More</a>
+                                    <a href="@Url.Action("blogdetail", "home")?id=6" class="btn-link">Read More</a>
                                 </div>
                             </div>
                         </div>

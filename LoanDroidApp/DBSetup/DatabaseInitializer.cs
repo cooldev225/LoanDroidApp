@@ -52,8 +52,8 @@ namespace DBSetup
                 const string collectiondepartmentRoleName = "coleccion";//collection
 
                 await EnsureRoleAsync(adminRoleName, "Default administrator", ApplicationPermissions.GetAllPermissionValues());
-                await EnsureRoleAsync(clientRoleName, "Default agent", new string[] { });
-                await EnsureRoleAsync(investorRoleName, "Default customer", new string[] { });
+                await EnsureRoleAsync(clientRoleName, "Default client", new string[] { ApplicationPermissions.ManageClients});
+                await EnsureRoleAsync(investorRoleName, "Default investor", new string[] { ApplicationPermissions.ManageInvestors});
                 await EnsureRoleAsync(representanteRoleName, "Default representante", new string[] { });
                 await EnsureRoleAsync(contactorRoleName, "Default contacto", new string[] { });
                 await EnsureRoleAsync(servicemanagerRoleName, "Default service manager", new string[] { });

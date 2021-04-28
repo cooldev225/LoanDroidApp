@@ -76,7 +76,7 @@ h4,
 h5,
 h6 {
   margin: 0px 0px 10px 0px;
-  color: #0a2759;
+  color: #1968c3;
   font-weight: 500;
 }
 
@@ -131,7 +131,7 @@ a {
 a:focus,
 a:hover {
   text-decoration: none;
-  color: #15549a;
+  color: #1a84ff;
 }
 
 strong {
@@ -142,7 +142,7 @@ blockquote {
   padding: 10px 20px;
   margin: 0 0 0px;
   font-size: 21px;
-  border-left: 5px solid #15549a;
+  border-left: 5px solid #1a84ff;
   color: #414346;
   font-style: italic;
   line-height: 35px;
@@ -192,7 +192,7 @@ p:last-child {
 }
 
 .lead {
-  color: #0a2759;
+  color: #1968c3;
   line-height: 30px;
   font-size: 20px;
 }
@@ -206,7 +206,7 @@ p:last-child {
 }
 
 .title {
-  color: #0a2759;
+  color: #1968c3;
 }
 
 .text-bold {
@@ -242,11 +242,11 @@ p:last-child {
 }
 
 .border-primary {
-  border-color: #15549a !important;
+  border-color: #1a84ff !important;
 }
 
 .text-primary {
-  color: #15549a !important;
+  color: #1a84ff !important;
 }
 
 .border-default {
@@ -579,7 +579,7 @@ Background & Block color
 }
 
 .bg-primary {
-  background-color: #15549a !important;
+  background-color: #1a84ff !important;
   color: #778191;
 }
 
@@ -674,7 +674,7 @@ Background & Block color
 }
 
 .bg-light-blue {
-  background-color: #15549a;
+  background-color: #1a84ff;
 }
 
 .text-pink {
@@ -755,9 +755,9 @@ Buttons
 }
 
 .btn-primary {
-  background-color: #15549a;
+  background-color: #1a84ff;
   color: #fff;
-  border-color: #15549a;
+  border-color: #1a84ff;
 }
 
 .btn-primary:hover {
@@ -819,10 +819,10 @@ Buttons
 }
 
 .btn-link {
-  color: #15549a;
+  color: #1a84ff;
   font-weight: 500;
   padding-bottom: 4px;
-  border-bottom: 2px solid #15549a;
+  border-bottom: 2px solid #1a84ff;
   display: inline-block;
   text-decoration: none;
 }
@@ -864,7 +864,7 @@ Buttons
 }
 
 .btn-secondary-link:hover {
-  color: #15549a;
+  color: #1a84ff;
 }
 
 /*-----------------------------------------
@@ -873,7 +873,7 @@ Input Form
 
 .control-label {
   text-transform: uppercase;
-  color: #0a2759;
+  color: #1968c3;
   font-size: 13px;
   font-weight: 600;
 }
@@ -988,7 +988,7 @@ Bullet
   position: absolute;
   left: 0;
   font-size: 15px;
-  color: #15549a;
+  color: #1a84ff;
   content: "\f058";
 }
 
@@ -1056,7 +1056,7 @@ icon
 }
 
 .icon-primary {
-  color: #15549a;
+  color: #1a84ff;
 }
 
 .icon-secondary {
@@ -1099,7 +1099,7 @@ top bar
 .header-topbar {
   padding-top: 10px;
   padding-bottom: 10px;
-  background-color: #15549a;
+  background-color: #1a84ff;
   font-size: 12px;
   color: #83bcfa;
   font-weight: 500;
@@ -1233,7 +1233,7 @@ top bar
 #slider .owl-prev:hover {
   background-color: #fff !important;
   border: 2px solid #fff;
-  color: #15549a;
+  color: #1a84ff;
 }
 
 #slider .owl-pagination {
@@ -1302,7 +1302,7 @@ index-1
 }
 
 .testimonial-name-1 {
-  color: #15549a;
+  color: #1a84ff;
   font-size: 14px;
   text-transform: uppercase;
   font-weight: 500;
@@ -1323,7 +1323,7 @@ index-1
 }
 
 .top-nav-collapse {
-  background-color: #15549a;
+  background-color: #1a84ff;
 }
 
 .lender-logo-section {
@@ -1405,7 +1405,7 @@ index-1
 }
 
 .customer-text {
-  color: #0a2759;
+  color: #1968c3;
   font-size: 21px;
   margin-bottom: 30px;
   font-family: "Merriweather", serif;
@@ -1444,7 +1444,7 @@ index-1
 .how-it-no {
   font-size: 76px;
   line-height: 86px;
-  color: #15549a;
+  color: #1a84ff;
 }
 
 /*------------------------------------
@@ -1562,7 +1562,7 @@ index-1
 }
 
 .lead-calculator {
-  background: #15549a;
+  background: #1a84ff;
   color: #fff;
   border-radius: 6px;
 }
@@ -1605,7 +1605,7 @@ index-1
 }
 
 .highlight-outline.outline:hover {
-  border-color: #15549a;
+  border-color: #1a84ff;
   -webkit-box-shadow: 1px 1px 9px 2px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 1px 1px 9px 2px rgba(0, 0, 0, 0.2);
   box-shadow: 1px 1px 9px 2px rgba(0, 0, 0, 0.2);
@@ -1771,7 +1771,7 @@ index-1
   user-select: none;
   white-space: nowrap;
   width: auto;
-  color: #0a2759;
+  color: #1968c3;
 }
 
 .nice-select:hover {
@@ -1781,12 +1781,12 @@ index-1
 .nice-select:active,
 .nice-select.open,
 .nice-select:focus {
-  border-color: #15549a;
+  border-color: #1a84ff;
 }
 
 .nice-select:after {
-  border-bottom: 2px solid #0a2759;
-  border-right: 2px solid #0a2759;
+  border-bottom: 2px solid #1968c3;
+  border-right: 2px solid #1968c3;
   content: "";
   display: block;
   height: 7px;
@@ -1908,7 +1908,7 @@ index-1
   text-align: left;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
-  color: #0a2759;
+  color: #1968c3;
 }
 
 .nice-select .option:hover,
@@ -2065,7 +2065,7 @@ index-1
 
 .loan-rate-table .table > thead > tr > th {
   text-align: center;
-  color: #15549a;
+  color: #1a84ff;
   font-size: 18px;
   border-top: transparent;
   border-bottom: transparent;
@@ -2310,8 +2310,8 @@ compare Student loan table
 .card-benefit-tabs .st-tabs .nav-tabs .nav-item.show .nav-link,
 .card-benefit-tabs .st-tabs .nav-tabs .nav-link.active {
   color: #ffffff;
-  background-color: #15549a;
-  border-color: #15549a;
+  background-color: #1a84ff;
+  border-color: #1a84ff;
 }
 
 .card-rate-info .list-group-item {
@@ -2375,7 +2375,7 @@ compare Student loan table
   font-style: initial;
   text-transform: capitalize;
   font-weight: 500;
-  color: #15549a;
+  color: #1a84ff;
 }
 
 .post-caption-block {
@@ -2500,9 +2500,9 @@ Service-img
   background-color: #e3f0fe;
   width: 60px;
   height: 60px;
-  border: 1px solid #15549a;
+  border: 1px solid #1a84ff;
   border-radius: 100px;
-  color: #15549a;
+  color: #1a84ff;
   margin: -70px auto 40px auto;
   padding: 10px;
   text-align: center;
@@ -2578,7 +2578,7 @@ testimonial
 }
 
 .testimonial-name-inverse {
-  color: #15549a;
+  color: #1a84ff;
   text-transform: uppercase;
   font-size: 14px;
   font-weight: 600;
@@ -2688,7 +2688,7 @@ Page header
   min-height: 410px;
   border: none;
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    rgba(0, 0, 0, 0.2) url(../images/page-header.jpg) no-repeat center;
+    rgba(0, 0, 0, 0.2) url(../../images/home/page-header.jpg) no-repeat center;
   background-size: cover;
 }
 
@@ -2752,7 +2752,7 @@ Page header
   padding: 0px;
   font-size: 12px;
   text-transform: uppercase;
-  color: #15549a;
+  color: #1a84ff;
   font-weight: 700;
 }
 
@@ -2762,7 +2762,7 @@ Page header
 }
 
 .page-breadcrumb .breadcrumb > li a {
-  color: #15549a;
+  color: #1a84ff;
   font-weight: 700;
 }
 
@@ -2772,7 +2772,7 @@ Page header
 
 .page-breadcrumb .breadcrumb > li + li:before {
   padding: 0 5px;
-  color: #15549a;
+  color: #1a84ff;
   content: "/\00a0";
 }
 
@@ -3159,7 +3159,7 @@ Extra Plugin CSS - Back to top
   white-space: nowrap;
   visibility: hidden;
   border-radius: 5px;
-  background: rgba(245, 31, 138, 100) url(../images/cd-top-arrow.svg) no-repeat
+  background: rgba(245, 31, 138, 100) url(/images/home/svg/cd-top-arrow.svg) no-repeat
     center 50%;
   opacity: 0;
   -webkit-transition: opacity 0.3s 0s, visibility 0s 0.3s;
@@ -3608,7 +3608,7 @@ EMI Calculator
 .table-bordered > thead > tr > td,
 .table-bordered > thead > tr > th {
   border: 1px solid #dee4ee;
-  color: #0a2759;
+  color: #1968c3;
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
@@ -3772,7 +3772,7 @@ Loan Eligibility Page
 .eligibility-amount {
   font-size: 52px;
   font-weight: 600;
-  color: #15549a;
+  color: #1a84ff;
 }
 
 .eligibility-text {
@@ -3938,7 +3938,7 @@ Landing Page Template
   border-radius: 100%;
   padding: 18px 19px;
   margin-bottom: 30px;
-  color: #15549a;
+  color: #1a84ff;
   display: block;
   line-height: 1.2;
   text-align: center;
@@ -3952,7 +3952,7 @@ Landing Page Template
 
 .feature-left .feature-icon {
   float: left;
-  color: #15549a;
+  color: #1a84ff;
   font-size: 28px;
   line-height: 1;
 }
@@ -3982,7 +3982,7 @@ Landing Page Template
   border-radius: 100px;
   padding: 24px;
   text-align: center;
-  color: #15549a;
+  color: #1a84ff;
 }
 
 .feature-icon-style .feature-title {
@@ -3999,7 +3999,7 @@ Landing Page Template
   height: 60px;
   border-radius: 100px;
   padding: 14px;
-  color: #15549a;
+  color: #1a84ff;
   font-size: 26px;
   text-align: center;
 }
@@ -4027,7 +4027,7 @@ Landing Page Template
   background: #e3edf9;
   padding-top: 16px;
   padding-bottom: 16px;
-  color: #0a2759;
+  color: #1968c3;
 }
 
 /* -- new pages --*/
@@ -4141,17 +4141,17 @@ Landing Page Template
 }
 
 .btn-outline-primary {
-  color: #15549a;
+  color: #1a84ff;
 
   background-color: transparent;
-  border: 1px solid #15549a;
+  border: 1px solid #1a84ff;
 }
 
 .btn-outline-primary:hover {
   color: #fff;
 
-  background-color: #15549a;
-  border: 1px solid #15549a;
+  background-color: #1a84ff;
+  border: 1px solid #1a84ff;
 }
 
 .pdt100 {
@@ -4313,7 +4313,7 @@ Landing Page Template
   line-height: 1.42857143;
   vertical-align: top;
 
-  background-color: #15549a;
+  background-color: #1a84ff;
   border: none;
   color: #fff;
   font-weight: 600;
@@ -4573,7 +4573,7 @@ Landing Page Template
   /*--------------- index - 4 ()-------------*/
   .header-transparent {
     position: relative;
-    background-color: #15549a;
+    background-color: #1a84ff;
   }
 
   .video-play {

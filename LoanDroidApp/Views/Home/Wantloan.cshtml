@@ -1,6 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.Mvc
 @inject SignInManager<Models.data.ApplicationUser> SignInManager
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IHtmlLocalizer<LoanDroidApp.CommonResources> SharedLocalizer
 @{
     ViewData["Title"] = "I want a loan | LoanDroidApp";
 }

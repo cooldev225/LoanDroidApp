@@ -166,7 +166,7 @@
   display: block;
   padding: 0.5rem 1.5rem;
   margin-bottom: 0;
-  color: #15549a;
+  color: #1a84ff;
   white-space: nowrap;
   font-size: 12px;
   text-transform: uppercase;
@@ -233,7 +233,7 @@
 .navbar .navbar-toggler .icon-bar {
   width: 21px;
   height: 3px;
-  background-color: #15549a;
+  background-color: #1a84ff;
   display: block;
   transition: all 0.2s;
   margin-top: 4px;
@@ -242,7 +242,7 @@
 .navbar .navbar-toggler .top-bar {
   transform: rotate(45deg);
   transform-origin: 10% 190%;
-  background-color: #15549a;
+  background-color: #1a84ff;
 }
 
 .navbar .navbar-toggler .middle-bar {
@@ -252,7 +252,7 @@
 .navbar .navbar-toggler .bottom-bar {
   transform: rotate(-45deg);
   transform-origin: 10% -80%;
-  background-color: #15549a;
+  background-color: #1a84ff;
 }
 
 .navbar .navbar-collapse {
@@ -264,7 +264,7 @@
 
 .navbar .navbar-toggler.collapsed .top-bar {
   transform: rotate(0);
-  background-color: #15549a;
+  background-color: #1a84ff;
 }
 
 .navbar .navbar-toggler.collapsed .middle-bar {
@@ -273,7 +273,7 @@
 
 .navbar .navbar-toggler.collapsed .bottom-bar {
   transform: rotate(0);
-  background-color: #15549a;
+  background-color: #1a84ff;
 }
 
 .navbar-nav .dropdown-item.active,
@@ -343,7 +343,7 @@
 
   .header-transparent {
     position: relative;
-    background-color: #15549a;
+    background-color: #1a84ff;
   }
 }
 

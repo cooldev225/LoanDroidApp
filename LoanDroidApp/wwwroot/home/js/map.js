@@ -9,11 +9,11 @@
          scrollwheel: false,
 
      });
-     var image = 'images/map-pin.png';
+     var image = 'images/home/map-pin.png';
      var marker = new google.maps.Marker({
          position: myLatLng,
          map: map,
-         icon: image,
+         //icon: image,
          title: 'Hello World!'
 
      });

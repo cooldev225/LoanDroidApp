@@ -168,6 +168,9 @@
   <data name="BICNUMBER_" xml:space="preserve">
     <value>BIC NUMBER</value>
   </data>
+  <data name="Blog" xml:space="preserve">
+    <value>Blog</value>
+  </data>
   <data name="cardnumber" xml:space="preserve">
     <value>Card number</value>
   </data>
@@ -189,6 +192,9 @@
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="CompletedProjects" xml:space="preserve">
+    <value>Completed Projects</value>
+  </data>
   <data name="Contactus" xml:space="preserve">
     <value>Contact us</value>
   </data>
@@ -200,6 +206,9 @@
   </data>
   <data name="COUNTRY_" xml:space="preserve">
     <value>COUNTRY</value>
+  </data>
+  <data name="CreateAccount" xml:space="preserve">
+    <value>Create Account</value>
   </data>
   <data name="Createarole" xml:space="preserve">
     <value>Create a role</value>
@@ -249,11 +258,35 @@
   <data name="FastEasyApplicationProcess" xml:space="preserve">
     <value>Fast &amp; Easy Application Process</value>
   </data>
+  <data name="FastEasyApplicationProcess1" xml:space="preserve">
+    <value>Choose Loan Amount</value>
+  </data>
+  <data name="FastEasyApplicationProcess1Text" xml:space="preserve">
+    <value>Submit the loan amount by fill out our loan request form. If you have no account in our system, you need to register yourself first.</value>
+  </data>
+  <data name="FastEasyApplicationProcess2" xml:space="preserve">
+    <value>Approved Your Loan</value>
+  </data>
+  <data name="FastEasyApplicationProcess2Text" xml:space="preserve">
+    <value>We will check your request with your payment information. And then if your information is valid, we will inform approved decision you.</value>
+  </data>
+  <data name="FastEasyApplicationProcess3" xml:space="preserve">
+    <value>Get Your Cash</value>
+  </data>
+  <data name="FastEasyApplicationProcess3Text" xml:space="preserve">
+    <value>Withdraw loan cash in your account to your payment option.</value>
+  </data>
+  <data name="FastEasyApplicationProcessText" xml:space="preserve">
+    <value>We directly connect people who need a loan with people who want to invest their money. In this way we achieve that the borrower pays less interest and that the one who invests their money earns good returns.</value>
+  </data>
   <data name="Financialchart" xml:space="preserve">
     <value>Financial chart</value>
   </data>
   <data name="FindLoanServicesWeOffers" xml:space="preserve">
     <value>Find Loan Services We Offers</value>
+  </data>
+  <data name="FindLoanServicesWeOffersText" xml:space="preserve">
+    <value>We will match you with a loan program that meet your financial need. In short term liquidity, by striving to make funds available to them &lt;strong&gt;within 24 hours of application.&lt;/strong&gt;</value>
   </data>
   <data name="firstname" xml:space="preserve">
     <value>first name</value>
@@ -261,14 +294,26 @@
   <data name="FIRSTNAME_" xml:space="preserve">
     <value>FIRSTNAME</value>
   </data>
+  <data name="FooterText" xml:space="preserve">
+    <value>Our goal is to provide access to personal loans and education loan, car loan, home loan at insight competitive interest rates lorem ipsums. We are the loan provider, you can use our loan product.</value>
+  </data>
+  <data name="forgotpassword" xml:space="preserve">
+    <value>Forgot password</value>
+  </data>
   <data name="frequently" xml:space="preserve">
     <value>Frequently</value>
   </data>
   <data name="FREQUENTLY_" xml:space="preserve">
     <value>FREQUENTLY</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
   <data name="howitworks" xml:space="preserve">
     <value>How does it work?</value>
+  </data>
+  <data name="iagree" xml:space="preserve">
+    <value>I agree </value>
   </data>
   <data name="ibannumber" xml:space="preserve">
     <value>IBAN number</value>
@@ -318,14 +363,35 @@
   <data name="LatestNewsfromLoanCompany" xml:space="preserve">
     <value>Latest News from Loan Company</value>
   </data>
+  <data name="Leave" xml:space="preserve">
+    <value>Leave</value>
+  </data>
   <data name="LoanCalculator" xml:space="preserve">
     <value>Loan Calculator</value>
+  </data>
+  <data name="LoanRates" xml:space="preserve">
+    <value>Loan Rates</value>
+  </data>
+  <data name="LoanRatesText" xml:space="preserve">
+    <value>We directly connect people who need a loan with people who want to invest their money.</value>
   </data>
   <data name="LoanRequest" xml:space="preserve">
     <value>Loan Request</value>
   </data>
+  <data name="Login" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="LoginCaption" xml:space="preserve">
+    <value>Loans and investments between people at fair rates</value>
+  </data>
   <data name="Mailbox" xml:space="preserve">
     <value>Mailbox</value>
+  </data>
+  <data name="MyAccount" xml:space="preserve">
+    <value>My Account</value>
+  </data>
+  <data name="MyRequest" xml:space="preserve">
+    <value>My Request</value>
   </data>
   <data name="NAME" xml:space="preserve">
     <value>NAME</value>
@@ -345,6 +411,9 @@
   <data name="OFFICENUMBER_" xml:space="preserve">
     <value>OFFICE NUMBER</value>
   </data>
+  <data name="Or" xml:space="preserve">
+    <value>Or</value>
+  </data>
   <data name="otherphone" xml:space="preserve">
     <value>other phone number</value>
   </data>
@@ -357,11 +426,23 @@
   <data name="PASSWORD_" xml:space="preserve">
     <value>PASSWORD</value>
   </data>
+  <data name="PersonalLoans" xml:space="preserve">
+    <value>Personal Loans</value>
+  </data>
   <data name="phonenumber" xml:space="preserve">
     <value>phone number</value>
   </data>
   <data name="PHONENUMBER_" xml:space="preserve">
     <value>PHONE NUMBER</value>
+  </data>
+  <data name="Projects" xml:space="preserve">
+    <value>Projects</value>
+  </data>
+  <data name="ProjectsText" xml:space="preserve">
+    <value>we achieve that the borrower pays less interest and that the one who invests their money earns good returns.</value>
+  </data>
+  <data name="ReadMore" xml:space="preserve">
+    <value>Read More</value>
   </data>
   <data name="REGION_" xml:space="preserve">
     <value>REGION</value>
@@ -396,11 +477,20 @@
   <data name="savingrate" xml:space="preserve">
     <value>Saving rate</value>
   </data>
+  <data name="SavingRates" xml:space="preserve">
+    <value>Saving Rates</value>
+  </data>
+  <data name="SavingRatesText" xml:space="preserve">
+    <value>It is the best way to invest, you earn good returns and every month you receive your payments</value>
+  </data>
   <data name="SAVINGRATE_" xml:space="preserve">
     <value>SAVING RATE</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
+  </data>
+  <data name="Signup" xml:space="preserve">
+    <value>Sign up</value>
   </data>
   <data name="SiteName" xml:space="preserve">
     <value>Site name</value>
@@ -429,6 +519,9 @@
   <data name="SURNAME_" xml:space="preserve">
     <value>SURNAME</value>
   </data>
+  <data name="Term" xml:space="preserve">
+    <value>terms and conditions</value>
+  </data>
   <data name="times" xml:space="preserve">
     <value>Times</value>
   </data>
@@ -437,6 +530,12 @@
   </data>
   <data name="TransactionHistories" xml:space="preserve">
     <value>Transaction Histories</value>
+  </data>
+  <data name="TrustedClients" xml:space="preserve">
+    <value>Trusted Clients</value>
+  </data>
+  <data name="TrustedInvestors" xml:space="preserve">
+    <value>Trusted Investors</value>
   </data>
   <data name="URL_" xml:space="preserve">
     <value>URL</value>
@@ -452,6 +551,12 @@
   </data>
   <data name="UsersManagement" xml:space="preserve">
     <value>Users Management</value>
+  </data>
+  <data name="UsersText" xml:space="preserve">
+    <value>Loans and investments between people at fair rates</value>
+  </data>
+  <data name="ViewMore" xml:space="preserve">
+    <value>View More</value>
   </data>
   <data name="WeareHeretoHelpYou" xml:space="preserve">
     <value>We are Here to Help You</value>

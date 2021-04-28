@@ -201,6 +201,9 @@
   <data name="Close" xml:space="preserve">
     <value>Cerca</value>
   </data>
+  <data name="CompletedProjects" xml:space="preserve">
+    <value>Proyectos terminados</value>
+  </data>
   <data name="Contactus" xml:space="preserve">
     <value>Contacta</value>
   </data>
@@ -212,6 +215,9 @@
   </data>
   <data name="COUNTRY_" xml:space="preserve">
     <value>PAÍS</value>
+  </data>
+  <data name="CreateAccount" xml:space="preserve">
+    <value>Crear cuenta</value>
   </data>
   <data name="Createarole" xml:space="preserve">
     <value>Crear un rol</value>
@@ -267,6 +273,27 @@
   <data name="FastEasyApplicationProcess" xml:space="preserve">
     <value>Proceso de solicitud rápido y sencillo</value>
   </data>
+  <data name="FastEasyApplicationProcess1" xml:space="preserve">
+    <value>Elija el monto del préstamo</value>
+  </data>
+  <data name="FastEasyApplicationProcess1Text" xml:space="preserve">
+    <value>Envíe el monto del préstamo completando nuestro formulario de solicitud de préstamo. Si no tiene una cuenta en nuestro sistema, primero debe registrarse.</value>
+  </data>
+  <data name="FastEasyApplicationProcess2" xml:space="preserve">
+    <value>Aprobó su préstamo</value>
+  </data>
+  <data name="FastEasyApplicationProcess2Text" xml:space="preserve">
+    <value>Verificaremos su solicitud con su información de pago. Y luego, si su información es válida, le informaremos la decisión aprobada.</value>
+  </data>
+  <data name="FastEasyApplicationProcess3" xml:space="preserve">
+    <value>Obtenga su efectivo</value>
+  </data>
+  <data name="FastEasyApplicationProcess3Text" xml:space="preserve">
+    <value>Retire el efectivo del préstamo en su cuenta a su opción de pago.</value>
+  </data>
+  <data name="FastEasyApplicationProcessText" xml:space="preserve">
+    <value>Conectamos directamente a personas que necesitan un préstamo con personas que desean invertir su dinero. De esta forma conseguimos que el prestatario pague menos intereses y que quien invierta su dinero obtenga una buena rentabilidad.</value>
+  </data>
   <data name="Features" xml:space="preserve">
     <value>Características</value>
   </data>
@@ -276,11 +303,20 @@
   <data name="FindLoanServicesWeOffers" xml:space="preserve">
     <value>Encuentre los servicios de préstamo que ofrecemos</value>
   </data>
+  <data name="FindLoanServicesWeOffersText" xml:space="preserve">
+    <value>Lo emparejaremos con un programa de préstamos que satisfaga sus necesidades financieras. En liquidez a corto plazo, esforzándose por poner los fondos a su disposición &lt;strong&gt; dentro de las 24 horas posteriores a la solicitud &lt;/strong&gt;.</value>
+  </data>
   <data name="firstname" xml:space="preserve">
     <value>primer nombre</value>
   </data>
   <data name="FIRSTNAME_" xml:space="preserve">
     <value>PRIMER NOMBRE</value>
+  </data>
+  <data name="FooterText" xml:space="preserve">
+    <value>Nuestro objetivo es brindar acceso a préstamos personales y préstamos educativos, préstamos para automóviles, préstamos hipotecarios a tasas de interés competitivas lorem ipsums. Somos el proveedor de préstamos, puede utilizar nuestro producto de préstamo.</value>
+  </data>
+  <data name="forgotpassword" xml:space="preserve">
+    <value>Has olvidado tu contraseña</value>
   </data>
   <data name="frequently" xml:space="preserve">
     <value>Frecuentemente</value>
@@ -296,6 +332,9 @@
   </data>
   <data name="howitworks" xml:space="preserve">
     <value>¿Como funciona?</value>
+  </data>
+  <data name="iagree" xml:space="preserve">
+    <value>Estoy de acuerdo </value>
   </data>
   <data name="ibannumber" xml:space="preserve">
     <value>Número IBAN</value>
@@ -348,14 +387,35 @@
   <data name="LatestNewsfromLoanCompany" xml:space="preserve">
     <value>Últimas noticias de la compañía de préstamos</value>
   </data>
+  <data name="Leave" xml:space="preserve">
+    <value>Dejar</value>
+  </data>
   <data name="LoanCalculator" xml:space="preserve">
     <value>Calculadora de préstamo</value>
+  </data>
+  <data name="LoanRates" xml:space="preserve">
+    <value>Tasas de préstamos</value>
+  </data>
+  <data name="LoanRatesText" xml:space="preserve">
+    <value>Conectamos directamente a personas que necesitan un préstamo con personas que quieren invertir su dinero.</value>
   </data>
   <data name="LoanRequest" xml:space="preserve">
     <value>Solicitud de préstamo</value>
   </data>
+  <data name="Login" xml:space="preserve">
+    <value>Iniciar sesión</value>
+  </data>
+  <data name="LoginCaption" xml:space="preserve">
+    <value>Préstamos e inversiones entre personas a tasas justas</value>
+  </data>
   <data name="Mailbox" xml:space="preserve">
     <value>Buzón</value>
+  </data>
+  <data name="MyAccount" xml:space="preserve">
+    <value>Mi Cuenta</value>
+  </data>
+  <data name="MyRequest" xml:space="preserve">
+    <value>Mi petición</value>
   </data>
   <data name="NAME" xml:space="preserve">
     <value>NOMBRE</value>
@@ -378,6 +438,9 @@
   <data name="Online" xml:space="preserve">
     <value>On-line</value>
   </data>
+  <data name="Or" xml:space="preserve">
+    <value>O</value>
+  </data>
   <data name="otherphone" xml:space="preserve">
     <value>otro teléfono</value>
   </data>
@@ -393,6 +456,9 @@
   <data name="PASSWORD_" xml:space="preserve">
     <value>CONTRASEÑA</value>
   </data>
+  <data name="PersonalLoans" xml:space="preserve">
+    <value>Préstamos Personales</value>
+  </data>
   <data name="phonenumber" xml:space="preserve">
     <value>número de teléfono</value>
   </data>
@@ -404,6 +470,15 @@
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Perfil</value>
+  </data>
+  <data name="Projects" xml:space="preserve">
+    <value>Proyectos</value>
+  </data>
+  <data name="ProjectsText" xml:space="preserve">
+    <value>logramos que el prestatario pague menos intereses y que el que invierte su dinero obtenga una buena rentabilidad.</value>
+  </data>
+  <data name="ReadMore" xml:space="preserve">
+    <value>Leer más</value>
   </data>
   <data name="Reason..." xml:space="preserve">
     <value>Razón...</value>
@@ -447,6 +522,12 @@
   <data name="savingrate" xml:space="preserve">
     <value>Tasa de ahorro</value>
   </data>
+  <data name="SavingRates" xml:space="preserve">
+    <value>Tasas de ahorro</value>
+  </data>
+  <data name="SavingRatesText" xml:space="preserve">
+    <value>Es la mejor forma de invertir, obtienes buenos retornos y cada mes recibes tus pagos</value>
+  </data>
   <data name="SAVINGRATE_" xml:space="preserve">
     <value>TASA DE AHORRO</value>
   </data>
@@ -458,6 +539,9 @@
   </data>
   <data name="Signout" xml:space="preserve">
     <value>Cierre de sesión</value>
+  </data>
+  <data name="Signup" xml:space="preserve">
+    <value>Inscribirse</value>
   </data>
   <data name="SiteName" xml:space="preserve">
     <value>Nombre del sitio</value>
@@ -486,6 +570,9 @@
   <data name="SURNAME_" xml:space="preserve">
     <value>APELLIDO</value>
   </data>
+  <data name="Term" xml:space="preserve">
+    <value>términos y condiciones</value>
+  </data>
   <data name="times" xml:space="preserve">
     <value>Tiempo</value>
   </data>
@@ -494,6 +581,12 @@
   </data>
   <data name="TransactionHistories" xml:space="preserve">
     <value>Historias de transacciones</value>
+  </data>
+  <data name="TrustedClients" xml:space="preserve">
+    <value>Clientes de confianza</value>
+  </data>
+  <data name="TrustedInvestors" xml:space="preserve">
+    <value>Inversores de confianza</value>
   </data>
   <data name="URL_" xml:space="preserve">
     <value>URL</value>
@@ -507,8 +600,17 @@
   <data name="USERNAME_" xml:space="preserve">
     <value>NOMBRE DE USUARIO</value>
   </data>
+  <data name="Users" xml:space="preserve">
+    <value>Usuarias</value>
+  </data>
   <data name="UsersManagement" xml:space="preserve">
     <value>Gestión de usuarios</value>
+  </data>
+  <data name="UsersText" xml:space="preserve">
+    <value>Préstamos e inversiones entre personas a tasas justas</value>
+  </data>
+  <data name="ViewMore" xml:space="preserve">
+    <value>Ver más Ver más</value>
   </data>
   <data name="WeareHeretoHelpYou" xml:space="preserve">
     <value>Estamos aquí para ayudarte</value>
