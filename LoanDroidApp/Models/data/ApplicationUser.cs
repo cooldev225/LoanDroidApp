@@ -38,6 +38,7 @@ namespace Models.data
         public string OfficeNumber { get; set; }
         public string Address { get; set; }
         public bool IsEnabled { get; set; }
+        public double Balance { get; set; }
         public bool IsLockedOut => this.LockoutEnabled && this.LockoutEnd >= DateTimeOffset.UtcNow;
 
         public string CreatedBy { get; set; }

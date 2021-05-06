@@ -41,30 +41,28 @@ namespace App
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-
-            var applicationUrl = "http://localhost:8855";
+            
+            var applicationUrl = "http://localhost";
             services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
                 .AddIdentityServerAuthentication(options =>
                 {
                     options.Authority = applicationUrl;
                     options.SupportedTokens = SupportedTokens.Jwt;
-                    options.RequireHttpsMetadata = false; // Note: Set to true in production
+                    options.RequireHttpsMetadata = false;
                     options.ApiName = "LoanDroidApp";
                 });
-            services.AddAuthorization(options =>
+            
+
+            services.Configure<IdentityOptions>(options =>
             {
-                //options.AddPolicy(Authorization.Policies.ViewAllUsersPolicy, policy => policy.RequireClaim(ClaimConstants.Permission, AppPermissions.ViewUsers));
-                //options.AddPolicy(Authorization.Policies.ManageAllUsersPolicy, policy => policy.RequireClaim(ClaimConstants.Permission, AppPermissions.ManageUsers));
-
-                //options.AddPolicy(Authorization.Policies.ViewAllRolesPolicy, policy => policy.RequireClaim(ClaimConstants.Permission, AppPermissions.ViewRoles));
-                //options.AddPolicy(Authorization.Policies.ViewRoleByRoleNamePolicy, policy => policy.Requirements.Add(new ViewRoleAuthorizationRequirement()));
-                //options.AddPolicy(Authorization.Policies.ManageAllRolesPolicy, policy => policy.RequireClaim(ClaimConstants.Permission, AppPermissions.ManageRoles));
-
-                //options.AddPolicy(Authorization.Policies.AssignAllowedRolesPolicy, policy => policy.Requirements.Add(new AssignRolesAuthorizationRequirement()));
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 5;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
             });
 
             services.AddScoped<IAccountManager, AccountManager>();
-            // DB Creation and Seeding
             services.AddTransient<IDatabaseInitializer, DatabaseInitializer>();
 
             services.AddControllersWithViews();
@@ -75,6 +73,7 @@ namespace App
                 options.IdleTimeout = TimeSpan.FromSeconds(10);
                 options.Cookie.IsEssential = true;
             });
+            /*
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
@@ -88,18 +87,12 @@ namespace App
                         return Task.CompletedTask;
                     };
                 });
-            
+            */
             
             services.ConfigureApplicationCookie(options =>
             {
-                // Cookie settings
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
-                // If the LoginPath isn't set, ASP.NET Core defaults 
-                // the path to /Account/Login.
-                //options.LoginPath = "/Home/Login";
-                // If the AccessDeniedPath isn't set, ASP.NET Core defaults 
-                // the path to /Account/AccessDenied.
                 options.AccessDeniedPath = "/AccessDenied";
                 options.SlidingExpiration = true;
 
@@ -110,7 +103,7 @@ namespace App
                         var requestPath = ctx.Request.Path;
                         if (requestPath.Value.ToLower().IndexOf("/admin") == -1)
                         {
-                            ctx.Response.Redirect("/Home/UserLogin");
+                            ctx.Response.Redirect("/Home/Login");
                         }
                         else
                         {

@@ -14,6 +14,8 @@ namespace LoanDroidApp.Models
         public double Interest { get; set; }
         public double Dues { get; set; }
         public double Balance { get; set; }
+        public int Status { get; set; }
+        public DateTime PaidDate { get; set; }
     }
     public class DatatableLoanCalculator: IDatatable
     {

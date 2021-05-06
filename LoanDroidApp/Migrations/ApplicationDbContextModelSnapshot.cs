@@ -217,6 +217,56 @@ namespace LoanDroidApp.Migrations
                     b.ToTable("InvestmentStatus");
                 });
 
+            modelBuilder.Entity("LoanDroidApp.Models.LoanInterestPayment", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("AccountPaymentId")
+                        .HasColumnType("bigint");
+
+                    b.Property<double>("Balabnce")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Capital")
+                        .HasColumnType("float");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedDevice")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Interest")
+                        .HasColumnType("float");
+
+                    b.Property<long>("LoanRequestId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("TimesNum")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedDevice")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Id");
+
+                    b.ToTable("LoanInterestPayment");
+                });
+
             modelBuilder.Entity("LoanDroidApp.Models.LoanRequest", b =>
                 {
                     b.Property<long>("Id")
@@ -523,6 +573,9 @@ namespace LoanDroidApp.Migrations
 
                     b.Property<byte[]>("AvatarImage")
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<double>("Balance")
+                        .HasColumnType("float");
 
                     b.Property<DateTime>("Birth")
                         .HasColumnType("datetime2");

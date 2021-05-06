@@ -37,6 +37,9 @@ var lang = {
     status: "Status",
     investor: "Investor",
     savingRate: "Saving Rate",
+    paynow: "Pay now",
+    paid: "Paid",
+    notnow: "Not now",
     //transactionhistory
     from: "From",
     to: "To",

@@ -15,4 +15,49 @@ var lang = {
     conf_try: "Please, try again!",
     err_dblemail: "Email you typed is already exist.",
     err_dblaccess: "You are Logged in on other devices.",
+    //
+    success_saved: "Successfully saved!",
+
+    //loanrequest
+    amount: "Amount",
+    frequently: "Frequently",
+    capital: "Capital",
+    interest: "Interest",
+    dues: "Dues",
+    balance: "Balance",
+    date: "Date",
+    times: "Times",
+    status: "Status",
+    investor: "Investor",
+    savingRate: "Saving Rate",
+    paynow: "Pay now",
+    paid: "Paid",
+    notnow:"Not now",
+
+    global_tbl_action: "Action",
+    global_tbl_createddate: "Created Date",
+    global_tbl_updateddate: "Updated Date",
+};
+
+const trans_pagination = {
+    records: {
+        processing: 'Loading...',
+        noRecords: 'there is no record',
+    },
+    toolbar: {
+        pagination: {
+            items: {
+                default: {
+                    first: 'First',
+                    prev: 'Previous',
+                    next: 'Next',
+                    last: 'Last',
+                    more: 'More pages',
+                    input: 'Page number',
+                    select: 'Page size',
+                },
+                info: 'showing {{start}} - {{end}} of {{total}} records',
+            },
+        },
+    },
 };

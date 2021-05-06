@@ -46,3 +46,10 @@
     right: 70px;
 }
 
+.datatable-cell.paid {
+    background-color: #00C574;
+    padding: 5px 7px;
+    color: #ffffff;
+    border-radius: 0px;
+}
+

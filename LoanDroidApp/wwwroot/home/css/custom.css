@@ -1,5 +1,1920 @@
+﻿.datatable:not(.table) {
+    display: none;
+}
+
+.datatable.datatable-default {
+    display: block;
+}
+
+    .datatable.datatable-default > .datatable-table {
+        background-color: #ffffff;
+        border-collapse: collapse;
+        overflow: hidden;
+        display: none;
+        width: 100%;
+    }
+
+        .datatable.datatable-default > .datatable-table > .datatable-head,
+        .datatable.datatable-default > .datatable-table > .datatable-body,
+        .datatable.datatable-default > .datatable-table > .datatable-foot {
+            visibility: hidden;
+            display: block;
+        }
+
+            .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row,
+            .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row,
+            .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row {
+                width: 100%;
+            }
+
+                .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell,
+                .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell,
+                .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell {
+                    vertical-align: middle;
+                    padding: 1rem 1rem;
+                    font-size: 1rem;
+                }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell:first-child,
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell:first-child,
+                    .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell:first-child {
+                        padding-left: 0;
+                    }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell:last-child,
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell:last-child,
+                    .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell:last-child {
+                        padding-right: 0;
+                    }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-left,
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-left,
+                    .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-left {
+                        text-align: left;
+                    }
+
+                        .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-left > span,
+                        .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-left > span,
+                        .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-left > span {
+                            text-align: left;
+                        }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-right,
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-right,
+                    .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-right {
+                        text-align: right;
+                    }
+
+                        .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-right > span,
+                        .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-right > span,
+                        .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-right > span {
+                            text-align: right;
+                        }
+
+                            .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-right > span > i,
+                            .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-right > span > i,
+                            .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-right > span > i {
+                                right: 0;
+                            }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-center,
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-center,
+                    .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-center {
+                        text-align: center;
+                    }
+
+                        .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-center > span,
+                        .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-center > span,
+                        .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-center > span {
+                            text-align: center;
+                        }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-sort,
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-sort,
+                    .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-sort {
+                        cursor: pointer;
+                    }
+
+                        .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-sort i,
+                        .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-sort i,
+                        .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-sort i {
+                            font-size: 0.6rem;
+                        }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-resizing,
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-resizing,
+                    .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-resizing {
+                        cursor: col-resize;
+                    }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell > span,
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell > span,
+                    .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell > span {
+                        display: block;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-check,
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-check,
+                    .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-check {
+                        text-align: left;
+                    }
+
+                        .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-check > span,
+                        .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-check > span,
+                        .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-check > span {
+                            overflow: visible;
+                        }
+
+                            .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-check > span > .checkbox,
+                            .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-check > span > .checkbox,
+                            .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-check > span > .checkbox {
+                                top: 2px;
+                                padding: 0;
+                                margin: 0 0 0 0;
+                            }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-toggle-detail > span,
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-toggle-detail > span,
+                    .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-toggle-detail > span {
+                        width: 12px;
+                    }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-toggle-detail > .datatable-toggle-detail,
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-toggle-detail > .datatable-toggle-detail,
+                    .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-toggle-detail > .datatable-toggle-detail {
+                        display: inline-block;
+                        text-align: right;
+                    }
+
+                        .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-toggle-detail > .datatable-toggle-detail > i,
+                        .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-toggle-detail > .datatable-toggle-detail > i,
+                        .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-toggle-detail > .datatable-toggle-detail > i {
+                            font-size: 1.4rem;
+                            width: 12px;
+                        }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell .dropdown,
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell .dropdown,
+                    .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell .dropdown {
+                        display: inline-block;
+                    }
+
+                        .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell .dropdown .dropdown-menu,
+                        .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell .dropdown .dropdown-menu,
+                        .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell .dropdown .dropdown-menu {
+                            margin-top: 0.5rem;
+                        }
+
+                        .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell .dropdown.dropup .dropdown-menu,
+                        .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell .dropdown.dropup .dropdown-menu,
+                        .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell .dropdown.dropup .dropdown-menu {
+                            margin-top: auto;
+                            margin-bottom: 0.5rem;
+                        }
+
+                        .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell .dropdown .dropdown-menu.dropdown-menu-right,
+                        .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell .dropdown .dropdown-menu.dropdown-menu-right,
+                        .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell .dropdown .dropdown-menu.dropdown-menu-right {
+                            margin-right: -0.8rem;
+                            /*rtl:ignore*/
+                            margin-left: 65px;
+                        }
+
+                        .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell .dropdown .dropdown-menu.dropdown-menu-left,
+                        .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell .dropdown .dropdown-menu.dropdown-menu-left,
+                        .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell .dropdown .dropdown-menu.dropdown-menu-left {
+                            margin-left: -10rem;
+                        }
+
+            .datatable.datatable-default > .datatable-table > .datatable-head > .datatable-lock,
+            .datatable.datatable-default > .datatable-table > .datatable-body > .datatable-lock,
+            .datatable.datatable-default > .datatable-table > .datatable-foot > .datatable-lock {
+                border: 0;
+            }
+
+                .datatable.datatable-default > .datatable-table > .datatable-head > .datatable-lock.datatable-lock-left,
+                .datatable.datatable-default > .datatable-table > .datatable-body > .datatable-lock.datatable-lock-left,
+                .datatable.datatable-default > .datatable-table > .datatable-foot > .datatable-lock.datatable-lock-left {
+                    z-index: 1;
+                    -webkit-box-shadow: 0px 10px 17px 5px rgba(0, 0, 0, 0.075);
+                    box-shadow: 0px 10px 17px 5px rgba(0, 0, 0, 0.075);
+                }
+
+                .datatable.datatable-default > .datatable-table > .datatable-head > .datatable-lock.datatable-lock-right,
+                .datatable.datatable-default > .datatable-table > .datatable-body > .datatable-lock.datatable-lock-right,
+                .datatable.datatable-default > .datatable-table > .datatable-foot > .datatable-lock.datatable-lock-right {
+                    -webkit-box-shadow: 0px 10px 17px 5px rgba(0, 0, 0, 0.075);
+                    box-shadow: 0px 10px 17px 5px rgba(0, 0, 0, 0.075);
+                }
+
+                .datatable.datatable-default > .datatable-table > .datatable-head > .datatable-lock.datatable-lock-scroll,
+                .datatable.datatable-default > .datatable-table > .datatable-body > .datatable-lock.datatable-lock-scroll,
+                .datatable.datatable-default > .datatable-table > .datatable-foot > .datatable-lock.datatable-lock-scroll {
+                    position: relative;
+                }
+
+            .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell > span,
+            .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell > span {
+                font-weight: 500;
+                vertical-align: middle;
+                color: #181C32;
+            }
+
+            .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-sorted > span,
+            .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-sorted > span {
+                color: #3699FF;
+            }
+
+            .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell {
+                padding: 0.75rem 1rem;
+            }
+
+                .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell > span > i {
+                    display: inline-block;
+                    position: relative;
+                    right: -10px;
+                    line-height: 0;
+                    vertical-align: middle;
+                    font-size: 1.1rem;
+                    color: #3699FF;
+                }
+
+            .datatable.datatable-default > .datatable-table > .datatable-body.ps {
+                padding-bottom: 0;
+            }
+
+            .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell {
+                font-weight: regular;
+                -webkit-transition: background 0.3s ease;
+                transition: background 0.3s ease;
+            }
+
+                .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell > span {
+                    color: #3F4254;
+                }
+
+                .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-check > span > .checkbox {
+                    top: 1px;
+                }
+
+                .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-hover {
+                    -webkit-transition: background 0.3s ease;
+                    transition: background 0.3s ease;
+                    background-color: transparent;
+                }
+
+            .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row.datatable-row-even > .datatable-cell {
+                background-color: transparent;
+            }
+
+            .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row.datatable-row-active > .datatable-cell {
+                background-color: #F3F6F9;
+            }
+
+            .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row.datatable-row-hover:not(.datatable-row-active) {
+                -webkit-transition: background 0.3s ease;
+                transition: background 0.3s ease;
+            }
+
+                .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row.datatable-row-hover:not(.datatable-row-active) > .datatable-cell {
+                    -webkit-transition: background 0.3s ease;
+                    transition: background 0.3s ease;
+                    background-color: transparent;
+                }
+
+            .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row-detail {
+                display: block;
+            }
+
+                .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row-detail .datatable-detail {
+                    display: block;
+                    padding: 0 2.25rem;
+                }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row-detail .datatable-detail table {
+                        -webkit-box-shadow: 0px 10px 15px 1px rgba(0, 0, 0, 0.05);
+                        box-shadow: 0px 10px 15px 1px rgba(0, 0, 0, 0.05);
+                    }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row-detail .datatable-detail .datatable-row {
+                        display: table-row;
+                    }
+
+                        .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row-detail .datatable-detail .datatable-row > .datatable-cell {
+                            padding: 1rem 1.5rem;
+                            text-align: left;
+                            vertical-align: top;
+                        }
+
+                            .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row-detail .datatable-detail .datatable-row > .datatable-cell > span {
+                                width: auto !important;
+                            }
+
+                            .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row-detail .datatable-detail .datatable-row > .datatable-cell:first-child {
+                                font-weight: 500;
+                            }
+
+                            .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row-detail .datatable-detail .datatable-row > .datatable-cell:last-child {
+                                font-weight: regular;
+                                padding-left: 1.5rem;
+                            }
+
+            .datatable.datatable-default > .datatable-table > .datatable-body .datatable-toggle-detail {
+                vertical-align: middle;
+            }
+
+                .datatable.datatable-default > .datatable-table > .datatable-body .datatable-toggle-detail i {
+                    -webkit-transition: color 0.3s ease;
+                    transition: color 0.3s ease;
+                    color: #3699FF;
+                }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-toggle-detail i:before {
+                        line-height: 0;
+                        vertical-align: middle;
+                    }
+
+                .datatable.datatable-default > .datatable-table > .datatable-body .datatable-toggle-detail:hover i, .datatable.datatable-default > .datatable-table > .datatable-body .datatable-toggle-detail.datatable-toggle-detail-active i {
+                    -webkit-transition: color 0.3s ease;
+                    transition: color 0.3s ease;
+                    color: #3699FF;
+                }
+
+    .datatable.datatable-default.datatable-bordered > .datatable-table > .datatable-head .datatable-row,
+    .datatable.datatable-default.datatable-bordered > .datatable-table > .datatable-body .datatable-row,
+    .datatable.datatable-default.datatable-bordered > .datatable-table > .datatable-foot .datatable-row {
+        border-bottom: 1px solid #EBEDF3;
+    }
+
+        .datatable.datatable-default.datatable-bordered > .datatable-table > .datatable-head .datatable-row.datatable-row-subtable-expanded,
+        .datatable.datatable-default.datatable-bordered > .datatable-table > .datatable-body .datatable-row.datatable-row-subtable-expanded,
+        .datatable.datatable-default.datatable-bordered > .datatable-table > .datatable-foot .datatable-row.datatable-row-subtable-expanded {
+            border-bottom: 0;
+        }
+
+        .datatable.datatable-default.datatable-bordered > .datatable-table > .datatable-body .datatable-row:last-child {
+            border-bottom: 0;
+        }
+
+    .datatable.datatable-default.datatable-bordered > .datatable-table > .datatable-body tr:last-of-type {
+        border-bottom: 0;
+    }
+
+    .datatable.datatable-default.datatable-bordered > .datatable-table > .datatable-body .datatable-row-detail .datatable-detail table {
+        border-left: 1px solid #EBEDF3;
+        border-right: 1px solid #EBEDF3;
+    }
+
+    .datatable.datatable-default.datatable-head-custom > .datatable-table > .datatable-head .datatable-row > .datatable-cell > span,
+    .datatable.datatable-default.datatable-head-custom > .datatable-table > .datatable-foot .datatable-row > .datatable-cell > span {
+        color: #B5B5C3;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 0.1rem;
+    }
+
+    .datatable.datatable-default.datatable-head-custom > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-sorted > span,
+    .datatable.datatable-default.datatable-head-custom > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-sorted > span {
+        color: #3699FF;
+    }
+
+    .datatable.datatable-default.datatable-head-bg > .datatable-table > .datatable-head .datatable-row {
+        border-bottom: 0;
+    }
+
+        .datatable.datatable-default.datatable-head-bg > .datatable-table > .datatable-head .datatable-row > .datatable-cell {
+            background-color: #F3F6F9;
+        }
+
+            .datatable.datatable-default.datatable-head-bg > .datatable-table > .datatable-head .datatable-row > .datatable-cell:first-child {
+                border-top-left-radius: 0.42rem;
+                border-bottom-left-radius: 0.42rem;
+            }
+
+            .datatable.datatable-default.datatable-head-bg > .datatable-table > .datatable-head .datatable-row > .datatable-cell:last-child {
+                border-top-right-radius: 0.42rem;
+                border-bottom-right-radius: 0.42rem;
+            }
+
+    .datatable.datatable-default.datatable-foot-bg > .datatable-table > .datatable-foot .datatable-row {
+        border-bottom: 0;
+    }
+
+        .datatable.datatable-default.datatable-foot-bg > .datatable-table > .datatable-foot .datatable-row > .datatable-cell {
+            background-color: #F3F6F9;
+        }
+
+            .datatable.datatable-default.datatable-foot-bg > .datatable-table > .datatable-foot .datatable-row > .datatable-cell:first-child {
+                border-top-left-radius: 0.42rem;
+                border-bottom-left-radius: 0.42rem;
+            }
+
+            .datatable.datatable-default.datatable-foot-bg > .datatable-table > .datatable-foot .datatable-row > .datatable-cell:last-child {
+                border-top-right-radius: 0.42rem;
+                border-bottom-right-radius: 0.42rem;
+            }
+
+    .datatable.datatable-default.datatable-error .datatable-body {
+        padding: 30px;
+        text-align: center;
+    }
+
+    .datatable.datatable-default.datatable-lock > .datatable-table > .datatable-head > .datatable-lock,
+    .datatable.datatable-default.datatable-lock > .datatable-table > .datatable-body > .datatable-lock,
+    .datatable.datatable-default.datatable-lock > .datatable-table > .datatable-foot > .datatable-lock {
+        display: inline-block;
+        position: relative;
+        vertical-align: top;
+        overflow: hidden;
+    }
+
+    .datatable.datatable-default.datatable-loaded {
+        display: block;
+    }
+
+        .datatable.datatable-default.datatable-loaded > .datatable-table {
+            display: block;
+        }
+
+            .datatable.datatable-default.datatable-loaded > .datatable-table > .datatable-head,
+            .datatable.datatable-default.datatable-loaded > .datatable-table > .datatable-body,
+            .datatable.datatable-default.datatable-loaded > .datatable-table > .datatable-foot {
+                visibility: visible;
+                display: block;
+                position: relative;
+            }
+
+                .datatable.datatable-default.datatable-loaded > .datatable-table > .datatable-head .datatable-row,
+                .datatable.datatable-default.datatable-loaded > .datatable-table > .datatable-body .datatable-row,
+                .datatable.datatable-default.datatable-loaded > .datatable-table > .datatable-foot .datatable-row {
+                    display: table;
+                    table-layout: initial;
+                }
+
+    .datatable.datatable-default.datatable-scroll > .datatable-table {
+        display: block;
+    }
+
+        .datatable.datatable-default.datatable-scroll > .datatable-table > .datatable-head,
+        .datatable.datatable-default.datatable-scroll > .datatable-table > .datatable-foot {
+            overflow: hidden;
+        }
+
+            .datatable.datatable-default.datatable-scroll > .datatable-table > .datatable-head .datatable-row,
+            .datatable.datatable-default.datatable-scroll > .datatable-table > .datatable-foot .datatable-row {
+                position: relative;
+            }
+
+        .datatable.datatable-default.datatable-scroll > .datatable-table > .datatable-body {
+            overflow: hidden;
+        }
+
+    .datatable.datatable-default.datatable-subtable > .datatable-table {
+        margin-bottom: 0;
+    }
+
+        .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-head .datatable-toggle-subtable,
+        .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-body .datatable-toggle-subtable,
+        .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-foot .datatable-toggle-subtable {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+            .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-head .datatable-toggle-subtable > i,
+            .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-body .datatable-toggle-subtable > i,
+            .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-foot .datatable-toggle-subtable > i {
+                line-height: 0;
+                font-size: 1.4rem;
+                color: #3699FF;
+            }
+
+            .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-head .datatable-toggle-subtable:hover,
+            .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-body .datatable-toggle-subtable:hover,
+            .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-foot .datatable-toggle-subtable:hover {
+                text-decoration: none;
+            }
+
+        .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-head .datatable-row-subtable,
+        .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-body .datatable-row-subtable,
+        .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-foot .datatable-row-subtable {
+            display: table;
+            width: 100%;
+            border-top: 0;
+        }
+
+            .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-head .datatable-row-subtable > .datatable-subtable > .datatable,
+            .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-body .datatable-row-subtable > .datatable-subtable > .datatable,
+            .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-foot .datatable-row-subtable > .datatable-subtable > .datatable {
+                padding: 0 2.25rem;
+            }
+
+                .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-head .datatable-row-subtable > .datatable-subtable > .datatable > .datatable-pager,
+                .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-body .datatable-row-subtable > .datatable-subtable > .datatable > .datatable-pager,
+                .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-foot .datatable-row-subtable > .datatable-subtable > .datatable > .datatable-pager {
+                    padding: 2.25rem 0px;
+                }
+
+        .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-body .datatable-row.datatable-row-subtable-expanded > .datatable-cell {
+            background-color: #F3F6F9 !important;
+        }
+
+        .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-body .datatable-row-subtable {
+            background-color: transparent;
+        }
+
+            .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-body .datatable-row-subtable > .datatable-subtable > .datatable {
+                -webkit-box-shadow: 0px 10px 15px 1px rgba(0, 0, 0, 0.05);
+                box-shadow: 0px 10px 15px 1px rgba(0, 0, 0, 0.05);
+            }
+
+            .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-body .datatable-row-subtable.datatable-row-loading > .datatable-subtable > .datatable > .datatable-table {
+                background-color: transparent;
+            }
+
+    .datatable.datatable-default > .datatable-pager {
+        margin: 0px;
+        padding: 1rem 0;
+        padding-bottom: 0;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+
+        .datatable.datatable-default > .datatable-pager.datatable-pager-top {
+            margin-bottom: 10px;
+        }
+
+        .datatable.datatable-default > .datatable-pager > .datatable-pager-nav {
+            margin: 0;
+            padding: 0;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+        }
+
+            .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li {
+                padding: 0;
+                margin-right: 5px;
+                display: inline-block;
+            }
+
+                .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li:last-child {
+                    margin-right: 0;
+                }
+
+                .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-link {
+                    cursor: pointer;
+                    display: -webkit-box;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -webkit-box-pack: center;
+                    -ms-flex-pack: center;
+                    justify-content: center;
+                    -webkit-box-align: center;
+                    -ms-flex-align: center;
+                    align-items: center;
+                    height: 2.25rem;
+                    min-width: 2.25rem;
+                    padding: 0.5rem;
+                    -webkit-transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+                    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
+                    position: relative;
+                    font-size: 0.9rem;
+                    line-height: 1rem;
+                    font-weight: 500;
+                    border-radius: 0.42rem;
+                    color: #7E8299;
+                }
+
+                    .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-link > i {
+                        font-size: 0.6rem;
+                        text-align: center;
+                        display: inline-block;
+                        line-height: 0;
+                        color: #B5B5C3;
+                        -webkit-transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
+                    }
+
+                    .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-link.datatable-pager-link-first, .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-link.datatable-pager-link-prev, .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-link.datatable-pager-link-next, .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-link.datatable-pager-link-last {
+                        background-color: #ecf1f6;
+                    }
+
+                    .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-link.datatable-pager-link-disabled {
+                        opacity: 0.6;
+                        cursor: default;
+                    }
+
+                    .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-link:hover:not(.datatable-pager-link-disabled) {
+                        opacity: 1;
+                        -webkit-transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        background-color: #3699FF;
+                        color: #FFFFFF;
+                    }
+
+                        .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-link:hover:not(.datatable-pager-link-disabled) i {
+                            -webkit-transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                            transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                            transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+                            transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
+                            color: #FFFFFF;
+                        }
+
+                    .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-link.datatable-pager-link-active {
+                        -webkit-transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        background-color: #3699FF;
+                        color: #FFFFFF;
+                    }
+
+                        .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-link.datatable-pager-link-active i {
+                            -webkit-transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                            transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                            transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+                            transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
+                            color: #FFFFFF;
+                        }
+
+                .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-input {
+                    height: 2.25rem;
+                    width: 3.5rem;
+                    text-align: center;
+                    -webkit-transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+                    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
+                    border-radius: 0.42rem !important;
+                    background-color: #ecf1f6;
+                    border-color: #ecf1f6;
+                    color: #7E8299;
+                }
+
+                    .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-input:focus {
+                        -webkit-transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        background-color: #ecf1f6;
+                        border-color: #ecf1f6;
+                        color: #7E8299;
+                    }
+
+        .datatable.datatable-default > .datatable-pager > .datatable-pager-info {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+            .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size {
+                margin-right: 10px;
+            }
+
+                .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .btn.dropdown-toggle {
+                    height: 2.25rem;
+                    padding: 0.45rem 1rem;
+                    font-size: 1rem;
+                    font-weight: 500;
+                    border: 0 !important;
+                    color: #7E8299;
+                    background-color: #ecf1f6 !important;
+                    border-radius: 0.42rem;
+                }
+
+                    .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .btn.dropdown-toggle .filter-option, .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .btn.dropdown-toggle:after,
+                    .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .btn.dropdown-toggle i {
+                        -webkit-transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        color: #7E8299;
+                    }
+
+                    .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .btn.dropdown-toggle:focus,
+                    .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .btn.dropdown-toggle:hover,
+                    .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size.show > .btn.dropdown-toggle {
+                        border: 0 !important;
+                        color: #FFFFFF !important;
+                        background-color: #3699FF !important;
+                    }
+
+                        .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .btn.dropdown-toggle:focus .filter-option, .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .btn.dropdown-toggle:focus:after,
+                        .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .btn.dropdown-toggle:focus i,
+                        .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .btn.dropdown-toggle:hover .filter-option,
+                        .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .btn.dropdown-toggle:hover:after,
+                        .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .btn.dropdown-toggle:hover i,
+                        .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size.show > .btn.dropdown-toggle .filter-option,
+                        .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size.show > .btn.dropdown-toggle:after,
+                        .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size.show > .btn.dropdown-toggle i {
+                            -webkit-transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                            transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                            transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+                            transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
+                            color: #FFFFFF !important;
+                        }
+
+                .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .dropdown-menu.inner > li.selected > a span.check-mark {
+                    margin-top: -0.6rem;
+                }
+
+                .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .dropdown-menu {
+                    z-index: 100;
+                }
+
+.modal .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .dropdown-menu {
+    z-index: 1051;
+}
+
+.datatable.datatable-default .ps > .ps__rail-y > .ps__thumb-y,
+.datatable.datatable-default .ps > .ps__rail-x > .ps__thumb-x {
+    background-color: #EBEDF3;
+}
+
+    .datatable.datatable-default .ps > .ps__rail-y > .ps__thumb-y:hover, .datatable.datatable-default .ps > .ps__rail-y > .ps__thumb-y:focus,
+    .datatable.datatable-default .ps > .ps__rail-x > .ps__thumb-x:hover,
+    .datatable.datatable-default .ps > .ps__rail-x > .ps__thumb-x:focus {
+        background-color: #EBEDF3;
+    }
+
+.table thead th, .table thead td {
+    font-weight: 600;
+    font-size: 1rem;
+    border-bottom-width: 1px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.table.table-head-borderless thead th, .table.table-head-borderless thead td {
+    border-top: 0;
+}
+
+.table.table-head-solid thead th, .table.table-head-solid thead td {
+    background-color: #F3F6F9;
+}
+
+.table.table-light-primary thead tr {
+    color: #3699FF;
+    background-color: rgba(54, 153, 255, 0.1);
+}
+
+.table.table-light-secondary thead tr {
+    color: #E4E6EF;
+    background-color: rgba(228, 230, 239, 0.1);
+}
+
+.table.table-light-success thead tr {
+    color: #1BC5BD;
+    background-color: rgba(27, 197, 189, 0.1);
+}
+
+.table.table-light-info thead tr {
+    color: #8950FC;
+    background-color: rgba(137, 80, 252, 0.1);
+}
+
+.table.table-light-warning thead tr {
+    color: #FFA800;
+    background-color: rgba(255, 168, 0, 0.1);
+}
+
+.table.table-light-danger thead tr {
+    color: #F64E60;
+    background-color: rgba(246, 78, 96, 0.1);
+}
+
+.table.table-light-light thead tr {
+    color: #F3F6F9;
+    background-color: rgba(243, 246, 249, 0.1);
+}
+
+.table.table-light-dark thead tr {
+    color: #181C32;
+    background-color: rgba(24, 28, 50, 0.1);
+}
+
+.table.table-light-white thead tr {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.table.table-head-custom thead tr, .table.table-head-custom thead th {
+    font-weight: 600;
+    color: #B5B5C3 !important;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}
+
+.table.table-foot-custom tfoot th, .table.table-foot-custom tfoot td {
+    font-weight: 600;
+    color: #B5B5C3 !important;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}
+
+.table.table-head-bg thead tr, .table.table-head-bg thead th {
+    background-color: #F3F6F9;
+    border-bottom: 0;
+    letter-spacing: 1px;
+}
+
+    .table.table-head-bg thead tr:first-child, .table.table-head-bg thead th:first-child {
+        border-top-left-radius: 0.42rem;
+        border-bottom-left-radius: 0.42rem;
+    }
+
+    .table.table-head-bg thead tr:last-child, .table.table-head-bg thead th:last-child {
+        border-top-right-radius: 0.42rem;
+        border-bottom-right-radius: 0.42rem;
+    }
+
+.table.table-foot-bg tfoot th, .table.table-foot-bg tfoot td {
+    border-bottom: 0;
+    background-color: #F3F6F9;
+}
+
+    .table.table-foot-bg tfoot th:first-child, .table.table-foot-bg tfoot td:first-child {
+        border-top-left-radius: 0.42rem;
+        border-bottom-left-radius: 0.42rem;
+    }
+
+    .table.table-foot-bg tfoot th:last-child, .table.table-foot-bg tfoot td:last-child {
+        border-top-right-radius: 0.42rem;
+        border-bottom-right-radius: 0.42rem;
+    }
+
+.table.table-separate th, .table.table-separate td {
+    border-top: 0;
+    border-bottom: 1px solid #EBEDF3;
+}
+
+    .table.table-separate th:first-child, .table.table-separate td:first-child {
+        padding-left: 0 !important;
+    }
+
+    .table.table-separate th:last-child, .table.table-separate td:last-child {
+        padding-right: 0 !important;
+    }
+
+.table.table-separate tfoot th, .table.table-separate tfoot td {
+    border-bottom: 0;
+    border-top: 1px solid #EBEDF3;
+}
+
+.table.table-separate tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.table.table-bordered tfoot th, .table.table-bordered tfoot td {
+    border-bottom: 0;
+}
+
+.table.table-vertical-center th, .table.table-vertical-center td {
+    vertical-align: middle;
+}
+
+.table:not(.table-bordered) thead th, .table:not(.table-bordered) thead td {
+    border-top: 0;
+}
+
+.datatable:not(.table) {
+    display: none;
+}
+
+.datatable.datatable-default {
+    display: block;
+}
+
+    .datatable.datatable-default > .datatable-table {
+        background-color: #ffffff;
+        border-collapse: collapse;
+        overflow: hidden;
+        display: none;
+        width: 100%;
+    }
+
+        .datatable.datatable-default > .datatable-table > .datatable-head,
+        .datatable.datatable-default > .datatable-table > .datatable-body,
+        .datatable.datatable-default > .datatable-table > .datatable-foot {
+            visibility: hidden;
+            display: block;
+        }
+
+            .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row,
+            .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row,
+            .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row {
+                width: 100%;
+            }
+
+                .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell,
+                .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell,
+                .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell {
+                    vertical-align: middle;
+                    padding: 1rem 1rem;
+                    font-size: 1rem;
+                }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell:first-child,
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell:first-child,
+                    .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell:first-child {
+                        padding-left: 0;
+                    }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell:last-child,
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell:last-child,
+                    .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell:last-child {
+                        padding-right: 0;
+                    }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-left,
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-left,
+                    .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-left {
+                        text-align: left;
+                    }
+
+                        .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-left > span,
+                        .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-left > span,
+                        .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-left > span {
+                            text-align: left;
+                        }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-right,
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-right,
+                    .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-right {
+                        text-align: right;
+                    }
+
+                        .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-right > span,
+                        .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-right > span,
+                        .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-right > span {
+                            text-align: right;
+                        }
+
+                            .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-right > span > i,
+                            .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-right > span > i,
+                            .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-right > span > i {
+                                right: 0;
+                            }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-center,
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-center,
+                    .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-center {
+                        text-align: center;
+                    }
+
+                        .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-center > span,
+                        .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-center > span,
+                        .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-center > span {
+                            text-align: center;
+                        }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-sort,
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-sort,
+                    .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-sort {
+                        cursor: pointer;
+                    }
+
+                        .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-sort i,
+                        .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-sort i,
+                        .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-sort i {
+                            font-size: 0.6rem;
+                        }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-resizing,
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-resizing,
+                    .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-resizing {
+                        cursor: col-resize;
+                    }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell > span,
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell > span,
+                    .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell > span {
+                        display: block;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-check,
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-check,
+                    .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-check {
+                        text-align: left;
+                    }
+
+                        .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-check > span,
+                        .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-check > span,
+                        .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-check > span {
+                            overflow: visible;
+                        }
+
+                            .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-check > span > .checkbox,
+                            .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-check > span > .checkbox,
+                            .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-check > span > .checkbox {
+                                top: 2px;
+                                padding: 0;
+                                margin: 0 0 0 0;
+                            }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-toggle-detail > span,
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-toggle-detail > span,
+                    .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-toggle-detail > span {
+                        width: 12px;
+                    }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-toggle-detail > .datatable-toggle-detail,
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-toggle-detail > .datatable-toggle-detail,
+                    .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-toggle-detail > .datatable-toggle-detail {
+                        display: inline-block;
+                        text-align: right;
+                    }
+
+                        .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-toggle-detail > .datatable-toggle-detail > i,
+                        .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-toggle-detail > .datatable-toggle-detail > i,
+                        .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-toggle-detail > .datatable-toggle-detail > i {
+                            font-size: 1.4rem;
+                            width: 12px;
+                        }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell .dropdown,
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell .dropdown,
+                    .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell .dropdown {
+                        display: inline-block;
+                    }
+
+                        .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell .dropdown .dropdown-menu,
+                        .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell .dropdown .dropdown-menu,
+                        .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell .dropdown .dropdown-menu {
+                            margin-top: 0.5rem;
+                        }
+
+                        .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell .dropdown.dropup .dropdown-menu,
+                        .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell .dropdown.dropup .dropdown-menu,
+                        .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell .dropdown.dropup .dropdown-menu {
+                            margin-top: auto;
+                            margin-bottom: 0.5rem;
+                        }
+
+                        .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell .dropdown .dropdown-menu.dropdown-menu-right,
+                        .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell .dropdown .dropdown-menu.dropdown-menu-right,
+                        .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell .dropdown .dropdown-menu.dropdown-menu-right {
+                            margin-right: -0.8rem;
+                            /*rtl:ignore*/
+                            margin-left: 65px;
+                        }
+
+                        .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell .dropdown .dropdown-menu.dropdown-menu-left,
+                        .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell .dropdown .dropdown-menu.dropdown-menu-left,
+                        .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell .dropdown .dropdown-menu.dropdown-menu-left {
+                            margin-left: -10rem;
+                        }
+
+            .datatable.datatable-default > .datatable-table > .datatable-head > .datatable-lock,
+            .datatable.datatable-default > .datatable-table > .datatable-body > .datatable-lock,
+            .datatable.datatable-default > .datatable-table > .datatable-foot > .datatable-lock {
+                border: 0;
+            }
+
+                .datatable.datatable-default > .datatable-table > .datatable-head > .datatable-lock.datatable-lock-left,
+                .datatable.datatable-default > .datatable-table > .datatable-body > .datatable-lock.datatable-lock-left,
+                .datatable.datatable-default > .datatable-table > .datatable-foot > .datatable-lock.datatable-lock-left {
+                    z-index: 1;
+                    -webkit-box-shadow: 0px 10px 17px 5px rgba(0, 0, 0, 0.075);
+                    box-shadow: 0px 10px 17px 5px rgba(0, 0, 0, 0.075);
+                }
+
+                .datatable.datatable-default > .datatable-table > .datatable-head > .datatable-lock.datatable-lock-right,
+                .datatable.datatable-default > .datatable-table > .datatable-body > .datatable-lock.datatable-lock-right,
+                .datatable.datatable-default > .datatable-table > .datatable-foot > .datatable-lock.datatable-lock-right {
+                    -webkit-box-shadow: 0px 10px 17px 5px rgba(0, 0, 0, 0.075);
+                    box-shadow: 0px 10px 17px 5px rgba(0, 0, 0, 0.075);
+                }
+
+                .datatable.datatable-default > .datatable-table > .datatable-head > .datatable-lock.datatable-lock-scroll,
+                .datatable.datatable-default > .datatable-table > .datatable-body > .datatable-lock.datatable-lock-scroll,
+                .datatable.datatable-default > .datatable-table > .datatable-foot > .datatable-lock.datatable-lock-scroll {
+                    position: relative;
+                }
+
+            .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell > span,
+            .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell > span {
+                font-weight: 500;
+                vertical-align: middle;
+                color: #181C32;
+            }
+
+            .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-sorted > span,
+            .datatable.datatable-default > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-sorted > span {
+                color: #3699FF;
+            }
+
+            .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell {
+                padding: 0.75rem 1rem;
+            }
+
+                .datatable.datatable-default > .datatable-table > .datatable-head .datatable-row > .datatable-cell > span > i {
+                    display: inline-block;
+                    position: relative;
+                    right: -10px;
+                    line-height: 0;
+                    vertical-align: middle;
+                    font-size: 1.1rem;
+                    color: #3699FF;
+                }
+
+            .datatable.datatable-default > .datatable-table > .datatable-body.ps {
+                padding-bottom: 0;
+            }
+
+            .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell {
+                font-weight: regular;
+                -webkit-transition: background 0.3s ease;
+                transition: background 0.3s ease;
+            }
+
+                .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell > span {
+                    color: #3F4254;
+                }
+
+                .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-check > span > .checkbox {
+                    top: 1px;
+                }
+
+                .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row > .datatable-cell.datatable-cell-hover {
+                    -webkit-transition: background 0.3s ease;
+                    transition: background 0.3s ease;
+                    background-color: transparent;
+                }
+
+            .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row.datatable-row-even > .datatable-cell {
+                background-color: transparent;
+            }
+
+            .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row.datatable-row-active > .datatable-cell {
+                background-color: #F3F6F9;
+            }
+
+            .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row.datatable-row-hover:not(.datatable-row-active) {
+                -webkit-transition: background 0.3s ease;
+                transition: background 0.3s ease;
+            }
+
+                .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row.datatable-row-hover:not(.datatable-row-active) > .datatable-cell {
+                    -webkit-transition: background 0.3s ease;
+                    transition: background 0.3s ease;
+                    background-color: transparent;
+                }
+
+            .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row-detail {
+                display: block;
+            }
+
+                .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row-detail .datatable-detail {
+                    display: block;
+                    padding: 0 2.25rem;
+                }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row-detail .datatable-detail table {
+                        -webkit-box-shadow: 0px 10px 15px 1px rgba(0, 0, 0, 0.05);
+                        box-shadow: 0px 10px 15px 1px rgba(0, 0, 0, 0.05);
+                    }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row-detail .datatable-detail .datatable-row {
+                        display: table-row;
+                    }
+
+                        .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row-detail .datatable-detail .datatable-row > .datatable-cell {
+                            padding: 1rem 1.5rem;
+                            text-align: left;
+                            vertical-align: top;
+                        }
+
+                            .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row-detail .datatable-detail .datatable-row > .datatable-cell > span {
+                                width: auto !important;
+                            }
+
+                            .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row-detail .datatable-detail .datatable-row > .datatable-cell:first-child {
+                                font-weight: 500;
+                            }
+
+                            .datatable.datatable-default > .datatable-table > .datatable-body .datatable-row-detail .datatable-detail .datatable-row > .datatable-cell:last-child {
+                                font-weight: regular;
+                                padding-left: 1.5rem;
+                            }
+
+            .datatable.datatable-default > .datatable-table > .datatable-body .datatable-toggle-detail {
+                vertical-align: middle;
+            }
+
+                .datatable.datatable-default > .datatable-table > .datatable-body .datatable-toggle-detail i {
+                    -webkit-transition: color 0.3s ease;
+                    transition: color 0.3s ease;
+                    color: #3699FF;
+                }
+
+                    .datatable.datatable-default > .datatable-table > .datatable-body .datatable-toggle-detail i:before {
+                        line-height: 0;
+                        vertical-align: middle;
+                    }
+
+                .datatable.datatable-default > .datatable-table > .datatable-body .datatable-toggle-detail:hover i, .datatable.datatable-default > .datatable-table > .datatable-body .datatable-toggle-detail.datatable-toggle-detail-active i {
+                    -webkit-transition: color 0.3s ease;
+                    transition: color 0.3s ease;
+                    color: #3699FF;
+                }
+
+    .datatable.datatable-default.datatable-bordered > .datatable-table > .datatable-head .datatable-row,
+    .datatable.datatable-default.datatable-bordered > .datatable-table > .datatable-body .datatable-row,
+    .datatable.datatable-default.datatable-bordered > .datatable-table > .datatable-foot .datatable-row {
+        border-bottom: 1px solid #EBEDF3;
+    }
+
+        .datatable.datatable-default.datatable-bordered > .datatable-table > .datatable-head .datatable-row.datatable-row-subtable-expanded,
+        .datatable.datatable-default.datatable-bordered > .datatable-table > .datatable-body .datatable-row.datatable-row-subtable-expanded,
+        .datatable.datatable-default.datatable-bordered > .datatable-table > .datatable-foot .datatable-row.datatable-row-subtable-expanded {
+            border-bottom: 0;
+        }
+
+        .datatable.datatable-default.datatable-bordered > .datatable-table > .datatable-body .datatable-row:last-child {
+            border-bottom: 0;
+        }
+
+    .datatable.datatable-default.datatable-bordered > .datatable-table > .datatable-body tr:last-of-type {
+        border-bottom: 0;
+    }
+
+    .datatable.datatable-default.datatable-bordered > .datatable-table > .datatable-body .datatable-row-detail .datatable-detail table {
+        border-left: 1px solid #EBEDF3;
+        border-right: 1px solid #EBEDF3;
+    }
+
+    .datatable.datatable-default.datatable-head-custom > .datatable-table > .datatable-head .datatable-row > .datatable-cell > span,
+    .datatable.datatable-default.datatable-head-custom > .datatable-table > .datatable-foot .datatable-row > .datatable-cell > span {
+        color: #B5B5C3;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 0.1rem;
+    }
+
+    .datatable.datatable-default.datatable-head-custom > .datatable-table > .datatable-head .datatable-row > .datatable-cell.datatable-cell-sorted > span,
+    .datatable.datatable-default.datatable-head-custom > .datatable-table > .datatable-foot .datatable-row > .datatable-cell.datatable-cell-sorted > span {
+        color: #3699FF;
+    }
+
+    .datatable.datatable-default.datatable-head-bg > .datatable-table > .datatable-head .datatable-row {
+        border-bottom: 0;
+    }
+
+        .datatable.datatable-default.datatable-head-bg > .datatable-table > .datatable-head .datatable-row > .datatable-cell {
+            background-color: #F3F6F9;
+        }
+
+            .datatable.datatable-default.datatable-head-bg > .datatable-table > .datatable-head .datatable-row > .datatable-cell:first-child {
+                border-top-left-radius: 0.42rem;
+                border-bottom-left-radius: 0.42rem;
+            }
+
+            .datatable.datatable-default.datatable-head-bg > .datatable-table > .datatable-head .datatable-row > .datatable-cell:last-child {
+                border-top-right-radius: 0.42rem;
+                border-bottom-right-radius: 0.42rem;
+            }
+
+    .datatable.datatable-default.datatable-foot-bg > .datatable-table > .datatable-foot .datatable-row {
+        border-bottom: 0;
+    }
+
+        .datatable.datatable-default.datatable-foot-bg > .datatable-table > .datatable-foot .datatable-row > .datatable-cell {
+            background-color: #F3F6F9;
+        }
+
+            .datatable.datatable-default.datatable-foot-bg > .datatable-table > .datatable-foot .datatable-row > .datatable-cell:first-child {
+                border-top-left-radius: 0.42rem;
+                border-bottom-left-radius: 0.42rem;
+            }
+
+            .datatable.datatable-default.datatable-foot-bg > .datatable-table > .datatable-foot .datatable-row > .datatable-cell:last-child {
+                border-top-right-radius: 0.42rem;
+                border-bottom-right-radius: 0.42rem;
+            }
+
+    .datatable.datatable-default.datatable-error .datatable-body {
+        padding: 30px;
+        text-align: center;
+    }
+
+    .datatable.datatable-default.datatable-lock > .datatable-table > .datatable-head > .datatable-lock,
+    .datatable.datatable-default.datatable-lock > .datatable-table > .datatable-body > .datatable-lock,
+    .datatable.datatable-default.datatable-lock > .datatable-table > .datatable-foot > .datatable-lock {
+        display: inline-block;
+        position: relative;
+        vertical-align: top;
+        overflow: hidden;
+    }
+
+    .datatable.datatable-default.datatable-loaded {
+        display: block;
+    }
+
+        .datatable.datatable-default.datatable-loaded > .datatable-table {
+            display: block;
+        }
+
+            .datatable.datatable-default.datatable-loaded > .datatable-table > .datatable-head,
+            .datatable.datatable-default.datatable-loaded > .datatable-table > .datatable-body,
+            .datatable.datatable-default.datatable-loaded > .datatable-table > .datatable-foot {
+                visibility: visible;
+                display: block;
+                position: relative;
+            }
+
+                .datatable.datatable-default.datatable-loaded > .datatable-table > .datatable-head .datatable-row,
+                .datatable.datatable-default.datatable-loaded > .datatable-table > .datatable-body .datatable-row,
+                .datatable.datatable-default.datatable-loaded > .datatable-table > .datatable-foot .datatable-row {
+                    display: table;
+                    table-layout: initial;
+                }
+
+    .datatable.datatable-default.datatable-scroll > .datatable-table {
+        display: block;
+    }
+
+        .datatable.datatable-default.datatable-scroll > .datatable-table > .datatable-head,
+        .datatable.datatable-default.datatable-scroll > .datatable-table > .datatable-foot {
+            overflow: hidden;
+        }
+
+            .datatable.datatable-default.datatable-scroll > .datatable-table > .datatable-head .datatable-row,
+            .datatable.datatable-default.datatable-scroll > .datatable-table > .datatable-foot .datatable-row {
+                position: relative;
+            }
+
+        .datatable.datatable-default.datatable-scroll > .datatable-table > .datatable-body {
+            overflow: hidden;
+        }
+
+    .datatable.datatable-default.datatable-subtable > .datatable-table {
+        margin-bottom: 0;
+    }
+
+        .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-head .datatable-toggle-subtable,
+        .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-body .datatable-toggle-subtable,
+        .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-foot .datatable-toggle-subtable {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+            .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-head .datatable-toggle-subtable > i,
+            .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-body .datatable-toggle-subtable > i,
+            .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-foot .datatable-toggle-subtable > i {
+                line-height: 0;
+                font-size: 1.4rem;
+                color: #3699FF;
+            }
+
+            .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-head .datatable-toggle-subtable:hover,
+            .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-body .datatable-toggle-subtable:hover,
+            .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-foot .datatable-toggle-subtable:hover {
+                text-decoration: none;
+            }
+
+        .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-head .datatable-row-subtable,
+        .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-body .datatable-row-subtable,
+        .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-foot .datatable-row-subtable {
+            display: table;
+            width: 100%;
+            border-top: 0;
+        }
+
+            .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-head .datatable-row-subtable > .datatable-subtable > .datatable,
+            .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-body .datatable-row-subtable > .datatable-subtable > .datatable,
+            .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-foot .datatable-row-subtable > .datatable-subtable > .datatable {
+                padding: 0 2.25rem;
+            }
+
+                .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-head .datatable-row-subtable > .datatable-subtable > .datatable > .datatable-pager,
+                .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-body .datatable-row-subtable > .datatable-subtable > .datatable > .datatable-pager,
+                .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-foot .datatable-row-subtable > .datatable-subtable > .datatable > .datatable-pager {
+                    padding: 2.25rem 0px;
+                }
+
+        .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-body .datatable-row.datatable-row-subtable-expanded > .datatable-cell {
+            background-color: #F3F6F9 !important;
+        }
+
+        .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-body .datatable-row-subtable {
+            background-color: transparent;
+        }
+
+            .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-body .datatable-row-subtable > .datatable-subtable > .datatable {
+                -webkit-box-shadow: 0px 10px 15px 1px rgba(0, 0, 0, 0.05);
+                box-shadow: 0px 10px 15px 1px rgba(0, 0, 0, 0.05);
+            }
+
+            .datatable.datatable-default.datatable-subtable > .datatable-table > .datatable-body .datatable-row-subtable.datatable-row-loading > .datatable-subtable > .datatable > .datatable-table {
+                background-color: transparent;
+            }
+
+    .datatable.datatable-default > .datatable-pager {
+        margin: 0px;
+        padding: 1rem 0;
+        padding-bottom: 0;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+
+        .datatable.datatable-default > .datatable-pager.datatable-pager-top {
+            margin-bottom: 10px;
+        }
+
+        .datatable.datatable-default > .datatable-pager > .datatable-pager-nav {
+            margin: 0;
+            padding: 0;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+        }
+
+            .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li {
+                padding: 0;
+                margin-right: 5px;
+                display: inline-block;
+            }
+
+                .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li:last-child {
+                    margin-right: 0;
+                }
+
+                .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-link {
+                    cursor: pointer;
+                    display: -webkit-box;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -webkit-box-pack: center;
+                    -ms-flex-pack: center;
+                    justify-content: center;
+                    -webkit-box-align: center;
+                    -ms-flex-align: center;
+                    align-items: center;
+                    height: 2.25rem;
+                    min-width: 2.25rem;
+                    padding: 0.5rem;
+                    -webkit-transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+                    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
+                    position: relative;
+                    font-size: 0.9rem;
+                    line-height: 1rem;
+                    font-weight: 500;
+                    border-radius: 0.42rem;
+                    color: #7E8299;
+                }
+
+                    .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-link > i {
+                        font-size: 0.6rem;
+                        text-align: center;
+                        display: inline-block;
+                        line-height: 0;
+                        color: #B5B5C3;
+                        -webkit-transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
+                    }
+
+                    .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-link.datatable-pager-link-first, .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-link.datatable-pager-link-prev, .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-link.datatable-pager-link-next, .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-link.datatable-pager-link-last {
+                        background-color: #ecf1f6;
+                    }
+
+                    .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-link.datatable-pager-link-disabled {
+                        opacity: 0.6;
+                        cursor: default;
+                    }
+
+                    .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-link:hover:not(.datatable-pager-link-disabled) {
+                        opacity: 1;
+                        -webkit-transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        background-color: #3699FF;
+                        color: #FFFFFF;
+                    }
+
+                        .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-link:hover:not(.datatable-pager-link-disabled) i {
+                            -webkit-transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                            transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                            transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+                            transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
+                            color: #FFFFFF;
+                        }
+
+                    .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-link.datatable-pager-link-active {
+                        -webkit-transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        background-color: #3699FF;
+                        color: #FFFFFF;
+                    }
+
+                        .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-link.datatable-pager-link-active i {
+                            -webkit-transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                            transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                            transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+                            transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
+                            color: #FFFFFF;
+                        }
+
+                .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-input {
+                    height: 2.25rem;
+                    width: 3.5rem;
+                    text-align: center;
+                    -webkit-transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+                    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
+                    border-radius: 0.42rem !important;
+                    background-color: #ecf1f6;
+                    border-color: #ecf1f6;
+                    color: #7E8299;
+                }
+
+                    .datatable.datatable-default > .datatable-pager > .datatable-pager-nav > li > .datatable-pager-input:focus {
+                        -webkit-transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        background-color: #ecf1f6;
+                        border-color: #ecf1f6;
+                        color: #7E8299;
+                    }
+
+        .datatable.datatable-default > .datatable-pager > .datatable-pager-info {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+            .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size {
+                margin-right: 10px;
+            }
+
+                .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .btn.dropdown-toggle {
+                    height: 2.25rem;
+                    padding: 0.45rem 1rem;
+                    font-size: 1rem;
+                    font-weight: 500;
+                    border: 0 !important;
+                    color: #7E8299;
+                    background-color: #ecf1f6 !important;
+                    border-radius: 0.42rem;
+                }
+
+                    .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .btn.dropdown-toggle .filter-option, .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .btn.dropdown-toggle:after,
+                    .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .btn.dropdown-toggle i {
+                        -webkit-transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+                        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
+                        color: #7E8299;
+                    }
+
+                    .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .btn.dropdown-toggle:focus,
+                    .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .btn.dropdown-toggle:hover,
+                    .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size.show > .btn.dropdown-toggle {
+                        border: 0 !important;
+                        color: #FFFFFF !important;
+                        background-color: #3699FF !important;
+                    }
+
+                        .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .btn.dropdown-toggle:focus .filter-option, .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .btn.dropdown-toggle:focus:after,
+                        .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .btn.dropdown-toggle:focus i,
+                        .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .btn.dropdown-toggle:hover .filter-option,
+                        .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .btn.dropdown-toggle:hover:after,
+                        .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .btn.dropdown-toggle:hover i,
+                        .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size.show > .btn.dropdown-toggle .filter-option,
+                        .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size.show > .btn.dropdown-toggle:after,
+                        .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size.show > .btn.dropdown-toggle i {
+                            -webkit-transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                            transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, -webkit-box-shadow 0.15s ease;
+                            transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+                            transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
+                            color: #FFFFFF !important;
+                        }
+
+                .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .dropdown-menu.inner > li.selected > a span.check-mark {
+                    margin-top: -0.6rem;
+                }
+
+                .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .dropdown-menu {
+                    z-index: 100;
+                }
+
+.modal .datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .dropdown-menu {
+    z-index: 1051;
+}
+
+.datatable.datatable-default .ps > .ps__rail-y > .ps__thumb-y,
+.datatable.datatable-default .ps > .ps__rail-x > .ps__thumb-x {
+    background-color: #EBEDF3;
+}
+
+    .datatable.datatable-default .ps > .ps__rail-y > .ps__thumb-y:hover, .datatable.datatable-default .ps > .ps__rail-y > .ps__thumb-y:focus,
+    .datatable.datatable-default .ps > .ps__rail-x > .ps__thumb-x:hover,
+    .datatable.datatable-default .ps > .ps__rail-x > .ps__thumb-x:focus {
+        background-color: #EBEDF3;
+    }
+.bootstrap-select > .dropdown-toggle {
+    position: relative;
+    outline: none !important;
+    padding: 0.65rem 1rem;
+    border-radius: 0.42rem;
+}
+
+    .bootstrap-select > .dropdown-toggle:focus {
+        outline: none !important;
+        border-color: #69b3ff !important;
+    }
+
+    .bootstrap-select > .dropdown-toggle:after {
+        border: 0;
+        margin-right: -2px;
+        font-size: 0.6rem;
+        display: inline-block;
+        font-family: Ki;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        line-height: 1;
+        text-decoration: inherit;
+        text-rendering: optimizeLegibility;
+        text-transform: none;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        font-smoothing: antialiased;
+        content: "";
+    }
+
+    .bootstrap-select > .dropdown-toggle:before {
+        width: auto;
+    }
+
+    .bootstrap-select > .dropdown-toggle.btn-light, .bootstrap-select > .dropdown-toggle.btn-secondary {
+        background: #ffffff !important;
+        color: #3F4254;
+        border-color: #E4E6EF !important;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+        .bootstrap-select > .dropdown-toggle.btn-light.focus, .bootstrap-select > .dropdown-toggle.btn-light.active, .bootstrap-select > .dropdown-toggle.btn-secondary.focus, .bootstrap-select > .dropdown-toggle.btn-secondary.active {
+            border-color: #E4E6EF !important;
+        }
+
+        .bootstrap-select > .dropdown-toggle.btn-light.disabled, .bootstrap-select > .dropdown-toggle.btn-light:disabled, .bootstrap-select > .dropdown-toggle.btn-secondary.disabled, .bootstrap-select > .dropdown-toggle.btn-secondary:disabled {
+            background: #F3F6F9 !important;
+            opacity: 1;
+        }
+
+        .bootstrap-select > .dropdown-toggle.btn-light .filter-option, .bootstrap-select > .dropdown-toggle.btn-secondary .filter-option {
+            color: #3F4254;
+        }
+
+            .bootstrap-select > .dropdown-toggle.btn-light .filter-option .bs-icon, .bootstrap-select > .dropdown-toggle.btn-secondary .filter-option .bs-icon {
+                color: #3F4254;
+                margin-right: 0.1rem;
+            }
+
+    .bootstrap-select > .dropdown-toggle.bs-placeholder {
+        color: #B5B5C3;
+    }
+
+        .bootstrap-select > .dropdown-toggle.bs-placeholder.btn {
+            color: #ffffff;
+        }
+
+.bootstrap-select .dropdown-menu.inner {
+    display: block;
+}
+
+    .bootstrap-select .dropdown-menu.inner > li > a {
+        display: block;
+        position: relative;
+        outline: none !important;
+        padding: 10px 15px;
+    }
+
+        .bootstrap-select .dropdown-menu.inner > li > a:hover {
+            text-decoration: none;
+        }
+
+        .bootstrap-select .dropdown-menu.inner > li > a .bs-icon {
+            font-size: 1.3rem;
+            vertical-align: middle;
+            color: #B5B5C3;
+            margin-right: 0.5rem;
+        }
+
+        .bootstrap-select .dropdown-menu.inner > li > a .text {
+            color: #3F4254;
+        }
+
+            .bootstrap-select .dropdown-menu.inner > li > a .text small {
+                color: #B5B5C3;
+            }
+
+        .bootstrap-select .dropdown-menu.inner > li > a .check-mark {
+            color: #7E8299;
+        }
+
+    .bootstrap-select .dropdown-menu.inner > li.selected > a .check-mark {
+        top: 50%;
+        position: absolute;
+        margin-top: -0.4rem;
+        font-size: 0.7rem;
+        right: 1rem;
+    }
+
+        .bootstrap-select .dropdown-menu.inner > li.selected > a .check-mark:before {
+            font-family: Ki;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            line-height: 1;
+            text-decoration: inherit;
+            text-rendering: optimizeLegibility;
+            text-transform: none;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-smoothing: antialiased;
+            content: "";
+        }
+
+        .bootstrap-select .dropdown-menu.inner > li.selected > a .check-mark:after {
+            display: none;
+        }
+
+    .bootstrap-select .dropdown-menu.inner > li.selected > a, .bootstrap-select .dropdown-menu.inner > li:hover > a {
+        background: #F3F6F9;
+    }
+
+        .bootstrap-select .dropdown-menu.inner > li.selected > a .text, .bootstrap-select .dropdown-menu.inner > li:hover > a .text {
+            color: #3F4254;
+        }
+
+        .bootstrap-select .dropdown-menu.inner > li.selected > a .bs-icon, .bootstrap-select .dropdown-menu.inner > li:hover > a .bs-icon {
+            color: #3F4254;
+        }
+
+        .bootstrap-select .dropdown-menu.inner > li.selected > a .check-mark, .bootstrap-select .dropdown-menu.inner > li:hover > a .check-mark {
+            color: #7E8299;
+        }
+
+    .bootstrap-select .dropdown-menu.inner > li.divider {
+        margin: 10px 0;
+        border-bottom: 1px solid #F3F6F9;
+    }
+
+    .bootstrap-select .dropdown-menu.inner > li.hidden {
+        display: none;
+    }
+
+    .bootstrap-select .dropdown-menu.inner > li.no-results {
+        padding: 10px 15px;
+    }
+
+    .bootstrap-select .dropdown-menu.inner > li.dropdown-header {
+        color: #7E8299;
+    }
+
+    .bootstrap-select .dropdown-menu.inner > li.selected > a {
+        background: #F3F6F9;
+    }
+
+    .bootstrap-select .dropdown-menu.inner > li.disabled > a {
+        opacity: 0.8;
+    }
+
+    .bootstrap-select .dropdown-menu.inner > li.active:not(.selected) > a {
+        background: #3699FF;
+    }
+
+        .bootstrap-select .dropdown-menu.inner > li.active:not(.selected) > a .bs-icon,
+        .bootstrap-select .dropdown-menu.inner > li.active:not(.selected) > a .text {
+            color: #ffffff;
+        }
+
+        .bootstrap-select .dropdown-menu.inner > li.active:not(.selected) > a .check-mark {
+            color: #ffffff;
+        }
+
+    .bootstrap-select .dropdown-menu.inner > li.no-results {
+        color: #7E8299;
+    }
+
+.bootstrap-select .popover-title {
+    padding: 10px 15px;
+    margin-bottom: 5px;
+}
+
+    .bootstrap-select .popover-title .close {
+        display: none;
+    }
+
+.bootstrap-select .bs-searchbox,
+.bootstrap-select .bs-actionsbox,
+.bootstrap-select .bs-donebutton {
+    padding: 10px 15px;
+}
+
+.bootstrap-select.show > .dropdown-toggle.btn-light, .bootstrap-select.show > .dropdown-toggle.btn-secondary {
+    border-color: #69b3ff !important;
+}
+
+.bootstrap-select.is-invalid .btn.dropdown-toggle {
+    border-color: #F64E60;
+}
+
+.bootstrap-select.is-valid .btn.dropdown-toggle {
+    border-color: #1BC5BD;
+}
+
+.bootstrap-select .popover-title {
+    background: #F3F6F9;
+    border: 0;
+}
+
+.bootstrap-select .dropdown-menu {
+    border-top: none !important;
+    border: 0;
+    -webkit-box-shadow: 0px 0px 50px 0px rgba(82, 63, 105, 0.15);
+    box-shadow: 0px 0px 50px 0px rgba(82, 63, 105, 0.15);
+}
+
+.content .bootstrap-select .dropdown-menu {
+    z-index: 93;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.datatable.datatable-default > .datatable-pager > .datatable-pager-info .datatable-pager-size .btn.dropdown-toggle {
+    height: 27px;
+}
 .navbar .navbar-brand img {
-max-width:126px;
+    max-width: 126px;
 }
 .w-20px {
     width:20px;
@@ -86,4 +2001,48 @@ max-width:126px;
     padding: 12px 5px;
     text-transform: inherit;
     border-width: 1px;
+}
+.sub-nav > .nav li a.active {
+    background-color: #fff;
+    color: #f51f8a;
+}
+.toast-success {
+    background-color: #00C574;
+    opacity: 0.9;
+}
+.tab-content .card-footer {
+    text-align: right;
+    background: transparent;
+    border-top: none;
+}
+.container .st-tabs .tab-content.first {
+    padding:0px;
+    border:none;
+}
+#service3 #loan_request_form .form-group {
+    margin-bottom: 0px;
+}
+.bootstrap-select.datatable-pager-size .dropdown-menu {
+    top:1100px;
+    left:500px;
+}
+.datatable-cell.btn {
+    color: #ffffff;
+    padding: 10px 15px;
+}
+.datatable-cell.btn:hover, .datatable-cell.btn:active {
+    color: #ffffff;
+}
+.datatable-cell {
+    text-align:center;
+}
+.datatable-cell.paid{
+    background-color:#00C574;
+    padding: 10px 7px;
+    color: #ffffff;
+    border-radius:5px;
+}
+
+.st-tabs .btn-action a, .st-tabs .btn-action a:hover {
+    color:#fff;
 }

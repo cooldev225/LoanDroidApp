@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using DBSetup;
@@ -12,13 +10,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Models;
 using Models.data;
 
 namespace App.Controllers
 {
     //[Authorize(Roles = "client,investor")]
     //[Route("[controller]/[action]")]
+    //[Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -49,13 +47,77 @@ namespace App.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult Cprofile()
+        [Authorize(Roles = "cliente")]
+        public async Task<IActionResult> Cprofile()
         {
             var userId = _context.CurrentUserId;
             ViewBag.AccountPaymentOnline = new AccountPayment();
             var q1 = _context.AccountPayment.Where(u => u.UserId.Equals(userId) && u.Type == 0).OrderByDescending(u => u.CreatedDate);
             var q2 = _context.AccountPayment.Where(u => u.UserId.Equals(userId) && u.Type == 1).OrderByDescending(u => u.CreatedDate);
             var q3 = _context.AccountPayment.Where(u => u.UserId.Equals(userId) && u.Type == 2).OrderByDescending(u => u.CreatedDate);
+            ViewBag.step = 0;
+            ApplicationUser user = await _userManager.FindByIdAsync(userId);
+            if (user.FirstName != null && !user.FirstName.Equals(""))
+                if (user.LastName != null && !user.LastName.Equals(""))
+                    if (user.PhoneNumber != null && !user.PhoneNumber.Equals(""))
+                        ViewBag.step = 1;
+            if (ViewBag.step > 0 && (q1.Count() > 0 || q2.Count() > 0 || q3.Count() > 0))
+                ViewBag.step = 2;
+            AccountPayment acc = new AccountPayment
+            {
+                Id = 0,
+                UserId = userId,
+                GatewayName = "",
+                GatewayUrl = "",
+                GatewayEmail = user.Email,
+                GatewayUserName = user.UserName,
+                GatewayPassword = "",
+                CardFirstName = user.FirstName,
+                CardLastName = user.LastName,
+                CardNumber = "",
+                CardExpirationDate = "",
+                CardAddress1 = "",
+                CardAddress2 = "",
+                BankCountry = "",
+                BankAccountHolder = "",
+                BankName = "",
+                BankStreet = "",
+                BankCity = "",
+                BankRegion = "",
+                BankCurrency = "",
+                BankRoutingNumber = "",
+                BankSwiftBicNumber = "",
+                BankIBANNumber = "",
+                Type = 0
+            };
+            ViewBag.Payment01 = q1.Count()>0?q1.First():acc;
+            acc.Type = 1;
+            ViewBag.Payment02 = q2.Count()>0?q2.First():acc;
+            acc.Type = 2;
+            ViewBag.Payment03 = q3.Count()>0?q3.First():acc;
+            if (ViewBag.step > 1) {
+                var q = _context.LoanRequest.Where(u => u.ClientId.Equals(userId) && (
+                      u.Status == LoanStatus.Collection_Processing ||
+                      u.Status == LoanStatus.Contactor_Checking ||
+                      u.Status == LoanStatus.Debug_Processing ||
+                      u.Status == LoanStatus.Interesting_Process ||
+                      u.Status == LoanStatus.Investor_Piad ||
+                      u.Status == LoanStatus.New ||
+                      u.Status == LoanStatus.Service_Mapping
+                  )).OrderByDescending(u => u.CreatedDate);
+                if (q.Count() > 0) ViewBag.loan = q.First();
+                else ViewBag.loan = new LoanRequest
+                {
+                    ClientId = userId,
+                    Amount = 0,
+                    InterestingRate = 8.9,
+                    Cycle = LoanCycle.Weekly,
+                    Times = 1,
+                    Status = LoanStatus.New,
+                    StatusReason = "",
+                    RequestedDate = DateTime.Now
+                };
+            }
             return View();
         }
         [HttpGet]
@@ -84,6 +146,16 @@ namespace App.Controllers
             return View();
         }
         [HttpGet]
+        public IActionResult Howitwork()
+        {
+            return View();
+        }
+        [HttpGet]
+        public IActionResult FAQ()
+        {
+            return View();
+        }
+        [HttpGet]
         public IActionResult Loancalculator()
         {
             return View();
@@ -95,7 +167,7 @@ namespace App.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Login(string username,string password, string returnUrl)
+        public async Task<IActionResult> Login(string username,string password, string returnUrl="")
         {
             try
             {
@@ -118,6 +190,7 @@ namespace App.Controllers
                     if (_userManager.GetUsersInRoleAsync("cliente").Result.Where(u => u.Id.Equals(user.Id)).Count() > 0)
                     {
                         HttpContext.Session.SetString("loan.droid.app.loggedin.usertype", "client");
+                        if (returnUrl==null||returnUrl.Equals("")) returnUrl = "/home/cprofile";
                     }
                     else if (_userManager.GetUsersInRoleAsync("inversora").Result.Where(u => u.Id.Equals(user.Id)).Count() > 0)
                     {
@@ -191,6 +264,7 @@ namespace App.Controllers
             if (result.Succeeded)
             {
                 await _signInManager.PasswordSignInAsync(user.UserName, password, true, lockoutOnFailure: false);
+                if ((returnUrl==null||returnUrl.Equals(""))&&usertype==0) returnUrl = "/home/cprofile";
                 return RedirectToLocal(returnUrl);
             }
 
@@ -210,5 +284,6 @@ namespace App.Controllers
         {
             return View();
         }
+        
     }
 }

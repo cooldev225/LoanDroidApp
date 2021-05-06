@@ -1,4 +1,5 @@
-function setImgAvatar(obj,img) {
+var data_table_calc = null;
+function setImgAvatar(obj, img) {
     $(obj).prop('src', 'data:image/png;base64,' + img);
 }
 jQuery(document).ready(function () {
@@ -15,30 +16,44 @@ jQuery(document).ready(function () {
         $('#avatar_img').prop('src', $('#default_img').prop('src'));
     });
 
-    $("#la").bind(
-        "slider:changed",
-        function (event, data) {
-            $("#la_value").html(data.value.toFixed(0));
-            calculateEMI();
-        }
-    );
+    if (eval($("#step_div").prop('class')) > 1) {
+        $("#edit_loan_amount").on(
+            "change",
+            function (event, data) {
+                calculateEMI();
+            }
+        );
 
-    $("#nm").bind(
-        "slider:changed",
-        function (event, data) {
-            $("#nm_value").html(data.value.toFixed(0));
-            calculateEMI();
-        }
-    );
+        $("#edit_loan_times").on(
+            "change",
+            function (event, data) {
+                calculateEMI();
+            }
+        );
 
-    $("#roi").bind(
-        "slider:changed",
-        function (event, data) {
-            $("#roi_value").html(data.value.toFixed(2));
-            calculateEMI();
-        }
-    );
-    calculateEMI();
+        $("#edit_loan_cycle").on(
+            "change",
+            function (event, data) {
+                var v = eval($("#edit_loan_cycle").val());
+                if (v == 0) $("#edit_loan_interestingrate").val('8.9');
+                else if (v == 1) $("#edit_loan_interestingrate").val('9.1');
+                else if (v == 2) $("#edit_loan_interestingrate").val('9.3');
+                else if (v == 3) $("#edit_loan_interestingrate").val('9.6');
+                else if (v == 4) $("#edit_loan_interestingrate").val('10.0');
+                calculateEMI();
+            }
+        );
+
+        $("#edit_loan_interestingrate").on(
+            "change",
+            function (event, data) {
+                calculateEMI();
+            }
+        );
+        datatableCalcInit();
+        calculateEMI();
+    }
+    datatableLoansInit();
 });
 function setAvatar(img) {
     $('#avatar_img').prop('src', 'data:image/png;base64,' + img);
@@ -50,6 +65,10 @@ function isValidateEditUserModal() {
     }
     if ($('#edit_user_firstname').val() == '') {
         $('#edit_user_firstname').focus();
+        return false;
+    }
+    if ($('#edit_user_lastname').val() == '') {
+        $('#edit_user_lastname').focus();
         return false;
     }
     if ($('#edit_user_email').val() == '') {
@@ -88,7 +107,8 @@ function submitProfile() {
         type: 'POST',
         dataType: "json",
         success: function (response) {
-            location.refresh = true;
+            var $toast = toastr["success"](lang.success_saved, "ok");
+            if (eval($("#step_div").prop('class')) == 0) location.reload(true);
         },
         error: function (response) {
 
@@ -99,8 +119,9 @@ function submitProfile() {
 
 function submitPaymentEditForm() {
     if (!isValidateEditPaymentModal()) return;
+    var type = getPaymentActiveTab();
     var form_data = new FormData();
-    form_data.append('id', $('#edit_payment_id').val());
+    form_data.append('id', $('#edit_payment_id' + type).val());
     form_data.append('userid', $('#edit_payment_userid').val());
     form_data.append('gatewayname', $('#edit_payment_gatewayname').val());
     form_data.append('gatewayurl', $('#edit_payment_gatewayurl').val());
@@ -123,7 +144,7 @@ function submitPaymentEditForm() {
     form_data.append('bankregion', $('#edit_payment_bankregion').val());
     form_data.append('bankswiftbicnumber', $('#edit_payment_bankswiftbicnumber').val());
     form_data.append('bankibannumber', $('#edit_payment_bankibannumber').val());
-    form_data.append('type', getPaymentActiveTab());
+    form_data.append('type', type);
     $.ajax({
         url: '/admin/saveAccountPayment',
         headers: {
@@ -136,12 +157,8 @@ function submitPaymentEditForm() {
         type: 'POST',
         dataType: "json",
         success: function (response) {
-            if (response < 0) {
-                alert('This username is existen already.');
-                return;
-            }
-            data_table.reload();
-            $('#payment_model_close_btn').trigger('click');
+            var $toast = toastr["success"](lang.success_saved, "ok");
+            if (eval($("#step_div").prop('class')) == 1) location.reload(true);
         },
         error: function (response) {
 
@@ -150,7 +167,7 @@ function submitPaymentEditForm() {
 }
 function isValidateEditPaymentModal() {
     type = getPaymentActiveTab();
-    if (type == 0) {
+    if (type == 0){
         if ($('#edit_payment_gatewayname').val() == '') {
             $('#edit_payment_gatewayname').focus();
             return false;
@@ -263,28 +280,6 @@ function addPaymentAction(userid) {
     $('#edit_payment_bankswiftbicnumber').val('');
     $('#edit_payment_bankibannumber').val('');
 }
-function deletePaymentAction(id) {
-    var form_data = new FormData();
-    form_data.append('id', id);
-    $.ajax({
-        url: '/admin/deleteAccountPayment',
-        headers: {
-            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-        },
-        data: form_data,
-        cache: false,
-        contentType: false,
-        processData: false,
-        type: 'POST',
-        dataType: "json",
-        success: function (response) {
-            data_table.reload();
-        },
-        error: function (response) {
-
-        }
-    });
-}
 function getPaymentActiveTab() {
     if ($('#kt_tab_pane_1_2').hasClass('active')) return 0;
     if ($('#kt_tab_pane_2_2').hasClass('active')) return 1;
@@ -304,49 +299,331 @@ function setPaymentActiveTab(type) {
     $('#editPaymentModal .modal-content .card-toolbar ul li:nth-child('+(type+1)+')').css('display', 'block');
 }
 
-
-
-function calculateEMI() {
-    var loanAmount = $("#la_value").html();
-    var numberOfMonths = $("#nm_value").html();
-    var rateOfInterest = $("#roi_value").html();
-    var monthlyInterestRatio = (rateOfInterest / 100) / 12;
-
-    var top = Math.pow((1 + monthlyInterestRatio), numberOfMonths);
-    var bottom = top - 1;
-    var sp = top / bottom;
-    var emi = ((loanAmount * monthlyInterestRatio) * sp);
-    var full = numberOfMonths * emi;
-    var interest = full - loanAmount;
-    var int_pge = (interest / full) * 100;
-    $("#tbl_int_pge").html(int_pge.toFixed(2) + " %");
-    //$("#tbl_loan_pge").html((100-int_pge.toFixed(2))+" %");
-
-    var emi_str = emi.toFixed(2).toString().replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    var loanAmount_str = loanAmount.toString().replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    var full_str = full.toFixed(2).toString().replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    var int_str = interest.toFixed(2).toString().replace(/,/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-    $("#emi").html(emi_str);
-    $("#tbl_emi").html(emi_str);
-    $("#tbl_la").html(loanAmount_str);
-    $("#tbl_nm").html(numberOfMonths);
-    $("#tbl_roi").html(rateOfInterest);
-    $("#tbl_full").html(full_str);
-    $("#tbl_int").html(int_str);
-    var detailDesc = "<thead><tr class='table-head'><th>Payment No.</th><th>Begining Balance</th><th>EMI</th><th>Principal</th><th>Interest</th><th>Ending Balance</th></thead><tbody>";
-    var bb = parseInt(loanAmount);
-    var int_dd = 0;
-    var pre_dd = 0;
-    var end_dd = 0;
-    for (var j = 1; j <= numberOfMonths; j++) {
-        int_dd = bb * ((rateOfInterest / 100) / 12);
-        pre_dd = emi.toFixed(2) - int_dd.toFixed(2);
-        end_dd = bb - pre_dd.toFixed(2);
-        detailDesc += "<tr><td>" + j + "</td><td>" + bb.toFixed(2) + "</td><td>" + emi.toFixed(2) + "</td><td>" + pre_dd.toFixed(2) + "</td><td>" + int_dd.toFixed(2) + "</td><td>" + end_dd.toFixed(2) + "</td></tr>";
-        bb = bb - pre_dd.toFixed(2);
+function isValidateEditLoanModal() {
+    if ($('#edit_loan_requesteddate').val() == '') {
+        $('#edit_loan_requesteddate').focus();
+        return false;
     }
-    detailDesc += "</tbody>";
-    $("#loantable").html(detailDesc);
+    if ($('#edit_loan_amount').val() == '') {
+        $('#edit_loan_amount').focus();
+        return false;
+    }
+    if ($('#edit_loan_interestingrate').val() == '') {
+        $('#edit_loan_interestingrate').focus();
+        return false;
+    }
+    if ($('#edit_loan_times').val() == '') {
+        $('#edit_loan_times').focus();
+        return false;
+    }
+    return true;
+}
+function submitLoanRequestForm() {
+    if (!isValidateEditLoanModal()) return;
+    var form_data = new FormData();
+    form_data.append('id', $('#edit_loan_id').val());
+    form_data.append('clientid', $('#edit_loan_clientid').val());
+    form_data.append('requesteddate', $('#edit_loan_requesteddate').val());
+    form_data.append('amount', $('#edit_loan_amount').val());
+    form_data.append('interestingrate', $('#edit_loan_interestingrate').val());
+    form_data.append('times', $('#edit_loan_times').val());
+    form_data.append('cycle', $('#edit_loan_cycle').val());
+    $.ajax({
+        url: '/admin/saveLoanRequest',
+        headers: {
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: form_data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        type: 'POST',
+        dataType: "json",
+        success: function (response) {
+            var $toast = toastr["success"](lang.success_saved, "ok");
+            calculateEMI();
+        },
+        error: function (response) {
 
+        }
+    });
+}
+
+function datatableCalcInit() {
+    data_table_calc = $('#kt_datatable_calc').KTDatatable({
+        data: {
+            type: 'remote',
+            source: {
+                read: {
+                    url: '/admin/getLoanCalculatorDataTable',
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    params: {
+                        amount: $('#edit_loan_amount').val(),
+                        interestingrate: $('#edit_loan_interestingrate').val(),
+                        requesteddate: $('#edit_loan_requesteddate').val(),
+                        cycle: $('#edit_loan_cycle').val(),
+                        times: $('#edit_loan_times').val(),
+                        loan_id: $('#edit_loan_id').val(),
+                    }
+                },
+            },
+            pageSize: 10,
+            serverPaging: true,
+            serverFiltering: false,
+            serverSorting: true
+        },
+        layout: {
+            scroll: true,
+            footer: true,
+        },
+        sortable: false,
+        pagination: true,
+        columns:
+            [
+                {
+                    field: 'date',
+                    title: lang.date,
+                    template: function (row, index) {
+                        return getJustDateWIthYear(row.date);
+                    },
+                    //width:200,
+                },
+                {
+                    field: 'capital',
+                    title: lang.capital,
+                    textAlign: 'left',
+                    //width: 100,
+                },
+                {
+                    field: 'interest',
+                    title: lang.interest,
+                    textAlign: 'left',
+                    //width: 100,
+                },
+                {
+                    field: 'dues',
+                    title: lang.dues,
+                    //width: 200,
+                },
+                {
+                    field: 'balance',
+                    title: lang.balance,
+                    //width: 200,
+                }, {
+                    field: 'actions',
+                    title: $("#isAcceptedLoan").val() == "true" ? lang.global_tbl_action : '',
+                    sortable: false,
+                    overflow: $("#isAcceptedLoan").val() == "true" ? 'visible' : '',
+                    autoHide: false,
+                    width: 160,
+                    template: function (row,index) {
+                        return $("#isAcceptedLoan").val() == "false" ? '' :'\
+                            <div class="dropdown dropdown-inline">\
+                            '+ (row.status == 0 ? '<a onclick="javascript:paynow(' + row.capital + ',' + row.interest + ',' + row.dues + ',' + index + ');" class="datatable-cell btn btn-primary" title="Reset password">\
+                                <span class="">'+ lang.paynow + '</span>\
+                            </a > ': row.status==1?'\
+                            <span class="datatable-cell notnow">'+ lang.notnow +'</span>\
+                            ': '<span class="datatable-cell paid">' + getJustDateWIthYear(row.paidDate)+' '+lang.paid +'</span>')+
+                            '</div>\
+                        ';
+                    },
+                }
+            ],
+        translate: trans_pagination,
+    });
+}
+function calculateLoan() {
+    data_table_calc.setDataSourceParam('amount', $('#edit_loan_amount').val());
+    data_table_calc.setDataSourceParam('interestingrate', $('#edit_loan_interestingrate').val());
+    data_table_calc.setDataSourceParam('requesteddate', $('#edit_loan_requesteddate').val());
+    data_table_calc.setDataSourceParam('cycle', $('#edit_loan_cycle').val());
+    data_table_calc.setDataSourceParam('times', $('#edit_loan_times').val());
+    data_table_calc.setDataSourceParam('loan_id', $('#edit_loan_id').val());
+    data_table_calc.reload();
+    $(".bootstrap-select.datatable-pager-size .dropdown-menu").css('top','1200px');
+}
+function paynow(capital,interest,balance,index) {
+    var form_data = new FormData();
+    form_data.append('LoanRequestId', $('#edit_loan_id').val()); 
+    form_data.append('Capital', capital);
+    form_data.append('Interest', interest);
+    form_data.append('Balabnce', balance);
+    form_data.append('TimesNum', index);
+    $.ajax({
+        url: '/admin/saveLoanInterestPayment',
+        headers: {
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: form_data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        type: 'POST',
+        dataType: "json",
+        success: function (response) {
+            var $toast = toastr["success"](lang.success_saved, "ok");
+            calculateEMI();
+        },
+        error: function (response) {
+
+        }
+    });
+}
+function calculateEMI() {
+    $("#cycle_div").html('\
+        '+ $("#edit_loan_cycle option:selected").html()+'\
+        <h2 id="cycle_lab" class="mb-0"></h2>\
+    ');
+    if (!isValidateEditLoanModal()) return;
+    var form_data = new FormData();
+    form_data.append('requesteddate', $('#edit_loan_requesteddate').val());
+    form_data.append('amount', $('#edit_loan_amount').val());
+    form_data.append('interestingrate', $('#edit_loan_interestingrate').val());
+    form_data.append('times', $('#edit_loan_times').val());
+    form_data.append('cycle', $('#edit_loan_cycle').val());
+    form_data.append('pagination[page]', 1);
+    form_data.append('pagination[perpage]', $('#edit_loan_times').val());
+    $.ajax({
+        url: '/admin/getLoanCalculatorDataTable',
+        headers: {
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: form_data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        type: 'POST',
+        dataType: "json",
+        success: function (response) {
+            //console.log(response);
+            var inte = 0;
+            var bala = 0;
+            var capi = 0;
+            for (var i = 0; i < response.data.length; i++) {
+                if (i == 0) {
+                    bala = eval(response.data[i].dues);
+                    capi = eval(response.data[i].balance) + eval(response.data[i].capital);
+                }
+                inte += eval(response.data[i].interest);
+            }
+            $("#cycle_lab").html(bala);
+            $("#interest_lab").html(parseFloat(inte.toFixed(2)));
+            $("#balance_lab").html(parseFloat((bala * response.data.length).toFixed(2)));
+            $("#percentage_lab").html(parseFloat((bala * response.data.length * 100 / capi - 100).toFixed(2)));
+        },
+        error: function (response) {
+
+        }
+    });
+    calculateLoan();
+}
+
+function datatableLoansInit() {
+    var data_table_loans = $('#kt_datatable_loans').KTDatatable({
+        data: {
+            type: 'remote',
+            source: {
+                read: {
+                    url: '/admin/getLoanRequestsDataTable',
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                },
+            },
+            pageSize: 10,
+            serverPaging: true,
+            serverFiltering: false,
+            serverSorting: true
+        },
+        layout: {
+            scroll: true,
+            footer: false,
+        },
+        sortable: false,
+        pagination: false,
+
+        search: {
+            input: $('#kt_datatable_search_query'),
+            key: 'generalSearch'
+        },
+        columns:
+            [
+                {
+                    field: 'clientid',
+                    title: '#',
+                    template: function (row, index) {
+                        return index + 1;
+                    },
+                    width: 30,
+                },
+                {
+                    field: 'amount',
+                    title: lang.amount,
+                    width: 100,
+                    template: function (row, index) {
+                        return '\
+                            <span>\
+                                <div class="font-weight-bolder font-size-lg mb-0">' + row.amount + '</div>\
+                                <div class="font-weight-bold text-muted">' + row.interestingRate + '%</div>\
+                            </span>\
+                        ';
+                    },
+                },
+                {
+                    field: 'loanCycle',
+                    title: lang.frequently,
+                    template: function (row) {
+                        var c = "";
+                        if (row.cycle == 0) c = "Weekly";
+                        else if (row.cycle == 1) c = "Monthly";
+                        else if (row.cycle == 2) c = "Quarter";
+                        else if (row.cycle == 3) c = "HalfOfYear";
+                        else if (row.cycle == 4) c = "Annual";
+                        return '<span>\
+                                <div class="font-weight-bolder font-size-lg mb-0">' + c + '</div>\
+                                <div class="font-weight-bold text-muted">' + row.times + ' ' + lang.times + '</div>\
+                            </span>';
+                    },
+                },
+                {
+                    field: 'requestedDate',
+                    title: lang.global_tbl_createddate,
+                    template: function (row, index) {
+                        return '\
+                            <span>\
+                                <div class="font-weight-bolder font-size-lg mb-0">' + getJustDateWIthYear(row.requestedDate) + '</div>\
+                                <div class="font-weight-bold text-muted">' + getJustDateWIthYear(row.updatedDate) + '</div>\
+                            </span>\
+                        ';
+                    },
+                }, {
+                    field: 'status',
+                    title: lang.status,
+                    template: function (row, index) {
+                        var c = "";
+                        if (row.status == 0) c = "New";
+                        else if (row.status == 1) c = "Contactor_Checking";
+                        else if (row.status == 2) c = "Contactor_Rejected";
+                        else if (row.status == 3) c = "Service_Mapping";
+                        else if (row.status == 4) c = "Service_rejected";
+                        else if (row.status == 5) c = "Debug_Processing";
+                        else if (row.status == 6) c = "Debug_rejected";
+                        else if (row.status == 7) c = "Collection_Processing";
+                        else if (row.status == 8) c = "Investor_Piad";
+                        else if (row.status == 9) c = "Interesting_Process";
+                        else if (row.status == 10) c = "Interesting_completed";
+                        else if (row.status == 11) c = "Interesting_Incompleted";
+                        return '\
+                            <span>\
+                                <div class="font-weight-bolder font-size-lg mb-0">' + c + '</div>\
+                                <div class="font-weight-bold text-muted">' + (row.statusReason == null ? "" : row.statusReason) + '</div>\
+                            </span>\
+                        ';
+                    },
+                }
+            ],
+        translate: trans_pagination,
+    });
 }

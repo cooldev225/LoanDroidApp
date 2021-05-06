@@ -37,6 +37,9 @@ var lang = {
     status: "Status",
     investor: "Inversora",
     savingRate: "Tasa de ahorro",
+    paynow: "Paga ahora",
+    paid: "Pagado",
+    notnow: "Ahora no",
     //transactionhistory
     from: "De",
     to: "Para",

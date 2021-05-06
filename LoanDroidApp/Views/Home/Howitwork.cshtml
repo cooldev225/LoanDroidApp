@@ -1,0 +1,87 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc
+@inject SignInManager<Models.data.ApplicationUser> SignInManager
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IHtmlLocalizer<LoanDroidApp.CommonResources> SharedLocalizer
+@{
+    ViewData["Title"] = "How does it work | LoanDroidApp";
+}
+<div class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">@SharedLocalizer["Home"]</a></li>
+                        <li class="active">@SharedLocalizer["howitworks"]</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="bg-white pinside30">
+                    <div class="row align-items-center">
+                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
+                            <h1 class="page-title">@SharedLocalizer["howitworks"]</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-nav" id="sub-nav">
+                    <ul class="nav nav-justified">
+                        <li class="nav-item">
+                            <a asp-controller="Home" asp-action="contact" class="nav-link">@SharedLocalizer["Contactus"]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Home" asp-action="faq" class="nav-link">@SharedLocalizer["faq"]</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="">
+    <!-- content start -->
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="section-space80" id="howitworks">
+                    <div class="container">
+                        <div class="row">
+                            <div class="offset-xl-2 col-xl-8 offset-md-2 col-md-8 offset-md-2 col-md-8 col-sm-12 col-12">
+                                <div class="section-title mb60 text-center">
+                                    <!-- section title start-->
+                                    <h1>@SharedLocalizer["howitworks"]</h1>
+                                    <p>About Business Loan and How does it work</p>
+                                </div>
+                                <!-- /.section title start-->
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <p class="lead">Conectamos directamente a personas que necesitan un préstamo con personas que quieren invertir su dinero. </p>
+                                <p>De esta manera logramos que el que pide prestado pague menos intereses y que el que invierte su dinero gane buenos rendimientos.</p>
+                                <p>
+                                    Tasa de interés anual y fija de 8.9% a 38.9% sin IVA, ésta dependerá del proceso de evaluación y calificación de nuestra área de crédito.
+                                </p>
+                                <a class="btn btn-primary mb-3 mb-lg-0" href="@Url.Action("login", "home")?page=register" id="navbarBlog" role="button" aria-haspopup="true" aria-expanded="false">
+                                    @SharedLocalizer["Signup"]
+                                </a>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="section-about-video">
+                                    <div class="about-img" style="background: url(../images/home/business-loan-about.jpg); background-size: cover; background-repeat: no-repeat; min-height: 335px; display: flex; justify-content: center;">
+                                        <div class="d-flex align-items-center">
+                                            <a class="popup-youtube
+                                       text-decoration-none"
+                                               href="https://www.youtube.com/watch?v=JRzWRZahOVU">
+                                                <img src="../images/home/play-icon.png" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

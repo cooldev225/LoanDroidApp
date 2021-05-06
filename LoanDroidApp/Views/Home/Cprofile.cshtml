@@ -29,20 +29,37 @@
                             <h1 class="page-title">@SharedLocalizer["MyAccount"]</h1>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                            <div class="btn-action"> <a href="@Url.Action("contact", "home")" class="btn btn-secondary">@SharedLocalizer["Contactus"]</a> </div>
+                            <div class="btn-action"> <a href="@Url.Action("howitwork", "home")" class="btn btn-secondary">@SharedLocalizer["howitworks"]</a> </div>
                         </div>
                     </div>
                 </div>
                 <div class="sub-nav" id="sub-nav">
                     <ul class="nav nav-justified">
                         <li class="nav-item">
-                            <a id="tab-1" data-toggle="tab" href="#service1" role="tab" aria-controls="service1" aria-selected="true" class="nav-link">@SharedLocalizer["Profile"]</a>
+                            <a id="tab-1" data-toggle="tab" href="#service1" role="tab" aria-controls="service1" aria-selected="@(ViewBag.step==0?"true":"false")" class="nav-link @(ViewBag.step==0?" active":"")">@SharedLocalizer["Profile"]</a>
                         </li>
                         <li class="nav-item">
-                            <a id="tab-2" data-toggle="tab" href="#service2" role="tab" aria-controls="service1" aria-selected="false" class="nav-link">@SharedLocalizer["Payment"]</a>
+                            @if (ViewBag.step > 0)
+                            {
+                                <a id="tab-2" data-toggle="tab" href="#service2" role="tab" aria-controls="service2" aria-selected="@(ViewBag.step == 1 ? "true" : "false")" class="nav-link @(ViewBag.step==1?" active":"")">@SharedLocalizer["PaySetup"]</a>
+                            }
+                            else
+                            {
+                                <a id="tab-2" data-toggle="tab" class="nav-link" style="color: #d2e2f7;">@SharedLocalizer["PaySetup"]</a>
+                            }
                         </li>
                         <li class="nav-item">
-                            <a id="tab-3" data-toggle="tab" href="#service3" role="tab" aria-controls="service1" aria-selected="false" class="nav-link">@SharedLocalizer["Request"]</a>
+                            @if (ViewBag.step > 1)
+                            {
+                                <a id="tab-3" data-toggle="tab" href="#service3" role="tab" aria-controls="service3" aria-selected="@(ViewBag.step==2?"true":"false")" class="nav-link @(ViewBag.step==2?" active":"")">@SharedLocalizer["LoanRequest"]</a>
+                            }
+                            else
+                            {
+                                <a id="tab-3" data-toggle="tab" class="nav-link" style="color: #d2e2f7;">@SharedLocalizer["LoanRequest"]</a>
+                            }
+                        </li>
+                        <li class="nav-item">
+                            <a id="tab-4" data-toggle="tab" href="#service4" role="tab" aria-controls="service4" aria-selected="false" class="nav-link">@SharedLocalizer["MoneyTransfer"]</a>
                         </li>
                     </ul>
                 </div>
@@ -50,7 +67,7 @@
         </div>
     </div>
 </div>
-<div class="">
+<div class="@ViewBag.step" id="step_div">
     <!-- content start -->
     <div class="container">
         <div class="row">
@@ -61,8 +78,8 @@
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="st-tabs">
                                     <!-- Tab panes -->
-                                    <div class="tab-content">
-                                        <div role="tabpanel" class="tab-pane fade show active" id="service1">
+                                    <div class="tab-content first">
+                                        <div role="tabpanel" class="tab-pane fade @(ViewBag.step==0?" show active":"")" id="service1">
                                             <input class="form-control" type="hidden" placeholder="id" value="@user.Id" id="edit_user_id">
                                             <div class="form-group row">
                                                 <div id="avatar_preview" class="fileinput" style="width:220px;padding-top:0px;">
@@ -77,33 +94,41 @@
                                                 <div style="width: calc(100% - 220px);padding: 0px 11px;">
                                                     <div class="form-group row">
                                                         <div class="col-6">
+                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["USERNAME_"] <span class="text-danger">*</span></label>
                                                             <input type="text" class="form-control" value="@user.UserName" id="edit_user_username" placeholder="@SharedLocalizer["username"]" />
                                                         </div>
                                                         <div class="col-6">
+                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["EMAIL_"] <span class="text-danger">*</span></label>
                                                             <input type="text" class="form-control" value="@user.Email" id="edit_user_email" placeholder="@SharedLocalizer["email"]" />
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <div class="col-6">
+                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["FIRSTNAME_"] <span class="text-danger">*</span></label>
                                                             <input type="text" class="form-control" value="@user.FirstName" id="edit_user_firstname" placeholder="@SharedLocalizer["firstname"]" />
                                                         </div>
                                                         <div class="col-6">
+                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["SURNAME_"] <span class="text-danger">*</span></label>
                                                             <input type="text" class="form-control" value="@user.LastName" id="edit_user_lastname" placeholder="@SharedLocalizer["lastname"]" />
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <div class="col-6">
+                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["PHONENUMBER_"] <span class="text-danger">*</span></label>
                                                             <input type="text" class="form-control" value="@user.PhoneNumber" id="edit_user_phonenumber" placeholder="@SharedLocalizer["phonenumber"]" />
                                                         </div>
                                                         <div class="col-6">
+                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["OTHERPTHONE_"]</label>
                                                             <input type="text" class="form-control" value="@user.OtherPhone" id="edit_user_otherphone" placeholder="@SharedLocalizer["otherphone"]" />
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <div class="col-6">
+                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["OFFICENUMBER_"]</label>
                                                             <input type="text" class="form-control" value="@user.OfficeNumber" id="edit_user_officenumber" placeholder="@SharedLocalizer["officenumber"]" />
                                                         </div>
                                                         <div class="col-6">
+                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["ADDRESS_"]</label>
                                                             <input type="text" class="form-control" value="@user.Address" id="edit_user_address" placeholder="@SharedLocalizer["address"]" />
                                                         </div>
                                                     </div>
@@ -114,199 +139,284 @@
                                                 <button type="submit" onclick="submitProfile()" class="btn btn-secondary">Submit</button>
                                             </div>
                                         </div>
-                                        <div role="tabpanel" class="tab-pane fade" id="service2">
-                                            <div class="card-toolbar">
-                                                <ul class="nav nav-tabs nav-bold nav-tabs-line">
-                                                    <li class="nav-item">
-                                                        <a class="nav-link active" data-toggle="tab" href="#kt_tab_pane_1_2">@SharedLocalizer["Online"]</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" data-toggle="tab" href="#kt_tab_pane_2_2">@SharedLocalizer["Card"]</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" data-toggle="tab" href="#kt_tab_pane_3_2">@SharedLocalizer["Bank"]</a>
-                                                    </li>
-                                                </ul>                                                
-                                            </div>
-                                            <input class="form-control" type="hidden" placeholder="id" value="0" id="edit_payment_id">
-                                            <input class="form-control" type="hidden" placeholder="id" value="" id="edit_user_id">
-                                            <div class="tab-content">
+                                        @if (ViewBag.step > 0)
+                                        {
+                                            <div role="tabpanel" class="tab-pane fade @(ViewBag.step==1?" show active":"")" id="service2">
+                                                <div class="card-toolbar">
+                                                    <ul class="nav nav-tabs nav-bold nav-tabs-line">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link active" data-toggle="tab" href="#kt_tab_pane_1_2">@SharedLocalizer["Online"]</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" data-toggle="tab" href="#kt_tab_pane_2_2">@SharedLocalizer["Card"]</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" data-toggle="tab" href="#kt_tab_pane_3_2">@SharedLocalizer["Bank"]</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                                 <input class="form-control" type="hidden" placeholder="id" value="0" id="edit_payment_id">
-                                                <input class="form-control" type="hidden" placeholder="id" value="@user.Id" id="edit_payment_userid">
-                                                <div class="tab-pane fade show active" id="kt_tab_pane_1_2" role="tabpanel">
-                                                    <div class="form-group row">
-                                                        <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["NAME_"] <span class="text-danger">*</span></label>
-                                                        <div class="col-4">
-                                                            <input type="text" class="form-control" id="edit_payment_gatewayname" placeholder="@SharedLocalizer["SiteName"]" />
+                                                <input class="form-control" type="hidden" placeholder="id" value="" id="edit_user_id">
+                                                <div class="tab-content">
+                                                    <input class="form-control" type="hidden" placeholder="id" value="@ViewBag.Payment01.Id" id="edit_payment_id0">
+                                                    <input class="form-control" type="hidden" placeholder="id" value="@user.Id" id="edit_payment_userid">
+                                                    <div class="tab-pane fade show active" id="kt_tab_pane_1_2" role="tabpanel">
+                                                        <div class="form-group row">
+                                                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["NAME_"] <span class="text-danger">*</span></label>
+                                                            <div class="col-4">
+                                                                <input type="text" class="form-control" id="edit_payment_gatewayname" value="@ViewBag.Payment01.GatewayName" placeholder="@SharedLocalizer["SiteName"]" />
+                                                            </div>
+                                                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["URL_"] <span class="text-danger">*</span></label>
+                                                            <div class="col-4">
+                                                                <input type="text" class="form-control" id="edit_payment_gatewayurl" value="@ViewBag.Payment01.GatewayUrl" placeholder="@SharedLocalizer["SiteUrl"]" />
+                                                            </div>
                                                         </div>
-                                                        <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["URL_"] <span class="text-danger">*</span></label>
-                                                        <div class="col-4">
-                                                            <input type="text" class="form-control" id="edit_payment_gatewayurl" placeholder="@SharedLocalizer["SiteUrl"]" />
+                                                        <div class="form-group row">
+                                                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["EMAIL_"] <span class="text-danger">*</span></label>
+                                                            <div class="col-10">
+                                                                <input type="text" class="form-control" id="edit_payment_gatewayemail" value="@ViewBag.Payment01.GatewayEmail" placeholder="@SharedLocalizer["email"]" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["USERNAME_"] <span class="text-danger">*</span></label>
+                                                            <div class="col-10">
+                                                                <input type="text" class="form-control" id="edit_payment_gatewayusername" value="@ViewBag.Payment01.GatewayUserName" placeholder="@SharedLocalizer["username"]" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["PASSWORD_"] <span class="text-danger">*</span></label>
+                                                            <div class="col-10">
+                                                                <input type="text" class="form-control" id="edit_payment_gatewaypassword" value="@ViewBag.Payment01.GatewayPassword" placeholder="@SharedLocalizer["password"]" />
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group row">
-                                                        <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["EMAIL_"] <span class="text-danger">*</span></label>
-                                                        <div class="col-10">
-                                                            <input type="text" class="form-control" id="edit_payment_gatewayemail" placeholder="@SharedLocalizer["email"]" />
+                                                    <input class="form-control" type="hidden" placeholder="id" value="@ViewBag.Payment02.Id" id="edit_payment_id1">
+                                                    <div class="tab-pane fade" id="kt_tab_pane_2_2" role="tabpanel">
+                                                        <div class="form-group row">
+                                                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["FIRSTNAME_"] <span class="text-danger">*</span></label>
+                                                            <div class="col-4">
+                                                                <input type="text" class="form-control" id="edit_payment_cardfirstname" value="@ViewBag.Payment02.CardFirstName" placeholder="@SharedLocalizer["firstname"]" />
+                                                            </div>
+                                                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["SURNAME_"] <span class="text-danger">*</span></label>
+                                                            <div class="col-4">
+                                                                <input type="text" class="form-control" id="edit_payment_cardlastname" value="@ViewBag.Payment02.CardLastName" placeholder="@SharedLocalizer["surname"]" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["NUMBER_"] <span class="text-danger">*</span></label>
+                                                            <div class="col-4">
+                                                                <input type="text" class="form-control" id="edit_payment_cardnumber" value="@ViewBag.Payment02.CardNumber" placeholder="@SharedLocalizer["cardnumber"]" />
+                                                            </div>
+                                                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["EXPIRATION_"] <span class="text-danger">*</span></label>
+                                                            <div class="col-4">
+                                                                <input type="text" class="form-control" id="edit_payment_cardexpirationdate" value="@ViewBag.Payment02.CardExpirationDate" placeholder="@SharedLocalizer["expirationdate"]" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["ADDRESS_"]-1<span class="text-danger">*</span></label>
+                                                            <div class="col-10">
+                                                                <input type="text" class="form-control" id="edit_payment_cardaddress1" value="@ViewBag.Payment02.CardAddress1" placeholder="@SharedLocalizer["address"]" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["Address_"]-2</label>
+                                                            <div class="col-10">
+                                                                <input type="text" class="form-control" id="edit_payment_cardaddress2" value="@ViewBag.Payment02.CardAddress2" placeholder="@SharedLocalizer["address"]" />
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group row">
-                                                        <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["USERNAME_"] <span class="text-danger">*</span></label>
-                                                        <div class="col-10">
-                                                            <input type="text" class="form-control" id="edit_payment_gatewayusername" placeholder="@SharedLocalizer["username"]" />
+                                                    <input class="form-control" type="hidden" placeholder="id" value="@ViewBag.Payment03.Id" id="edit_payment_id2">
+                                                    <div class="tab-pane fade" id="kt_tab_pane_3_2" role="tabpanel">
+                                                        <div class="form-group row">
+                                                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["COUNTRY_"]<span class="text-danger">*</span></label>
+                                                            <div class="col-4">
+                                                                <input type="text" class="form-control" id="edit_payment_bankcountry" value="@ViewBag.Payment03.BankCountry" placeholder="@SharedLocalizer["bankcountry"]" />
+                                                            </div>
+                                                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["ROUTING_"]<span class="text-danger">*</span></label>
+                                                            <div class="col-4">
+                                                                <input type="text" class="form-control" id="edit_payment_bankroutingnumber" value="@ViewBag.Payment03.BankRoutingNumber" placeholder="@SharedLocalizer["routingnumber"]" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["ACCOUNT_"]<span class="text-danger">*</span></label>
+                                                            <div class="col-4">
+                                                                <input type="text" class="form-control" id="edit_payment_bankaccontholder" value="@ViewBag.Payment03.BankAccountHolder" placeholder="@SharedLocalizer["accountholder"]" />
+                                                            </div>
+                                                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["CURRENCY_"]<span class="text-danger">*</span></label>
+                                                            <div class="col-4">
+                                                                <input type="text" class="form-control" id="edit_payment_bankcurrency" value="@ViewBag.Payment03.BankCurrency" placeholder="@SharedLocalizer["currency"]" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["NAME_"]<span class="text-danger">*</span></label>
+                                                            <div class="col-4">
+                                                                <input type="text" class="form-control" id="edit_payment_bankname" value="@ViewBag.Payment03.BankName" placeholder="@SharedLocalizer["bankname"]" />
+                                                            </div>
+                                                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["STREET_"]<span class="text-danger">*</span></label>
+                                                            <div class="col-4">
+                                                                <input type="text" class="form-control" id="edit_payment_bankstreet" value="@ViewBag.Payment03.BankStreet" placeholder="@SharedLocalizer["bankstreet"]" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["CITY_"]<span class="text-danger">*</span></label>
+                                                            <div class="col-4">
+                                                                <input type="text" class="form-control" id="edit_payment_bankcity" value="@ViewBag.Payment03.BankCity" placeholder="@SharedLocalizer["bankcity"]" />
+                                                            </div>
+                                                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["REGION_"]<span class="text-danger">*</span></label>
+                                                            <div class="col-4">
+                                                                <input type="text" class="form-control" id="edit_payment_bankregion" value="@ViewBag.Payment03.BankRegion" placeholder="@SharedLocalizer["bankregion"]" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["BICNUMBER_"]<span class="text-danger">*</span></label>
+                                                            <div class="col-4">
+                                                                <input type="text" class="form-control" id="edit_payment_bankswiftbicnumber" value="@ViewBag.Payment03.BankSwiftBicNumber" placeholder="@SharedLocalizer["bicnumber"]" />
+                                                            </div>
+                                                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["IBANNUMBER_"]<span class="text-danger">*</span></label>
+                                                            <div class="col-4">
+                                                                <input type="text" class="form-control" id="edit_payment_bankibannumber" value="@ViewBag.Payment03.BankIBANNumber" placeholder="@SharedLocalizer["ibannumber"]" />
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group row">
-                                                        <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["PASSWORD_"] <span class="text-danger">*</span></label>
-                                                        <div class="col-10">
-                                                            <input type="text" class="form-control" id="edit_payment_gatewaypassword" placeholder="@SharedLocalizer["password"]" />
-                                                        </div>
+                                                    <div class="card-footer">
+                                                        <button type="button" onclick="submitPaymentEditForm();" class="btn btn-primary font-weight-bold">@SharedLocalizer["Savingchanges"]</button>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="kt_tab_pane_2_2" role="tabpanel">
-                                                    <div class="form-group row">
-                                                        <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["FIRSTNAME_"] <span class="text-danger">*</span></label>
-                                                        <div class="col-4">
-                                                            <input type="text" class="form-control" id="edit_payment_cardfirstname" placeholder="@SharedLocalizer["firstname"]" />
-                                                        </div>
-                                                        <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["SURNAME_"] <span class="text-danger">*</span></label>
-                                                        <div class="col-4">
-                                                            <input type="text" class="form-control" id="edit_payment_cardlastname" placeholder="@SharedLocalizer["surname"]" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["NUMBER_"] <span class="text-danger">*</span></label>
-                                                        <div class="col-4">
-                                                            <input type="text" class="form-control" id="edit_payment_cardnumber" placeholder="@SharedLocalizer["cardnumber"]" />
-                                                        </div>
-                                                        <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["EXPIRATION_"] <span class="text-danger">*</span></label>
-                                                        <div class="col-4">
-                                                            <input type="text" class="form-control" id="edit_payment_cardexpirationdate" placeholder="@SharedLocalizer["expirationdate"]" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["ADDRESS_"]-1<span class="text-danger">*</span></label>
-                                                        <div class="col-10">
-                                                            <input type="text" class="form-control" id="edit_payment_cardaddress1" placeholder="@SharedLocalizer["address"]" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["Address_"]-2</label>
-                                                        <div class="col-10">
-                                                            <input type="text" class="form-control" id="edit_payment_cardaddress2" placeholder="@SharedLocalizer["address"]" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="tab-pane fade" id="kt_tab_pane_3_2" role="tabpanel">
-                                                    <div class="form-group row">
-                                                        <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["COUNTRY_"]<span class="text-danger">*</span></label>
-                                                        <div class="col-4">
-                                                            <input type="text" class="form-control" id="edit_payment_bankcountry" placeholder="@SharedLocalizer["bankcountry"]" />
-                                                        </div>
-                                                        <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["ROUTING_"]<span class="text-danger">*</span></label>
-                                                        <div class="col-4">
-                                                            <input type="text" class="form-control" id="edit_payment_bankroutingnumber" placeholder="@SharedLocalizer["routingnumber"]" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["ACCOUNT_"]<span class="text-danger">*</span></label>
-                                                        <div class="col-4">
-                                                            <input type="text" class="form-control" id="edit_payment_bankaccontholder" placeholder="@SharedLocalizer["accountholder"]" />
-                                                        </div>
-                                                        <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["CURRENCY_"]<span class="text-danger">*</span></label>
-                                                        <div class="col-4">
-                                                            <input type="text" class="form-control" id="edit_payment_bankcurrency" placeholder="@SharedLocalizer["currency"]" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["NAME_"]<span class="text-danger">*</span></label>
-                                                        <div class="col-4">
-                                                            <input type="text" class="form-control" id="edit_payment_bankname" placeholder="@SharedLocalizer["bankname"]" />
-                                                        </div>
-                                                        <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["STREET_"]<span class="text-danger">*</span></label>
-                                                        <div class="col-4">
-                                                            <input type="text" class="form-control" id="edit_payment_bankstreet" placeholder="@SharedLocalizer["bankstreet"]" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["CITY_"]<span class="text-danger">*</span></label>
-                                                        <div class="col-4">
-                                                            <input type="text" class="form-control" id="edit_payment_bankcity" placeholder="@SharedLocalizer["bankcity"]" />
-                                                        </div>
-                                                        <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["REGION_"]<span class="text-danger">*</span></label>
-                                                        <div class="col-4">
-                                                            <input type="text" class="form-control" id="edit_payment_bankregion" placeholder="@SharedLocalizer["bankregion"]" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["BICNUMBER_"]<span class="text-danger">*</span></label>
-                                                        <div class="col-4">
-                                                            <input type="text" class="form-control" id="edit_payment_bankswiftbicnumber" placeholder="@SharedLocalizer["bicnumber"]" />
-                                                        </div>
-                                                        <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["IBANNUMBER_"]<span class="text-danger">*</span></label>
-                                                        <div class="col-4">
-                                                            <input type="text" class="form-control" id="edit_payment_bankibannumber" placeholder="@SharedLocalizer["ibannumber"]" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <button type="button" onclick="submitPaymentEditForm();" class="btn btn-primary font-weight-bold">@SharedLocalizer["Savingchanges"]</button>
                                             </div>
-                                        </div>
-                                        <div role="tabpanel" class="tab-pane fade" id="service3">
-                                            <div class="row">
-                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                                    <div class="bg-light bg-white p-3 p-lg-5 outline">
-                                                        <span>Loan Amount is </span>
-                                                        <strong>
-                                                            <span class="" id="la_value">30000</span>
-                                                        </strong>
-                                                        <input type="text" data-slider="true" value="30000" data-slider-range="100000,5000000" data-slider-step="10000" data-slider-snap="true" id="la">
-                                                        <hr>
-                                                        <span>
-                                                            No. of Month is <strong>
-                                                                <span class="" id="nm_value">30</span>
-                                                            </strong>
-                                                        </span>
-                                                        <input type="text" data-slider="true" value="30" data-slider-range="120,360" data-slider-step="1" data-slider-snap="true" id="nm">
-                                                        <hr>
-                                                        <span>
-                                                            Rate of Interest [ROI] is <strong>
-                                                                <span class="" id="roi_value">10</span>
-                                                            </strong>
-                                                        </span>
-                                                        <input type="text" data-slider="true" value="10.2" data-slider-range="8,16" data-slider-step=".05" data-slider-snap="true" id="roi">
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                        }
+                                        @if (ViewBag.step > 1)
+                                        {
+                                            <div role="tabpanel" class="tab-pane fade @(ViewBag.step == 2 ? " show active" : "")" id="service3">
+                                                <input type="hidden" id="isAcceptedLoan" value="@(ViewBag.loan.Status == Models.data.LoanStatus.Interesting_Process ? "true" : "false")" />
+                                                @if (ViewBag.loan.Status != Models.data.LoanStatus.New)
+                                                {
                                                     <div class="row">
-                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                            <div class="bg-light p-3 outline">
-                                                                Monthly EMI
-                                                                <h2 id='emi' class="mb-0"></h2>
+                                                        <div class="col-12">
+                                                            <div class="alert alert-danger" role="alert">
+                                                                <strong>@(SharedLocalizer["LoanRequestStatusAlert_" + ViewBag.loan.Status])</strong>
+                                                                @if (ViewBag.loan.StatusReason != null && !ViewBag.loan.StatusReason.Equals(""))
+                                                                {
+                                                                    <p>@ViewBag.loan.StatusReason</p>
+                                                                }
                                                             </div>
                                                         </div>
-                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                            <div class="bg-light p-3 outline">
-                                                                Total Interest
-                                                                <h2 id='tbl_int' class="mb-0"></h2>
+                                                    </div>
+                                                }
+                                                <div class="row">
+                                                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12" id="loan_request_form">
+                                                        <div class="bg-light bg-white p-3 p-lg-3 outline" style="height:352px;">
+                                                            <input class="form-control" type="hidden" placeholder="id" value="@ViewBag.loan.Id" id="edit_loan_id">
+                                                            <input class="form-control" type="hidden" placeholder="id" value="@user.Id" id="edit_loan_clientid">
+                                                            <input type="hidden" class="form-control" id="edit_loan_requesteddate" value="@DateTime.Now.ToString("yyyy-MM-dd")" placeholder="@SharedLocalizer["requesteddate"]" />
+                                                            @{
+                                                                var disabled = "disabled";
+                                                                if (ViewBag.loan.Status == Models.data.LoanStatus.New ||
+                                                                    ViewBag.loan.Status == Models.data.LoanStatus.Contactor_Checking)
+                                                                    disabled = "";
+                                                            }
+                                                            <div class="form-group row" style="margin-top: 1rem;">
+                                                                <label for="example-search-input" class="col-5 col-form-label">@SharedLocalizer["AMOUNT_"]<span class="text-danger">*</span></label>
+                                                                <div class="col-7">
+                                                                    <input type="number" class="form-control" @disabled id="edit_loan_amount" value="@ViewBag.loan.Amount" placeholder="@SharedLocalizer["amount"]" />
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                            <div class="bg-light p-3 outline">
-                                                                Payable Amount
-                                                                <h2 id='tbl_full' class="mb-0"></h2>
+                                                            <div class="form-group row">
+                                                                <label for="example-search-input" class="col-5 col-form-label">@SharedLocalizer["FREQUENTLY_"]<span class="text-danger">*</span></label>
+                                                                <div class="col-7">
+                                                                    <select class="form-control" @disabled style="width:100%;" id="edit_loan_cycle">
+                                                                        @foreach (int i in Enum.GetValues(typeof(Models.data.LoanCycle)))
+                                                                        {
+                                                                            <option value="@i">@Enum.GetName(typeof(Models.data.LoanCycle), i)</option>
+                                                                        }
+                                                                    </select>
+                                                                </div>
                                                             </div>
+                                                            <div class="form-group row">
+                                                                <label for="example-search-input" class="col-5 col-form-label">@SharedLocalizer["INTEREST_"]<span class="text-danger">*</span></label>
+                                                                <div class="col-7">
+                                                                    <input type="number" disabled class="form-control" value="@ViewBag.loan.InterestingRate" id="edit_loan_interestingrate" placeholder="@SharedLocalizer["interestrate"]" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row">
+                                                                <label for="example-search-input" class="col-5 col-form-label">@SharedLocalizer["TIMES_"]<span class="text-danger">*</span></label>
+                                                                <div class="col-7">
+                                                                    <input type="number" @disabled class="form-control" value="@ViewBag.loan.Times" id="edit_loan_times" placeholder="@SharedLocalizer["times"]" />
+                                                                </div>
+                                                            </div>
+                                                            @if (disabled.Equals(""))
+                                                            {
+                                                                <div style="text-align:center;">
+                                                                    <button type="button" onclick="submitLoanRequestForm();" class="btn btn-primary font-weight-bold">@SharedLocalizer["Submit"]</button>
+                                                                </div>
+                                                            }
                                                         </div>
-                                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                                            <div class="bg-light p-3 outline">
-                                                                Interest Percentage
-                                                                <h2 id='tbl_int_pge' class="mb-0"></h2>
+                                                    </div>
+                                                    <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12">
+                                                        <div class="row">
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                                <div class="bg-light p-3 outline" id="cycle_div">
+                                                                    Monthly EMI
+                                                                    <h2 id='cycle_lab' class="mb-0"></h2>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                                <div class="bg-light p-3 outline">
+                                                                    @SharedLocalizer["TotalInterest"]
+                                                                    <h2 id='interest_lab' class="mb-0"></h2>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                                <div class="bg-light p-3 outline">
+                                                                    @SharedLocalizer["TotalBalance"]
+                                                                    <h2 id='balance_lab' class="mb-0"></h2>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                                <div class="bg-light p-3 outline">
+                                                                    @SharedLocalizer["InterestPercentage"]
+                                                                    <h2 id='percentage_lab' class="mb-0"></h2>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="datatable datatable-bordered datatable-head-custom kt_datatable_class" name="kt_datatable_calc" id="kt_datatable_calc"></div>
+                                                    </div>
+                                                </div>
+                                                <p><h1>@SharedLocalizer["MyLoanHistories"]</h1></p>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="datatable datatable-bordered datatable-head-custom kt_datatable_class" name="kt_datatable_loans" id="kt_datatable_loans"></div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div id="loantable" class='table table-striped table-bordered loantable table-responsive'></div>               
+                                        }
+                                        <div role="tabpanel" class="tab-pane fade" id="service4">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <p>@SharedLocalizer["CurrentBalance"]</p>
+                                                    <h1>@user.Balance USD</h1>
+                                                    <hr/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <h2>@SharedLocalizer["TransactionHistories"]</h2>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="btn-action"> 
+                                                        <a href="#!" class="btn btn-secondary">@SharedLocalizer["Deposit"]</a>
+                                                        <a href="#!" class="btn btn-secondary">@SharedLocalizer["Withdraw"]</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="datatable datatable-bordered datatable-head-custom kt_datatable_class" name="kt_datatable_trans" id="kt_datatable_trans"></div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -318,4 +428,5 @@
         </div>
     </div>
 </div>
+
 <script src="~/home/js/pages/cprofile.js"></script>

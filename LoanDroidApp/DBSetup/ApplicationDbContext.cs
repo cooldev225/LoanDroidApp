@@ -26,6 +26,7 @@ namespace DBSetup
         public DbSet<Notification> Notification { get; set; }
         public DbSet<NotificationReading> NotificationReading { get; set; }
         public DbSet<TransactionHistory> TransactionHistory { get; set; }
+        public DbSet<LoanInterestPayment> LoanInterestPayment { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { }
 
@@ -65,6 +66,9 @@ namespace DBSetup
 
             builder.Entity<TransactionHistory>().HasIndex(p => p.Id);
             builder.Entity<TransactionHistory>().Property(p => p.Id).ValueGeneratedOnAdd();
+
+            builder.Entity<LoanInterestPayment>().HasIndex(p => p.Id);
+            builder.Entity<LoanInterestPayment>().Property(p => p.Id).ValueGeneratedOnAdd();
         }
         public override int SaveChanges()
         {

@@ -13,7 +13,6 @@ E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\bin\
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\bin\Debug\netcoreapp3.0\IdentityModel.dll
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\bin\Debug\netcoreapp3.0\IdentityModel.AspNetCore.OAuth2Introspection.dll
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\bin\Debug\netcoreapp3.0\IdentityServer4.AccessTokenValidation.dll
-E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\bin\Debug\netcoreapp3.0\Microsoft.AspNet.Identity.Core.dll
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
@@ -194,3 +193,5 @@ E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Debug\netcoreapp3.0\LoanDroidApp.pdb
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Debug\netcoreapp3.0\LoanDroidApp.genruntimeconfig.cache
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Debug\netcoreapp3.0\LoanDroidApp.csprojAssemblyReference.cache
+E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Debug\netcoreapp3.0\Razor\Views\Home\FAQ.cshtml.g.cs
+E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Debug\netcoreapp3.0\Razor\Views\Home\Howitwork.cshtml.g.cs

@@ -166,6 +166,7 @@ namespace App.Controllers
                     else if (sort.field.Equals("updatedDate")) query = query.OrderByDescending(u => u.UpdatedDate);
                 }
             }
+            query = query.Where(u => !u.Name.Equals("administrator") && !u.Name.Equals("cliente") && !u.Name.Equals("inversora"));
             res.data = query.Skip((page - 1) * perpage)
                           .Take(perpage)
                           .ToList();
@@ -785,25 +786,33 @@ namespace App.Controllers
                         UpdatedDate=a.UpdatedDate,
                         UpdatedDevice=a.UpdatedDevice
                      });
-            if (!HasPermmision("loan.request")) query = query.Where(u =>
-                u.Status != LoanStatus.New &&
-                u.Status != LoanStatus.Contactor_Checking &&
-                u.Status != LoanStatus.Contactor_Rejected);
-            if (!HasPermmision("loan.service")) query = query.Where(u =>
-                u.Status != LoanStatus.Service_Mapping &&
-                u.Status != LoanStatus.Service_rejected);
-            if (!HasPermmision("loan.debug")) query = query.Where(u =>
-                u.Status != LoanStatus.Debug_Processing &&
-                u.Status != LoanStatus.Debug_rejected&&
-                u.Status != LoanStatus.Investor_Piad);
-            if (!HasPermmision("loan.collection")) query = query.Where(u =>
-                u.Status != LoanStatus.Collection_Processing &&
-                u.Status != LoanStatus.Investor_Piad);
-            if (!User.IsInRole("administrator")) {
+            if (User.IsInRole("cliente"))
+            {
                 query = query.Where(u =>
+                    u.ClientId.Equals(_userManager.GetUserId(User)));
+            }
+            else {
+                if (!HasPermmision("loan.request")) query = query.Where(u =>
+                    u.Status != LoanStatus.New &&
+                    u.Status != LoanStatus.Contactor_Checking &&
+                    u.Status != LoanStatus.Contactor_Rejected);
+                if (!HasPermmision("loan.service")) query = query.Where(u =>
+                    u.Status != LoanStatus.Service_Mapping &&
+                    u.Status != LoanStatus.Service_rejected);
+                if (!HasPermmision("loan.debug")) query = query.Where(u =>
+                    u.Status != LoanStatus.Debug_Processing &&
+                    u.Status != LoanStatus.Debug_rejected &&
+                    u.Status != LoanStatus.Investor_Piad);
+                if (!HasPermmision("loan.collection")) query = query.Where(u =>
+                    u.Status != LoanStatus.Collection_Processing &&
                     u.Status != LoanStatus.Interesting_Process &&
-                    u.Status != LoanStatus.Interesting_completed &&
-                    u.Status != LoanStatus.Interesting_Incompleted);
+                    u.Status != LoanStatus.Investor_Piad);
+                if (!User.IsInRole("administrator"))
+                {
+                    query = query.Where(u =>
+                        u.Status != LoanStatus.Interesting_completed &&
+                        u.Status != LoanStatus.Interesting_Incompleted);
+                }
             }
             int total = query.Count();
             DatatableLoanRequest res = new DatatableLoanRequest
@@ -872,8 +881,8 @@ namespace App.Controllers
                 InterestingRate= interestingrate,
                 Cycle=cycle,
                 Times=times
-            };
-            if (!(HasPermmision("loan.request") || HasPermmision("loan.service") || HasPermmision("loan.debug") || HasPermmision("loan.collection"))) return null;
+            };            
+            if (!(User.IsInRole("cliente")||HasPermmision("loan.request") || HasPermmision("loan.service") || HasPermmision("loan.debug") || HasPermmision("loan.collection"))) return null;
             if (id==0)
             {
                 await _context.LoanRequest.AddAsync(req);
@@ -911,10 +920,10 @@ namespace App.Controllers
         }
         [HttpPost]
         public DatatableLoanCalculator getLoanCalculatorDataTable(
-            double amount, double interestingrate, LoanCycle cycle, DateTime requesteddate, int times
+            double amount, double interestingrate, LoanCycle cycle, DateTime requesteddate, int times,int loan_id=0
         )
         {
-            if (!(HasPermmision("loan.request") || HasPermmision("loan.service") || HasPermmision("loan.debug") || HasPermmision("loan.collection"))) return null;
+            if (!(User.IsInRole("cliente")||HasPermmision("loan.request") || HasPermmision("loan.service") || HasPermmision("loan.debug") || HasPermmision("loan.collection"))) return null;
             int page = Request.Form["pagination[page]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[page]"].FirstOrDefault());
             int perpage = Request.Form["pagination[perpage]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[perpage]"].FirstOrDefault());
             string search = Request.Form["query[generalSearch]"].FirstOrDefault() == null ? "" : Request.Form["query[generalSearch]"].FirstOrDefault();
@@ -959,6 +968,27 @@ namespace App.Controllers
             res.data = data.Skip((page - 1) * perpage)
                           .Take(perpage)
                           .ToList();
+            if (loan_id > 0) {
+                for (int i = 0,j=0; i < res.data.Count(); i++) {
+                    if (j == 0)
+                    {
+                        var q = _context.LoanInterestPayment.Where(u => u.LoanRequestId == loan_id && u.TimesNum == i);
+                        if (q.Count() > 0)
+                        {
+                            res.data[i].Status = 2;
+                            res.data[i].PaidDate = q.First().CreatedDate;
+                        }
+                        else
+                        {
+                            res.data[i].Status = 0;
+                            j = 1;
+                        }
+                    }
+                    else {
+                        res.data[i].Status = 1;
+                    }
+                }
+            }
             return res;
         }
         [HttpPost]
@@ -1463,6 +1493,39 @@ namespace App.Controllers
                           .Take(perpage)
                           .ToList();
             return res;
+        }
+        [HttpPost]
+        public async Task<JsonResult> saveLoanInterestPayment(
+            long LoanRequestId,
+            double Capital,
+            double Interest,
+            double Balabnce,
+            int TimesNum
+        )
+        {
+            var userId = _context.CurrentUserId;
+            var username = _userManager.GetUserName(User);
+            var q1 = _context.AccountPayment.Where(u => u.UserId.Equals(userId)).OrderByDescending(u => u.CreatedDate);
+            if (q1.Count() == 0) return null;
+            LoanInterestPayment req = new LoanInterestPayment
+            {
+                LoanRequestId = LoanRequestId,
+                Capital = Capital,
+                Interest = Interest,
+                Balabnce = Balabnce,
+                TimesNum = TimesNum,
+                AccountPaymentId = q1.First().Id
+            };
+            if (!User.IsInRole("cliente")) return null;
+            await _context.LoanInterestPayment.AddAsync(req);
+            await _context.SaveChangesAsync();
+            await SaveNotification("Saldo pagado por " + username + " del cliente " + Balabnce + "$", "loan.collection");
+            await SaveNotification("Saldo pagado por " + username + " del cliente " + Balabnce + "$", "loan.debug");
+            await SaveNotification("Saldo pagado por " + username + " del cliente " + Balabnce + "$", "users.cmanage");
+            return Json(new
+            {
+                msg = "ok"
+            });
         }
     }
 }

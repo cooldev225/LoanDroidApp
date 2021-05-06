@@ -446,6 +446,22 @@ function datatableCalcInit() {
                 title: lang.balance,
                 //width: 200,
             },
+            {
+                field: 'actions',
+                title: lang.global_tbl_action,
+                sortable: false,
+                overflow: 'visible',
+                autoHide: false,
+                width: 160,
+                template: function (row, index) {
+                    return '\
+                        <div class="dropdown dropdown-inline">\
+                        '+ (row.status == 2 ? '<span class="datatable-cell paid">' + getJustDateWIthYear(row.paidDate) + ' ' + lang.paid + '</span>' :
+                            '') +
+                        '</div>\
+                    ';
+                },
+            }
         ],
         translate: trans_pagination,
     });

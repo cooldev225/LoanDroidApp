@@ -171,6 +171,15 @@
   <data name="Blog" xml:space="preserve">
     <value>Blog</value>
   </data>
+  <data name="BlogDetail" xml:space="preserve">
+    <value>Blog Detail</value>
+  </data>
+  <data name="BRANCHOFFICE" xml:space="preserve">
+    <value>BRANCH OFFICE</value>
+  </data>
+  <data name="Callusat" xml:space="preserve">
+    <value>Call us at</value>
+  </data>
   <data name="cardnumber" xml:space="preserve">
     <value>Card number</value>
   </data>
@@ -228,11 +237,17 @@
   <data name="CURRENCY_" xml:space="preserve">
     <value>CURRENCY</value>
   </data>
+  <data name="CurrentBalance" xml:space="preserve">
+    <value>Current balance</value>
+  </data>
   <data name="department" xml:space="preserve">
     <value>department</value>
   </data>
   <data name="DEPARTMENT_" xml:space="preserve">
     <value>DEPARTMENT</value>
+  </data>
+  <data name="Deposit" xml:space="preserve">
+    <value>Deposit</value>
   </data>
   <data name="description" xml:space="preserve">
     <value>description</value>
@@ -241,7 +256,10 @@
     <value>DESCRIPTION</value>
   </data>
   <data name="email" xml:space="preserve">
-    <value>email</value>
+    <value>Email</value>
+  </data>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>Email Address</value>
   </data>
   <data name="EMAIL_" xml:space="preserve">
     <value>EMAIL</value>
@@ -306,6 +324,12 @@
   <data name="FREQUENTLY_" xml:space="preserve">
     <value>FREQUENTLY</value>
   </data>
+  <data name="GetInTouch" xml:space="preserve">
+    <value>Get In Touch</value>
+  </data>
+  <data name="GetInTouchText" xml:space="preserve">
+    <value>Reach out to us &amp; we will respond as soon as we can.</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
@@ -323,6 +347,9 @@
   </data>
   <data name="Interestofloan" xml:space="preserve">
     <value>Interest of loan</value>
+  </data>
+  <data name="InterestPercentage" xml:space="preserve">
+    <value>Interest Percentage</value>
   </data>
   <data name="interestrate" xml:space="preserve">
     <value>Interest rate</value>
@@ -366,6 +393,9 @@
   <data name="Leave" xml:space="preserve">
     <value>Leave</value>
   </data>
+  <data name="LeaveAComment" xml:space="preserve">
+    <value>Leave A Comment</value>
+  </data>
   <data name="LoanCalculator" xml:space="preserve">
     <value>Loan Calculator</value>
   </data>
@@ -378,6 +408,39 @@
   <data name="LoanRequest" xml:space="preserve">
     <value>Loan Request</value>
   </data>
+  <data name="LoanRequestStatusAlert_Collection_Processing" xml:space="preserve">
+    <value>Please, wait for our final checking.</value>
+  </data>
+  <data name="LoanRequestStatusAlert_Contactor_Checking" xml:space="preserve">
+    <value>Please, wait for the verification of your personal information.</value>
+  </data>
+  <data name="LoanRequestStatusAlert_Contactor_Rejected" xml:space="preserve">
+    <value>Sorry for inform of our reject decision. Please, check your personal information.</value>
+  </data>
+  <data name="LoanRequestStatusAlert_Debug_Processing" xml:space="preserve">
+    <value>Please, wait for our validation of your financial information.</value>
+  </data>
+  <data name="LoanRequestStatusAlert_Debug_rejected" xml:space="preserve">
+    <value>Sorry for inform of our reject decision. Please, check your financial information.</value>
+  </data>
+  <data name="LoanRequestStatusAlert_Interesting_completed" xml:space="preserve">
+    <value>Your loan process has been completed successfully.</value>
+  </data>
+  <data name="LoanRequestStatusAlert_Interesting_Incompleted" xml:space="preserve">
+    <value>Your loan request has been closed.</value>
+  </data>
+  <data name="LoanRequestStatusAlert_Interesting_Process" xml:space="preserve">
+    <value>This loan request is in the interest processing step.</value>
+  </data>
+  <data name="LoanRequestStatusAlert_Investor_Piad" xml:space="preserve">
+    <value>An investor has paid a total amount of your loan just ago. We will inform next step to you as soon.</value>
+  </data>
+  <data name="LoanRequestStatusAlert_Service_Mapping" xml:space="preserve">
+    <value>Please, wait for investment for your request.</value>
+  </data>
+  <data name="LoanRequestStatusAlert_Service_rejected" xml:space="preserve">
+    <value>Sorry for inform of our reject decision.</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Log in</value>
   </data>
@@ -387,20 +450,32 @@
   <data name="Mailbox" xml:space="preserve">
     <value>Mailbox</value>
   </data>
+  <data name="message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="MoneyTransfer" xml:space="preserve">
+    <value>Money Transfer</value>
+  </data>
   <data name="MyAccount" xml:space="preserve">
     <value>My Account</value>
+  </data>
+  <data name="MyLoanHistories" xml:space="preserve">
+    <value>My Loan Histories</value>
   </data>
   <data name="MyRequest" xml:space="preserve">
     <value>My Request</value>
   </data>
-  <data name="NAME" xml:space="preserve">
-    <value>NAME</value>
+  <data name="name" xml:space="preserve">
+    <value>Name</value>
   </data>
   <data name="NAME_" xml:space="preserve">
     <value>NAME</value>
   </data>
   <data name="New" xml:space="preserve">
     <value>New</value>
+  </data>
+  <data name="next" xml:space="preserve">
+    <value>next</value>
   </data>
   <data name="NUMBER_" xml:space="preserve">
     <value>NUMBER</value>
@@ -426,14 +501,23 @@
   <data name="PASSWORD_" xml:space="preserve">
     <value>PASSWORD</value>
   </data>
+  <data name="PaySetup" xml:space="preserve">
+    <value>Payment Setup</value>
+  </data>
   <data name="PersonalLoans" xml:space="preserve">
     <value>Personal Loans</value>
+  </data>
+  <data name="phone" xml:space="preserve">
+    <value>Phone</value>
   </data>
   <data name="phonenumber" xml:space="preserve">
     <value>phone number</value>
   </data>
   <data name="PHONENUMBER_" xml:space="preserve">
     <value>PHONE NUMBER</value>
+  </data>
+  <data name="previous" xml:space="preserve">
+    <value>previous</value>
   </data>
   <data name="Projects" xml:space="preserve">
     <value>Projects</value>
@@ -510,6 +594,9 @@
   <data name="STREET_" xml:space="preserve">
     <value>STREET</value>
   </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
   <data name="Successfulloans" xml:space="preserve">
     <value>Successful loans</value>
   </data>
@@ -527,6 +614,15 @@
   </data>
   <data name="TIMES_" xml:space="preserve">
     <value>TIMES</value>
+  </data>
+  <data name="TotalBalance" xml:space="preserve">
+    <value>Total Balance</value>
+  </data>
+  <data name="TotalInterest" xml:space="preserve">
+    <value>Total Interest</value>
+  </data>
+  <data name="Transaction" xml:space="preserve">
+    <value>Transaction</value>
   </data>
   <data name="TransactionHistories" xml:space="preserve">
     <value>Transaction Histories</value>
@@ -561,10 +657,16 @@
   <data name="WeareHeretoHelpYou" xml:space="preserve">
     <value>We are Here to Help You</value>
   </data>
+  <data name="WeareHeretoHelpYouText" xml:space="preserve">
+    <value>Various versions have evolved over the years sometimes by accident sometimes on purpose injected humor and the like.</value>
+  </data>
   <data name="welcome_top_banner" xml:space="preserve">
     <value>WE REACHED 1 BILLION IN LOANS GIVEN OUT!</value>
   </data>
   <data name="WhyPeopleChooseUs" xml:space="preserve">
     <value>Why People Choose Us</value>
+  </data>
+  <data name="Withdraw" xml:space="preserve">
+    <value>Withdraw</value>
   </data>
 </root>

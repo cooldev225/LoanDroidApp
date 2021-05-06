@@ -42,6 +42,11 @@
     <meta content="Préstamos personales e inversiones entre personas | loandroidapp.com" name="twitter:title">
     <title>@ViewData["Title"]</title>
 
+    <link href="~/metronic/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet">
+    <link href="~/metronic/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet">
+    <link href="~/metronic/plugins/global/plugins.bundle.css" rel="stylesheet">
+    <link href="~/metronic/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet">
+
     <!-- Bootstrap -->
     <link href="~/home/css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="~/home/css/style.css" rel="stylesheet">
@@ -55,10 +60,14 @@
     <link href="~/home/css/owl.theme.css" rel="stylesheet">
     <link href="~/home/css/navbar.css" rel="stylesheet">
     <link href="~/admin/css/bootstrap-fileinput.css" rel="stylesheet">
+    <link href="~/toast/toastr.css" rel="stylesheet">
     <link href="~/home/css/custom.css" rel="stylesheet">
     <link rel="shortcut icon" href="~/images/logo.ico" />
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="~/home/js/jquery.min.js"></script>
+    <script src="~/home/js/lang/@(requestCulture.Replace("es-DO", "es-ES") + ".js")"></script>
+
+    <script type="text/javascript" src="~/admin/js/common.js"></script>
 </head>
 <body>
     <div class="sticky-top">
@@ -143,21 +152,29 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link" id="iwantlend" href="@Url.Action("blog", "home")" aria-haspopup="true" aria-expanded="false">
+                                @SharedLocalizer["Blog"]
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link" id="iwantlend" href="@Url.Action("contact", "home")" aria-haspopup="true" aria-expanded="false">
+                                @SharedLocalizer["Contactus"]
+                            </a>
+                        </li>
                         @if (!SignInManager.IsSignedIn(User) || type == 1)
                         {
-                            <li class="nav-item dropdown">
-                                <a class="nav-link" id="iwantloan" href="@Url.Action("wantloan", "home")" aria-haspopup="true" aria-expanded="false">
-                                    @SharedLocalizer["Iwantloan"]
-                                </a>
-                            </li>
+
                         }
                         @if (!SignInManager.IsSignedIn(User) || type == 2)
                         {
+                            /*
                             <li class="nav-item dropdown ">
                                 <a class="nav-link" id="iwantlend" href="@Url.Action("wantlend", "home")" aria-haspopup="true" aria-expanded="false">
                                     @SharedLocalizer["Iwanttolend"]
                                 </a>
                             </li>
+                            */
                         }
                         @if (!SignInManager.IsSignedIn(User))
                         {
@@ -252,7 +269,7 @@
                         <ul class="listnone ">
                             <li><a asp-controller="Home" asp-action="index">@SharedLocalizer["Home"]</a></li>
                             <li><a asp-controller="Home" asp-action="blog">@SharedLocalizer["Blog"]</a></li>
-                            <li><a asp-controller="Home" asp-action="loancalculator">@SharedLocalizer["LoanCalculator"]</a></li>
+                            <li><a asp-controller="Home" asp-action="howitwork">@SharedLocalizer["howitworks"]</a></li>
                             <li><a asp-controller="Home" asp-action="contact">@SharedLocalizer["Contactus"]</a></li>
                         </ul>
                     </div>
@@ -282,23 +299,31 @@
                     <p>© Copyright 2020 | Loan Company</p>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-right">
-                    <p>Terms of use | Privacy Policy</p>
+                    <p><a asp-controller="Home" asp-action="terms">Terms of use</a> | <a asp-controller="Home" asp-action="privacy">Privacy Policy</a></p>
                 </div>
             </div>
         </div>
     </div>
     <!-- back to top icon -->
     <a href="#0" class="cd-top" title="Go to top">Top</a>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="~/home/js/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- slider script -->
+
+
+
+    <script type="text/javascript" src="~/metronic/plugins/global/plugins.bundle.js"></script>
+    <script type="text/javascript" src="~/metronic/plugins/custom/prismjs/prismjs.bundle.js"></script>
+    <script type="text/javascript" src="~/metronic/js/scripts.bundle.js"></script>
+    <script type="text/javascript" src="~/metronic/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script type="text/javascript" src="~/metronic/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+    <script type="text/javascript" src="~/metronic/js/pages/widgets.js"></script>
+    <script src="~/metronic/plugins/custom/tinymce/tinymce.bundle.js"></script>
+
+    <!--<script src="~/home/js/bootstrap/js/bootstrap.bundle.min.js"></script>-->
     <script src="~/home/js/owl.carousel.min.js"></script>
     <script src="~/home/js/main.js"></script>
-    <!-- Back to top script -->
     <script src="~/home/js/back-to-top.js"></script>
     <script src="~/home/js/simple-slider.js"></script>
+    <script src="~/toast/toastr.js"></script>
     <script src="~/home/js/map.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?&amp;callback=initMap" async defer></script>
     <script src="~/admin/js/bootstrap-fileinput.js"></script>
 </body>
 </html>

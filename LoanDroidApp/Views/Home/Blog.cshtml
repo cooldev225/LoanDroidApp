@@ -21,17 +21,20 @@
                 <div class="bg-white pinside30">
                     <div class="row align-items-center">
                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
-                            <h1 class="page-title">@SharedLocalizer["MyAccount"]</h1>
+                            <h1 class="page-title">@SharedLocalizer["Blog"]</h1>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                            <div class="btn-action"> <a href="@Url.Action("howitwork", "home")" class="btn btn-secondary">@SharedLocalizer["howitworks"]</a> </div>
                         </div>
                     </div>
                 </div>
                 <div class="sub-nav" id="sub-nav">
                     <ul class="nav nav-justified">
                         <li class="nav-item">
-                            <a href="#!" class="nav-link">@SharedLocalizer["Contactus"]</a>
+                            <a asp-controller="Home" asp-action="contact" class="nav-link">@SharedLocalizer["Contactus"]</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#!" class="nav-link">@SharedLocalizer["LoanCalculator"]</a>
+                            <a asp-controller="Home" asp-action="faq" class="nav-link">@SharedLocalizer["FAQ"]</a>
                         </li>
                     </ul>
                 </div>
@@ -52,10 +55,10 @@
                                     <a href="@Url.Action("blogdetail", "home")?id=1" class="imghover"><img src="~/images/home/blog-img.jpg" alt="- Loan Company Website Template" class="img-fluid"></a>
                                 </div>
                                 <div class="bg-white pinside40 outline">
-                                    <h2><a href="@Url.Action("blogdetail", "home")?id=1" class="title">Couples Happy with Home Loan</a></h2>
+                                    <h2><a href="@Url.Action("blogdetail", "home")?id=1" class="title">Parejas felices con un préstamo hipotecario</a></h2>
                                     <p class="meta"><span class="meta-date">Aug 25, 2020</span><span class="meta-author">By<a href="#!"> Admin</a></span></p>
                                     <p>Fusce sed erat libasellus id orci quis ligula pret do lectus velit, a malesuada urna sodales.</p>
-                                    <a href="@Url.Action("blogdetail", "home")?id=1" class="btn-link">Read More</a>
+                                    <a href="@Url.Action("blogdetail", "home")?id=1" class="btn-link">@SharedLocalizer["ReadMore"]</a>
                                 </div>
                             </div>
                         </div>
@@ -65,10 +68,10 @@
                                     <a href="@Url.Action("blogdetail", "home")?id=2" class="imghover"><img src="~/images/home/blog-img-1.jpg" alt="- Loan Company Website Template" class="img-fluid"></a>
                                 </div>
                                 <div class="bg-white pinside40 outline">
-                                    <h2><a href="@Url.Action("blogdetail", "home")?id=2" class="title">Family Thinking for Loan</a></h2>
+                                    <h2><a href="@Url.Action("blogdetail", "home")?id=2" class="title">Pensamiento familiar para préstamo</a></h2>
                                     <p class="meta"><span class="meta-date">Aug 24, 2020</span><span class="meta-author">By<a href="#!"> Admin</a></span></p>
                                     <p>Nulla vehicula nibh vel malesuada dapibus ringilla nunc mi sit amet fbendum sapierttitor. </p>
-                                    <a href="@Url.Action("blogdetail", "home")?id=2" class="btn-link">Read More</a>
+                                    <a href="@Url.Action("blogdetail", "home")?id=2" class="btn-link">@SharedLocalizer["ReadMore"]</a>
                                 </div>
                             </div>
                         </div>
@@ -78,10 +81,10 @@
                                     <a href="@Url.Action("blogdetail", "home")?id=3" class="imghover"><img src="~/images/home/blog-img-2.jpg" alt="- Loan Company Website Templates" class="img-fluid"></a>
                                 </div>
                                 <div class="bg-white pinside40 outline">
-                                    <h2><a href="@Url.Action("blogdetail", "home")?id=3" class="title">Are you students looking for loan?</a></h2>
+                                    <h2><a href="@Url.Action("blogdetail", "home")?id=3" class="title">¿Son estudiantes que buscan un préstamo?</a></h2>
                                     <p class="meta"><span class="meta-date">Aug 23, 2020</span><span class="meta-author">By<a href="#!"> Admin</a></span></p>
                                     <p>Malesuada urna sodales euusce sed erat libasellus id orci quis ligula pretium co ctus velit.</p>
-                                    <a href="@Url.Action("blogdetail", "home")?id=3" class="btn-link">Read More</a>
+                                    <a href="@Url.Action("blogdetail", "home")?id=3" class="btn-link">@SharedLocalizer["ReadMore"]</a>
                                 </div>
                             </div>
                         </div>
@@ -91,10 +94,10 @@
                                     <a href="@Url.Action("blogdetail", "home")?id=4" class="imghover"><img src="~/images/home/blog-img-3.jpg" alt="- Loan Company Website Template" class="img-fluid"></a>
                                 </div>
                                 <div class="bg-white pinside40 outline">
-                                    <h2><a href="@Url.Action("blogdetail", "home")?id=4" class="title">Bigger home still the goal</a></h2>
+                                    <h2><a href="@Url.Action("blogdetail", "home")?id=4" class="title">Un hogar más grande sigue siendo el objetivo</a></h2>
                                     <p class="meta"><span class="meta-date">Aug 20, 2020</span><span class="meta-author">By<a href="#!"> Admin</a></span></p>
                                     <p>Lorem ipsum dolor sit amet consectetur its lorem adipiscing elitras molestie nunceu its.</p>
-                                    <a href="@Url.Action("blogdetail", "home")?id=4" class="btn-link">Read More</a>
+                                    <a href="@Url.Action("blogdetail", "home")?id=4" class="btn-link">@SharedLocalizer["ReadMore"]</a>
                                 </div>
                             </div>
                         </div>
@@ -104,10 +107,10 @@
                                     <a href="@Url.Action("blogdetail", "home")?id=5" class="imghover"><img src="~/images/home/blog-img-4.jpg" alt="- Loan Company Website Template" class="img-fluid"></a>
                                 </div>
                                 <div class="bg-white pinside40 outline">
-                                    <h2><a href="@Url.Action("blogdetail", "home")?id=5" class="title">5 Essential Financial Habits</a></h2>
+                                    <h2><a href="@Url.Action("blogdetail", "home")?id=5" class="title">5 hábitos financieros esenciales</a></h2>
                                     <p class="meta"><span class="meta-date">Aug 15, 2020</span><span class="meta-author">By<a href="#!"> Admin</a></span></p>
                                     <p>Pellentesque augue lacus hendr erit sit amet ultricies ahendrerit qui tortousce.</p>
-                                    <a href="@Url.Action("blogdetail", "home")?id=5" class="btn-link">Read More</a>
+                                    <a href="@Url.Action("blogdetail", "home")?id=5" class="btn-link">@SharedLocalizer["ReadMore"]</a>
                                 </div>
                             </div>
                         </div>
@@ -117,10 +120,10 @@
                                     <a href="@Url.Action("blogdetail", "home")?id=6" class="imghover"><img src="~/images/home/blog-img-5.jpg" alt="- Loan Company Website Template" class="img-fluid"></a>
                                 </div>
                                 <div class="bg-white pinside40 outline">
-                                    <h2><a href="@Url.Action("blogdetail", "home")?id=6" class="title">How to Get a Scholarship</a></h2>
+                                    <h2><a href="@Url.Action("blogdetail", "home")?id=6" class="title">Cómo obtener una beca</a></h2>
                                     <p class="meta"><span class="meta-date">Aug 12, 2020</span><span class="meta-author">By<a href="#!"> Admin</a></span></p>
                                     <p>Integer tincidunt quam a nulla aliquet loreml acerad ctum tellus augueac one ntum ut tincidunt.</p>
-                                    <a href="@Url.Action("blogdetail", "home")?id=6" class="btn-link">Read More</a>
+                                    <a href="@Url.Action("blogdetail", "home")?id=6" class="btn-link">@SharedLocalizer["ReadMore"]</a>
                                 </div>
                             </div>
                         </div>
@@ -128,11 +131,11 @@
                             <div class="st-pagination">
                                 <!--st-pagination-->
                                 <ul class="pagination">
-                                    <li> <a href="#!" aria-label="previous"><span aria-hidden="true">previous</span></a></li>
+                                    <li> <a href="#!" aria-label="previous"><span aria-hidden="true">@SharedLocalizer["previous"]</span></a></li>
                                     <li class="active"><a href="#!">1</a></li>
                                     <li><a href="#!">2</a></li>
                                     <li><a href="#!">3</a></li>
-                                    <li> <a href="#!" aria-label="Next"><span aria-hidden="true">next</span></a></li>
+                                    <li> <a href="#!" aria-label="Next"><span aria-hidden="true">@SharedLocalizer["next"]</span></a></li>
                                 </ul>
                             </div>
                             <!--/.st-pagination-->
