@@ -39,6 +39,19 @@ namespace Models.data
         public string Address { get; set; }
         public bool IsEnabled { get; set; }
         public double Balance { get; set; }
+        public string Passport { get; set; }
+        public Marital Marital { get; set; }
+        public int NationalityId { get; set; }
+        public int ProvinceId { get; set; }
+        public Residence Residence { get; set; }
+        public string ResidencePeriod { get; set; }
+        public string NumDependant { get; set; }
+        public int CompanyId { get; set; }
+        public string MotherName { get; set; }
+        public string MotherPhone { get; set; }
+        public string FatherName { get; set; }
+        public string FatherPhone { get; set; }
+
         public bool IsLockedOut => this.LockoutEnabled && this.LockoutEnd >= DateTimeOffset.UtcNow;
 
         public string CreatedBy { get; set; }

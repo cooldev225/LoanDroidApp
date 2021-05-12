@@ -7,11 +7,8 @@ namespace Models.data
 {
     public enum LoanStatus
     {
-        New,
         Contactor_Checking,
         Contactor_Rejected,
-        Service_Mapping,
-        Service_rejected,
         Debug_Processing,
         Debug_rejected,
         Collection_Processing,

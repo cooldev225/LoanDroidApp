@@ -186,11 +186,10 @@ function datatableInit() {
                     title: lang.frequently,
                     template: function (row) {
                         var c = "";
-                        if (row.cycle == 0) c= "Weekly";
-                        else if (row.cycle == 1) c = "Monthly";
-                        else if (row.cycle == 2) c = "Quarter";
-                        else if (row.cycle == 3) c = "HalfOfYear";
-                        else if (row.cycle == 4) c = "Annual";
+                        if (row.cycle == 0) c = lang.SEMANAL;
+                        else if (row.cycle == 1) c = lang.QUINCENAL;
+                        else if (row.cycle == 2) c = lang.MENSUAL;
+                        else if (row.cycle == 3) c = lang.DIARIO;
                         return '<span>\
                                 <div class="font-weight-bolder font-size-lg mb-0">' + c + '</div>\
                                 <div class="font-weight-bold text-muted">' + row.times + ' ' + lang.times + '</div>\

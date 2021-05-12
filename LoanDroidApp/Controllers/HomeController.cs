@@ -101,9 +101,7 @@ namespace App.Controllers
                       u.Status == LoanStatus.Contactor_Checking ||
                       u.Status == LoanStatus.Debug_Processing ||
                       u.Status == LoanStatus.Interesting_Process ||
-                      u.Status == LoanStatus.Investor_Piad ||
-                      u.Status == LoanStatus.New ||
-                      u.Status == LoanStatus.Service_Mapping
+                      u.Status == LoanStatus.Investor_Piad
                   )).OrderByDescending(u => u.CreatedDate);
                 if (q.Count() > 0) ViewBag.loan = q.First();
                 else ViewBag.loan = new LoanRequest
@@ -111,13 +109,16 @@ namespace App.Controllers
                     ClientId = userId,
                     Amount = 0,
                     InterestingRate = 8.9,
-                    Cycle = LoanCycle.Weekly,
+                    Cycle = LoanCycle.SEMANAL,
                     Times = 1,
-                    Status = LoanStatus.New,
+                    Status = LoanStatus.Contactor_Checking,
                     StatusReason = "",
                     RequestedDate = DateTime.Now
                 };
             }
+            ViewBag.Company = _context.Company.OrderBy(u => u.Name).ToList();
+            ViewBag.Province = _context.Province.OrderBy(u => u.Id).ToList();
+            ViewBag.Nationality = _context.Nationality.OrderBy(u => u.Id).ToList();
             return View();
         }
         [HttpGet]

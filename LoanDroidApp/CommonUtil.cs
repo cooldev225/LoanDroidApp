@@ -2,20 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
-
-
-using DBSetup.Interfaces;
-using Models.data;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
+
 namespace LoanDroidApp
 {
     public static class CommonUtil
@@ -28,6 +16,26 @@ namespace LoanDroidApp
         }
         public static bool hasPermission(IEnumerable<Claim> claims, string claim) {
             return claims.Where(u => u.Value.Equals(claim)).Count() > 0 ? true : false;
+        }
+        public static string DateTimeToFriendly(DateTime date) {
+            if (date.Year < 1000) return "";
+            return date.Day + "/" + date.Month + "/" + date.Year;
+        }
+        public static string UTFToUnicode(string str)
+        {
+            Encoding iso = Encoding.GetEncoding("ISO-8859-1");
+            Encoding utf8 = Encoding.UTF8;
+            byte[] utfBytes = utf8.GetBytes(str);
+            byte[] isoBytes = Encoding.Convert(utf8, iso, utfBytes);
+            return iso.GetString(isoBytes);
+        }
+        public static string UnicodeToUtf(string str)
+        {
+            Encoding iso = Encoding.GetEncoding("ISO-8859-1");
+            Encoding utf8 = Encoding.UTF8;
+            byte[] utfBytes = iso.GetBytes(str);
+            byte[] isoBytes = Encoding.Convert(iso, utf8, utfBytes);
+            return utf8.GetString(isoBytes);
         }
     }
 }

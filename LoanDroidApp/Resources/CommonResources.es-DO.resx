@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -210,8 +210,20 @@
   <data name="Close" xml:space="preserve">
     <value>Cerca</value>
   </data>
+  <data name="Collection_Processing" xml:space="preserve">
+    <value>Procesamiento de la colección</value>
+  </data>
+  <data name="COMPANYSTR_" xml:space="preserve">
+    <value>Empresa donde labora (dirección/sector real de clientes de cobranza)</value>
+  </data>
   <data name="CompletedProjects" xml:space="preserve">
     <value>Proyectos terminados</value>
+  </data>
+  <data name="Contactor_Checking" xml:space="preserve">
+    <value>Comprobación de contactor</value>
+  </data>
+  <data name="Contactor_Rejected" xml:space="preserve">
+    <value>Rechazado por contactor</value>
   </data>
   <data name="Contactus" xml:space="preserve">
     <value>Contacta</value>
@@ -251,6 +263,18 @@
   </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Salpicadero</value>
+  </data>
+  <data name="dateofbirth" xml:space="preserve">
+    <value>fecha de nacimiento</value>
+  </data>
+  <data name="DATEOFBIRTH_" xml:space="preserve">
+    <value>FECHA DE NACIMIENTO</value>
+  </data>
+  <data name="Debug_Processing" xml:space="preserve">
+    <value>Procesamiento de depurador</value>
+  </data>
+  <data name="Debug_rejected" xml:space="preserve">
+    <value>Rechazado por el depurador"</value>
   </data>
   <data name="department" xml:space="preserve">
     <value>departamento</value>
@@ -312,6 +336,12 @@
   <data name="FastEasyApplicationProcessText" xml:space="preserve">
     <value>Conectamos directamente a personas que necesitan un préstamo con personas que desean invertir su dinero. De esta forma conseguimos que el prestatario pague menos intereses y que quien invierta su dinero obtenga una buena rentabilidad.</value>
   </data>
+  <data name="FATHERNAME_" xml:space="preserve">
+    <value>NOMBRE DEL PADRE</value>
+  </data>
+  <data name="FATHERPHONE_" xml:space="preserve">
+    <value>TELÉFONO DEL PADRE</value>
+  </data>
   <data name="Features" xml:space="preserve">
     <value>Características</value>
   </data>
@@ -366,6 +396,18 @@
   <data name="IBANNUMBER_" xml:space="preserve">
     <value>NÚMERO IBAN</value>
   </data>
+  <data name="IDorpassport" xml:space="preserve">
+    <value>Cédula o Pasaporte</value>
+  </data>
+  <data name="Interesting_completed" xml:space="preserve">
+    <value>Solicitud completada</value>
+  </data>
+  <data name="Interesting_Incompleted" xml:space="preserve">
+    <value>Solicitud incompleta</value>
+  </data>
+  <data name="Interesting_Process" xml:space="preserve">
+    <value>Procesamiento de interés</value>
+  </data>
   <data name="Interestofloan" xml:space="preserve">
     <value>Interés del préstamo</value>
   </data>
@@ -398,6 +440,9 @@
   </data>
   <data name="INVESTOR_" xml:space="preserve">
     <value>INVERSORA</value>
+  </data>
+  <data name="Investor_Piad" xml:space="preserve">
+    <value>Pagado por el inversor</value>
   </data>
   <data name="Iwantloan" xml:space="preserve">
     <value>Quiero un préstamo</value>
@@ -474,11 +519,20 @@
   <data name="Mailbox" xml:space="preserve">
     <value>Buzón</value>
   </data>
+  <data name="MARITALSTATUS_" xml:space="preserve">
+    <value>ESTADO CIVIL</value>
+  </data>
   <data name="message" xml:space="preserve">
     <value>Mensaje</value>
   </data>
   <data name="MoneyTransfer" xml:space="preserve">
     <value>Transferencia de dinero</value>
+  </data>
+  <data name="MOTHERNAME_" xml:space="preserve">
+    <value>NOMBRE DE LA MADRE</value>
+  </data>
+  <data name="MOTHERPHONE_" xml:space="preserve">
+    <value>TELÉFONO MADRE</value>
   </data>
   <data name="MyAccount" xml:space="preserve">
     <value>Mi Cuenta</value>
@@ -495,6 +549,9 @@
   <data name="NAME_" xml:space="preserve">
     <value>NOMBRE</value>
   </data>
+  <data name="NATIONALITY_" xml:space="preserve">
+    <value>NACIONALIDAD</value>
+  </data>
   <data name="New" xml:space="preserve">
     <value>Nuevo</value>
   </data>
@@ -503,6 +560,12 @@
   </data>
   <data name="NUMBER_" xml:space="preserve">
     <value>NÚMERO</value>
+  </data>
+  <data name="numofdependant" xml:space="preserve">
+    <value>Número de Dependientes</value>
+  </data>
+  <data name="NUMOFDEPENDANT_" xml:space="preserve">
+    <value>NÚM. DE DEPENDIENTES</value>
   </data>
   <data name="officenumber" xml:space="preserve">
     <value>número de oficina</value>
@@ -524,6 +587,9 @@
   </data>
   <data name="Pages" xml:space="preserve">
     <value>Paginas</value>
+  </data>
+  <data name="PASSPORT_" xml:space="preserve">
+    <value>PASAPORTE</value>
   </data>
   <data name="password" xml:space="preserve">
     <value>contraseña</value>
@@ -561,6 +627,9 @@
   <data name="ProjectsText" xml:space="preserve">
     <value>logramos que el prestatario pague menos intereses y que el que invierte su dinero obtenga una buena rentabilidad.</value>
   </data>
+  <data name="PROVINCE_" xml:space="preserve">
+    <value>PROVINCIA</value>
+  </data>
   <data name="ReadMore" xml:space="preserve">
     <value>Leer más</value>
   </data>
@@ -578,6 +647,12 @@
   </data>
   <data name="REQUESTEDDATE_" xml:space="preserve">
     <value>FECHA SOLICITADA</value>
+  </data>
+  <data name="RESIDENCETIME_" xml:space="preserve">
+    <value>TIEMPO DE RESIDENCIA</value>
+  </data>
+  <data name="RESIDENCETYPE_" xml:space="preserve">
+    <value>TIPO DE RESIDENCIA</value>
   </data>
   <data name="RoleDialog" xml:space="preserve">
     <value>Diálogo de rol</value>
@@ -620,6 +695,9 @@
   </data>
   <data name="Select" xml:space="preserve">
     <value>Seleccione</value>
+  </data>
+  <data name="SEX_" xml:space="preserve">
+    <value>SEXO</value>
   </data>
   <data name="Signout" xml:space="preserve">
     <value>Cierre de sesión</value>

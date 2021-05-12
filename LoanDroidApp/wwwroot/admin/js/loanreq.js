@@ -52,18 +52,15 @@ function expendDetailBody(e) {
                     width: 180,
                     template: function (row, index) {
                         var c = "";
-                        if (row.status == 0) c = "New";
-                        else if (row.status == 1) c = "Contactor_Checking";
-                        else if (row.status == 2) c = "Contactor_Rejected";
-                        else if (row.status == 3) c = "Service_Mapping";
-                        else if (row.status == 4) c = "Service_rejected";
-                        else if (row.status == 5) c = "Debug_Processing";
-                        else if (row.status == 6) c = "Debug_rejected";
-                        else if (row.status == 7) c = "Collection_Processing";
-                        else if (row.status == 8) c = "Investor_Piad";
-                        else if (row.status == 9) c = "Interesting_Process";
-                        else if (row.status == 10) c = "Interesting_completed";
-                        else if (row.status == 11) c = "Interesting_Incompleted";
+                        if (row.status == 0) c = lang.Contactor_Checking;
+                        else if (row.status == 1) c = lang.Contactor_Rejected;
+                        else if (row.status == 2) c = lang.Debug_Processing;
+                        else if (row.status == 3) c = lang.Debug_rejected;
+                        else if (row.status == 4) c = lang.Collection_Processing;
+                        else if (row.status == 5) c = lang.Investor_Piad;
+                        else if (row.status == 6) c = lang.Interesting_Process;
+                        else if (row.status == 7) c = lang.Interesting_completed;
+                        else if (row.status == 8) c = lang.Interesting_Incompleted;
                         return '\
                             <span>\
                                 <div class="font-weight-bolder font-size-lg mb-0">' + c + '</div>\
@@ -158,11 +155,11 @@ function datatableInit() {
                         return '\
                             <div class="d-flex align-items-center">\
                                 <div class="symbol symbol-40 symbol-sm flex-shrink-0">\
-                                    <img src="../images/default-avatar.png" onload="setImgAvatar($(this),\''+ row.avatarImage + '\');" alt="photo">\
+                                    <img data-toggle="modal" data-target="#viewUserModal" onclick="viewUser(\''+ row.clientId +'\');" style="cursor: pointer;" src="../images/default-avatar.png" onload="setImgAvatar($(this),\''+ row.avatarImage + '\');" alt="photo"></a>\
                                 </div>\
                                 <div class="ml-4">\
-                                    <div class="text-dark-75 font-weight-bolder font-size-lg mb-0">'+ row.friendlyName + '</div>\
-                                    <a href="#" class="text-muted font-weight-bold text-hover-primary">'+ row.userName + '</a>\
+                                    <div data-toggle="modal" data-target="#viewUserModal" class="text-dark-75 font-weight-bolder font-size-lg mb-0" style="cursor: pointer;" onclick="viewUser(\''+ row.clientId +'\');">'+ row.friendlyName + '</div>\
+                                    <a data-toggle="modal" data-target="#viewUserModal" href="#" onclick="viewUser(\''+ row.clientId +'\');" class="text-muted font-weight-bold text-hover-primary">'+ row.userName + '</a>\
                                 </div>\
                             </div>\
                         ';
@@ -186,11 +183,10 @@ function datatableInit() {
                     title: lang.frequently,
                     template: function (row) {
                         var c = "";
-                        if (row.cycle == 0) c= "Weekly";
-                        else if (row.cycle == 1) c = "Monthly";
-                        else if (row.cycle == 2) c = "Quarter";
-                        else if (row.cycle == 3) c = "HalfOfYear";
-                        else if (row.cycle == 4) c = "Annual";
+                        if (row.cycle == 0) c = lang.SEMANAL;
+                        else if (row.cycle == 1) c = lang.QUINCENAL;
+                        else if (row.cycle == 2) c = lang.MENSUAL;
+                        else if (row.cycle == 3) c = lang.DIARIO;
                         return '<span>\
                                 <div class="font-weight-bolder font-size-lg mb-0">' + c + '</div>\
                                 <div class="font-weight-bold text-muted">' + row.times + ' ' + lang.times + '</div>\
@@ -213,18 +209,15 @@ function datatableInit() {
                     title: lang.status,
                     template: function (row, index) {
                         var c = "";
-                        if (row.status == 0) c = "New";
-                        else if (row.status == 1) c = "Contactor_Checking";
-                        else if (row.status == 2) c = "Contactor_Rejected";
-                        else if (row.status == 3) c = "Service_Mapping";
-                        else if (row.status == 4) c = "Service_rejected";
-                        else if (row.status == 5) c = "Debug_Processing";
-                        else if (row.status == 6) c = "Debug_rejected";
-                        else if (row.status == 7) c = "Collection_Processing";
-                        else if (row.status == 8) c = "Investor_Piad";
-                        else if (row.status == 9) c = "Interesting_Process";
-                        else if (row.status == 10) c = "Interesting_completed";
-                        else if (row.status == 11) c = "Interesting_Incompleted";
+                        if (row.status == 0) c = lang.Contactor_Checking;
+                        else if (row.status == 1) c = lang.Contactor_Rejected;
+                        else if(row.status == 2) c = lang.Debug_Processing;
+                        else if (row.status == 3) c = lang.Debug_rejected;
+                        else if (row.status == 4) c = lang.Collection_Processing;
+                        else if (row.status == 5) c = lang.Investor_Piad;
+                        else if (row.status == 6) c = lang.Interesting_Process;
+                        else if (row.status == 7) c = lang.Interesting_completed;
+                        else if (row.status == 8) c = lang.Interesting_Incompleted;
                         return '\
                             <span>\
                                 <div class="font-weight-bolder font-size-lg mb-0">' + c + '</div>\
@@ -289,6 +282,73 @@ jQuery(document).ready(function () {
     datatableInit();
     datatableCalcInit();
 });
+function viewUser(uid) {
+    var form_data = new FormData();
+    form_data.append('id', uid);
+    $.ajax({
+        url: '/admin/getUserRow',
+        headers: {
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: form_data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        type: 'POST',
+        dataType: "json",
+        success: function (response) {
+            $('#edit_user_id').val(response.user.id);
+            $('#edit_user_username').val(response.user.userName);
+            $('#edit_user_email').val(response.user.email);
+            $('#edit_user_passport').val(response.user.passport);
+            $('#edit_user_firstname').val(response.user.firstName);
+            $('#edit_user_lastname').val(response.user.lastName);
+            $('#edit_user_sex').val(response.user.sex);
+            $('#edit_user_marital').val(response.user.marital);
+            $('#edit_user_phonenumber').val(response.user.phoneNumber);
+            $('#edit_user_otherphone').val(response.user.otherPhone);
+            $('#edit_user_birth').val(response.user.birth);
+            $('#edit_user_numdependant').val(response.user.numDependant);
+            $('#edit_user_residence').val(response.user.residence);
+            $('#edit_user_residenceperiod').val(response.user.residencePeriod);
+            $('#edit_user_company').val(response.user.companyId);
+            $('#edit_user_officenumber').val(response.user.officeNumber);
+            $('#edit_user_address').val(response.user.address);
+            $('#edit_user_nationality').val(response.user.nationalityId);
+            $('#edit_user_province').val(response.user.provinceId);
+            $('#edit_user_mothername').val(response.user.motherName);
+            $('#edit_user_motherphone').val(response.user.motherPhone);
+            $('#edit_user_fathername').val(response.user.fatherName);
+            $('#edit_user_fatherphone').val(response.user.fatherPhone);
+
+            $('#edit_payment_gatewayusername').val(response.payment01.gatewayUserName);
+            $('#edit_payment_gatewaypassword').val(response.payment01.gatewayPassword);
+            $('#edit_payment_gatewayemail').val(response.payment01.gatewayEmail);
+            $('#edit_payment_gatewayurl').val(response.payment01.gatewayUrl);
+            $('#edit_payment_gatewayname').val(response.payment01.gatewayName);
+            $('#edit_payment_cardfirstname').val(response.payment02.cardFirstName);
+            $('#edit_payment_cardlastname').val(response.payment02.cardLastName);
+            $('#edit_payment_cardnumber').val(response.payment02.cardNumber);
+            $('#edit_payment_cardexpirationdate').val(response.payment02.cardExpirationDate);
+            $('#edit_payment_cardaddress1').val(response.payment02.cardAddress1);
+            $('#edit_payment_cardaddress2').val(response.payment02.cardAddress2);
+            $('#edit_payment_bankcountry').val(response.payment03.bankCountry);
+            $('#edit_payment_bankcurrency').val(response.payment03.bankCurrency);
+            $('#edit_payment_bankroutingnumber').val(response.payment03.bankRoutingNumber);
+            $('#edit_payment_bankaccountholder').val(response.payment03.bankAccountHolder);
+            $('#edit_payment_bankname').val(response.payment03.bankName);
+            $('#edit_payment_bankstreet').val(response.payment03.bankStreet);
+            $('#edit_payment_bankcity').val(response.payment03.bankCity);
+            $('#edit_payment_bankregion').val(response.payment03.bankRegion);
+            $('#edit_payment_bankswiftbicnumber').val(response.payment03.bankSwiftBicNumber);
+            $('#edit_payment_bankibannumber').val(response.payment03.bankIBANNumber);
+            //$('#avatar_img').prop('src');
+        },
+        error: function (response) {
+
+        }
+    });
+}
 function exportExcel() {
     window.open('/document/exportDocumentDataTable' +
         '?status=' + $('#kt_datatable_search_status').val() +

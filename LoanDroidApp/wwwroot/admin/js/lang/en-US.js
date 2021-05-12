@@ -60,7 +60,25 @@ var lang = {
     currency: "Currency",
     global_tbl_action: "Action",
     global_tbl_createddate:"Created Date",
-    global_tbl_updateddate:"Updated Date",
+    global_tbl_updateddate: "Updated Date",
+
+    New:"New",
+    Contactor_Checking: "Checking of Contactor",
+    Contactor_Rejected: "Rejected by Contactor",
+    Service_Mapping:"Mapping by Service manager",
+    Service_rejected:"Rejected by Service manager",
+    Debug_Processing:"Processing of Debugger",
+    Debug_rejected:"Rejected by Debugger",
+    Collection_Processing:"Processing of Collection",
+    Investor_Piad:"Paid from investor",
+    Interesting_Process:"Processing of interst",
+    Interesting_completed:"Completed request",
+    Interesting_Incompleted: "Incompleted request",
+
+    SEMANAL: "WEEKLY",
+    QUINCENAL: "BIWEEKLY",
+    MENSUAL: "MONTHLY",
+    DIARIO: "DAILY",
 };
 const trans_pagination={
     records: {

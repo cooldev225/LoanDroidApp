@@ -1,0 +1,33 @@
+pr_id,pr_nombre,pr_estado,pr_usuario_creo,pr_fecha_creo,pr_terminal_creo,pr_usuario_modifico,pr_fecha_modifico,pr_terminal_modifico
+1,Azua,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+2,Bahoruco,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+3,Barahona,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+4,Dajabón,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+5,Duarte,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+6,Elías Piña,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+7,El Seibo,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+8,Espaillat,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+9,Hato Mayor,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+10,Hermanas Mirabal,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+11,Independencia,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+12,La Altagracia,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+13,La Romana,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+14,La Vega,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+15,María Trinidad Sánchez,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+16,Monseñor Nouel,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+17,Montecristi,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+18,Monte Plata,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+19,Pedernales,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+20,Peravia,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+21,Puerto Plata,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+22,Samaná,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+23,Sánchez Ramírez,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+24,San Cristóbal,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+25,San José de Ocoa,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+26,San Juan,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+27,San Pedro de Macorís,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+28,Santiago,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+29,Santiago Rodríguez,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+30,Provincia Santo Domingo,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+31,Valverde,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL
+32,Distrito Nacional,A,ddominguez,08:07.0,127.0.0.1,NULL,NULL,NULL

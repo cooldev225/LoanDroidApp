@@ -136,7 +136,7 @@
                         <select class="form-control" style="width:100%;" id="edit_invest_cycle">
                             @foreach (int i in Enum.GetValues(typeof(Models.data.LoanCycle)))
                             {
-                                <option value="@i">@Enum.GetName(typeof(Models.data.LoanCycle), i)</option>
+                                <option value="@i">@(SharedLocalizer[Enum.GetName(typeof(Models.data.LoanCycle), i)])</option>
                             }
                         </select>
                     </div>

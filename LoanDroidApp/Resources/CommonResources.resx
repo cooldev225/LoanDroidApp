@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -201,8 +201,20 @@
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="Collection_Processing" xml:space="preserve">
+    <value>Processing of Collection</value>
+  </data>
+  <data name="COMPANYSTR_" xml:space="preserve">
+    <value>Company where you work (address / real sector of collection clients)</value>
+  </data>
   <data name="CompletedProjects" xml:space="preserve">
     <value>Completed Projects</value>
+  </data>
+  <data name="Contactor_Checking" xml:space="preserve">
+    <value>Checking of Contactor</value>
+  </data>
+  <data name="Contactor_Rejected" xml:space="preserve">
+    <value>Rejected by Contactor</value>
   </data>
   <data name="Contactus" xml:space="preserve">
     <value>Contact us</value>
@@ -240,6 +252,18 @@
   <data name="CurrentBalance" xml:space="preserve">
     <value>Current balance</value>
   </data>
+  <data name="dateofbirth" xml:space="preserve">
+    <value>date of birth</value>
+  </data>
+  <data name="DATEOFBIRTH_" xml:space="preserve">
+    <value>DATE OF BIRTH</value>
+  </data>
+  <data name="Debug_Processing" xml:space="preserve">
+    <value>Processing of Debugger</value>
+  </data>
+  <data name="Debug_rejected" xml:space="preserve">
+    <value>Rejected by Debugger</value>
+  </data>
   <data name="department" xml:space="preserve">
     <value>department</value>
   </data>
@@ -254,6 +278,9 @@
   </data>
   <data name="DESCRIPTION_" xml:space="preserve">
     <value>DESCRIPTION</value>
+  </data>
+  <data name="DIARIO" xml:space="preserve">
+    <value>DAILY</value>
   </data>
   <data name="email" xml:space="preserve">
     <value>Email</value>
@@ -296,6 +323,12 @@
   </data>
   <data name="FastEasyApplicationProcessText" xml:space="preserve">
     <value>We directly connect people who need a loan with people who want to invest their money. In this way we achieve that the borrower pays less interest and that the one who invests their money earns good returns.</value>
+  </data>
+  <data name="FATHERNAME_" xml:space="preserve">
+    <value>FATHER NAME</value>
+  </data>
+  <data name="FATHERPHONE_" xml:space="preserve">
+    <value>FATHER PHONE</value>
   </data>
   <data name="Financialchart" xml:space="preserve">
     <value>Financial chart</value>
@@ -345,6 +378,18 @@
   <data name="IBANNUMBER_" xml:space="preserve">
     <value>IBAN NUMBER</value>
   </data>
+  <data name="IDorpassport" xml:space="preserve">
+    <value>ID or passport</value>
+  </data>
+  <data name="Interesting_completed" xml:space="preserve">
+    <value>Completed request</value>
+  </data>
+  <data name="Interesting_Incompleted" xml:space="preserve">
+    <value>Incompleted request</value>
+  </data>
+  <data name="Interesting_Process" xml:space="preserve">
+    <value>Processing of interst</value>
+  </data>
   <data name="Interestofloan" xml:space="preserve">
     <value>Interest of loan</value>
   </data>
@@ -374,6 +419,9 @@
   </data>
   <data name="INVESTOR_" xml:space="preserve">
     <value>INVESTOR</value>
+  </data>
+  <data name="Investor_Piad" xml:space="preserve">
+    <value>Paid from investor</value>
   </data>
   <data name="Iwantloan" xml:space="preserve">
     <value>I want a loan</value>
@@ -450,11 +498,23 @@
   <data name="Mailbox" xml:space="preserve">
     <value>Mailbox</value>
   </data>
+  <data name="MARITALSTATUS_" xml:space="preserve">
+    <value>MARITAL STATUS</value>
+  </data>
+  <data name="MENSUAL" xml:space="preserve">
+    <value>MONTHLY</value>
+  </data>
   <data name="message" xml:space="preserve">
     <value>Message</value>
   </data>
   <data name="MoneyTransfer" xml:space="preserve">
     <value>Money Transfer</value>
+  </data>
+  <data name="MOTHERNAME_" xml:space="preserve">
+    <value>MOTHER NAME</value>
+  </data>
+  <data name="MOTHERPHONE_" xml:space="preserve">
+    <value>MOTHER PHONE</value>
   </data>
   <data name="MyAccount" xml:space="preserve">
     <value>My Account</value>
@@ -471,6 +531,9 @@
   <data name="NAME_" xml:space="preserve">
     <value>NAME</value>
   </data>
+  <data name="NATIONALITY_" xml:space="preserve">
+    <value>NATIONALITY</value>
+  </data>
   <data name="New" xml:space="preserve">
     <value>New</value>
   </data>
@@ -479,6 +542,12 @@
   </data>
   <data name="NUMBER_" xml:space="preserve">
     <value>NUMBER</value>
+  </data>
+  <data name="numofdependant" xml:space="preserve">
+    <value>num of dependant</value>
+  </data>
+  <data name="NUMOFDEPENDANT_" xml:space="preserve">
+    <value>NUM. OF DEPENDANT</value>
   </data>
   <data name="officenumber" xml:space="preserve">
     <value>office number</value>
@@ -494,6 +563,9 @@
   </data>
   <data name="OTHERPTHONE_" xml:space="preserve">
     <value>OTHER NUMBER</value>
+  </data>
+  <data name="PASSPORT_" xml:space="preserve">
+    <value>PASSPORT</value>
   </data>
   <data name="password" xml:space="preserve">
     <value>password</value>
@@ -525,6 +597,12 @@
   <data name="ProjectsText" xml:space="preserve">
     <value>we achieve that the borrower pays less interest and that the one who invests their money earns good returns.</value>
   </data>
+  <data name="PROVINCE_" xml:space="preserve">
+    <value>PROVINCE</value>
+  </data>
+  <data name="QUINCENAL" xml:space="preserve">
+    <value>BIWEEKLY</value>
+  </data>
   <data name="ReadMore" xml:space="preserve">
     <value>Read More</value>
   </data>
@@ -536,6 +614,12 @@
   </data>
   <data name="REQUESTEDDATE_" xml:space="preserve">
     <value>REQUESTED DATE</value>
+  </data>
+  <data name="RESIDENCETIME_" xml:space="preserve">
+    <value>RESIDENCE TIME</value>
+  </data>
+  <data name="RESIDENCETYPE_" xml:space="preserve">
+    <value>RESIDENCE TYPE</value>
   </data>
   <data name="RoleDialog" xml:space="preserve">
     <value>Role Dialog</value>
@@ -572,6 +656,12 @@
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
+  </data>
+  <data name="SEMANAL" xml:space="preserve">
+    <value>WEEKLY</value>
+  </data>
+  <data name="SEX_" xml:space="preserve">
+    <value>SEX</value>
   </data>
   <data name="Signup" xml:space="preserve">
     <value>Sign up</value>

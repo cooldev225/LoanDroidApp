@@ -1,4 +1,4 @@
-using DBSetup;
+﻿using DBSetup;
 using DBSetup.Interfaces;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Authentication.Cookies;

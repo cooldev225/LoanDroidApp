@@ -27,12 +27,10 @@ namespace DBSetup{
 
         public const string LoanPermissionGroupName = "Loan Permissions";
         public static ApplicationPermission RequestLoan = new ApplicationPermission("Pedir prestamo", "loan.request", LoanPermissionGroupName, "Permission to loan request");
-        public static ApplicationPermission ServiveLoan = new ApplicationPermission("Préstamo de servicio", "loan.service", LoanPermissionGroupName, "Permission to loan service");
         public static ApplicationPermission DebugLoan = new ApplicationPermission("Préstamo de depuración", "loan.debug", LoanPermissionGroupName, "Permission to loan debug");
         public static ApplicationPermission CollectionLoan = new ApplicationPermission("Préstamo de cobro", "loan.collection", LoanPermissionGroupName, "Permission to loan collection");
 
         public const string InvestmentPermissionGroupName = "Investment Permissions";
-        public static ApplicationPermission ServiceInvestment = new ApplicationPermission("Inversión en servicios", "investment.service", InvestmentPermissionGroupName, "Permission to investment service");
         public static ApplicationPermission DebugInvestment = new ApplicationPermission("Inversión de depuración", "investment.debug", InvestmentPermissionGroupName, "Permission to investment debug");
         public static ApplicationPermission CollectionInvestment = new ApplicationPermission("Inversión de cobranza", "investment.collection", InvestmentPermissionGroupName, "Permission to investment collection");
         static ApplicationPermissions()
@@ -52,11 +50,9 @@ namespace DBSetup{
                 AssignRoles,
 
                 RequestLoan,
-                ServiveLoan,
                 DebugLoan,
                 CollectionLoan,
 
-                ServiceInvestment,
                 DebugInvestment,
                 CollectionInvestment
             };

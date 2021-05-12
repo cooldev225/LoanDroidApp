@@ -15,7 +15,19 @@ jQuery(document).ready(function () {
     $('.fileinput-delete').on('click', function () {
         $('#avatar_img').prop('src', $('#default_img').prop('src'));
     });
-
+    $('#edit_user_birth').datepicker({
+        rtl: KTUtil.isRTL(),
+        todayHighlight: true,
+        orientation: 'bottom left',
+        format: "dd/mm/yyyy",
+    });
+    $("#edit_user_passport").inputmask({
+        mask: "999-9999999-9",
+        definitions: { '5': { validator: "[0-5]" } }
+    });
+    //$("#edit_user_company").select2();
+    //$("#edit_user_nationality").select2();
+    //$("#edit_user_province").select2();
     if (eval($("#step_div").prop('class')) > 1) {
         $("#edit_loan_amount").on(
             "change",
@@ -63,6 +75,18 @@ function isValidateEditUserModal() {
         $('#edit_user_username').focus();
         return false;
     }
+    if ($('#edit_user_email').val() == '') {
+        $('#edit_user_email').focus();
+        return false;
+    }
+    if ($('#edit_user_passport').val() == '') {
+        $('#edit_user_passport').focus();
+        return false;
+    }
+    if ($('#edit_user_sex').val() == 0) {
+        $('#edit_user_sex').focus();
+        return false;
+    }
     if ($('#edit_user_firstname').val() == '') {
         $('#edit_user_firstname').focus();
         return false;
@@ -70,13 +94,25 @@ function isValidateEditUserModal() {
     if ($('#edit_user_lastname').val() == '') {
         $('#edit_user_lastname').focus();
         return false;
-    }
-    if ($('#edit_user_email').val() == '') {
-        $('#edit_user_email').focus();
-        return false;
-    }
+    }    
     if ($('#edit_user_phonenumber').val() == '') {
         $('#edit_user_phonenumber').focus();
+        return false;
+    } 
+    if ($('#edit_user_birth').val() == '') {
+        $('#edit_user_birth').focus();
+        return false;
+    }
+    if ($('#edit_user_numdependant').val() == '') {
+        $('#edit_user_numdependant').focus();
+        return false;
+    }
+    if ($('#edit_user_mothername').val() == '') {
+        $('#edit_user_mothername').focus();
+        return false;
+    }
+    if ($('#edit_user_fathername').val() == '') {
+        $('#edit_user_fathername').focus();
         return false;
     }
     return true;
@@ -86,13 +122,27 @@ function submitProfile() {
     var form_data = new FormData();
     form_data.append('id', $('#edit_user_id').val());
     form_data.append('username', $('#edit_user_username').val());
+    form_data.append('email', $('#edit_user_email').val());
+    form_data.append('passport', $('#edit_user_passport').val());
     form_data.append('firstname', $('#edit_user_firstname').val());
     form_data.append('lastname', $('#edit_user_lastname').val());
-    form_data.append('email', $('#edit_user_email').val());
+    form_data.append('sex', $('#edit_user_sex').val()); 
+    form_data.append('marital', $('#edit_user_marital').val());
     form_data.append('phonenumber', $('#edit_user_phonenumber').val());
-    form_data.append('otherphone', $('#edit_user_otherphone').val());
+    form_data.append('otherphone', $('#edit_user_otherphone').val()); 
+    form_data.append('birth', $('#edit_user_birth').val());
+    form_data.append('numdependant', $('#edit_user_numdependant').val()); 
+    form_data.append('residence', $('#edit_user_residence').val());
+    form_data.append('residenceperiod', $('#edit_user_residenceperiod').val()); 
+    form_data.append('company', $('#edit_user_company').val());
     form_data.append('officenumber', $('#edit_user_officenumber').val());
-    form_data.append('address', $('#edit_user_address').val());
+    form_data.append('address', $('#edit_user_address').val()); 
+    form_data.append('nationality', $('#edit_user_nationality').val());
+    form_data.append('province', $('#edit_user_province').val());
+    form_data.append('mothername', $('#edit_user_mothername').val());
+    form_data.append('motherphone', $('#edit_user_motherphone').val());
+    form_data.append('fathername', $('#edit_user_fathername').val());
+    form_data.append('fatherphone', $('#edit_user_fatherphone').val());
     form_data.append('avatarimage', $('#avatar_img').prop('src'));
     form_data.append('role', 'cliente');
     $.ajax({
@@ -348,7 +398,6 @@ function submitLoanRequestForm() {
         }
     });
 }
-
 function datatableCalcInit() {
     data_table_calc = $('#kt_datatable_calc').KTDatatable({
         data: {
@@ -417,7 +466,7 @@ function datatableCalcInit() {
                     sortable: false,
                     overflow: $("#isAcceptedLoan").val() == "true" ? 'visible' : '',
                     autoHide: false,
-                    width: 160,
+                    width: 180,
                     template: function (row,index) {
                         return $("#isAcceptedLoan").val() == "false" ? '' :'\
                             <div class="dropdown dropdown-inline">\
@@ -497,7 +546,6 @@ function calculateEMI() {
         type: 'POST',
         dataType: "json",
         success: function (response) {
-            //console.log(response);
             var inte = 0;
             var bala = 0;
             var capi = 0;
@@ -519,7 +567,6 @@ function calculateEMI() {
     });
     calculateLoan();
 }
-
 function datatableLoansInit() {
     var data_table_loans = $('#kt_datatable_loans').KTDatatable({
         data: {
@@ -576,11 +623,10 @@ function datatableLoansInit() {
                     title: lang.frequently,
                     template: function (row) {
                         var c = "";
-                        if (row.cycle == 0) c = "Weekly";
-                        else if (row.cycle == 1) c = "Monthly";
-                        else if (row.cycle == 2) c = "Quarter";
-                        else if (row.cycle == 3) c = "HalfOfYear";
-                        else if (row.cycle == 4) c = "Annual";
+                        if (row.cycle == 0) c = lang.SEMANAL;
+                        else if (row.cycle == 1) c = lang.QUINCENAL;
+                        else if (row.cycle == 2) c = lang.MENSUAL;
+                        else if (row.cycle == 3) c = lang.DIARIO;
                         return '<span>\
                                 <div class="font-weight-bolder font-size-lg mb-0">' + c + '</div>\
                                 <div class="font-weight-bold text-muted">' + row.times + ' ' + lang.times + '</div>\
@@ -603,18 +649,15 @@ function datatableLoansInit() {
                     title: lang.status,
                     template: function (row, index) {
                         var c = "";
-                        if (row.status == 0) c = "New";
-                        else if (row.status == 1) c = "Contactor_Checking";
-                        else if (row.status == 2) c = "Contactor_Rejected";
-                        else if (row.status == 3) c = "Service_Mapping";
-                        else if (row.status == 4) c = "Service_rejected";
-                        else if (row.status == 5) c = "Debug_Processing";
-                        else if (row.status == 6) c = "Debug_rejected";
-                        else if (row.status == 7) c = "Collection_Processing";
-                        else if (row.status == 8) c = "Investor_Piad";
-                        else if (row.status == 9) c = "Interesting_Process";
-                        else if (row.status == 10) c = "Interesting_completed";
-                        else if (row.status == 11) c = "Interesting_Incompleted";
+                        if (row.status == 0) c = lang.Contactor_Checking;
+                        else if (row.status == 1) c = lang.Contactor_Rejected;
+                        else if (row.status == 2) c = lang.Debug_Processing;
+                        else if (row.status == 3) c = lang.Debug_rejected;
+                        else if (row.status == 4) c = lang.Collection_Processing;
+                        else if (row.status == 5) c = lang.Investor_Piad;
+                        else if (row.status == 6) c = lang.Interesting_Process;
+                        else if (row.status == 7) c = lang.Interesting_completed;
+                        else if (row.status == 8) c = lang.Interesting_Incompleted;
                         return '\
                             <span>\
                                 <div class="font-weight-bolder font-size-lg mb-0">' + c + '</div>\

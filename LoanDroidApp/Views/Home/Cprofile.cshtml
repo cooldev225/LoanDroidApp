@@ -95,41 +95,188 @@
                                                     <div class="form-group row">
                                                         <div class="col-6">
                                                             <label for="example-search-input" class="col-form-label">@SharedLocalizer["USERNAME_"] <span class="text-danger">*</span></label>
-                                                            <input type="text" class="form-control" value="@user.UserName" id="edit_user_username" placeholder="@SharedLocalizer["username"]" />
+                                                            <input type="text" class="form-control" value="@user.UserName" id="edit_user_username" />
                                                         </div>
                                                         <div class="col-6">
                                                             <label for="example-search-input" class="col-form-label">@SharedLocalizer["EMAIL_"] <span class="text-danger">*</span></label>
-                                                            <input type="text" class="form-control" value="@user.Email" id="edit_user_email" placeholder="@SharedLocalizer["email"]" />
+                                                            <input type="text" class="form-control" value="@user.Email" id="edit_user_email" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-12">
+                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["IDorpassport"]    (Ej. 0000000000)<span class="text-danger">*</span></label>
+                                                            <input type="text" class="form-control" value="@user.Passport" id="edit_user_passport" />
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <div class="col-6">
                                                             <label for="example-search-input" class="col-form-label">@SharedLocalizer["FIRSTNAME_"] <span class="text-danger">*</span></label>
-                                                            <input type="text" class="form-control" value="@user.FirstName" id="edit_user_firstname" placeholder="@SharedLocalizer["firstname"]" />
+                                                            <input type="text" class="form-control" value="@user.FirstName" id="edit_user_firstname" />
                                                         </div>
                                                         <div class="col-6">
                                                             <label for="example-search-input" class="col-form-label">@SharedLocalizer["SURNAME_"] <span class="text-danger">*</span></label>
-                                                            <input type="text" class="form-control" value="@user.LastName" id="edit_user_lastname" placeholder="@SharedLocalizer["lastname"]" />
+                                                            <input type="text" class="form-control" value="@user.LastName" id="edit_user_lastname" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-6">
+                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["SEX_"] <span class="text-danger">*</span></label>
+                                                            <select class="form-control" style="width:100%;" id="edit_user_sex">
+                                                                @foreach (int i in Enum.GetValues(typeof(Models.data.Gender)))
+                                                                {
+                                                                    var name = Enum.GetName(typeof(Models.data.Gender), i);
+                                                                    if (user.Sex.ToString().Equals(name))
+                                                                    {
+                                                                        <option value="@i" selected>@(SharedLocalizer[name])</option>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <option value="@i">@(SharedLocalizer[name])</option>
+                                                                    }
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["MARITALSTATUS_"] <span class="text-danger">*</span></label>
+                                                            <select class="form-control" style="width:100%;" id="edit_user_marital">
+                                                                @foreach (int i in Enum.GetValues(typeof(Models.data.Marital)))
+                                                                {
+                                                                    var name = Enum.GetName(typeof(Models.data.Marital), i);
+                                                                    if (user.Marital.ToString().Equals(name))
+                                                                    {
+                                                                        <option value="@i" selected>@(SharedLocalizer[name])</option>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <option value="@i">@(SharedLocalizer[name])</option>
+                                                                    }
+                                                                }
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <div class="col-6">
                                                             <label for="example-search-input" class="col-form-label">@SharedLocalizer["PHONENUMBER_"] <span class="text-danger">*</span></label>
-                                                            <input type="text" class="form-control" value="@user.PhoneNumber" id="edit_user_phonenumber" placeholder="@SharedLocalizer["phonenumber"]" />
+                                                            <input type="text" class="form-control" value="@user.PhoneNumber" id="edit_user_phonenumber" />
                                                         </div>
                                                         <div class="col-6">
                                                             <label for="example-search-input" class="col-form-label">@SharedLocalizer["OTHERPTHONE_"]</label>
-                                                            <input type="text" class="form-control" value="@user.OtherPhone" id="edit_user_otherphone" placeholder="@SharedLocalizer["otherphone"]" />
+                                                            <input type="text" class="form-control" value="@user.OtherPhone" id="edit_user_otherphone" />
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
+                                                        <div class="col-6">
+                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["DATEOFBIRTH_"] <span class="text-danger">*</span></label>
+                                                            <input type="text" class="form-control" value="@(LoanDroidApp.CommonUtil.DateTimeToFriendly(user.Birth))" id="edit_user_birth" />
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["NUMOFDEPENDANT_"]  <span class="text-danger">*</span></label>
+                                                            <input type="text" class="form-control" value="@user.NumDependant" id="edit_user_numdependant" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-6">
+                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["RESIDENCETYPE_"] <span class="text-danger">*</span></label>
+                                                            <select class="form-control" style="width:100%;" id="edit_user_residence">
+                                                                @foreach (int i in Enum.GetValues(typeof(Models.data.Residence)))
+                                                                {
+                                                                    var name = Enum.GetName(typeof(Models.data.Residence), i);
+                                                                    if (user.Residence.ToString().Equals(name))
+                                                                    {
+                                                                        <option value="@i" selected>@(SharedLocalizer[name])</option>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <option value="@i">@(SharedLocalizer[name])</option>
+                                                                    }
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["RESIDENCETIME_"]</label>
+                                                            <input type="text" class="form-control" value="@user.ResidencePeriod" id="edit_user_residenceperiod" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-12">
+                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["COMPANYSTR_"] <span class="text-danger">*</span></label>
+                                                            <select class="form-control" style="width:100%;" id="edit_user_company">
+                                                                @foreach (Models.data.Company company in ViewBag.Company)
+                                                                {
+                                                                    if (user.CompanyId == company.Id)
+                                                                    {
+                                                                        <option value="@company.Id" selected>@company.Name</option>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <option value="@company.Id">@company.Name</option>
+                                                                    }
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row" style="display:none;">
                                                         <div class="col-6">
                                                             <label for="example-search-input" class="col-form-label">@SharedLocalizer["OFFICENUMBER_"]</label>
                                                             <input type="text" class="form-control" value="@user.OfficeNumber" id="edit_user_officenumber" placeholder="@SharedLocalizer["officenumber"]" />
                                                         </div>
                                                         <div class="col-6">
                                                             <label for="example-search-input" class="col-form-label">@SharedLocalizer["ADDRESS_"]</label>
-                                                            <input type="text" class="form-control" value="@user.Address" id="edit_user_address" placeholder="@SharedLocalizer["address"]" />
+                                                            <input type="text" class="form-control" value="@user.Address" id="edit_user_address" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-6">
+                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["NATIONALITY_"] <span class="text-danger">*</span></label>
+                                                            <select class="form-control" style="width:100%;" id="edit_user_nationality">
+                                                                @foreach (Models.data.Nationality nationality in ViewBag.Nationality)
+                                                                {
+                                                                    if (user.NationalityId == nationality.Id)
+                                                                    {
+                                                                        <option value="@nationality.Id" selected>@nationality.Name</option>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <option value="@nationality.Id">@nationality.Name</option>
+                                                                    }
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["PROVINCE_"] <span class="text-danger">*</span></label>
+                                                            <select class="form-control" style="width:100%;" id="edit_user_province">
+                                                                @foreach (Models.data.Province province in ViewBag.Province)
+                                                                {
+                                                                    if (user.ProvinceId == province.Id)
+                                                                    {
+                                                                        <option value="@province.Id" selected>@province.Name</option>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <option value="@province.Id">@province.Name</option>
+                                                                    }
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-6">
+                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["MOTHERNAME_"] <span class="text-danger">*</span></label>
+                                                            <input type="text" class="form-control" value="@user.MotherName" id="edit_user_mothername" />
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["MOTHERPHONE_"]</label>
+                                                            <input type="text" class="form-control" value="@user.MotherPhone" id="edit_user_motherphone" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-6">
+                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["FATHERNAME_"] <span class="text-danger">*</span></label>
+                                                            <input type="text" class="form-control" value="@user.FatherName" id="edit_user_fathername" />
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["FATHERPHONE_"]</label>
+                                                            <input type="text" class="form-control" value="@user.FatherPhone" id="edit_user_fatherphone" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -288,19 +435,19 @@
                                         {
                                             <div role="tabpanel" class="tab-pane fade @(ViewBag.step == 2 ? " show active" : "")" id="service3">
                                                 <input type="hidden" id="isAcceptedLoan" value="@(ViewBag.loan.Status == Models.data.LoanStatus.Interesting_Process ? "true" : "false")" />
-                                                @if (ViewBag.loan.Status != Models.data.LoanStatus.New)
+                                                @if (ViewBag.loan.Id > 0)
                                                 {
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <div class="alert alert-danger" role="alert">
-                                                                <strong>@(SharedLocalizer["LoanRequestStatusAlert_" + ViewBag.loan.Status])</strong>
-                                                                @if (ViewBag.loan.StatusReason != null && !ViewBag.loan.StatusReason.Equals(""))
-                                                                {
-                                                                    <p>@ViewBag.loan.StatusReason</p>
-                                                                }
-                                                            </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <strong>@(SharedLocalizer["LoanRequestStatusAlert_" + ViewBag.loan.Status])</strong>
+                                                            @if (ViewBag.loan.StatusReason != null && !ViewBag.loan.StatusReason.Equals(""))
+                                                            {
+                                                                <p>@ViewBag.loan.StatusReason</p>
+                                                            }
                                                         </div>
                                                     </div>
+                                                </div>
                                                 }
                                                 <div class="row">
                                                     <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12" id="loan_request_form">
@@ -310,8 +457,7 @@
                                                             <input type="hidden" class="form-control" id="edit_loan_requesteddate" value="@DateTime.Now.ToString("yyyy-MM-dd")" placeholder="@SharedLocalizer["requesteddate"]" />
                                                             @{
                                                                 var disabled = "disabled";
-                                                                if (ViewBag.loan.Status == Models.data.LoanStatus.New ||
-                                                                    ViewBag.loan.Status == Models.data.LoanStatus.Contactor_Checking)
+                                                                if (ViewBag.loan.Status == Models.data.LoanStatus.Contactor_Checking)
                                                                     disabled = "";
                                                             }
                                                             <div class="form-group row" style="margin-top: 1rem;">
@@ -326,7 +472,15 @@
                                                                     <select class="form-control" @disabled style="width:100%;" id="edit_loan_cycle">
                                                                         @foreach (int i in Enum.GetValues(typeof(Models.data.LoanCycle)))
                                                                         {
-                                                                            <option value="@i">@Enum.GetName(typeof(Models.data.LoanCycle), i)</option>
+                                                                            var name = Enum.GetName(typeof(Models.data.LoanCycle), i);
+                                                                            if (ViewBag.loan.Cycle.ToString().Equals(name))
+                                                                            {
+                                                                                <option value="@i" selected>@(SharedLocalizer[name])</option>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <option value="@i">@(SharedLocalizer[name])</option>
+                                                                            }
                                                                         }
                                                                     </select>
                                                                 </div>
@@ -334,7 +488,7 @@
                                                             <div class="form-group row">
                                                                 <label for="example-search-input" class="col-5 col-form-label">@SharedLocalizer["INTEREST_"]<span class="text-danger">*</span></label>
                                                                 <div class="col-7">
-                                                                    <input type="number" disabled class="form-control" value="@ViewBag.loan.InterestingRate" id="edit_loan_interestingrate" placeholder="@SharedLocalizer["interestrate"]" />
+                                                                    <input type="text" disabled class="form-control" value="@ViewBag.loan.InterestingRate" id="edit_loan_interestingrate" placeholder="@SharedLocalizer["interestrate"]" />
                                                                 </div>
                                                             </div>
                                                             <div class="form-group row">

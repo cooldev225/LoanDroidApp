@@ -154,7 +154,7 @@
                         <select class="form-control" style="width:100%;" id="edit_loan_cycle">
                             @foreach (int i in Enum.GetValues(typeof(Models.data.LoanCycle)))
                             {
-                                <option value="@i">@Enum.GetName(typeof(Models.data.LoanCycle), i)</option>
+                                <option value="@i">@(SharedLocalizer[Enum.GetName(typeof(Models.data.LoanCycle), i)])</option>
                             }
                         </select>
                     </div>
@@ -197,23 +197,19 @@
                                 if (!User.IsInRole("administrator"))
                                 {
                                     if (!User.HasClaim(u=>u.Value.Equals("loan.request")))
-                                        if (name.Equals("New") ||
-                                            name.Equals("Contactor_Checking") ||
+                                        if (
                                             name.Equals("Contactor_Rejected") ||
-                                            name.Equals("Service_Mapping")) continue;
-                                    if (!User.HasClaim(u => u.Value.Equals("loan.service")))
-                                        if (name.Equals("Service_rejected") ||
                                             name.Equals("Debug_Processing")) continue;
                                     if (!User.HasClaim(u => u.Value.Equals("loan.debug")))
                                         if (name.Equals("Debug_rejected") ||
                                         name.Equals("Collection_Processing")) continue;
                                     if (!User.HasClaim(u => u.Value.Equals("loan.collection")))
                                         if (name.Equals("Interesting_completed") ||
-                                        name.Equals("Interesting_Incompleted")) continue;
-                                    if (name.Equals("Interesting_Process") ||
+                                        name.Equals("Interesting_Incompleted")||
+                                        name.Equals("Interesting_Process") ||
                                         name.Equals("Investor_Piad")) continue;
                                 }
-                                <option value="@i">@name</option>
+                                <option value="@i">@(SharedLocalizer[name])</option>
                             }
                         </select>
                     </div>
@@ -227,6 +223,308 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal" id="loanstatus_model_close_btn">@SharedLocalizer["Close"]</button>
                 <button type="button" onclick="submitLoanStatusEditForm();" class="btn btn-primary font-weight-bold">@SharedLocalizer["Savingchanges"]</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="viewUserModal" tabindex="-1" role="dialog" aria-labelledby="viewUserModal" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    @SharedLocalizer["ClientDialog"]
+                    <div class="card-toolbar">
+                        <ul class="nav nav-tabs nav-bold nav-tabs-line">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#kt_tab_pane_0_2">@SharedLocalizer["Profile"]</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#kt_tab_pane_1_2">@SharedLocalizer["Online"]</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#kt_tab_pane_2_2">@SharedLocalizer["Card"]</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#kt_tab_pane_3_2">@SharedLocalizer["Bank"]</a>
+                            </li>
+                        </ul>
+                    </div>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i aria-hidden="true" class="ki ki-close"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input class="form-control" type="hidden" placeholder="id" value="0" id="edit_payment_id">
+                <input class="form-control" type="hidden" placeholder="id" id="edit_user_id">
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="kt_tab_pane_0_2" role="tabpanel">
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <label for="example-search-input" class="col-form-label">@SharedLocalizer["USERNAME_"] <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="edit_user_username" />
+                            </div>
+                            <div class="col-6">
+                                <label for="example-search-input" class="col-form-label">@SharedLocalizer["EMAIL_"] <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="edit_user_email" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <label for="example-search-input" class="col-form-label">@SharedLocalizer["IDorpassport"]    (Ej. 0000000000)<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="edit_user_passport" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <label for="example-search-input" class="col-form-label">@SharedLocalizer["FIRSTNAME_"] <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="edit_user_firstname" />
+                            </div>
+                            <div class="col-6">
+                                <label for="example-search-input" class="col-form-label">@SharedLocalizer["SURNAME_"] <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="edit_user_lastname" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <label for="example-search-input" class="col-form-label">@SharedLocalizer["SEX_"] <span class="text-danger">*</span></label>
+                                <select class="form-control" style="width:100%;" id="edit_user_sex">
+                                    @foreach (int i in Enum.GetValues(typeof(Models.data.Gender)))
+                                    {
+                                        var name = Enum.GetName(typeof(Models.data.Gender), i);
+                                        <option value="@i">@(SharedLocalizer[name])</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label for="example-search-input" class="col-form-label">@SharedLocalizer["MARITALSTATUS_"] <span class="text-danger">*</span></label>
+                                <select class="form-control" style="width:100%;" id="edit_user_marital">
+                                    @foreach (int i in Enum.GetValues(typeof(Models.data.Marital)))
+                                    {
+                                        var name = Enum.GetName(typeof(Models.data.Marital), i);
+                                        <option value="@i">@(SharedLocalizer[name])</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <label for="example-search-input" class="col-form-label">@SharedLocalizer["PHONENUMBER_"] <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="edit_user_phonenumber" />
+                            </div>
+                            <div class="col-6">
+                                <label for="example-search-input" class="col-form-label">@SharedLocalizer["OTHERPTHONE_"]</label>
+                                <input type="text" class="form-control" id="edit_user_otherphone" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <label for="example-search-input" class="col-form-label">@SharedLocalizer["DATEOFBIRTH_"] <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="edit_user_birth" />
+                            </div>
+                            <div class="col-6">
+                                <label for="example-search-input" class="col-form-label">@SharedLocalizer["NUMOFDEPENDANT_"]  <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="edit_user_numdependant" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <label for="example-search-input" class="col-form-label">@SharedLocalizer["RESIDENCETYPE_"] <span class="text-danger">*</span></label>
+                                <select class="form-control" style="width:100%;" id="edit_user_residence">
+                                    @foreach (int i in Enum.GetValues(typeof(Models.data.Residence)))
+                                    {
+                                        var name = Enum.GetName(typeof(Models.data.Residence), i);
+                                        <option value="@i">@(SharedLocalizer[name])</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label for="example-search-input" class="col-form-label">@SharedLocalizer["RESIDENCETIME_"]</label>
+                                <input type="text" class="form-control" id="edit_user_residenceperiod" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <label for="example-search-input" class="col-form-label">@SharedLocalizer["COMPANYSTR_"] <span class="text-danger">*</span></label>
+                                <select class="form-control" style="width:100%;" id="edit_user_company">
+                                    @foreach (Models.data.Company company in ViewBag.Company)
+                                    {
+                                        <option value="@company.Id">@company.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row" style="display:none;">
+                            <div class="col-6">
+                                <label for="example-search-input" class="col-form-label">@SharedLocalizer["OFFICENUMBER_"]</label>
+                                <input type="text" class="form-control" id="edit_user_officenumber" placeholder="@SharedLocalizer["officenumber"]" />
+                            </div>
+                            <div class="col-6">
+                                <label for="example-search-input" class="col-form-label">@SharedLocalizer["ADDRESS_"]</label>
+                                <input type="text" class="form-control" id="edit_user_address" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <label for="example-search-input" class="col-form-label">@SharedLocalizer["NATIONALITY_"] <span class="text-danger">*</span></label>
+                                <select class="form-control" style="width:100%;" id="edit_user_nationality">
+                                    @foreach (Models.data.Nationality nationality in ViewBag.Nationality)
+                                    {
+                                        <option value="@nationality.Id">@nationality.Name</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label for="example-search-input" class="col-form-label">@SharedLocalizer["PROVINCE_"] <span class="text-danger">*</span></label>
+                                <select class="form-control" style="width:100%;" id="edit_user_province">
+                                    @foreach (Models.data.Province province in ViewBag.Province)
+                                    {
+                                        <option value="@province.Id">@province.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <label for="example-search-input" class="col-form-label">@SharedLocalizer["MOTHERNAME_"] <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="edit_user_mothername" />
+                            </div>
+                            <div class="col-6">
+                                <label for="example-search-input" class="col-form-label">@SharedLocalizer["MOTHERPHONE_"]</label>
+                                <input type="text" class="form-control" id="edit_user_motherphone" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <label for="example-search-input" class="col-form-label">@SharedLocalizer["FATHERNAME_"] <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="edit_user_fathername" />
+                            </div>
+                            <div class="col-6">
+                                <label for="example-search-input" class="col-form-label">@SharedLocalizer["FATHERPHONE_"]</label>
+                                <input type="text" class="form-control" id="edit_user_fatherphone" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="kt_tab_pane_1_2" role="tabpanel">
+                        <div class="form-group row">
+                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["NAME_"] <span class="text-danger">*</span></label>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="edit_payment_gatewayname" placeholder="@SharedLocalizer["SiteName"]" />
+                            </div>
+                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["URL_"] <span class="text-danger">*</span></label>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="edit_payment_gatewayurl" placeholder="@SharedLocalizer["SiteUrl"]" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["EMAIL_"] <span class="text-danger">*</span></label>
+                            <div class="col-10">
+                                <input type="text" class="form-control" id="edit_payment_gatewayemail" placeholder="@SharedLocalizer["email"]" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["USERNAME_"] <span class="text-danger">*</span></label>
+                            <div class="col-10">
+                                <input type="text" class="form-control" id="edit_payment_gatewayusername" placeholder="@SharedLocalizer["username"]" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["PASSWORD_"] <span class="text-danger">*</span></label>
+                            <div class="col-10">
+                                <input type="text" class="form-control" id="edit_payment_gatewaypassword" placeholder="@SharedLocalizer["password"]" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="kt_tab_pane_2_2" role="tabpanel">
+                        <div class="form-group row">
+                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["FIRSTNAME_"] <span class="text-danger">*</span></label>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="edit_payment_cardfirstname" placeholder="@SharedLocalizer["firstname"]" />
+                            </div>
+                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["SURNAME_"] <span class="text-danger">*</span></label>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="edit_payment_cardlastname" placeholder="@SharedLocalizer["surname"]" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["NUMBER_"] <span class="text-danger">*</span></label>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="edit_payment_cardnumber" placeholder="@SharedLocalizer["cardnumber"]" />
+                            </div>
+                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["EXPIRATION_"] <span class="text-danger">*</span></label>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="edit_payment_cardexpirationdate" placeholder="@SharedLocalizer["expirationdate"]" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["ADDRESS_"]-1<span class="text-danger">*</span></label>
+                            <div class="col-10">
+                                <input type="text" class="form-control" id="edit_payment_cardaddress1" placeholder="@SharedLocalizer["address"]" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["Address_"]-2</label>
+                            <div class="col-10">
+                                <input type="text" class="form-control" id="edit_payment_cardaddress2" placeholder="@SharedLocalizer["address"]" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="kt_tab_pane_3_2" role="tabpanel">
+                        <div class="form-group row">
+                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["COUNTRY_"]<span class="text-danger">*</span></label>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="edit_payment_bankcountry" placeholder="@SharedLocalizer["bankcountry"]" />
+                            </div>
+                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["ROUTING_"]<span class="text-danger">*</span></label>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="edit_payment_bankroutingnumber" placeholder="@SharedLocalizer["routingnumber"]" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["ACCOUNT_"]<span class="text-danger">*</span></label>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="edit_payment_bankaccontholder" placeholder="@SharedLocalizer["accountholder"]" />
+                            </div>
+                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["CURRENCY_"]<span class="text-danger">*</span></label>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="edit_payment_bankcurrency" placeholder="@SharedLocalizer["currency"]" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["NAME_"]<span class="text-danger">*</span></label>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="edit_payment_bankname" placeholder="@SharedLocalizer["bankname"]" />
+                            </div>
+                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["STREET_"]<span class="text-danger">*</span></label>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="edit_payment_bankstreet" placeholder="@SharedLocalizer["bankstreet"]" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["CITY_"]<span class="text-danger">*</span></label>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="edit_payment_bankcity" placeholder="@SharedLocalizer["bankcity"]" />
+                            </div>
+                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["REGION_"]<span class="text-danger">*</span></label>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="edit_payment_bankregion" placeholder="@SharedLocalizer["bankregion"]" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["BICNUMBER_"]<span class="text-danger">*</span></label>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="edit_payment_bankswiftbicnumber" placeholder="@SharedLocalizer["bicnumber"]" />
+                            </div>
+                            <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["IBANNUMBER_"]<span class="text-danger">*</span></label>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="edit_payment_bankibannumber" placeholder="@SharedLocalizer["ibannumber"]" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal" id="loanstatus_model_close_btn">@SharedLocalizer["Close"]</button>
             </div>
         </div>
     </div>

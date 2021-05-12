@@ -106,6 +106,10 @@ namespace App.Controllers
                 if (reading.Count() > 0) notis.data[i].IsReaded = reading.First().IsReaded;
             }
             ViewBag.Notifications = notis;
+
+            ViewBag.Company = _context.Company.OrderBy(u => u.Name).ToList();
+            ViewBag.Province = _context.Province.OrderBy(u => u.Id).ToList();
+            ViewBag.Nationality = _context.Nationality.OrderBy(u => u.Id).ToList();
         }
         public IActionResult Index()
         {
@@ -121,6 +125,52 @@ namespace App.Controllers
             if (!HasPermmision("roles.view")) return Redirect("index");
             GlobalVariables(); 
             return View();
+        }
+        [HttpPost]
+        public async Task<JsonResult> getUserRowAsync(string id) {
+            ApplicationUser user= await _accountManager.GetUserByIdAsync(id);
+            var q1 = _context.AccountPayment.Where(u => u.UserId.Equals(id) && u.Type == 0).OrderByDescending(u => u.CreatedDate);
+            var q2 = _context.AccountPayment.Where(u => u.UserId.Equals(id) && u.Type == 1).OrderByDescending(u => u.CreatedDate);
+            var q3 = _context.AccountPayment.Where(u => u.UserId.Equals(id) && u.Type == 2).OrderByDescending(u => u.CreatedDate);
+            AccountPayment acc = new AccountPayment
+            {
+                Id = 0,
+                UserId = id,
+                GatewayName = "",
+                GatewayUrl = "",
+                GatewayEmail = user.Email,
+                GatewayUserName = user.UserName,
+                GatewayPassword = "",
+                CardFirstName = user.FirstName,
+                CardLastName = user.LastName,
+                CardNumber = "",
+                CardExpirationDate = "",
+                CardAddress1 = "",
+                CardAddress2 = "",
+                BankCountry = "",
+                BankAccountHolder = "",
+                BankName = "",
+                BankStreet = "",
+                BankCity = "",
+                BankRegion = "",
+                BankCurrency = "",
+                BankRoutingNumber = "",
+                BankSwiftBicNumber = "",
+                BankIBANNumber = "",
+                Type = 0
+            };
+            var Payment01 = q1.Count() > 0 ? q1.First() : acc;
+            acc.Type = 1;
+            var Payment02 = q2.Count() > 0 ? q2.First() : acc;
+            acc.Type = 2;
+            var Payment03 = q3.Count() > 0 ? q3.First() : acc;
+            return Json(new
+            {
+                user = user,
+                payment01 = Payment01,
+                payment02 = Payment02,
+                payment03 = Payment03,
+            });
         }
         [HttpPost]
         public DatatableRole getRolesDataTable()
@@ -365,17 +415,11 @@ namespace App.Controllers
         [HttpPost]
         public async Task<JsonResult> saveUser(
             string id,
-            string username,
-            string firstname,
-            string lastname,
-            string email,
-            string phonenumber,
-            string otherphone,
-            string officenumber,
-            string department,
-            string address,
-            string avatarimage,
-            string role
+            string username,string email,string passport,string firstname,string lastname,Gender sex,
+            Marital marital,string phonenumber,string otherphone,DateTime birth,string numdependant,
+            Residence residence,string residenceperiod,int company,string officenumber,string address,
+            int nationality,int province,string mothername,string motherphone,
+            string fathername,string fatherphone,string avatarimage, string role, string department
         ) {
             if (role.Equals("cliente"))
             {
@@ -393,14 +437,28 @@ namespace App.Controllers
             ApplicationUser user = new ApplicationUser
             {
                 UserName = username,
+                Email = email,
+                Passport=passport,
                 FirstName = firstname,
                 LastName = lastname == null ? "" : lastname,
-                Email = email,
+                Sex=sex,
+                Marital=marital,
                 PhoneNumber = phonenumber,
                 OtherPhone = otherphone == null ? "" : otherphone,
+                Birth=birth,
+                NumDependant=numdependant,
+                Residence=residence,
+                ResidencePeriod=residenceperiod == null ? "" : residenceperiod,
+                CompanyId=company,
                 OfficeNumber = officenumber,
                 JobTitle = department == null ? "" : department,
                 Address = address == null ? "" : address,
+                NationalityId=nationality,
+                ProvinceId=province,
+                MotherName=mothername,
+                MotherPhone=motherphone==null?"": motherphone,
+                FatherName=fathername,
+                FatherPhone=fatherphone==null?"": fatherphone,
                 AvatarImage = CommonUtil.DecodeUrlBase64(avatarimage)//System.Text.Encoding.Unicode.GetBytes(avatarimage)
             };
             if (id.Equals(""))
@@ -410,15 +468,30 @@ namespace App.Controllers
                 await SaveNotification("creado el usuario \"" + user.UserName+"\"", "users.manage");
             }
             else {
-                ApplicationUser cuser = await _userManager.FindByIdAsync(id);
+                ApplicationUser cuser = await _accountManager.GetUserByIdAsync(id);
                 cuser.UserName = user.UserName;
+                cuser.Email = user.Email;
+                cuser.Passport = user.Passport;
                 cuser.FirstName = user.FirstName;
                 cuser.LastName = user.LastName;
+                cuser.Sex = user.Sex;
+                cuser.Marital = user.Marital;
                 cuser.PhoneNumber = user.PhoneNumber;
                 cuser.OtherPhone = user.OtherPhone;
+                cuser.Birth = user.Birth;
+                cuser.NumDependant = user.NumDependant;
+                cuser.Residence = user.Residence;
+                cuser.ResidencePeriod = user.ResidencePeriod;
+                cuser.CompanyId = user.CompanyId;
                 cuser.OfficeNumber = user.OfficeNumber;
                 cuser.JobTitle = user.JobTitle;
                 cuser.Address = user.Address;
+                cuser.NationalityId = user.NationalityId;
+                cuser.ProvinceId = user.ProvinceId;
+                cuser.MotherName = user.MotherName;
+                cuser.MotherPhone = user.MotherPhone;
+                cuser.FatherName = user.FatherName;
+                cuser.FatherPhone = user.FatherPhone;
                 cuser.AvatarImage = user.AvatarImage;
                 _context.Entry(cuser).CurrentValues.SetValues(cuser);
                 _context.Entry(cuser).State = EntityState.Modified;
@@ -793,20 +866,16 @@ namespace App.Controllers
             }
             else {
                 if (!HasPermmision("loan.request")) query = query.Where(u =>
-                    u.Status != LoanStatus.New &&
                     u.Status != LoanStatus.Contactor_Checking &&
                     u.Status != LoanStatus.Contactor_Rejected);
-                if (!HasPermmision("loan.service")) query = query.Where(u =>
-                    u.Status != LoanStatus.Service_Mapping &&
-                    u.Status != LoanStatus.Service_rejected);
                 if (!HasPermmision("loan.debug")) query = query.Where(u =>
                     u.Status != LoanStatus.Debug_Processing &&
-                    u.Status != LoanStatus.Debug_rejected &&
-                    u.Status != LoanStatus.Investor_Piad);
+                    u.Status != LoanStatus.Debug_rejected
+                    );
                 if (!HasPermmision("loan.collection")) query = query.Where(u =>
                     u.Status != LoanStatus.Collection_Processing &&
-                    u.Status != LoanStatus.Interesting_Process &&
-                    u.Status != LoanStatus.Investor_Piad);
+                    u.Status != LoanStatus.Investor_Piad &&
+                    u.Status != LoanStatus.Interesting_Process);
                 if (!User.IsInRole("administrator"))
                 {
                     query = query.Where(u =>
@@ -1054,18 +1123,17 @@ namespace App.Controllers
         {
             if (!User.IsInRole("administrator")) {
                 if (!HasPermmision("loan.request"))
-                    if (status == LoanStatus.New ||
-                        status == LoanStatus.Contactor_Checking ||
+                    if (
                         status == LoanStatus.Contactor_Rejected ||
-                        status == LoanStatus.Service_Mapping) return null;
-                if (!HasPermmision("loan.service"))
-                    if (status == LoanStatus.Service_rejected ||
                         status == LoanStatus.Debug_Processing) return null;
                 if (!HasPermmision("loan.debug"))
                     if (status == LoanStatus.Debug_rejected ||
                     status == LoanStatus.Collection_Processing) return null;
                 if (!HasPermmision("loan.collection"))
-                    if (status == LoanStatus.Interesting_completed ||
+                    if (
+                    status == LoanStatus.Investor_Piad ||
+                    status == LoanStatus.Interesting_Process ||
+                    status == LoanStatus.Interesting_completed ||
                     status == LoanStatus.Interesting_Incompleted) return null;
             }
             LoanRequestStatus req = new LoanRequestStatus
@@ -1102,7 +1170,7 @@ namespace App.Controllers
 
                 LoanRequest lreq = await _context.LoanRequest.FindAsync(reqid);
                 var query = _context.LoanRequestStatus.Where(u => u.LoanRequestId == reqid).OrderByDescending(u => u.CreatedDate);
-                LoanStatus status = LoanStatus.New;
+                LoanStatus status = LoanStatus.Contactor_Checking;
                 string statusreason = "";
                 if (query.Count() > 0) {
                     status = query.First().Status;
@@ -1166,17 +1234,14 @@ namespace App.Controllers
                                                             UpdatedDate = a.UpdatedDate,
                                                             UpdatedDevice = a.UpdatedDevice
                                                         });
-            if (!HasPermmision("investment.service")) query = query.Where(u =>
-                u.Status != InvestStatus.Service_Processing &&
-                u.Status != InvestStatus.Service_rejected&&
-                u.Status != InvestStatus.New);
             if (!HasPermmision("investment.debug")) query = query.Where(u =>
                 u.Status != InvestStatus.Debug_Processing &&
                 u.Status != InvestStatus.Debug_rejected);
             if (!HasPermmision("investment.collection")) query = query.Where(u =>
                 u.Status != InvestStatus.Collection_Processing &&
+                u.Status != InvestStatus.Created_Milestone &&
                 u.Status != InvestStatus.Completed_Payment &&
-                u.Status != InvestStatus.Created_Milestone);
+                u.Status != InvestStatus.Saving_Process);
             if (!User.IsInRole("administrator"))
             {
                 query = query.Where(u =>
@@ -1348,16 +1413,14 @@ namespace App.Controllers
         {
             if (!User.IsInRole("administrator"))
             {
-                if (!HasPermmision("investment.service"))
-                    if (status == InvestStatus.Service_Processing ||
-                        status == InvestStatus.Service_rejected ||
-                        status == InvestStatus.Debug_Processing) return null;
                 if (!HasPermmision("investment.debug"))
                     if (status == InvestStatus.Debug_rejected ||
                     status == InvestStatus.Collection_Processing) return null;
                 if (!HasPermmision("investment.collection"))
                     if (status == InvestStatus.Incompleted_Investment ||
-                        status == InvestStatus.Collection_Error ||
+                        status == InvestStatus.Completed_Payment ||
+                        status == InvestStatus.Created_Milestone ||
+                        status == InvestStatus.Saving_Process ||
                     status == InvestStatus.Completed_Investment) return null;
             }
             InvestmentStatus req = new InvestmentStatus
@@ -1394,7 +1457,7 @@ namespace App.Controllers
 
                 Investment lreq = await _context.Investment.FindAsync(reqid);
                 var query = _context.InvestmentStatus.Where(u => u.InvestmenttId == reqid).OrderByDescending(u => u.CreatedDate);
-                InvestStatus status = InvestStatus.New;
+                InvestStatus status = InvestStatus.Debug_Processing;
                 string statusreason = "";
                 if (query.Count() > 0)
                 {

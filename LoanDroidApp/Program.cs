@@ -1,8 +1,9 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using DBSetup;
 using Microsoft.AspNetCore.Hosting;
@@ -28,6 +29,14 @@ namespace App
                 var services = scope.ServiceProvider;
                 try
                 {
+                    /*
+                    foreach (var f in new DirectoryInfo(@"...").GetFiles("*.cs", SearchOption.AllDirectories))
+                    {
+                        string s = File.ReadAllText(f.FullName);
+                        File.WriteAllText(f.FullName, s, Encoding.UTF8);
+                    }
+                    */
+
                     var databaseInitializer = services.GetRequiredService<IDatabaseInitializer>();
                     databaseInitializer.SeedAsync().Wait();
                     Directory.SetCurrentDirectory(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
