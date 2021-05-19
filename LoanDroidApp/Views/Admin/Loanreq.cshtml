@@ -196,13 +196,17 @@
                                 if (i == 0) continue;
                                 if (!User.IsInRole("administrator"))
                                 {
-                                    if (!User.HasClaim(u=>u.Value.Equals("loan.request")))
+                                    if (!User.HasClaim(u => u.Value.Equals("loan.representante")))
                                         if (
-                                            name.Equals("Contactor_Rejected") ||
-                                            name.Equals("Debug_Processing")) continue;
+                                            name.Equals("Representante_Rejected")) continue;
+                                    if (!User.HasClaim(u => u.Value.Equals("loan.request")))
+                                        if (
+                                            name.Equals("Contactor_Rejected")) continue;
+                                    if (!User.HasClaim(u => u.Value.Equals("loan.service")))
+                                        if (
+                                            name.Equals("Service_Rejected")) continue;
                                     if (!User.HasClaim(u => u.Value.Equals("loan.debug")))
-                                        if (name.Equals("Debug_rejected") ||
-                                        name.Equals("Collection_Processing")) continue;
+                                        if (name.Equals("Debug_rejected")) continue;
                                     if (!User.HasClaim(u => u.Value.Equals("loan.collection")))
                                         if (name.Equals("Interesting_completed") ||
                                         name.Equals("Interesting_Incompleted")||

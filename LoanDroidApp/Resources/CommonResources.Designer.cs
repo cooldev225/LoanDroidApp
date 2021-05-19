@@ -88,6 +88,15 @@ namespace LoanDroidApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add new company.
+        /// </summary>
+        public static string Addnewcompany {
+            get {
+                return ResourceManager.GetString("Addnewcompany", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add new investor.
         /// </summary>
         public static string Addnewinvestor {
@@ -322,6 +331,15 @@ namespace LoanDroidApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Company.
+        /// </summary>
+        public static string Company {
+            get {
+                return ResourceManager.GetString("Company", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Company where you work (address / real sector of collection clients).
         /// </summary>
         public static string COMPANYSTR_ {
@@ -495,9 +513,9 @@ namespace LoanDroidApp.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Rejected by Debugger.
         /// </summary>
-        public static string Debug_rejected {
+        public static string Debug_Rejected {
             get {
-                return ResourceManager.GetString("Debug_rejected", resourceCulture);
+                return ResourceManager.GetString("Debug_Rejected", resourceCulture);
             }
         }
         
@@ -547,11 +565,29 @@ namespace LoanDroidApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dialog.
+        /// </summary>
+        public static string Dialog {
+            get {
+                return ResourceManager.GetString("Dialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DAILY.
         /// </summary>
         public static string DIARIO {
             get {
                 return ResourceManager.GetString("DIARIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DIRECTION.
+        /// </summary>
+        public static string DIRECTION_ {
+            get {
+                return ResourceManager.GetString("DIRECTION_", resourceCulture);
             }
         }
         
@@ -864,9 +900,9 @@ namespace LoanDroidApp.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Completed request.
         /// </summary>
-        public static string Interesting_completed {
+        public static string Interesting_Completed {
             get {
-                return ResourceManager.GetString("Interesting_completed", resourceCulture);
+                return ResourceManager.GetString("Interesting_Completed", resourceCulture);
             }
         }
         
@@ -1051,6 +1087,15 @@ namespace LoanDroidApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loan Rate.
+        /// </summary>
+        public static string LoanRate {
+            get {
+                return ResourceManager.GetString("LoanRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Loan Rates.
         /// </summary>
         public static string LoanRates {
@@ -1155,6 +1200,24 @@ namespace LoanDroidApp.Resources {
         public static string LoanRequestStatusAlert_Investor_Piad {
             get {
                 return ResourceManager.GetString("LoanRequestStatusAlert_Investor_Piad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Representante processing.
+        /// </summary>
+        public static string LoanRequestStatusAlert_Representante_Processing {
+            get {
+                return ResourceManager.GetString("LoanRequestStatusAlert_Representante_Processing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rejected by representante.
+        /// </summary>
+        public static string LoanRequestStatusAlert_Representante_Rejected {
+            get {
+                return ResourceManager.GetString("LoanRequestStatusAlert_Representante_Rejected", resourceCulture);
             }
         }
         
@@ -1501,11 +1564,29 @@ namespace LoanDroidApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Province.
+        /// </summary>
+        public static string Province {
+            get {
+                return ResourceManager.GetString("Province", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PROVINCE.
         /// </summary>
         public static string PROVINCE_ {
             get {
                 return ResourceManager.GetString("PROVINCE_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PURPOSE.
+        /// </summary>
+        public static string PURPOSE_ {
+            get {
+                return ResourceManager.GetString("PURPOSE_", resourceCulture);
             }
         }
         
@@ -1533,6 +1614,24 @@ namespace LoanDroidApp.Resources {
         public static string REGION_ {
             get {
                 return ResourceManager.GetString("REGION_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Processing of Representante.
+        /// </summary>
+        public static string Representante_Processing {
+            get {
+                return ResourceManager.GetString("Representante_Processing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rejected by Representante.
+        /// </summary>
+        public static string Representante_Rejected {
+            get {
+                return ResourceManager.GetString("Representante_Rejected", resourceCulture);
             }
         }
         
@@ -1686,6 +1785,24 @@ namespace LoanDroidApp.Resources {
         public static string SEMANAL {
             get {
                 return ResourceManager.GetString("SEMANAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Processing of Service manager.
+        /// </summary>
+        public static string Service_Processing {
+            get {
+                return ResourceManager.GetString("Service_Processing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rejected by Service manager.
+        /// </summary>
+        public static string Service_Rejected {
+            get {
+                return ResourceManager.GetString("Service_Rejected", resourceCulture);
             }
         }
         

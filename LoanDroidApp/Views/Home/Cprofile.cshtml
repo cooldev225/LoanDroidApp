@@ -435,7 +435,7 @@
                                         {
                                             <div role="tabpanel" class="tab-pane fade @(ViewBag.step == 2 ? " show active" : "")" id="service3">
                                                 <input type="hidden" id="isAcceptedLoan" value="@(ViewBag.loan.Status == Models.data.LoanStatus.Interesting_Process ? "true" : "false")" />
-                                                @if (ViewBag.loan.Id > 0)
+                                                @if (ViewBag.loan.Id > 0&& ViewBag.loan.Status!=0)
                                                 {
                                                 <div class="row">
                                                     <div class="col-12">
@@ -457,7 +457,7 @@
                                                             <input type="hidden" class="form-control" id="edit_loan_requesteddate" value="@DateTime.Now.ToString("yyyy-MM-dd")" placeholder="@SharedLocalizer["requesteddate"]" />
                                                             @{
                                                                 var disabled = "disabled";
-                                                                if (ViewBag.loan.Status == Models.data.LoanStatus.Contactor_Checking)
+                                                                if (ViewBag.loan.Status == Models.data.LoanStatus.New)
                                                                     disabled = "";
                                                             }
                                                             <div class="form-group row" style="margin-top: 1rem;">
@@ -470,16 +470,15 @@
                                                                 <label for="example-search-input" class="col-5 col-form-label">@SharedLocalizer["FREQUENTLY_"]<span class="text-danger">*</span></label>
                                                                 <div class="col-7">
                                                                     <select class="form-control" @disabled style="width:100%;" id="edit_loan_cycle">
-                                                                        @foreach (int i in Enum.GetValues(typeof(Models.data.LoanCycle)))
+                                                                        @foreach (Models.data.LoanCycleModel rate in ViewBag.Rates)
                                                                         {
-                                                                            var name = Enum.GetName(typeof(Models.data.LoanCycle), i);
-                                                                            if (ViewBag.loan.Cycle.ToString().Equals(name))
+                                                                            if (ViewBag.loan.Cycle.Equals(rate.LoanCycle))
                                                                             {
-                                                                                <option value="@i" selected>@(SharedLocalizer[name])</option>
+                                                                                <option value="@rate.LoanCycle" class="@rate.Rate" selected>@(SharedLocalizer[rate.LoanCycle.ToString()])</option>
                                                                             }
                                                                             else
                                                                             {
-                                                                                <option value="@i">@(SharedLocalizer[name])</option>
+                                                                                <option value="@rate.LoanCycle" class="@rate.Rate">@(SharedLocalizer[rate.LoanCycle.ToString()])</option>
                                                                             }
                                                                         }
                                                                     </select>
@@ -491,6 +490,12 @@
                                                                     <input type="text" disabled class="form-control" value="@ViewBag.loan.InterestingRate" id="edit_loan_interestingrate" placeholder="@SharedLocalizer["interestrate"]" />
                                                                 </div>
                                                             </div>
+                                                            <select class="form-control" style="display:none;" id="edit_loan_cycle_val">
+                                                            @foreach (Models.data.LoanCycleModel rate in ViewBag.Rates)
+                                                            {
+                                                                
+                                                            }
+                                                            </select>
                                                             <div class="form-group row">
                                                                 <label for="example-search-input" class="col-5 col-form-label">@SharedLocalizer["TIMES_"]<span class="text-danger">*</span></label>
                                                                 <div class="col-7">

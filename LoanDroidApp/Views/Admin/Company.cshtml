@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
 @inject IHtmlLocalizer<LoanDroidApp.CommonResources> SharedLocalizer
 @{
-    ViewData["Title"] = "Investment";
+    ViewData["Title"] = "Company";
 }
 <div class="d-flex flex-column-fluid">
     <!--begin::Container-->
@@ -37,11 +37,14 @@
                     <div class="card-header flex-wrap border-0 pt-6 pb-0">
                         <div class="card-title">
                             <h3 class="card-label">
-                                @SharedLocalizer["Investment"]
+                                @SharedLocalizer["Company"]
                             </h3>
                         </div>
                         <div class="card-toolbar">
-                                <button type="button" class="btn btn-light-primary font-weight-bolder mr-2" data-toggle="modal" onclick="InvestAddAction();" data-target="#editInvestModal">
+                            <input type="hidden" id="managepermission" value="@(User.HasClaim(c => c.Type.Equals("permission") && c.Value.Equals("users.cmanage"))?"true":"false")" />
+                            @if (User.HasClaim(c => c.Type.Equals("permission") && c.Value.Equals("users.cmanage")))
+                            {
+                                <button type="button" class="btn btn-light-primary font-weight-bolder mr-2" data-toggle="modal" onclick="UserAddAction();" data-target="#editCompanyModal">
                                     <span class="svg-icon svg-icon-md">
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -52,8 +55,23 @@
                                             </g>
                                         </svg>
                                     </span>
-                                    @SharedLocalizer["CreateInvestment"]
+                                    @SharedLocalizer["Addnewcompany"]
                                 </button>
+                            }
+                            <!--
+    <button type="button" class="btn btn-primary font-weight-bolder ml-2" onclick="exportExcel();">
+        <span class="svg-icon svg-icon-md">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <polygon points="0 0 24 0 24 24 0 24" />
+                    <path d="M18.5,8 C17.1192881,8 16,6.88071187 16,5.5 C16,4.11928813 17.1192881,3 18.5,3 C19.8807119,3 21,4.11928813 21,5.5 C21,6.88071187 19.8807119,8 18.5,8 Z M18.5,21 C17.1192881,21 16,19.8807119 16,18.5 C16,17.1192881 17.1192881,16 18.5,16 C19.8807119,16 21,17.1192881 21,18.5 C21,19.8807119 19.8807119,21 18.5,21 Z M5.5,21 C4.11928813,21 3,19.8807119 3,18.5 C3,17.1192881 4.11928813,16 5.5,16 C6.88071187,16 8,17.1192881 8,18.5 C8,19.8807119 6.88071187,21 5.5,21 Z" fill="#000000" opacity="0.3" />
+                    <path d="M5.5,8 C4.11928813,8 3,6.88071187 3,5.5 C3,4.11928813 4.11928813,3 5.5,3 C6.88071187,3 8,4.11928813 8,5.5 C8,6.88071187 6.88071187,8 5.5,8 Z M11,4 L13,4 C13.5522847,4 14,4.44771525 14,5 C14,5.55228475 13.5522847,6 13,6 L11,6 C10.4477153,6 10,5.55228475 10,5 C10,4.44771525 10.4477153,4 11,4 Z M11,18 L13,18 C13.5522847,18 14,18.4477153 14,19 C14,19.5522847 13.5522847,20 13,20 L11,20 C10.4477153,20 10,19.5522847 10,19 C10,18.4477153 10.4477153,18 11,18 Z M5,10 C5.55228475,10 6,10.4477153 6,11 L6,13 C6,13.5522847 5.55228475,14 5,14 C4.44771525,14 4,13.5522847 4,13 L4,11 C4,10.4477153 4.44771525,10 5,10 Z M19,10 C19.5522847,10 20,10.4477153 20,11 L20,13 C20,13.5522847 19.5522847,14 19,14 C18.4477153,14 18,13.5522847 18,13 L18,11 C18,10.4477153 18.4477153,10 19,10 Z" fill="#000000" />
+                </g>
+            </svg>
+        </span>
+        @SharedLocalizer["Export"]
+    </button>
+    -->
                         </div>
                     </div>
                     <div class="card-body">
@@ -94,121 +112,54 @@
     <!--end::Container-->
 </div>
 <!--end::Entry-->
-<div class="modal fade" id="editInvestModal" tabindex="-1" role="dialog" aria-labelledby="editInvestModal" aria-hidden="true" style="display: none;">
+<img id="temp_image" style="display:none;"/>
+<div class="modal fade" id="editCompanyModal" tabindex="-1" role="dialog" aria-labelledby="editCompanyModal" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">@SharedLocalizer["Investment"]</h5>
+                <h5 class="modal-title" id="exampleModalLabel">@SharedLocalizer["Dialog"]</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i aria-hidden="true" class="ki ki-close"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <input class="form-control" type="hidden" placeholder="id" value="" id="edit_invest_id">
+                <input class="form-control" type="hidden" placeholder="id" value="" id="edit_company_id">
                 <div class="form-group row">
-                    <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["INVESTOR_"] <span class="text-danger">*</span></label>
-                    <div class="col-4">
-                        <select class="form-control" style="width:100%;" id="edit_invest_investorid">
-                            @foreach (Models.data.ApplicationUserShort investor in ViewBag.Investors)
-                            {
-                                <option value="@investor.Id">@investor.UserName</option>
-                            }
-                        </select>
-                    </div>
-                    <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["REQUESTEDDATE_"] <span class="text-danger">*</span></label>
-                    <div class="col-4">
-                        <input type="text" class="form-control" id="edit_invest_requesteddate" placeholder="@SharedLocalizer["requesteddate"]" />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["AMOUNT_"] <span class="text-danger">*</span></label>
-                    <div class="col-4">
-                        <input type="number" class="form-control" id="edit_invest_amount" placeholder="@SharedLocalizer["amount"]" />
-                    </div>
-                    <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["SAVINGRATE_"] <span class="text-danger">*</span></label>
-                    <div class="col-4">
-                        <input type="number" class="form-control" id="edit_invest_savingrate" placeholder="@SharedLocalizer["savingrate"]" />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["FREQUENTLY_"] <span class="text-danger">*</span></label>
-                    <div class="col-4">
-                        <select class="form-control" style="width:100%;" id="edit_invest_cycle">
-                            @foreach (int i in Enum.GetValues(typeof(Models.data.LoanCycle)))
-                            {
-                                <option value="@i">@(SharedLocalizer[Enum.GetName(typeof(Models.data.LoanCycle), i)])</option>
-                            }
-                        </select>
-                    </div>
-                    <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["TIMES_"] <span class="text-danger">*</span></label>
-                    <div class="col-4">
-                        <input type="number" class="form-control" id="edit_invest_times" placeholder="@SharedLocalizer["times"]" />
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-12">
-                        <div class="datatable datatable-bordered datatable-head-custom kt_datatable_class" name="kt_datatable_calc" id="kt_datatable_calc"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal" id="invest_model_close_btn">@SharedLocalizer["Close"]</button>
-                <button type="button" onclick="submitInvestEditForm();" class="btn btn-primary font-weight-bold">@SharedLocalizer["Savingchanges"]</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="editInvestStatusModal" tabindex="-1" role="dialog" aria-labelledby="editInvestStatusModal" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">@SharedLocalizer["Investment"]</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i aria-hidden="true" class="ki ki-close"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group row">
-                    <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["STATUS_"] <span class="text-danger">*</span></label>
+                    <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["NAME_"] <span class="text-danger">*</span></label>
                     <div class="col-10">
-                        <select class="form-control" style="width:100%;" id="edit_invest_status">
-                            @foreach (int i in Enum.GetValues(typeof(Models.data.InvestStatus)))
-                            {
-                                var name = Enum.GetName(typeof(Models.data.InvestStatus), i);
-                                if (i == 0) continue;
-                                if (!User.IsInRole("administrator"))
-                                {
-                                    if (!User.HasClaim(u => u.Value.Equals("investment.representante")))
-                                        if (name.Equals("Representante_Rejected")) continue;
-                                    if (!User.HasClaim(u => u.Value.Equals("investment.request")))
-                                        if (name.Equals("Contactor_Rejected")) continue;
-                                    if (!User.HasClaim(u => u.Value.Equals("investment.service")))
-                                        if (name.Equals("Service_Rejected")) continue;
-                                    if (!User.HasClaim(u => u.Value.Equals("investment.debug")))
-                                        if (name.Equals("Debug_rejected")) continue;
-                                    if (!User.HasClaim(u => u.Value.Equals("investment.collection")))
-                                        if (name.Equals("Incompleted_Investment") ||
-                                        name.Equals("Completed_Investment")||
-                                        name.Equals("Created_Milestone") ||
-                                        name.Equals("Completed_Payment")||
-                                        name.Equals("Saving_Process")) continue;
-                                }
-                                <option value="@i">@Enum.GetName(typeof(Models.data.InvestStatus), i)</option>
-                            }
-                        </select>
+                        <input type="text" class="form-control" id="edit_company_name" />
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-12">
-                        <textarea class="form-control" id="edit_invest_statusreason" placeholder="@SharedLocalizer["Reason..."]"></textarea>
+                    <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["PURPOSE_"]</label>
+                    <div class="col-10">
+                        <input type="text" class="form-control" id="edit_company_purpose" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["DIRECTION_"]</label>
+                    <div class="col-10">
+                        <input type="text" class="form-control" id="edit_company_direction" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["PHONENUMBER_"]</label>
+                    <div class="col-10">
+                        <input type="text" class="form-control" id="edit_company_phone" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-search-input" class="col-2 col-form-label">@SharedLocalizer["URL_"]</label>
+                    <div class="col-10">
+                        <input type="text" class="form-control" id="edit_company_url" />
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal" id="investstatus_model_close_btn">@SharedLocalizer["Close"]</button>
-                <button type="button" onclick="submitInvestStatusEditForm();" class="btn btn-primary font-weight-bold">@SharedLocalizer["Savingchanges"]</button>
+                <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal" id="company_model_close_btn">@SharedLocalizer["Close"]</button>
+                <button type="button" onclick="submitCompanyEditForm();" class="btn btn-primary font-weight-bold">@SharedLocalizer["Savingchanges"]</button>
             </div>
         </div>
     </div>
 </div>
-<script type="text/javascript" src="~/admin/js/investment.js"></script>
+<script type="text/javascript" src="~/admin/js/company.js"></script>

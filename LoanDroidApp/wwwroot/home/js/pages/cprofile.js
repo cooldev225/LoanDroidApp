@@ -46,12 +46,7 @@ jQuery(document).ready(function () {
         $("#edit_loan_cycle").on(
             "change",
             function (event, data) {
-                var v = eval($("#edit_loan_cycle").val());
-                if (v == 0) $("#edit_loan_interestingrate").val('8.9');
-                else if (v == 1) $("#edit_loan_interestingrate").val('9.1');
-                else if (v == 2) $("#edit_loan_interestingrate").val('9.3');
-                else if (v == 3) $("#edit_loan_interestingrate").val('9.6');
-                else if (v == 4) $("#edit_loan_interestingrate").val('10.0');
+                $("#edit_loan_interestingrate").val($("#edit_loan_cycle ").children("option:selected").prop("class"));
                 calculateEMI();
             }
         );
@@ -63,6 +58,7 @@ jQuery(document).ready(function () {
             }
         );
         datatableCalcInit();
+        $("#edit_loan_interestingrate").val($("#edit_loan_cycle ").children("option:selected").prop("class"));
         calculateEMI();
     }
     datatableLoansInit();
@@ -649,15 +645,20 @@ function datatableLoansInit() {
                     title: lang.status,
                     template: function (row, index) {
                         var c = "";
-                        if (row.status == 0) c = lang.Contactor_Checking;
-                        else if (row.status == 1) c = lang.Contactor_Rejected;
-                        else if (row.status == 2) c = lang.Debug_Processing;
-                        else if (row.status == 3) c = lang.Debug_rejected;
-                        else if (row.status == 4) c = lang.Collection_Processing;
-                        else if (row.status == 5) c = lang.Investor_Piad;
-                        else if (row.status == 6) c = lang.Interesting_Process;
-                        else if (row.status == 7) c = lang.Interesting_completed;
-                        else if (row.status == 8) c = lang.Interesting_Incompleted;
+                        if (row.status == 0) c = lang.New;
+                        else if (row.status == 1) c = lang.Representante_Processing;
+                        else if (row.status == 2) c = lang.Representante_Rejected;
+                        else if (row.status == 3) c = lang.Contactor_Checking;
+                        else if (row.status == 4) c = lang.Contactor_Rejected;
+                        else if (row.status == 5) c = lang.Service_Processing;
+                        else if (row.status == 6) c = lang.Service_Rejected;
+                        else if (row.status == 7) c = lang.Debug_Processing;
+                        else if (row.status == 8) c = lang.Debug_Rejected;
+                        else if (row.status == 9) c = lang.Collection_Processing;
+                        else if (row.status == 10) c = lang.Investor_Piad;
+                        else if (row.status == 11) c = lang.Interesting_Process;
+                        else if (row.status == 12) c = lang.Interesting_completed;
+                        else if (row.status == 13) c = lang.Interesting_Incompleted;
                         return '\
                             <span>\
                                 <div class="font-weight-bolder font-size-lg mb-0">' + c + '</div>\

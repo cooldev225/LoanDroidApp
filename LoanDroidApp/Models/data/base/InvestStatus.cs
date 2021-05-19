@@ -7,8 +7,15 @@ namespace Models.data
 {
     public enum InvestStatus
     {
+        New,
+        Representante_Processing,
+        Representante_Rejected,
+        Contactor_Checking,
+        Contactor_Rejected,
+        Service_Processing,
+        Service_Rejected,
         Debug_Processing,
-        Debug_rejected,
+        Debug_Rejected,
         Collection_Processing,
         Created_Milestone,
         Completed_Payment,

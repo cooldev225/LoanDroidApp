@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DBSetup;
@@ -97,7 +98,9 @@ namespace App.Controllers
             ViewBag.Payment03 = q3.Count()>0?q3.First():acc;
             if (ViewBag.step > 1) {
                 var q = _context.LoanRequest.Where(u => u.ClientId.Equals(userId) && (
+                      u.Status == LoanStatus.Representante_Processing ||
                       u.Status == LoanStatus.Collection_Processing ||
+                      u.Status == LoanStatus.Service_Processing ||
                       u.Status == LoanStatus.Contactor_Checking ||
                       u.Status == LoanStatus.Debug_Processing ||
                       u.Status == LoanStatus.Interesting_Process ||
@@ -111,7 +114,7 @@ namespace App.Controllers
                     InterestingRate = 8.9,
                     Cycle = LoanCycle.SEMANAL,
                     Times = 1,
-                    Status = LoanStatus.Contactor_Checking,
+                    Status = LoanStatus.New,
                     StatusReason = "",
                     RequestedDate = DateTime.Now
                 };
@@ -119,6 +122,21 @@ namespace App.Controllers
             ViewBag.Company = _context.Company.OrderBy(u => u.Name).ToList();
             ViewBag.Province = _context.Province.OrderBy(u => u.Id).ToList();
             ViewBag.Nationality = _context.Nationality.OrderBy(u => u.Id).ToList();
+
+            ViewBag.Rates = new List<LoanCycleModel>();
+            foreach (int i in Enum.GetValues(typeof(LoanCycle)))
+            {
+                var name = Enum.GetName(typeof(LoanCycle), i);
+                double val = 0;
+                if (_context.Option.Where(u => u.Key.Equals("LOAN_RATE_" + name)).Count() > 0)
+                    val = double.Parse(_context.Option.Where(u => u.Key.Equals("LOAN_RATE_" + name)).First().Value);
+                ViewBag.Rates.Add(new LoanCycleModel
+                {
+                    LoanCycle = (LoanCycle)Enum.GetValues(typeof(LoanCycle)).GetValue(i),
+                    Rate = val
+                });
+            }
+
             return View();
         }
         [HttpGet]

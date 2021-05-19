@@ -30,6 +30,7 @@ namespace DBSetup
         public DbSet<Nationality> Nationality { get; set; }
         public DbSet<Province> Province { get; set; }
         public DbSet<Company> Company { get; set; }
+        public DbSet<Option> Option { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { }
 
@@ -81,6 +82,8 @@ namespace DBSetup
 
             builder.Entity<Company>().HasIndex(p => p.Id);
             builder.Entity<Company>().Property(p => p.Id).ValueGeneratedOnAdd();
+
+            builder.Entity<Option>().HasKey(u => u.Key);
         }
         public override int SaveChanges()
         {

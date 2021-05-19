@@ -12,6 +12,10 @@ namespace Models.data
         MENSUAL,
         DIARIO,
     }
+    public class LoanCycleModel {
+        public LoanCycle LoanCycle { get; set; }
+        public double Rate { get; set; }
+    }
     public static class LoanCycleCalculator { 
         public static DateTime NextDate (LoanCycle cycle,DateTime current){
             if (cycle == LoanCycle.SEMANAL) return current.AddDays(7);

@@ -26,12 +26,17 @@ namespace DBSetup{
         public static ApplicationPermission AssignRoles = new ApplicationPermission("Asignar roles", "roles.assign", RolesPermissionGroupName, "Permission to assign roles to users");
 
         public const string LoanPermissionGroupName = "Loan Permissions";
+        public static ApplicationPermission RepresentanteLoan = new ApplicationPermission("Pedir representante", "loan.representante", LoanPermissionGroupName, "Permission to loan representante");
         public static ApplicationPermission RequestLoan = new ApplicationPermission("Pedir prestamo", "loan.request", LoanPermissionGroupName, "Permission to loan request");
-        public static ApplicationPermission DebugLoan = new ApplicationPermission("Préstamo de depuración", "loan.debug", LoanPermissionGroupName, "Permission to loan debug");
-        public static ApplicationPermission CollectionLoan = new ApplicationPermission("Préstamo de cobro", "loan.collection", LoanPermissionGroupName, "Permission to loan collection");
+        public static ApplicationPermission ServiceLoan = new ApplicationPermission("Pedir Servicio", "loan.service", LoanPermissionGroupName, "Permission to loan service");
+        public static ApplicationPermission DebugLoan = new ApplicationPermission("Préstamo de depuracion", "loan.debug", LoanPermissionGroupName, "Permission to loan debug");
+        public static ApplicationPermission CollectionLoan = new ApplicationPermission("Préstamo de cobranza", "loan.collection", LoanPermissionGroupName, "Permission to loan collection");
 
         public const string InvestmentPermissionGroupName = "Investment Permissions";
-        public static ApplicationPermission DebugInvestment = new ApplicationPermission("Inversión de depuración", "investment.debug", InvestmentPermissionGroupName, "Permission to investment debug");
+        public static ApplicationPermission RepresentanteInvestment = new ApplicationPermission("Inversión de representante", "investment.representante", InvestmentPermissionGroupName, "Permission to investment representante");
+        public static ApplicationPermission RequestInvestment = new ApplicationPermission("Inversión de prestamo", "investment.request", InvestmentPermissionGroupName, "Permission to investment request");
+        public static ApplicationPermission ServiceInvestment = new ApplicationPermission("Inversión de Servicio", "investment.service", InvestmentPermissionGroupName, "Permission to investment service");
+        public static ApplicationPermission DebugInvestment = new ApplicationPermission("Inversión de depuracion", "investment.debug", InvestmentPermissionGroupName, "Permission to investment debug");
         public static ApplicationPermission CollectionInvestment = new ApplicationPermission("Inversión de cobranza", "investment.collection", InvestmentPermissionGroupName, "Permission to investment collection");
         static ApplicationPermissions()
         {
@@ -49,10 +54,15 @@ namespace DBSetup{
                 ManageRoles,
                 AssignRoles,
 
+                RepresentanteLoan,
                 RequestLoan,
+                ServiceLoan,
                 DebugLoan,
                 CollectionLoan,
 
+                RepresentanteInvestment,
+                RequestInvestment,
+                ServiceInvestment,
                 DebugInvestment,
                 CollectionInvestment
             };

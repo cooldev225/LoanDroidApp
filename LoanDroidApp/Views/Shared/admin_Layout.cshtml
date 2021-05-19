@@ -45,6 +45,7 @@
     <script type="text/javascript" src="~/metronic/js/pages/widgets.js"></script>
     <script src="~/metronic/plugins/custom/tinymce/tinymce.bundle.js"></script>
     <script src="~/admin/js/bootstrap-fileinput.js"></script>
+    <script src="~/toast/toastr.js"></script>
     <script src="~/admin/js/lang/@(requestCulture.Replace("es-DO","es-ES")+".js")"></script>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
@@ -59,6 +60,7 @@
     <link href="~/metronic/css/themes/layout/brand/dark.css" rel="stylesheet">
     <link href="~/metronic/css/themes/layout/aside/dark.css" rel="stylesheet">
     <link href="~/admin/css/bootstrap-fileinput.css" rel="stylesheet">
+    <link href="~/toast/toastr.css" rel="stylesheet">
     <link href="~/admin/css/common.css" rel="stylesheet">
 
     <link rel="shortcut icon" href="~/images/logo.ico" />
@@ -186,7 +188,7 @@
                                             <ul class="menu-subnav">
                                                 @if (User.HasClaim(c => c.Type.Equals("permission") && c.Value.Equals("roles.view")))
                                                 {
-                                                    <li class="menu-item <?php echo Request::path()=='home'||Request::path()=='home/index'?'menu-item-active':'';?>" aria-haspopup="true">
+                                                    <li class="menu-item @(current_url.Equals("/admin/roles")?"menu-item-active":"")" aria-haspopup="true">
                                                         <a onclick="location.href='@Url.Action("roles","admin")';" class="menu-link menu-toggle">
                                                             <span class="svg-icony svg-icon-2x">
                                                                 <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Lock-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -203,7 +205,7 @@
                                                 }
                                                 @if (User.HasClaim(c => c.Type.Equals("permission") && c.Value.Equals("users.view")))
                                                 {
-                                                    <li class="menu-item <?php echo Request::path()=='users'||Request::path()=='users/index'?'menu-item-active':'';?>" aria-haspopup="true">
+                                                    <li class="menu-item @(current_url.Equals("/admin/users")?"menu-item-active":"")" aria-haspopup="true">
                                                         <a onclick="location.href='@Url.Action("users", "admin")';" class="menu-link menu-toggle">
                                                             <span class="svg-icon svg-icon-2x">
                                                                 <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\User.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -220,7 +222,7 @@
                                                 }
                                                 @if (User.HasClaim(c => c.Type.Equals("permission") && c.Value.Equals("users.cview")))
                                                 {
-                                                    <li class="menu-item <?php echo Request::path()=='users'||Request::path()=='users/index'?'menu-item-active':'';?>" aria-haspopup="true">
+                                                    <li class="menu-item @(current_url.Equals("/admin/clients")?"menu-item-active":"")" aria-haspopup="true">
                                                         <a onclick="location.href='@Url.Action("clients", "admin")';" class="menu-link menu-toggle">
                                                             <span class="svg-icon svg-icon-2x">
                                                                 <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\User.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -237,7 +239,7 @@
                                                 }
                                                 @if (User.HasClaim(c => c.Type.Equals("permission") && c.Value.Equals("users.iview")))
                                                 {
-                                                    <li class="menu-item <?php echo Request::path()=='users'||Request::path()=='users/index'?'menu-item-active':'';?>" aria-haspopup="true">
+                                                    <li class="menu-item @(current_url.Equals("/admin/investors")?"menu-item-active":"")" aria-haspopup="true">
                                                         <a onclick="location.href='@Url.Action("investors", "admin")';" class="menu-link menu-toggle">
                                                             <span class="svg-icon svg-icon-2x">
                                                                 <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\General\User.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -257,7 +259,7 @@
                                                  User.HasClaim(c => c.Type.Equals("permission") && c.Value.Equals("loan.debug")) ||
                                                  User.HasClaim(c => c.Type.Equals("permission") && c.Value.Equals("loan.collection")))
                                                 {
-                                                    <li class="menu-item <?php echo Request::path()=='users'||Request::path()=='users/index'?'menu-item-active':'';?>" aria-haspopup="true">
+                                                    <li class="menu-item @(current_url.Equals("/admin/loanreq")?"menu-item-active":"")" aria-haspopup="true">
                                                         <a onclick="location.href='@Url.Action("loanreq", "admin")';" class="menu-link menu-toggle">
                                                             <span class="svg-icon svg-icon-2x">
                                                                 <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Communication\Safe-chat.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -277,7 +279,7 @@
                                                User.HasClaim(c => c.Type.Equals("permission") && c.Value.Equals("investment.debug")) ||
                                                User.HasClaim(c => c.Type.Equals("permission") && c.Value.Equals("investment.collection")))
                                                 {
-                                                    <li class="menu-item <?php echo Request::path()=='users'||Request::path()=='users/index'?'menu-item-active':'';?>" aria-haspopup="true">
+                                                    <li class="menu-item @(current_url.Equals("/admin/investment")?"menu-item-active":"")" aria-haspopup="true">
                                                         <a onclick="location.href='@Url.Action("Investment", "admin")';" class="menu-link menu-toggle">
                                                             <span class="svg-icon svg-icon-2x">
                                                                 <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Design\Bucket.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -299,23 +301,69 @@
                                         <a href="javascript:;" class="menu-link menu-toggle">
                                             <span class="menu-text">@SharedLocalizer["Features"]</span><i class="menu-arrow"></i>
                                         </a>
-                                        <div class="menu-submenu menu-submenu-classic menu-submenu-left" data-hor-direction="menu-submenu-left">
-                                            <ul class="menu-subnav">
-                                                <li class="menu-item <?php echo Request::path()=='home'||Request::path()=='home/index'?'menu-item-active':'';?>" aria-haspopup="true">
-                                                    <a onclick="location.href='@Url.Action("transhistory","admin")';" class="menu-link menu-toggle">
-                                                        <span class="svg-icony svg-icon-2x">
-                                                            <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Lock-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                    <rect x="0" y="0" width="24" height="24" />
-                                                                    <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
-                                                                    <path d="M14.5,11 C15.0522847,11 15.5,11.4477153 15.5,12 L15.5,15 C15.5,15.5522847 15.0522847,16 14.5,16 L9.5,16 C8.94771525,16 8.5,15.5522847 8.5,15 L8.5,12 C8.5,11.4477153 8.94771525,11 9.5,11 L9.5,10.5 C9.5,9.11928813 10.6192881,8 12,8 C13.3807119,8 14.5,9.11928813 14.5,10.5 L14.5,11 Z M12,9 C11.1715729,9 10.5,9.67157288 10.5,10.5 L10.5,11 L13.5,11 L13.5,10.5 C13.5,9.67157288 12.8284271,9 12,9 Z" fill="#000000" />
-                                                                </g>
-                                                            </svg><!--end::Svg Icon-->
-                                                        </span>
-                                                        <span class="menu-text ml-2">@SharedLocalizer["TransactionHistories"]</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                        <div class="menu-submenu menu-submenu-fixed menu-submenu-left" data-hor-direction="menu-submenu-left">
+                                            <div class="menu-subnav">
+                                                <ul class="menu-content">
+                                                    <li class="menu-item ">
+                                                        <h3 class="menu-heading menu-toggle">
+                                                            <i class="menu-bullet menu-bullet-dot"><span></span></i>
+                                                            <span class="menu-text">Task Reports</span><i class="menu-arrow"></i>
+                                                        </h3>
+                                                        <ul class="menu-inner">
+                                                            <li class="menu-item @(current_url.Equals("/admin/company")?"menu-item-active":"")" aria-haspopup="true">
+                                                                <a onclick="location.href='@Url.Action("company","admin")';" class="menu-link menu-toggle">
+                                                                    <span class="svg-icony svg-icon-2x">
+                                                                        <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Lock-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                                <rect x="0" y="0" width="24" height="24" />
+                                                                                <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+                                                                                <path d="M14.5,11 C15.0522847,11 15.5,11.4477153 15.5,12 L15.5,15 C15.5,15.5522847 15.0522847,16 14.5,16 L9.5,16 C8.94771525,16 8.5,15.5522847 8.5,15 L8.5,12 C8.5,11.4477153 8.94771525,11 9.5,11 L9.5,10.5 C9.5,9.11928813 10.6192881,8 12,8 C13.3807119,8 14.5,9.11928813 14.5,10.5 L14.5,11 Z M12,9 C11.1715729,9 10.5,9.67157288 10.5,10.5 L10.5,11 L13.5,11 L13.5,10.5 C13.5,9.67157288 12.8284271,9 12,9 Z" fill="#000000" />
+                                                                            </g>
+                                                                        </svg><!--end::Svg Icon-->
+                                                                    </span>
+                                                                    <span class="menu-text ml-2">@SharedLocalizer["Company"]</span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="menu-item @(current_url.Equals("/admin/loanrate")?"menu-item-active":"")" aria-haspopup="true">
+                                                                <a onclick="location.href='@Url.Action("loanrate","admin")';" class="menu-link menu-toggle">
+                                                                    <span class="svg-icony svg-icon-2x">
+                                                                        <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Lock-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                                <rect x="0" y="0" width="24" height="24" />
+                                                                                <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+                                                                                <path d="M14.5,11 C15.0522847,11 15.5,11.4477153 15.5,12 L15.5,15 C15.5,15.5522847 15.0522847,16 14.5,16 L9.5,16 C8.94771525,16 8.5,15.5522847 8.5,15 L8.5,12 C8.5,11.4477153 8.94771525,11 9.5,11 L9.5,10.5 C9.5,9.11928813 10.6192881,8 12,8 C13.3807119,8 14.5,9.11928813 14.5,10.5 L14.5,11 Z M12,9 C11.1715729,9 10.5,9.67157288 10.5,10.5 L10.5,11 L13.5,11 L13.5,10.5 C13.5,9.67157288 12.8284271,9 12,9 Z" fill="#000000" />
+                                                                            </g>
+                                                                        </svg><!--end::Svg Icon-->
+                                                                    </span>
+                                                                    <span class="menu-text ml-2">@SharedLocalizer["LoanRate"]</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li class="menu-item ">
+                                                        <h3 class="menu-heading menu-toggle">
+                                                            <i class="menu-bullet menu-bullet-dot"><span></span></i>
+                                                            <span class="menu-text">Profit Margins</span><i class="menu-arrow"></i>
+                                                        </h3>
+                                                        <ul class="menu-inner">
+                                                            <li class="menu-item @(current_url.Equals("/admin/transhistory")?"menu-item-active":"")" aria-haspopup="true">
+                                                                <a onclick="location.href='@Url.Action("transhistory","admin")';" class="menu-link menu-toggle">
+                                                                    <span class="svg-icony svg-icon-2x">
+                                                                        <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo1\dist/../src/media/svg/icons\Code\Lock-circle.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                                <rect x="0" y="0" width="24" height="24" />
+                                                                                <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10" />
+                                                                                <path d="M14.5,11 C15.0522847,11 15.5,11.4477153 15.5,12 L15.5,15 C15.5,15.5522847 15.0522847,16 14.5,16 L9.5,16 C8.94771525,16 8.5,15.5522847 8.5,15 L8.5,12 C8.5,11.4477153 8.94771525,11 9.5,11 L9.5,10.5 C9.5,9.11928813 10.6192881,8 12,8 C13.3807119,8 14.5,9.11928813 14.5,10.5 L14.5,11 Z M12,9 C11.1715729,9 10.5,9.67157288 10.5,10.5 L10.5,11 L13.5,11 L13.5,10.5 C13.5,9.67157288 12.8284271,9 12,9 Z" fill="#000000" />
+                                                                            </g>
+                                                                        </svg><!--end::Svg Icon-->
+                                                                    </span>
+                                                                    <span class="menu-text ml-2">@SharedLocalizer["TransactionHistories"]</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </li>
                                 </ul>
@@ -541,6 +589,14 @@
                                     else if (current_url.Equals("/admin/transhistory"))
                                     {
                                         <a href="@Url.Action("transhistory","admin")" class="btn btn-clean font-weight-bold" style="color:#000;font-size:15px;">@SharedLocalizer["TransactionHistories"]</a>
+                                    }
+                                    else if (current_url.Equals("/admin/Company"))
+                                    {
+                                        <a href="@Url.Action("company","admin")" class="btn btn-clean font-weight-bold" style="color:#000;font-size:15px;">@SharedLocalizer["Company"]</a>
+                                    }
+                                    else if (current_url.Equals("/admin/loanrate"))
+                                    {
+                                        <a href="@Url.Action("loanrate","admin")" class="btn btn-clean font-weight-bold" style="color:#000;font-size:15px;">@SharedLocalizer["LoanRate"]</a>
                                     }
                                 </h5>
                                 <div class="subheader-separator subheader-separator-ver mr-4" style="background-color:#655d5d;font-size:15px;"></div>

@@ -7,8 +7,8 @@ namespace Models.data
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Purpose { get; set; }
-        public string Direction { get; set; }
+        public string Purpose { get; set;}
+        public string Direction { get; set;}
         public string Phone { get; set; }
         public string CPhone { get; set; }
         public string Phone1 { get; set; }

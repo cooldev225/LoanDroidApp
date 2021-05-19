@@ -52,15 +52,20 @@ function expendDetailBody(e) {
                     width: 180,
                     template: function (row, index) {
                         var c = "";
-                        if (row.status == 0) c = lang.Contactor_Checking;
-                        else if (row.status == 1) c = lang.Contactor_Rejected;
-                        else if (row.status == 2) c = lang.Debug_Processing;
-                        else if (row.status == 3) c = lang.Debug_rejected;
-                        else if (row.status == 4) c = lang.Collection_Processing;
-                        else if (row.status == 5) c = lang.Investor_Piad;
-                        else if (row.status == 6) c = lang.Interesting_Process;
-                        else if (row.status == 7) c = lang.Interesting_completed;
-                        else if (row.status == 8) c = lang.Interesting_Incompleted;
+                        if (row.status == 0) c = lang.New;
+                        else if (row.status == 1) c = lang.Representante_Processing;
+                        else if (row.status == 2) c = lang.Representante_Rejected;
+                        else if (row.status == 3) c = lang.Contactor_Checking;
+                        else if (row.status == 4) c = lang.Contactor_Rejected;
+                        else if (row.status == 5) c = lang.Service_Processing;
+                        else if (row.status == 6) c = lang.Service_Rejected;
+                        else if (row.status == 7) c = lang.Debug_Processing;
+                        else if (row.status == 8) c = lang.Debug_Rejected;
+                        else if (row.status == 9) c = lang.Collection_Processing;
+                        else if (row.status == 10) c = lang.Investor_Piad;
+                        else if (row.status == 11) c = lang.Interesting_Process;
+                        else if (row.status == 12) c = lang.Interesting_completed;
+                        else if (row.status == 13) c = lang.Interesting_Incompleted;
                         return '\
                             <span>\
                                 <div class="font-weight-bolder font-size-lg mb-0">' + c + '</div>\
@@ -209,15 +214,20 @@ function datatableInit() {
                     title: lang.status,
                     template: function (row, index) {
                         var c = "";
-                        if (row.status == 0) c = lang.Contactor_Checking;
-                        else if (row.status == 1) c = lang.Contactor_Rejected;
-                        else if(row.status == 2) c = lang.Debug_Processing;
-                        else if (row.status == 3) c = lang.Debug_rejected;
-                        else if (row.status == 4) c = lang.Collection_Processing;
-                        else if (row.status == 5) c = lang.Investor_Piad;
-                        else if (row.status == 6) c = lang.Interesting_Process;
-                        else if (row.status == 7) c = lang.Interesting_completed;
-                        else if (row.status == 8) c = lang.Interesting_Incompleted;
+                        if (row.status == 0) c = lang.New;
+                        else if (row.status == 1) c = lang.Representante_Processing;
+                        else if (row.status == 2) c = lang.Representante_Rejected;
+                        else if (row.status == 3) c = lang.Contactor_Checking;
+                        else if (row.status == 4) c = lang.Contactor_Rejected;
+                        else if (row.status == 5) c = lang.Service_Processing;
+                        else if (row.status == 6) c = lang.Service_Rejected;
+                        else if (row.status == 7) c = lang.Debug_Processing;
+                        else if (row.status == 8) c = lang.Debug_Rejected;
+                        else if (row.status == 9) c = lang.Collection_Processing;
+                        else if (row.status == 10) c = lang.Investor_Piad;
+                        else if (row.status == 11) c = lang.Interesting_Process;
+                        else if (row.status == 12) c = lang.Interesting_completed;
+                        else if (row.status == 13) c = lang.Interesting_Incompleted;
                         return '\
                             <span>\
                                 <div class="font-weight-bolder font-size-lg mb-0">' + c + '</div>\
@@ -460,6 +470,7 @@ function datatableCalcInit() {
                         requesteddate: encodeIvanFormat($('#edit_loan_requesteddate').val()),
                         cycle: $('#edit_loan_cycle').val(),
                         times: $('#edit_loan_times').val(),
+                        loan_id: $('#edit_loan_id').val(),
                     }
                 },
             },
@@ -516,8 +527,11 @@ function datatableCalcInit() {
                 template: function (row, index) {
                     return '\
                         <div class="dropdown dropdown-inline">\
-                        '+ (row.status == 2 ? '<span class="datatable-cell paid">' + getJustDateWIthYear(row.paidDate) + ' ' + lang.paid + '</span>' :
-                            '') +
+                        '+ (row.status == 0 ? '<a onclick="javascript:paynow(' + row.capital + ',' + row.interest + ',' + row.dues + ',' + index + ');" class="datatable-cell btn btn-primary" title="Reset password">\
+                            <span class="">'+ lang.paynow + '</span>\
+                        </a > ': row.status == 1 ? '\
+                        <span class="datatable-cell notnow">'+ lang.notnow + '</span>\
+                        ': '<span class="datatable-cell paid">' + getJustDateWIthYear(row.paidDate) + ' ' + lang.paid + '</span>') +
                         '</div>\
                     ';
                 },
@@ -532,6 +546,7 @@ function calculateLoan() {
     data_table_calc.setDataSourceParam('requesteddate', encodeIvanFormat($('#edit_loan_requesteddate').val()));
     data_table_calc.setDataSourceParam('cycle', $('#edit_loan_cycle').val());
     data_table_calc.setDataSourceParam('times', $('#edit_loan_times').val());
+    data_table_calc.setDataSourceParam('loan_id', $('#edit_loan_id').val());
     data_table_calc.reload();
 }
 function addStatusAction(id) {

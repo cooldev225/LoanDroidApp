@@ -59,15 +59,20 @@ namespace App.Controllers
         }
         public void GlobalVariables() {
             ViewData["Title"] = "";
-            var representantes = _userManager.GetUsersInRoleAsync("representante").Result.Count();
-            var contactors = _userManager.GetUsersInRoleAsync("contactor").Result.Count();
-            var servicemanagers = _userManager.GetUsersInRoleAsync("servicio").Result.Count();
-            var debuggerdepartments = _userManager.GetUsersInRoleAsync("depuracion").Result.Count();
-            var collectiondepartments = _userManager.GetUsersInRoleAsync("coleccion").Result.Count();
-            ViewBag.client_count = _userManager.GetUsersInRoleAsync("cliente").Result.Count();
-            ViewBag.investor_count = _userManager.GetUsersInRoleAsync("inversora").Result.Count();
-            ViewBag.inneraluser_count = representantes + contactors + servicemanagers + debuggerdepartments + collectiondepartments;
-            ViewBag.UserRoles = "administrator,representante,contactor,servicio,depuracion,coleccion";
+
+            ViewBag.client_count = 0;
+            ViewBag.investor_count = 0;
+            ViewBag.inneraluser_count = 0;
+            ViewBag.UserRoles = "";
+            foreach (ApplicationRole role in _roleManager.Roles.OrderBy(u=>u.CreatedDate).ToList()) {
+                if (role.Name.Equals("cliente")) ViewBag.client_count = _userManager.GetUsersInRoleAsync("cliente").Result.Count();
+                else if (role.Name.Equals("inversora")) ViewBag.investor_count = _userManager.GetUsersInRoleAsync("inversora").Result.Count();
+                else
+                {
+                    ViewBag.inneraluser_count += _userManager.GetUsersInRoleAsync(role.Name).Result.Count();
+                    ViewBag.UserRoles += (ViewBag.UserRoles.Equals("")?"":",") + role.Name;
+                }
+            }
             
             IQueryable<ApplicationNotification> query = (
                 from a in _context.Set<Notification>().OrderByDescending(u=>u.CreatedDate)
@@ -111,6 +116,7 @@ namespace App.Controllers
             ViewBag.Province = _context.Province.OrderBy(u => u.Id).ToList();
             ViewBag.Nationality = _context.Nationality.OrderBy(u => u.Id).ToList();
         }
+        [HttpGet]
         public IActionResult Index()
         {
             GlobalVariables();
@@ -120,6 +126,7 @@ namespace App.Controllers
             //ViewBag.user = await _userManager.FindByIdAsync(userid);
             return View();
         }
+        [HttpGet]
         public IActionResult Roles()
         {
             if (!HasPermmision("roles.view")) return Redirect("index");
@@ -323,6 +330,180 @@ namespace App.Controllers
                 msg="ok"
             });
         }
+
+
+        [HttpGet]
+        public IActionResult Company()
+        {
+            //if (!HasPermmision("roles.view")) return Redirect("index");
+            GlobalVariables();
+            return View();
+        }
+        [HttpPost]
+        public DatatableCompany getCompanyDataTable()
+        {
+            if (!HasPermmision("users.cmanage")) return null;
+            int page = Request.Form["pagination[page]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[page]"].FirstOrDefault());
+            int perpage = Request.Form["pagination[perpage]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[perpage]"].FirstOrDefault());
+            string search = Request.Form["query[generalSearch]"].FirstOrDefault() == null ? "" : Request.Form["query[generalSearch]"].FirstOrDefault();
+            DatatableSort sort = new DatatableSort
+            {
+                field = Request.Form["sort[field]"].FirstOrDefault(),
+                sort = Request.Form["sort[sort]"].FirstOrDefault()
+            };
+            IQueryable<Company> query = _context.Set<Company>();
+            int total = query.Count();
+            DatatableCompany res = new DatatableCompany
+            {
+                meta = new DatatablePagination
+                {
+                    total = total,
+                    page = page,
+                    perpage = perpage,
+                    pages = total / perpage + (total % perpage < 5 ? 1 : 0),
+                }
+            };
+            if (!search.Equals(""))
+                query = query.Where(u =>
+                    u.Name.IndexOf(search) > -1 ||
+                    u.Purpose.IndexOf(search) > -1 ||
+                    u.Direction.IndexOf(search) > -1 ||
+                    u.CPhone.IndexOf(search) > -1 ||
+                    u.Url.IndexOf(search) > -1
+                );
+            if (
+                total > 0 && sort.field != null && sort.sort != null && !sort.Equals("")
+            )
+            {
+                if (sort.sort.Equals("asc"))
+                {
+                    if (sort.field.Equals("name")) query = query.OrderBy(u => u.Name);
+                    else if (sort.field.Equals("purpose")) query = query.OrderBy(u => u.Purpose);
+                    else if (sort.field.Equals("direction")) query = query.OrderBy(u => u.Direction);
+                    else if (sort.field.Equals("cPhone")) query = query.OrderBy(u => u.CPhone);
+                    else if (sort.field.Equals("url")) query = query.OrderBy(u => u.Url);
+                }
+                else
+                {
+                    if (sort.field.Equals("name")) query = query.OrderByDescending(u => u.Name);
+                    else if (sort.field.Equals("purpose")) query = query.OrderByDescending(u => u.Purpose);
+                    else if (sort.field.Equals("direction")) query = query.OrderByDescending(u => u.Direction);
+                    else if (sort.field.Equals("cPhone")) query = query.OrderByDescending(u => u.CPhone);
+                    else if (sort.field.Equals("url")) query = query.OrderByDescending(u => u.Url);
+                }
+            }
+            res.data = query.Skip((page - 1) * perpage)
+                          .Take(perpage)
+                          .ToList();
+            return res;
+        }
+        [HttpPost]
+        public async Task<JsonResult> saveCompany(
+            int id,
+            string name,
+            string purpose,
+            string direction,
+            string phone,
+            string url
+        )
+        {
+            Company req = new Company
+            {
+                Name = name,
+                Purpose = purpose,
+                Direction = direction,
+                Phone = phone,
+                Url = url
+            };
+            if (!HasPermmision("users.cmanage")) return null;
+            if (id == 0)
+            {
+                await _context.Company.AddAsync(req);
+                await _context.SaveChangesAsync();
+
+                await SaveNotification("creó un '"+name+"' de la empresa", "users.cmanage");
+            }
+            else
+            {
+                req.Id = id;
+                _context.Entry(req).CurrentValues.SetValues(req);
+                _context.Entry(req).State = EntityState.Modified;
+                _context.SaveChanges();
+            }
+            return Json(new
+            {
+                msg = "ok"
+            });
+        }
+        [HttpPost]
+        public async Task<ActionResult> DeleteCompany(int id)
+        {
+            if (!HasPermmision("users.cmanage")) return null;
+            try
+            {
+                Company req = await _context.Company.FindAsync(id);
+                _context.Remove(req);
+                _context.SaveChanges();
+            }
+            catch (Exception e) { Console.WriteLine(e.ToString()); }
+            return Json(new
+            {
+                error = ""
+            });
+        }
+
+        [HttpGet]
+        public IActionResult Loanrate()
+        {
+            //if (!HasPermmision("roles.view")) return Redirect("index");
+            ViewBag.Rates = new List<LoanCycleModel>();
+            foreach (int i in Enum.GetValues(typeof(LoanCycle))) {
+                var name = Enum.GetName(typeof(LoanCycle), i);
+                double val = 0;
+                if (_context.Option.Where(u => u.Key.Equals("LOAN_RATE_" + name)).Count() > 0)
+                    val = double.Parse(_context.Option.Where(u => u.Key.Equals("LOAN_RATE_" + name)).First().Value);
+                ViewBag.Rates.Add(new LoanCycleModel {
+                    LoanCycle = (LoanCycle)Enum.GetValues(typeof(LoanCycle)).GetValue(i),
+                    Rate=val
+                });
+            }
+            GlobalVariables();
+            return View();
+        }
+        [HttpPost]
+        public async Task<JsonResult> saveloanRate() {
+            //if (!HasPermmision("users.cmanage")) return null;
+            foreach (int i in Enum.GetValues(typeof(LoanCycle))) {
+                var name = Enum.GetName(typeof(LoanCycle), i);
+                var sss = Request.Form[name].FirstOrDefault();
+                double val = double.Parse(sss);
+                Option req = new Option
+                {
+                    Key = "LOAN_RATE_"+name,
+                    Value = val.ToString(),
+                    Kind = "",
+                    Description=""
+                };
+                if (_context.Option.Where(u=>u.Key.Equals("LOAN_RATE_" + name)).Count()==0)
+                {
+                    await _context.Option.AddAsync(req);
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    _context.Entry(req).CurrentValues.SetValues(req);
+                    _context.Entry(req).State = EntityState.Modified;
+                    _context.SaveChanges();
+                }
+                await SaveNotification("Establezca la tasa de préstamo "+name+" en "+val, "users.cmanage");
+            }
+            return Json(new
+            {
+                error = ""
+            });
+        }
+
+        [HttpGet]
         public IActionResult Users()
         {
             if (!HasPermmision("users.view")) return Redirect("index");
@@ -351,13 +532,15 @@ namespace App.Controllers
                 field = Request.Form["sort[field]"].FirstOrDefault(),
                 sort = Request.Form["sort[sort]"].FirstOrDefault()
             };
-            var query= _userManager.GetUsersInRoleAsync("administrator").Result; 
+            var query= _userManager.GetUsersInRoleAsync(role).Result; 
+            /*
             if(role==null||role.Equals("")||role.Equals("administrator"))query = _userManager.GetUsersInRoleAsync("administrator").Result;
             else if (role.Equals("representante")) query = _userManager.GetUsersInRoleAsync("representante").Result;
             else if (role.Equals("contactor")) query = _userManager.GetUsersInRoleAsync("contactor").Result;
             else if (role.Equals("servicio")) query = _userManager.GetUsersInRoleAsync("servicio").Result;
             else if (role.Equals("depuracion")) query = _userManager.GetUsersInRoleAsync("depuracion").Result;
             else if (role.Equals("coleccion")) query = _userManager.GetUsersInRoleAsync("coleccion").Result;
+            */
             int total = query.Count();
             DatatableUser res = new DatatableUser
             {
@@ -864,24 +1047,30 @@ namespace App.Controllers
                 query = query.Where(u =>
                     u.ClientId.Equals(_userManager.GetUserId(User)));
             }
-            else {
+            else if (!User.IsInRole("administrator"))
+            {
+                if (!HasPermmision("loan.representante")&&!HasPermmision("loan.request")) query = query.Where(u =>
+                     u.Status != LoanStatus.New);
+                if (!HasPermmision("loan.representante")) query = query.Where(u =>
+                    u.Status != LoanStatus.Representante_Processing &&
+                    u.Status != LoanStatus.Representante_Rejected);
                 if (!HasPermmision("loan.request")) query = query.Where(u =>
                     u.Status != LoanStatus.Contactor_Checking &&
                     u.Status != LoanStatus.Contactor_Rejected);
+                if (!HasPermmision("loan.service")) query = query.Where(u =>
+                    u.Status != LoanStatus.Service_Processing &&
+                    u.Status != LoanStatus.Service_Rejected
+                    );
                 if (!HasPermmision("loan.debug")) query = query.Where(u =>
                     u.Status != LoanStatus.Debug_Processing &&
-                    u.Status != LoanStatus.Debug_rejected
+                    u.Status != LoanStatus.Debug_Rejected
                     );
                 if (!HasPermmision("loan.collection")) query = query.Where(u =>
                     u.Status != LoanStatus.Collection_Processing &&
                     u.Status != LoanStatus.Investor_Piad &&
-                    u.Status != LoanStatus.Interesting_Process);
-                if (!User.IsInRole("administrator"))
-                {
-                    query = query.Where(u =>
-                        u.Status != LoanStatus.Interesting_completed &&
-                        u.Status != LoanStatus.Interesting_Incompleted);
-                }
+                    u.Status != LoanStatus.Interesting_Process&&
+                    u.Status != LoanStatus.Interesting_Completed &&
+                    u.Status != LoanStatus.Interesting_Incompleted);
             }
             int total = query.Count();
             DatatableLoanRequest res = new DatatableLoanRequest
@@ -1122,18 +1311,22 @@ namespace App.Controllers
         )
         {
             if (!User.IsInRole("administrator")) {
+                if (!HasPermmision("loan.representante"))
+                    if (
+                        status == LoanStatus.Representante_Rejected) return null;
                 if (!HasPermmision("loan.request"))
                     if (
-                        status == LoanStatus.Contactor_Rejected ||
-                        status == LoanStatus.Debug_Processing) return null;
+                        status == LoanStatus.Contactor_Rejected) return null;
+                if (!HasPermmision("loan.service"))
+                    if (
+                        status == LoanStatus.Service_Rejected) return null;
                 if (!HasPermmision("loan.debug"))
-                    if (status == LoanStatus.Debug_rejected ||
-                    status == LoanStatus.Collection_Processing) return null;
+                    if (status == LoanStatus.Debug_Rejected) return null;
                 if (!HasPermmision("loan.collection"))
                     if (
                     status == LoanStatus.Investor_Piad ||
                     status == LoanStatus.Interesting_Process ||
-                    status == LoanStatus.Interesting_completed ||
+                    status == LoanStatus.Interesting_Completed ||
                     status == LoanStatus.Interesting_Incompleted) return null;
             }
             LoanRequestStatus req = new LoanRequestStatus
@@ -1170,7 +1363,7 @@ namespace App.Controllers
 
                 LoanRequest lreq = await _context.LoanRequest.FindAsync(reqid);
                 var query = _context.LoanRequestStatus.Where(u => u.LoanRequestId == reqid).OrderByDescending(u => u.CreatedDate);
-                LoanStatus status = LoanStatus.Contactor_Checking;
+                LoanStatus status = LoanStatus.New;
                 string statusreason = "";
                 if (query.Count() > 0) {
                     status = query.First().Status;
@@ -1234,17 +1427,27 @@ namespace App.Controllers
                                                             UpdatedDate = a.UpdatedDate,
                                                             UpdatedDevice = a.UpdatedDevice
                                                         });
-            if (!HasPermmision("investment.debug")) query = query.Where(u =>
-                u.Status != InvestStatus.Debug_Processing &&
-                u.Status != InvestStatus.Debug_rejected);
-            if (!HasPermmision("investment.collection")) query = query.Where(u =>
-                u.Status != InvestStatus.Collection_Processing &&
-                u.Status != InvestStatus.Created_Milestone &&
-                u.Status != InvestStatus.Completed_Payment &&
-                u.Status != InvestStatus.Saving_Process);
             if (!User.IsInRole("administrator"))
             {
-                query = query.Where(u =>
+                if (!HasPermmision("investment.representante") && !HasPermmision("investment.request")) query = query.Where(u =>
+                     u.Status != InvestStatus.New);
+                if (!HasPermmision("investment.representante")) query = query.Where(u =>
+                    u.Status != InvestStatus.Representante_Processing &&
+                    u.Status != InvestStatus.Representante_Rejected);
+                if (!HasPermmision("investment.request")) query = query.Where(u =>
+                    u.Status != InvestStatus.Contactor_Checking &&
+                    u.Status != InvestStatus.Contactor_Rejected);
+                if (!HasPermmision("investment.service")) query = query.Where(u =>
+                    u.Status != InvestStatus.Service_Processing &&
+                    u.Status != InvestStatus.Service_Rejected);
+                if (!HasPermmision("investment.debug")) query = query.Where(u =>
+                    u.Status != InvestStatus.Debug_Processing &&
+                    u.Status != InvestStatus.Debug_Rejected);
+                if (!HasPermmision("investment.collection")) query = query.Where(u =>
+                    u.Status != InvestStatus.Collection_Processing &&
+                    u.Status != InvestStatus.Created_Milestone &&
+                    u.Status != InvestStatus.Completed_Payment &&
+                    u.Status != InvestStatus.Saving_Process&&
                     u.Status != InvestStatus.Completed_Investment &&
                     u.Status != InvestStatus.Incompleted_Investment);
             }
@@ -1413,9 +1616,14 @@ namespace App.Controllers
         {
             if (!User.IsInRole("administrator"))
             {
+                if (!HasPermmision("investment.representante"))
+                    if (status == InvestStatus.Representante_Rejected) return null;
+                if (!HasPermmision("investment.request"))
+                    if (status == InvestStatus.Contactor_Rejected) return null;
+                if (!HasPermmision("investment.service"))
+                    if (status == InvestStatus.Service_Rejected) return null;
                 if (!HasPermmision("investment.debug"))
-                    if (status == InvestStatus.Debug_rejected ||
-                    status == InvestStatus.Collection_Processing) return null;
+                    if (status == InvestStatus.Debug_Rejected) return null;
                 if (!HasPermmision("investment.collection"))
                     if (status == InvestStatus.Incompleted_Investment ||
                         status == InvestStatus.Completed_Payment ||

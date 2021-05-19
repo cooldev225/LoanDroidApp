@@ -39,9 +39,9 @@ function expendDetailBody(e) {
                 title: 'Group',
                 template: function (row, index) {
                     if (row.pageGroup == 0) return "Config";
-                    else if (row.pageGroup == 1) return "Préstamo";
-                    else if (row.pageGroup == 2) return "Inversión";
-                    else if (row.pageGroup == 3) return "Buzón";
+                    else if (row.pageGroup == 1) return "PrÃ©stamo";
+                    else if (row.pageGroup == 2) return "InversiÃ³n";
+                    else if (row.pageGroup == 3) return "BuzÃ³n";
                 },
                 width: 80,
             },

@@ -126,6 +126,9 @@
   <data name="Addnewclient" xml:space="preserve">
     <value>Agregar nueva cliente</value>
   </data>
+  <data name="Addnewcompany" xml:space="preserve">
+    <value>Agregar nueva empresa</value>
+  </data>
   <data name="Addnewinvestor" xml:space="preserve">
     <value>Agregar nuevo inversor</value>
   </data>
@@ -213,6 +216,9 @@
   <data name="Collection_Processing" xml:space="preserve">
     <value>Procesamiento de la colección</value>
   </data>
+  <data name="Company" xml:space="preserve">
+    <value>Empresa</value>
+  </data>
   <data name="COMPANYSTR_" xml:space="preserve">
     <value>Empresa donde labora (dirección/sector real de clientes de cobranza)</value>
   </data>
@@ -273,7 +279,7 @@
   <data name="Debug_Processing" xml:space="preserve">
     <value>Procesamiento de depurador</value>
   </data>
-  <data name="Debug_rejected" xml:space="preserve">
+  <data name="Debug_Rejected" xml:space="preserve">
     <value>Rechazado por el depurador"</value>
   </data>
   <data name="department" xml:space="preserve">
@@ -290,6 +296,15 @@
   </data>
   <data name="DESCRIPTION_" xml:space="preserve">
     <value>DESCRIPCIÓN</value>
+  </data>
+  <data name="Dialog" xml:space="preserve">
+    <value>Diálogo</value>
+  </data>
+  <data name="DIARIO" xml:space="preserve">
+    <value>DIARIO</value>
+  </data>
+  <data name="DIRECTION_" xml:space="preserve">
+    <value>DIRECCIÓN</value>
   </data>
   <data name="email" xml:space="preserve">
     <value>Email</value>
@@ -399,7 +414,7 @@
   <data name="IDorpassport" xml:space="preserve">
     <value>Cédula o Pasaporte</value>
   </data>
-  <data name="Interesting_completed" xml:space="preserve">
+  <data name="Interesting_Completed" xml:space="preserve">
     <value>Solicitud completada</value>
   </data>
   <data name="Interesting_Incompleted" xml:space="preserve">
@@ -468,6 +483,9 @@
   <data name="LoanCalculator" xml:space="preserve">
     <value>Calculadora de préstamo</value>
   </data>
+  <data name="LoanRate" xml:space="preserve">
+    <value>Tasa de préstamo</value>
+  </data>
   <data name="LoanRates" xml:space="preserve">
     <value>Tasas de préstamos</value>
   </data>
@@ -504,6 +522,12 @@
   <data name="LoanRequestStatusAlert_Investor_Piad" xml:space="preserve">
     <value>Un inversor ha pagado la cantidad total de su préstamo hace un momento. Le informaremos el próximo paso tan pronto.</value>
   </data>
+  <data name="LoanRequestStatusAlert_Representante_Processing" xml:space="preserve">
+    <value>Representante de procesamiento</value>
+  </data>
+  <data name="LoanRequestStatusAlert_Representante_Rejected" xml:space="preserve">
+    <value>Rechazado por representante</value>
+  </data>
   <data name="LoanRequestStatusAlert_Service_Mapping" xml:space="preserve">
     <value>Por favor, espere la inversión para su solicitud.</value>
   </data>
@@ -521,6 +545,9 @@
   </data>
   <data name="MARITALSTATUS_" xml:space="preserve">
     <value>ESTADO CIVIL</value>
+  </data>
+  <data name="MENSUAL" xml:space="preserve">
+    <value>MENSUAL</value>
   </data>
   <data name="message" xml:space="preserve">
     <value>Mensaje</value>
@@ -627,8 +654,17 @@
   <data name="ProjectsText" xml:space="preserve">
     <value>logramos que el prestatario pague menos intereses y que el que invierte su dinero obtenga una buena rentabilidad.</value>
   </data>
+  <data name="Province" xml:space="preserve">
+    <value>Provincia</value>
+  </data>
   <data name="PROVINCE_" xml:space="preserve">
     <value>PROVINCIA</value>
+  </data>
+  <data name="PURPOSE_" xml:space="preserve">
+    <value>PROPÓSITO</value>
+  </data>
+  <data name="QUINCENAL" xml:space="preserve">
+    <value>QUINCENAL</value>
   </data>
   <data name="ReadMore" xml:space="preserve">
     <value>Leer más</value>
@@ -641,6 +677,12 @@
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Eliminar</value>
+  </data>
+  <data name="Representante_Processing" xml:space="preserve">
+    <value>Tramitación de Representante</value>
+  </data>
+  <data name="Representante_Rejected" xml:space="preserve">
+    <value>Rechazado por Representante</value>
   </data>
   <data name="requesteddate" xml:space="preserve">
     <value>Fecha solicitada</value>
@@ -695,6 +737,15 @@
   </data>
   <data name="Select" xml:space="preserve">
     <value>Seleccione</value>
+  </data>
+  <data name="SEMANAL" xml:space="preserve">
+    <value>SEMANAL</value>
+  </data>
+  <data name="Service_Processing" xml:space="preserve">
+    <value>Responsable de tramitación del servicio</value>
+  </data>
+  <data name="Service_Rejected" xml:space="preserve">
+    <value>Rechazado por el administrador del servicio</value>
   </data>
   <data name="SEX_" xml:space="preserve">
     <value>SEXO</value>
