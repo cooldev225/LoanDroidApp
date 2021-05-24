@@ -41,6 +41,7 @@ var lang = {
     status: "Status",
     investor: "Investor",
     savingRate: "Saving Rate",
+    saving: "Saving",
     paynow: "Pay now",
     paid: "Paid",
     notnow: "Not now",

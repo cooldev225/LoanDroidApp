@@ -75,7 +75,7 @@
                     <!--begin::Signin-->
                     <div class="login-form login-signin py-11">
                         <!--begin::Form-->
-                        <form class="form" novalidate="novalidate" method="post" action="login" id="kt_login_signin_form">
+                        <form class="form" asp-action="login" asp-route-returnUrl="@ViewData["returnUrl"]" novalidate="novalidate" method="post" id="kt_login_signin_form">
                             <!--begin::Title-->
                             <div class="text-center pb-8">
                                 <h2 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">@SharedLocalizer["Login"]</h2>
@@ -112,7 +112,7 @@
                     <!--begin::Signup-->
                     <div class="login-form login-signup pt-11">
                         <!--begin::Form-->
-                        <form class="form" novalidate="novalidate" method="post" action="register" id="kt_login_signup_form">
+                        <form class="form" asp-action="register" asp-route-returnUrl="@ViewData["returnUrl"]" novalidate="novalidate" method="post" id="kt_login_signup_form">
                             <!--begin::Title-->
                             <div class="text-center pb-8">
                                 <h2 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">@SharedLocalizer["CreateAccount"]</h2>
@@ -122,12 +122,12 @@
                             <div class="form-group">
                                 <div class="radio-list">
                                     <label class="radio">
-                                        <input type="radio" checked="checked" name="usertype" />
+                                        <input type="radio" value="0" checked="checked" name="usertype" />
                                         <span></span>
                                         @SharedLocalizer["Iwantloan"]
                                     </label>
                                     <label class="radio">
-                                        <input type="radio" name="usertype" />
+                                        <input type="radio" value="1" name="usertype" />
                                         <span></span>
                                         @SharedLocalizer["Iwanttolend"]
                                     </label>
@@ -174,7 +174,7 @@
                     <!--begin::Forgot-->
                     <div class="login-form login-forgot pt-11">
                         <!--begin::Form-->
-                        <form class="form" novalidate="novalidate" method="post" action="/forgot" id="kt_login_forgot_form">
+                        <form class="form" asp-action="forgot" asp-route-returnUrl="@ViewData["returnUrl"]" novalidate="novalidate" method="post" id="kt_login_forgot_form">
                             <!--begin::Title-->
                             <div class="text-center pb-8">
                                 <h2 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">@SharedLocalizer["Forgotten"]</h2>

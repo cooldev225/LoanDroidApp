@@ -41,6 +41,7 @@ var lang = {
     status: "Status",
     investor: "Inversora",
     savingRate: "Tasa de ahorro",
+    saving: "Ahorro",
     paynow: "Paga ahora",
     paid: "Pagado",
     notnow: "Ahora no",

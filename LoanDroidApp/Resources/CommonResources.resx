@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutLoan" xml:space="preserve">
+    <value>About Loan</value>
+  </data>
+  <data name="AboutPersonalLoan" xml:space="preserve">
+    <value>About Personal Loan</value>
+  </data>
+  <data name="AboutSaving" xml:space="preserve">
+    <value>About Saving</value>
+  </data>
   <data name="accountholder" xml:space="preserve">
     <value>Bank account holder</value>
   </data>
@@ -146,6 +155,12 @@
   </data>
   <data name="AMOUNT_" xml:space="preserve">
     <value>AMOUNT</value>
+  </data>
+  <data name="Applied" xml:space="preserve">
+    <value>Applied</value>
+  </data>
+  <data name="Applynow" xml:space="preserve">
+    <value>Apply now</value>
   </data>
   <data name="AVATAR_" xml:space="preserve">
     <value>AVATAR</value>
@@ -179,6 +194,9 @@
   </data>
   <data name="BRANCHOFFICE" xml:space="preserve">
     <value>BRANCH OFFICE</value>
+  </data>
+  <data name="Calculator" xml:space="preserve">
+    <value>Calculator</value>
   </data>
   <data name="Callusat" xml:space="preserve">
     <value>Call us at</value>
@@ -246,6 +264,9 @@
   <data name="CreateInvestment" xml:space="preserve">
     <value>Create an investment</value>
   </data>
+  <data name="CreateMilestone" xml:space="preserve">
+    <value>Create Milestone</value>
+  </data>
   <data name="CreateRequest" xml:space="preserve">
     <value>Create a request</value>
   </data>
@@ -294,6 +315,9 @@
   <data name="DIRECTION_" xml:space="preserve">
     <value>DIRECTION</value>
   </data>
+  <data name="eligibility" xml:space="preserve">
+    <value>eligibility</value>
+  </data>
   <data name="email" xml:space="preserve">
     <value>Email</value>
   </data>
@@ -311,6 +335,9 @@
   </data>
   <data name="EXPIRATION_" xml:space="preserve">
     <value>EXPIRATION</value>
+  </data>
+  <data name="FAQ-S" xml:space="preserve">
+    <value>FAQ’S</value>
   </data>
   <data name="FastEasyApplicationProcess" xml:space="preserve">
     <value>Fast &amp; Easy Application Process</value>
@@ -342,6 +369,9 @@
   <data name="FATHERPHONE_" xml:space="preserve">
     <value>FATHER PHONE</value>
   </data>
+  <data name="featuresBenefits" xml:space="preserve">
+    <value>features &amp;amp; Benefits</value>
+  </data>
   <data name="Financialchart" xml:space="preserve">
     <value>Financial chart</value>
   </data>
@@ -369,11 +399,17 @@
   <data name="FREQUENTLY_" xml:space="preserve">
     <value>FREQUENTLY</value>
   </data>
+  <data name="Getacallback" xml:space="preserve">
+    <value>Get a call back</value>
+  </data>
   <data name="GetInTouch" xml:space="preserve">
     <value>Get In Touch</value>
   </data>
   <data name="GetInTouchText" xml:space="preserve">
     <value>Reach out to us &amp; we will respond as soon as we can.</value>
+  </data>
+  <data name="GetLoans" xml:space="preserve">
+    <value>Get Loans</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
@@ -420,8 +456,14 @@
   <data name="Investment" xml:space="preserve">
     <value>Investment</value>
   </data>
+  <data name="investmentnow" xml:space="preserve">
+    <value>Investment now</value>
+  </data>
   <data name="Investments" xml:space="preserve">
     <value>Investments</value>
+  </data>
+  <data name="Investor" xml:space="preserve">
+    <value>Investor</value>
   </data>
   <data name="InvestorDialog" xml:space="preserve">
     <value>Investor Dialog</value>
@@ -458,6 +500,9 @@
   </data>
   <data name="LoanCalculator" xml:space="preserve">
     <value>Loan Calculator</value>
+  </data>
+  <data name="LoanProduct" xml:space="preserve">
+    <value>Loan Product</value>
   </data>
   <data name="LoanRate" xml:space="preserve">
     <value>Loan Rate</value>
@@ -510,6 +555,9 @@
   <data name="LoanRequestStatusAlert_Service_rejected" xml:space="preserve">
     <value>Sorry for inform of our reject decision.</value>
   </data>
+  <data name="LoanSavingRate" xml:space="preserve">
+    <value>Loan/Saving Rate</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Log in</value>
   </data>
@@ -528,6 +576,9 @@
   <data name="message" xml:space="preserve">
     <value>Message</value>
   </data>
+  <data name="Milestones" xml:space="preserve">
+    <value>Milestones</value>
+  </data>
   <data name="MoneyTransfer" xml:space="preserve">
     <value>Money Transfer</value>
   </data>
@@ -539,6 +590,9 @@
   </data>
   <data name="MyAccount" xml:space="preserve">
     <value>My Account</value>
+  </data>
+  <data name="MyInvestmentHistories" xml:space="preserve">
+    <value>My Histories of Investment</value>
   </data>
   <data name="MyLoanHistories" xml:space="preserve">
     <value>My Loan Histories</value>
@@ -557,6 +611,9 @@
   </data>
   <data name="New" xml:space="preserve">
     <value>New</value>
+  </data>
+  <data name="NewQuestion" xml:space="preserve">
+    <value>New Question</value>
   </data>
   <data name="next" xml:space="preserve">
     <value>next</value>
@@ -597,6 +654,12 @@
   <data name="PaySetup" xml:space="preserve">
     <value>Payment Setup</value>
   </data>
+  <data name="PersonalAccount" xml:space="preserve">
+    <value>Personal Account</value>
+  </data>
+  <data name="PersonalLoan" xml:space="preserve">
+    <value>Personal Loan</value>
+  </data>
   <data name="PersonalLoans" xml:space="preserve">
     <value>Personal Loans</value>
   </data>
@@ -627,8 +690,17 @@
   <data name="PURPOSE_" xml:space="preserve">
     <value>PURPOSE</value>
   </data>
+  <data name="Questions" xml:space="preserve">
+    <value>Questions</value>
+  </data>
   <data name="QUINCENAL" xml:space="preserve">
     <value>BIWEEKLY</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Rate</value>
+  </data>
+  <data name="RateofInterest" xml:space="preserve">
+    <value>Rate of Interest</value>
   </data>
   <data name="ReadMore" xml:space="preserve">
     <value>Read More</value>
@@ -647,6 +719,9 @@
   </data>
   <data name="REQUESTEDDATE_" xml:space="preserve">
     <value>REQUESTED DATE</value>
+  </data>
+  <data name="requestloan" xml:space="preserve">
+    <value>Request loan</value>
   </data>
   <data name="RESIDENCETIME_" xml:space="preserve">
     <value>RESIDENCE TIME</value>
@@ -669,6 +744,9 @@
   <data name="ROUTING_" xml:space="preserve">
     <value>ROUTING</value>
   </data>
+  <data name="SavingAccount" xml:space="preserve">
+    <value>Saving Account</value>
+  </data>
   <data name="Savingchanges" xml:space="preserve">
     <value>Saving changes</value>
   </data>
@@ -676,7 +754,7 @@
     <value>Saving of invest</value>
   </data>
   <data name="savingrate" xml:space="preserve">
-    <value>Saving rate</value>
+    <value>Saving Rate</value>
   </data>
   <data name="SavingRates" xml:space="preserve">
     <value>Saving Rates</value>
@@ -738,6 +816,9 @@
   <data name="Term" xml:space="preserve">
     <value>terms and conditions</value>
   </data>
+  <data name="Term_" xml:space="preserve">
+    <value>Term</value>
+  </data>
   <data name="times" xml:space="preserve">
     <value>Times</value>
   </data>
@@ -762,6 +843,9 @@
   <data name="TrustedInvestors" xml:space="preserve">
     <value>Trusted Investors</value>
   </data>
+  <data name="typesofloan" xml:space="preserve">
+    <value>types of loan</value>
+  </data>
   <data name="URL_" xml:space="preserve">
     <value>URL</value>
   </data>
@@ -782,6 +866,18 @@
   </data>
   <data name="ViewMore" xml:space="preserve">
     <value>View More</value>
+  </data>
+  <data name="wantlend_SavingItem1" xml:space="preserve">
+    <value>Earn TIMES times profits with RATE% CYCLE savings from our verified customer.</value>
+  </data>
+  <data name="wantlend_SavingItem2" xml:space="preserve">
+    <value>Total TOTAL_AMOUNT by TIMES times saving of CYCLE CYCLE_AMOUNT$.</value>
+  </data>
+  <data name="wantlend_SavingItem3" xml:space="preserve">
+    <value>Final total TOTAL_RATE% earning.</value>
+  </data>
+  <data name="wantlend_SavingItemTitle" xml:space="preserve">
+    <value>How much benefit can you get with saving?</value>
   </data>
   <data name="WeareHeretoHelpYou" xml:space="preserve">
     <value>We are Here to Help You</value>

@@ -12,7 +12,8 @@ namespace Models.data
         MENSUAL,
         DIARIO,
     }
-    public class LoanCycleModel {
+    public class LoanCycleModel
+    {
         public LoanCycle LoanCycle { get; set; }
         public double Rate { get; set; }
     }

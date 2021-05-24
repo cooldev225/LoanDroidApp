@@ -12,9 +12,9 @@
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="page-breadcrumb">
                     <ol class="breadcrumb">
-                        <li><a href="index.html">Home</a></li>
-                        <li>Personal Account</li>
-                        <li class="active">Saving Account</li>
+                        <li><a href="/">@SharedLocalizer["Home"]</a></li>
+                        <li><a href="/">@SharedLocalizer["PersonalAccount"]</a></li>
+                        <li class="active">@SharedLocalizer["SavingAccount"]</li>
                     </ol>
                 </div>
             </div>
@@ -22,20 +22,26 @@
                 <div class="bg-white pinside30">
                     <div class="row align-items-center">
                         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
-                            <h1 class="page-title">Saving Account</h1>
+                            <h1 class="page-title">@SharedLocalizer["PersonalAccount"]</h1>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                            <div class="btn-action"> <a href="#!" class="btn btn-secondary">How To Apply</a> </div>
+                            <div class="btn-action">
+                                <a href="@Url.Action("contact", "home")" class="btn btn-primary">@SharedLocalizer["Getacallback"]</a>
+                                <a href="@Url.Action("faq", "home")" class="btn btn-secondary">@SharedLocalizer["FAQ"]</a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="sub-nav" id="sub-nav">
-                    <ul class="nav nav-justified">
+                    <ul class="text-center nav nav-justified d-flex flex-column flex-md-row flex-lg-row ">
                         <li class="nav-item">
-                            <a href="contact-us.html" class="nav-link">Give me call back</a>
+                            <a id="tab-1" data-toggle="tab" href="#service1" role="tab" aria-controls="service1" aria-selected="@(ViewBag.tab==0?"true":"false")" class="nav-link @(ViewBag.tab==0?"active":"")">@SharedLocalizer["AboutSaving"]</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#!" class="nav-link">Emi Caculator</a>
+                            <a id="tab-2" data-toggle="tab" href="#service2" role="tab" aria-controls="service2" aria-selected="@(ViewBag.tab==1?"true":"false")" class="nav-link @(ViewBag.tab==1?"active":"")">@SharedLocalizer["GetLoans"]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="tab-3" data-toggle="tab" href="#service3" role="tab" aria-controls="service3" aria-selected="@(ViewBag.tab==2?"true":"false")" class="nav-link @(ViewBag.tab==2?"active":"")">@SharedLocalizer["Investments"]</a>
                         </li>
                     </ul>
                 </div>
@@ -46,127 +52,359 @@
 <!-- content start -->
 <div class="container">
     <div class="wrapper-content bg-white">
-        <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="pinside30">
+        <div class="st-tabs">
+            <div class="tab-content first">
+                <div role="tabpanel" class="tab-pane fade @(ViewBag.tab==0?"show active":"")" id="service1">
                     <div class="row">
-                        <div class="col-xl-7 col-lg-7 col-md-12 col-sm-6 col-12 mb30">
-                            <h3>Looking to grow your savings?</h3>
-                            <p>Savings accounts with Bank are an excellent way to earn interest while you still maintain easy access to your money with internet banking and our mobile app. It’s your savings account, it’s your money.</p>
-                            <p>Cras consectetur accumsan eros. Aenean semper volutpat justo, id blandit ante eleifend et. Duis ac ex vitae sem suscipits scelerisque malesuada augue. Aliquam egestas condimentum congue. Ut eleifend accumsan porta.</p>
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="pinside30">
+                                <div class="row">
+                                    <div class="col-xl-7 col-lg-7 col-md-12 col-sm-6 col-12 mb30">
+                                        <h3>¿Busca aumentar sus ahorros?</h3>
+                                        <p>Las cuentas de ahorro con Bank son una excelente manera de ganar intereses mientras aún mantiene un fácil acceso a su dinero con la banca por Internet y nuestra aplicación móvil. Es su cuenta de ahorros, es su dinero.</p>
+                                        <p>Mañana capa mejorada de maní. Si alguna vez tienes un fin de semana para sentarte al frente y Japón. Duis sem curso de la vida, y acepta las personas de augue maleuada termal. La última salsa para hacer cumplir la ley en todo el país. A la puerta de enlace de la capa deducible.</p>
+                                    </div>
+                                    <div class="offset-xl-1 col-xl-4 offset-lg-1 col-lg-4 col-md-6 col-sm-6 col-12">
+                                        <h3>Beneficios de la cuenta de ahorro</h3>
+                                        <ul class="list-unstyled bullet bullet-check-circle">
+                                            <li>Tasas de interés competitivas</li>
+                                            <li>Sin tarifa de mantenimiento de cuenta mensual</li>
+                                            <li>Banca por Internet</li>
+                                            <li>La banca móvil</li>
+                                            <li>Telephone banking</li>
+                                            <li>Bank branches & ATMs</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="mb40">
+                                    <div class="row align-items-center">
+                                        <div class="col-xl-5 col-lg-5 col-md-12 col-sm-6 col-12 mb30">
+                                            <h2 class="mb30">Una cuenta de ahorros flexible que respalda sus objetivos de ahorro.</h2>
+                                            <p class="lead">Las cuentas de ahorro son una excelente manera de ganar intereses mientras mantiene un fácil acceso a su dinero con la banca por Internet y nuestra aplicación móvil.</p>
+                                        </div>
+                                        <div class="offset-xl-1 col-xl-6 offset-lg-1 col-lg-6 col-md-12 col-sm-6 col-12 mb30">
+                                            <img src="~/images/home/saving-img.jpg" alt="Plataforma de préstamos" class="img-fluid">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb40">
+                                    <div class="row">
+                                        <div class="col-xl-5 col-lg-5 col-md-12 col-sm-6 col-12 mb30">
+                                            <h2>Beneficios de la cuenta de ahorro</h2>
+                                            <p>Nunc fringilla, massa at vehicula auctor, leo libero venenatis dui, nec lobortis dui ante a nunc. Vest ibulum ne, lacinia nunc sit amet, facilisis ex.</p>
+                                            <a href="#!" class="btn btn-secondary">Open An Account</a>
+                                        </div>
+                                        <div class="offset-xl-1 col-xl-6 offset-lg-1 col-lg-6 col-md-12 col-sm-6 col-12 mb30">
+                                            <div class="mb20">
+                                                <ul class="list-unstyled ">
+                                                    <li><i class="fa fa-check-circle mr-2"></i>Gane hasta 2,30% anual tasa de interés variable, que incluye:</li>
+                                                    <li><i class="fa fa-check-circle mr-2"></i>1,50% anual tasa base variable estándar más</li>
+                                                    <li><i class="fa fa-check-circle mr-2"></i>0,80% anual tasa de bonificación variable cada mes aumenta su saldo.</li>
+                                                    <li><i class="fa fa-check-circle mr-2"></i>Disfrute de una tasa base competitiva más intereses de bonificación cada mes en que aumenta su saldo.</li>
+                                                    <li><i class="fa fa-check-circle mr-2"></i>Acceso ilimitado e instantáneo a su dinero en línea a través de su cuenta diaria</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb40">
+                                    <div class="row">
+                                        <div class="col-xl-5 col-lg-5 col-md-12 col-sm-6 col-12 mb30">
+                                            <h2>¿Por qué abrir una cuenta de ahorros?</h2>
+                                            <p class="lead">Nunc fringilla, massa at vehicula auctor, leo libero venenatis dui, nec lobortis dui ante a nunc. Vest ibulum nec metus commodo, lacinia nunc siisis ex.</p>
+                                            <a href="#!" class="btn btn-primary">Open An Account</a>
+                                        </div>
+                                        <div class="offset-xl-1 col-xl-6 offset-lg-1 col-lg-6 col-md-12 col-sm-6 col-12 mb30">
+                                            <div class="mb20 border-top-default pdt20">
+                                                <h3>Transferencias ilimitadas</h3>
+                                                <p>Nunc fringilla massa at vehicula auctor leo libero venenatis dui, nec lobortis dui ante a nunc. </p>
+                                            </div>
+                                            <div class="mb20 border-top-default pdt20">
+                                                <h3>Tarifa base competitiva</h3>
+                                                <p>Phasellus porttitor nulla antrci varius natoque penatibus et magnis dis partna scetur ridiculus mus. </p>
+                                            </div>
+                                            <div class="mb20 border-top-default pdt20">
+                                                <h3>Metas de ahorro</h3>
+                                                <p>Vivamus at ultricies tortor vel volutpat neque. In justo turpis, aliquam id suscipit velsuscipit eget nisl.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb40">
+                                    <div class="row">
+                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                                            <div class=" pinside40 text-center mb30">
+                                                <h2 class="capital-title">Solicite un préstamo</h2>
+                                                <p>Aliquam feugiat est vitae eros consequat finibus. </p>
+                                                <a href="#servie2" class="btn btn-secondary">Open Now</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                                            <div class="pinside40 text-center mb30">
+                                                <h2 class="capital-title">Llamanos </h2>
+                                                <p>Aliquam feugiat est vitae eros consequat finibus. </p>
+                                                <h1 class="text-big">800-123-456 / 789 </h1>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                                            <div class="pinside40 text-center mb30">
+                                                <h2 class="capital-title">Encuentra una sucursal</h2>
+                                                <p>Visiti your local branch and vitae eros consequat finibu</p>
+                                                <a href="/home/contact" class="btn btn-secondary">View on map</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="offset-xl-1 col-xl-4 offset-lg-1 col-lg-4 col-md-6 col-sm-6 col-12">
-                            <h3>Benefits of Saving Account</h3>
-                            <ul class="list-unstyled bullet bullet-check-circle">
-                                <li>Competitive interest rates</li>
-                                <li>No monthly account-keeping fee</li>
-                                <li>Internet banking</li>
-                                <li>Mobile banking</li>
-                                <li>Telephone banking</li>
-                                <li>Bank branches & ATMs</li>
+                        <div class="widget-share">
+                            <ul class="listnone">
+                                <li><a href="#!" class="btn-share btn-facebook" title="Share on Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#!" class="btn-share btn-twitter" title="Share on Twitter"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#!" class="btn-share btn-google" title="Share on Google"> <i class="fab fa-google"></i></a></li>
+                                <li><a href="#!" class="btn-share btn-linkedin" title="Share on Linkedin"><i class="fab fa-linkedin"></i></a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="mt60">
-                        <p>For more information, Check our bank savings accounts.</p>
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="text-primary mb0">Life Savings</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                                        <div class="mb30">
-                                            <p>Donec hendrerit velit lacus, eu molestie metus rutrum nonecenas quis purus bibe elementum id in quam.</p>
-                                            <div class="mb20 mt20">
-                                                <span>Earn up to </span>
-                                                <h1 class="display-4 text-bold text-primary">2.30%<small>p.a.</small></h1>
+                </div>
+                <div role="tabpanel" class="wantlend tab-pane fade @(ViewBag.tab==1?"show active":"")" id="service2">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="mt60">
+                                @foreach (LoanDroidApp.Models.ApplicationLoanRequest loan in ViewBag.loans)
+                                {
+                                    double savingRate = 0;
+                                    foreach (Models.data.LoanCycleModel rate in ViewBag.Rates) {
+                                        if (loan.Cycle == rate.LoanCycle) {
+                                            savingRate = rate.Rate;
+                                            break;
+                                        }
+                                    }
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="text-primary mb0"><img style="width: 30px; margin-top: -3px;margin-right:10px;" src="data:image/png;base64,@System.Convert.ToBase64String(loan.AvatarImage)">@loan.FriendlyName</h3>
+                                        <div style="display: flex; float: right;position: absolute; right: 10px; top: 12px;">
+                                            <h3>@LoanDroidApp.CommonUtil.DateTimeToFriendly(loan.UpdatedDate)</h3>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                                                <div class="mb30">
+                                                    <p>@loan.Description</p>
+                                                    <div class="mb20 mt20">
+                                                        <h1 class="display-4 text-bold text-primary">@loan.Amount<small>$</small></h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-5 col-lg-5 col-md-8 col-sm-12 col-12">
+                                                <h3>@SharedLocalizer["wantlend_SavingItemTitle"]</h3>
+                                                <div class="params-@loan.Id" style="display:none;">
+                                                    <div class="id">@loan.Id</div>
+                                                    <div class="amount">@loan.Amount</div>
+                                                    <div class="rate">@savingRate</div>
+                                                    <div class="cycle">@SharedLocalizer[loan.Cycle.ToString()]</div>
+                                                    <div class="ocycle">@loan.Cycle</div>
+                                                    <div class="times">@loan.Times</div>
+                                                </div>
+                                                <ul class="wantlend-SavingItems list-unstyled bullet bullet-check-circle">
+                                                    <li>@SharedLocalizer["wantlend_SavingItem1"]</li>
+                                                    <li>@SharedLocalizer["wantlend_SavingItem2"]</li>
+                                                    <li>@SharedLocalizer["wantlend_SavingItem3"]</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12 text-center">
+                                                @if (loan.isApplied)
+                                                {
+                                                    <a href="#!" disabled class="btn btn-bg-light mb20">@SharedLocalizer["Applied"]</a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="#!" onclick="applyNowAction(@loan.Id);" class="btn btn-secondary mb20">@SharedLocalizer["Applynow"]</a>
+                                                }
+                                            <br><a href="#!" onclick="$('#kt_datatable_calc_@loan.Id').toggle();" class="btn-link mb20">@SharedLocalizer["Calculator"]</a>
+                                                <br><a href="#!" onclick="$('#message_@loan.Id').toggle();questionAction(@loan.Id, '@loan.ClientId');" class="btn-link">@SharedLocalizer["Questions"]</a>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="datatable datatable-bordered datatable-head-custom kt_datatable_class" name="kt_datatable_calc_@loan.Id" id="kt_datatable_calc_@loan.Id" style="display:none;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="message_@loan.Id" style="display:none;">
+                                            <div class="col-12">
+                                                <div class="comments-area mb40">
+                                                </div>
+                                                <div class="leave-comments pinside30 bg-primary mb30">
+                                                    <h2 class="reply-title text-white">@SharedLocalizer["NewQuestion"]</h2>
+                                                    <form class="question-form">
+                                                        <input type="hidden" id="clientId_txt_@loan.Id" value="@loan.ClientId"/>
+                                                        <div class="row">
+                                                            <!-- Textarea -->
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                                <div class="form-group">
+                                                                    <label class="sr-only control-label"
+                                                                           for="textarea"></label>
+                                                                    <textarea class="form-control border-0"
+                                                                              id="question_txt_@loan.Id"
+                                                                              name="textarea"
+                                                                              rows="6"
+                                                                              placeholder=""></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                                <!-- Button -->
+                                                                <div class="form-group">
+                                                                    <button name="singlebutton"
+                                                                            class="btn btn-secondary"
+                                                                            onclick="submitQuestion(@loan.Id);">
+                                                                        @SharedLocalizer["Submit"]
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-5 col-lg-5 col-md-8 col-sm-12 col-12">
-                                        <h3>Why open a Life account?</h3>
-                                        <ul class="list-unstyled bullet bullet-check-circle">
-                                            <li>Manage long term and short term goals within a single account with Savings Goals</li>
-                                            <li>Enjoy a competitive base rate plus bonus interest each month you grow your balance.</li>
-                                            <li>Unlimited access to your money online through your Borrowaccount.</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12 text-center">
-                                        <a href="#!" class="btn btn-secondary mb20">Open account</a>
-                                        <a href="#!" class="btn-link">View Details</a>
-                                    </div>
                                 </div>
+                                }
                             </div>
                         </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="text-primary mb0">eSaver</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                                        <div class="mb30">
-                                            <p>Morbi sit amet turpis nec massa congue vestibulum. Integer commodo arcu in nibh tristique rhoncus. Praesent eleifend leo eros, eu vestibulum lectus suscipit </p>
-                                            <div class="mb20 mt20">
-                                                <span>Earn up to </span>
-                                                <h1 class="display-4 text-bold text-primary">2.51% <small>p.a.</small></h1>
+                    </div>
+                </div>
+                <div role="tabpanel" class="wantlend tab-pane fade @(ViewBag.tab==2?"show active":"")" id="service3">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="mt60">
+                                @foreach (LoanDroidApp.Models.ApplicationInvestment invest in ViewBag.investments)
+                                {
+                                    double savingRate = 0;
+                                    foreach (Models.data.LoanCycleModel rate in ViewBag.Rates)
+                                    {
+                                        if (invest.Cycle == rate.LoanCycle)
+                                        {
+                                            savingRate = rate.Rate;
+                                            break;
+                                        }
+                                    }
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="text-primary mb0">
+                                                @invest.Amount$
+                                            </h3>
+                                            <div style="display: flex; float: right;position: absolute; right: 10px; top: 12px;">
+                                                <h3>@LoanDroidApp.CommonUtil.DateTimeToFriendly(invest.CreatedDate)</h3>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                                                    <div class="mb30">
+                                                        @if (invest.Status != Models.data.InvestStatus.New&&
+                                                            invest.Status != Models.data.InvestStatus.Created_Milestone) { 
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <strong>@(SharedLocalizer["LoanRequestStatusAlert_" + invest.Status])</strong>
+                                                            @if (invest.StatusReason != null && !invest.StatusReason.Equals(""))
+                                                            {
+                                                                <p>@invest.StatusReason</p>
+                                                            }
+                                                        </div>
+                                                        }
+                                                        <p>@SharedLocalizer["Term_"]: @SharedLocalizer[invest.Cycle.ToString()]
+                                                        <br>@SharedLocalizer["Rate"]: @savingRate
+                                                        <br>@SharedLocalizer["times"]: @invest.Times
+                                                        <div class="mb20 mt20">
+                                                            <h1 id="paid_amount_@invest.Id" class="display-4 text-bold text-primary">@invest.Paid<small>$</small></h1>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-5 col-lg-5 col-md-8 col-sm-12 col-12">
+                                                    <h3>@SharedLocalizer["wantlend_SavingItemTitle"]</h3>
+                                                    <div class="iparams-@invest.Id" style="display:none;">
+                                                        <div class="id">@invest.Id</div>
+                                                        <div class="amount">@invest.Amount</div>
+                                                        <div class="rate">@savingRate</div>
+                                                        <div class="cycle">@SharedLocalizer[invest.Cycle.ToString()]</div>
+                                                        <div class="ocycle">@invest.Cycle</div>
+                                                        <div class="times">@invest.Times</div>
+                                                    </div>
+                                                    <ul class="wantlend-SavingItems-invest list-unstyled bullet bullet-check-circle">
+                                                        <li>@SharedLocalizer["wantlend_SavingItem1"]</li>
+                                                        <li>@SharedLocalizer["wantlend_SavingItem2"]</li>
+                                                        <li>@SharedLocalizer["wantlend_SavingItem3"]</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12 text-center">
+                                                    @if (invest.Status==Models.data.InvestStatus.New)
+                                                    {
+                                                        <a href="#!" onclick="cancelInvestment(@invest.Id);" class="btn btn-secondary mb20">@SharedLocalizer["Cancel"]</a><br>
+                                                    }
+                                                    else
+                                                    {
+                                                    
+                                                    }
+                                                    <a href="#!" onclick="$('#kt_datatable_invest_@invest.Id').toggle();" class="btn-link mb20">@SharedLocalizer["Calculator"]</a>
+                                                    <br><a href="#!" onclick="$('#milestones_@invest.Id').toggle();milestoneAction(@invest.Id);" class="btn-link">@SharedLocalizer["Milestones"]</a>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="datatable datatable-bordered datatable-head-custom kt_datatable_class" name="kt_datatable_invest_@invest.Id" id="kt_datatable_invest_@invest.Id" style="display:none;"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row" id="milestones_@invest.Id" style="display:none;">
+                                                <div class="col-12">
+                                                    <div class="comments-area mb40" style="border-bottom: none;">
+                                                    </div>
+                                                    <div class="leave-comments pinside30 bg-primary mb30">
+                                                        <h2 class="reply-title text-white">@SharedLocalizer["CreateMilestone"]</h2>
+                                                        <form class="question-form">
+                                                            <div class="row">
+                                                                <!-- Textarea -->
+                                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                                    <div class="form-group">
+                                                                        <label class="sr-only control-label"
+                                                                               for="text">@SharedLocalizer["AMOUNT_"]</label>
+                                                                        <input type="number" class="form-control border-0"
+                                                                                  id="amount_txt_@invest.Id"
+                                                                                  placeholder="@SharedLocalizer["AMOUNT_"]"/>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="sr-only control-label"
+                                                                               for="textarea"></label>
+                                                                        <textarea class="form-control border-0"
+                                                                                  id="description_txt_@invest.Id"
+                                                                                  name="textarea"
+                                                                                  rows="6"
+                                                                                  placeholder="@SharedLocalizer["DESCRIPTION_"]"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                                    <!-- Button -->
+                                                                    <div class="form-group">
+                                                                        <button name="singlebutton"
+                                                                                class="btn btn-secondary"
+                                                                                onclick="submitMilestone(@invest.Id);">
+                                                                            @SharedLocalizer["Submit"]
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-5 col-lg-5 col-md-8 col-sm-12 col-12">
-                                        <h3>Why open a Life account?</h3>
-                                        <ul class="list-unstyled bullet bullet-check-circle">
-                                            <li>24/7 access to funds via your linked everyday account</li>
-                                            <li>$0 monthly service fee on eSaver</li>
-                                            <li>No minimum balance.</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12 text-center">
-                                        <a href="#!" class="btn btn-secondary mb20">Open account</a>
-                                        <a href="#!" class="btn-link">View Details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="text-primary mb0">Savings</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                                        <div class="mb30">
-                                            <p>Donec hendrerit velit lacus, eu molestie metus rutrum nonecenas quis purus Available for under 18s.</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-5 col-lg-5 col-md-8 col-sm-12 col-12">
-                                        <h3>Why open a Life account?</h3>
-                                        <ul class="list-unstyled bullet bullet-check-circle">
-                                            <li>Learn the importance of saving at a young age</li>
-                                            <li>Start early to get set up for the future</li>
-                                            <li>Vivamus ut scelerisque massa,</li>
-                                            <li>Quisque imperdiet fermentum dui vel elementum</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12 text-center">
-                                        <a href="#!" class="btn btn-secondary mb20">Open account</a>
-                                        <a href="#!" class="btn-link">View Details</a>
-                                    </div>
-                                </div>
+                                }
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="widget-share">
-                <ul class="listnone">
-                    <li><a href="#!" class="btn-share btn-facebook" title="Share on Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a href="#!" class="btn-share btn-twitter" title="Share on Twitter"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="#!" class="btn-share btn-google" title="Share on Google"> <i class="fab fa-google"></i></a></li>
-                    <li><a href="#!" class="btn-share btn-linkedin" title="Share on Linkedin"><i class="fab fa-linkedin"></i></a></li>
-                </ul>
-            </div>
         </div>
     </div>
 </div>
+<script src="~/home/js/pages/wantlend.js"></script>

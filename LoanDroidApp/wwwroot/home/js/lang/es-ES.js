@@ -30,9 +30,13 @@ var lang = {
     status: "Status",
     investor: "Inversora",
     savingRate: "Tasa de ahorro",
+    saving: "Ahorro",
     paynow: "Paga ahora",
     paid: "Pagado",
     notnow: "Ahora no",
+    questions: "Preguntas",
+    milestones: "Hitos",
+    reply: "Respuesta",
 
     global_tbl_action: "Acción",
     global_tbl_createddate: "Fecha de creación",

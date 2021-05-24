@@ -145,6 +145,9 @@ namespace LoanDroidApp.Migrations
                     b.Property<string>("InvestorId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long>("LoanId")
+                        .HasColumnType("bigint");
+
                     b.Property<DateTime>("RequestedDate")
                         .HasColumnType("datetime2");
 
@@ -192,14 +195,20 @@ namespace LoanDroidApp.Migrations
                     b.Property<string>("CreatedDevice")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("InvestmenttId")
+                    b.Property<long>("InvestmentId")
                         .HasColumnType("bigint");
+
+                    b.Property<double>("Paid")
+                        .HasColumnType("float");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<string>("StatusReason")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("TransactionId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -291,6 +300,9 @@ namespace LoanDroidApp.Migrations
 
                     b.Property<int>("Cycle")
                         .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("InterestingRate")
                         .HasColumnType("float");
@@ -702,6 +714,9 @@ namespace LoanDroidApp.Migrations
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
+                    b.Property<long>("activatedPaymentId")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -799,6 +814,56 @@ namespace LoanDroidApp.Migrations
                     b.HasIndex("Id");
 
                     b.ToTable("Company");
+                });
+
+            modelBuilder.Entity("Models.data.Message", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Answer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AnswerAttach")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedDevice")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FromUserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Question")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QuestionAttach")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ToUserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedDevice")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Id");
+
+                    b.ToTable("Message");
                 });
 
             modelBuilder.Entity("Models.data.Nationality", b =>

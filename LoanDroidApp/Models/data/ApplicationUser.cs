@@ -53,6 +53,7 @@ namespace Models.data
         public string FatherPhone { get; set; }
 
         public bool IsLockedOut => this.LockoutEnabled && this.LockoutEnd >= DateTimeOffset.UtcNow;
+        public long activatedPaymentId { get; set; }
 
         public string CreatedBy { get; set; }
         public string CreatedDevice { get; set; }

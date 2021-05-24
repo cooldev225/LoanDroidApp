@@ -2,9 +2,14 @@
 @using Microsoft.AspNetCore.Mvc
 @inject SignInManager<Models.data.ApplicationUser> SignInManager
 @using Microsoft.AspNetCore.Mvc.Localization
+@using System.Security.Claims;
+@inject SignInManager<Models.data.ApplicationUser> SignInManager
+@inject UserManager<Models.data.ApplicationUser> UserManager
 @inject IHtmlLocalizer<LoanDroidApp.CommonResources> SharedLocalizer
 @{
     ViewData["Title"] = "I want a loan | LoanDroidApp";
+    var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+    var user = await UserManager.FindByIdAsync(userId);
 }
 <div class="page-header">
     <div class="container">
@@ -12,9 +17,9 @@
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="page-breadcrumb">
                     <ol class="breadcrumb">
-                        <li><a href="#!">Home</a></li>
-                        <li><a href="#!">Loan Product</a></li>
-                        <li class="active">Personal Loan</li>
+                        <li><a href="/">@SharedLocalizer["Home"]</a></li>
+                        <li><a href="/">@SharedLocalizer["LoanProduct"]</a></li>
+                        <li class="active">@SharedLocalizer["PersonalLoan"]</li>
                     </ol>
                 </div>
             </div>
@@ -22,18 +27,21 @@
                 <div class="bg-white pinside30">
                     <div class="row align-items-center">
                         <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-8">
-                            <h1 class="page-title">Personal Loan</h1>
+                            <h1 class="page-title">@SharedLocalizer["PersonalLoan"]</h1>
                         </div>
                         <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-4">
                             <div class="row">
                                 <div class="col-xl-3 col-lg-3 col-md-5 col-sm-12 col-12">
                                     <div class="rate-block text-right d-md-none">
                                         <h1 class="rate-number">11.50%</h1>
-                                        <small>Rate of Interest</small>
+                                        <small>@SharedLocalizer["RateofInterest"]</small>
                                     </div>
                                 </div>
                                 <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-                                    <div class="btn-action d-none d-md-block d-lg-block"> <a href="contact-us.html" class="btn btn-primary">Get a call back</a> <a href="#!" class="btn btn-secondary">Emi Calculator</a> </div>
+                                    <div class="btn-action d-none d-md-block d-lg-block">
+                                        <a href="@Url.Action("contact", "home")" class="btn btn-primary">@SharedLocalizer["Getacallback"]</a>
+                                        <a href="@Url.Action("faq", "home")" class="btn btn-secondary">@SharedLocalizer["FAQ"]</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -41,12 +49,12 @@
                 </div>
                 <div class="sub-nav" id="sub-nav">
                     <ul class="text-center nav nav-justified d-flex flex-column flex-md-row flex-lg-row ">
-                        <li class="nav-item"><a href="#section-about" class="page-scroll nav-link">About Loan</a></li>
-                        <li class="nav-item"><a href="#section-typeloan" class="page-scroll nav-link">types of loan</a></li>
-                        <li class="nav-item"><a href="#section-feature" class="page-scroll nav-link">features &amp; Benefits</a></li>
-                        <li class="nav-item"><a href="#section-eleigiblity" class="page-scroll nav-link">eligibility</a></li>
-                        <li class="nav-item"><a href="#section-faq" class="page-scroll nav-link">FAQ’S</a></li>
-                        <li class="nav-item"><a href="#section-apply" class="page-scroll nav-link">Apply now</a></li>
+                        <li class="nav-item">
+                            <a id="tab-1" data-toggle="tab" href="#service1" role="tab" aria-controls="service1" aria-selected="false" class="nav-link">@SharedLocalizer["AboutLoan"]</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="tab-2" data-toggle="tab" href="#service2" role="tab" aria-controls="service2" aria-selected="true" class="nav-link active">@SharedLocalizer["GetLoan"]</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -58,291 +66,383 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <div class="wrapper-content bg-white">
-                    <div class="section-scroll pinside60" id="section-about">
-                        <h1>About Personal Loan</h1>
-                        <p class="lead">Personal loan is <span>the obvious</span> choice if you need a finance for Personal finance, Medical emergency, Wedding purposes, Abroad travel, Holidays, Child education and for buying consumer durable things. </p>
-                        <div class="row">
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <p>Aenean semper massa eu vestibulum feugiat, nm feugiat, nm feugiat, nuls simple dummy content la lum metus at ipsum gravida, at vehicula elit dapibus. </p>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                <p>Phasellus tellus nunc, sollicitudin quist amet it simple nequeuisque lacus mi tesimly diummy cintenbt mpus nec purus vitae tempor placerat leo. </p>
-                            </div>
-                        </div>
-                        <hr>
-                        <p>Phasellus tellus nunc, sollicitudin quist amet it simple nequeuisque lacus mi tesimly diummy cintenbt mpus nec purus vitae tempor placerat leo. </p>
-                        <a href="#!" class="btn btn-secondary">Apply for loan</a>
-                    </div>
-                    <div class="section-scroll" id="section-typeloan">
-                        <div class="bg-light p-5">
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="section-title mb60">
-                                        <h2>Personal Loan Products</h2>
-                                        <p>Achieve all your goals and aspirations; with the right kind of help, exactly when you need it.</p>
+                <div class="st-tabs">
+                    <div class="tab-content first">
+                        <div role="tabpanel" class="tab-pane fade" id="service1">
+                            <div class="wrapper-content bg-white">
+                                <div class="section-scroll pinside60" id="section-about">
+                                    <h1>@SharedLocalizer["AboutPersonalLoan"]</h1>
+                                    <p class="lead">El préstamo personal es la <span>opción obvia</span> si necesita financiación para finanzas personales, emergencias médicas, bodas, viajes al extranjero, vacaciones, educación infantil y para comprar artículos duraderos para el consumidor.</p>
+                                    <div class="row">
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                            <p>Aenean semper massa eu vestibulum feugiat, nm feugiat, nm feugiat, nuls simple dummy content la lum metus en ipsum gravida, en vehicula elit dapibus. </p>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                            <p>Phasellus tellus nunc, sollicitudin quist amet it simple nequeuisque lacus mi tesimly diummy cintenbt mpus nec purus vitae tempor placerat leo. </p>
+                                        </div>
                                     </div>
+                                    <hr>
+                                    <p>Phasellus tellus nunc, sollicitudin quist amet it simple nequeuisque lacus mi tesimly diummy cintenbt mpus nec purus vitae tempor placerat leo. </p>
+                                    <a href="#section-apply" class="btn btn-secondary">Solicita un préstamo</a>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <div class="feature-blurb mb60">
-                                        <h3>Medical Emergency</h3>
-                                        <p>Loan Company offers you personal loan for your unexpected medical emergency.Get instant personal loan for your all kind of medical emergency expenses.</p>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <div class="feature-blurb mb60">
-                                        <h3>Wedding Purpose</h3>
-                                        <p>You can manage your deram marriage day with our personal loan option. Have the wedding celebration of your dreams. Apply now personal loan for wedding purpose. </p>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <div class="feature-blurb mb60">
-                                        <h3>Abroad Travel</h3>
-                                        <p>Get the funds for the expenditure involved in going abroad for taking up employment. Manage your personal with Company for fulfill your travelling to abroad. </p>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <div class="feature-blurb mb60">
-                                        <h3>Child Educations</h3>
-                                        <p>We provides child loan for pursuing higher, We given the right tools to every potential child. Also, grant personal loan for your child higher education.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-primary p-5 text-center">
-                        <div class="row">
-                            <div class="offset-xl-1 col-xl-10 col-lg-12 col-md-12 col-12">
-                                <h1 class="text-white mb-4">Get financing for whatever you need now</h1>
-                                <a href="#!" class="btn btn-secondary">Enquire Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="section-scroll" id="section-feature">
-                        <div class="pinside60">
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="section-title mb60">
-                                        <h2>Features of Personal Loan</h2>
-                                        <p> All loans are not created equal, personal loan has become a great option for people to use.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <div class="feature-icon mb30">
-                                        <div class="icon mb20"><i class="icon-clock icon-default icon-2x"></i></div>
-                                        <h3>Faster Loan</h3>
-                                        <p>For funding medical expenses, hospitalization, surgery, No collateral required. Sed eget accumsan justo. Nullam nisl nisi.</p>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <div class="feature-icon mb30">
-                                        <div class="icon mb20"><i class="icon-light-bulb-1 icon-default icon-2x"></i></div>
-                                        <h3>Choose your amount</h3>
-                                        <p>All charges are communicated up front in writing along with the loan quotation uisque euismdolor at tincidunt lorem sipusm is simple.</p>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <div class="feature-icon mb30">
-                                        <div class="icon mb20"><i class="icon-money icon-default icon-2x"></i></div>
-                                        <h3>Enjoy the best rates</h3>
-                                        <p>Our loan rates and charges are very attractive lorem ipsums sitamet uerse ipsum. Curabitu lectus mattis vitae. </p>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <div class="feature-icon mb30">
-                                        <div class="icon mb20"><i class="icon-settings-6 icon-default icon-2x"></i></div>
-                                        <h3>Decide your tenure</h3>
-                                        <p>Our loan rates and charges are very attractive lorem ipsums sitamet uerse ipsum.Curabitulectus mattis vitae. </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="section-scroll" id="section-eleigiblity">
-                        <div class=" bg-light p-5">
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="section-title mb60">
-                                        <h2>Personal Loan - Eligibility</h2>
-                                        <p> Any salaried, self-employed or professional Public and Privat companies, Government sector employees including Public Sector is eligible for a personal loan. </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                                    <div class="feature-blurb mb30">
-                                        <h3>Age</h3>
-                                        <p>Maximum age of applicant at loan maturity: 60 years</p>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                                    <div class="feature-blurb mb30">
-                                        <h3>Income</h3>
-                                        <p>Minimum Net Monthly Income: Rs 15,000</p>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                                    <div class="feature-blurb mb30">
-                                        <h3>Credit Rating</h3>
-                                        <p>Applicant should have the bank specified credit score. </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="offset-xl-3 col-xl-6 offset-lg-3 col-lg-6 offset-md-3 col-md-6 col-sm-offset-3 col-sm-12 col-12"> </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="section-scroll" id="section-faq">
-                        <div class="pinside60">
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="section-title mb60">
-                                        <h2>Frequently Ask Questions</h2>
-                                        <p>If you have a question that deals with clients, customers or the public in general, there is bound to be a need for the FAQ page. </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="accordion" id="faqExample">
-                                        <div class="card mb-0">
-                                            <div class="card-header" id="faqOne">
-                                                <h4 class="mb-0">
-                                                    <a href="#!" class="" data-toggle="collapse" data-target="#faqcollapseOne" aria-expanded="true" aria-controls="faqcollapseOne">
-                                                        <i class="fa fa-plus-circle mr-2"></i>How much can I ?
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div id="faqcollapseOne" class="collapse show" aria-labelledby="faqOne" data-parent="#faqExample">
-                                                <div class="card-body">
-                                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                <div class="section-scroll" id="section-typeloan">
+                                    <div class="bg-light p-5">
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="section-title mb60">
+                                                    <h2>Productos de préstamos personales</h2>
+                                                    <p>Alcanza todas tus metas y aspiraciones; con la ayuda adecuada, exactamente cuando la necesita.</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card mb-0">
-                                            <div class="card-header" id="faqTwo">
-                                                <h4 class="mb-0">
-                                                    <a href="#!" class="collapsed" data-toggle="collapse" data-target="#faqcollapseTwo" aria-expanded="false" aria-controls="faqcollapseTwo">
-                                                        <i class="fa fa-plus-circle mr-2"></i>Can I pay off my loan early?
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div id="faqcollapseTwo" class="collapse" aria-labelledby="faqTwo" data-parent="#faqExample">
-                                                <div class="card-body">
-                                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                        <div class="row">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <div class="feature-blurb mb60">
+                                                    <h3>Emergencia médica</h3>
+                                                    <p>Loan Company le ofrece un préstamo personal para su emergencia médica inesperada. Obtenga un préstamo personal instantáneo para todo tipo de gastos de emergencia médica.</p>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="card mb-0">
-                                            <div class="card-header" id="faqThree">
-                                                <h4 class="mb-0">
-                                                    <a href="#!" class="collapsed" data-toggle="collapse" data-target="#faqcollapseThree" aria-expanded="false" aria-controls="faqcollapseThree">
-                                                        <i class="fa fa-plus-circle mr-2"></i>Do you offering refinancing ?
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div id="faqcollapseThree" class="collapse" aria-labelledby="faqThree" data-parent="#faqExample">
-                                                <div class="card-body">
-                                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <div class="feature-blurb mb60">
+                                                    <h3>Propósito de la boda</h3>
+                                                    <p>Puede administrar el día de su matrimonio deram con nuestra opción de préstamo personal. Tenga la celebración de la boda de sus sueños. Solicite ahora un préstamo personal para bodas.</p>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="card mb-0">
-                                            <div class="card-header" id="faqfour">
-                                                <h4 class="mb-0">
-                                                    <a href="#!" class="collapsed" data-toggle="collapse" data-target="#faqcollapsefour" aria-expanded="false" aria-controls="faqcollapsefour">
-                                                        <i class="fa fa-plus-circle mr-2"></i>When should i apply?
-                                                    </a>
-                                                </h4>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <div class="feature-blurb mb60">
+                                                    <h3>Abroad Travel</h3>
+                                                    <p>Get the funds for the expenditure involved in going abroad for taking up employment. Manage your personal with Company for fulfill your travelling to abroad. </p>
+                                                </div>
                                             </div>
-                                            <div id="faqcollapsefour" class="collapse" aria-labelledby="faqfour" data-parent="#faqExample">
-                                                <div class="card-body">
-                                                    Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <div class="feature-blurb mb60">
+                                                    <h3>Child Educations</h3>
+                                                    <p>We provides child loan for pursuing higher, We given the right tools to every potential child. Also, grant personal loan for your child higher education.</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="section-scroll" id="section-apply">
-                        <div class="bg-light p-5">
-                            <div class="row">
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <div class="section-title mb60 text-center">
-                                        <h1>Get a Quote</h1>
-                                        <p>Now apply for a Car Loan online, All you need to do is provide your details below application form.</p>
+                                <div class="bg-primary p-5 text-center">
+                                    <div class="row">
+                                        <div class="offset-xl-1 col-xl-10 col-lg-12 col-md-12 col-12">
+                                            <h1 class="text-white mb-4">Obtenga financiamiento para lo que necesite ahora</h1>
+                                            <a href="#section-apply" class="btn btn-secondary">Pregunte ahora</a>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="section-scroll" id="section-feature">
+                                    <div class="pinside60">
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="section-title mb60">
+                                                    <h2>Características del Préstamo Personal</h2>
+                                                    <p> No todos los préstamos son iguales, los préstamos personales se han convertido en una excelente opción para que la utilicen las personas.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <div class="feature-icon mb30">
+                                                    <div class="icon mb20"><i class="icon-clock icon-default icon-2x"></i></div>
+                                                    <h3>Préstamo más rápido</h3>
+                                                    <p>Para financiar gastos médicos, hospitalización, cirugía, no se requiere garantía. Sed eget accumsan justo. Nullam nisl nisi.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <div class="feature-icon mb30">
+                                                    <div class="icon mb20"><i class="icon-light-bulb-1 icon-default icon-2x"></i></div>
+                                                    <h3>Elige tu cantidad</h3>
+                                                    <p>Todos los cargos se comunican por adelantado por escrito junto con la cotización del préstamo uisque quis dolor en tincidunt lorem ipsum es simplemente.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <div class="feature-icon mb30">
+                                                    <div class="icon mb20"><i class="icon-money icon-default icon-2x"></i></div>
+                                                    <h3>Disfruta de las mejores tarifas</h3>
+                                                    <p>Nuestras tasas de préstamo y cargos son muy atractivos. Lorem ipsums sitamet uerse ipsum. Curabitu lectus mattis vitae. </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                                <div class="feature-icon mb30">
+                                                    <div class="icon mb20"><i class="icon-settings-6 icon-default icon-2x"></i></div>
+                                                    <h3>Decide tu mandato</h3>
+                                                    <p>Nuestras tasas de préstamo y cargos son muy atractivos lorem ipsums sitamet uerse ipsum.Curabitulectus mattis vitae. </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="section-scroll" id="section-eleigiblity">
+                                    <div class=" bg-light p-5">
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="section-title mb60">
+                                                    <h2>Préstamo personal - Elegibilidad</h2>
+                                                    <p> Cualquier empresa pública y privada asalariada, autónoma o profesional, empleados del sector gubernamental, incluido el sector público, es elegible para un préstamo personal. </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                                <div class="feature-blurb mb30">
+                                                    <h3>Edad</h3>
+                                                    <p>Edad máxima del solicitante al vencimiento del préstamo: 60 años</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                                <div class="feature-blurb mb30">
+                                                    <h3>Ingreso</h3>
+                                                    <p>Ingreso mensual neto mínimo: 15.000 rupias</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                                <div class="feature-blurb mb30">
+                                                    <h3>Calificación Crediticia</h3>
+                                                    <p>El solicitante debe tener el puntaje crediticio especificado por el banco. </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="offset-xl-3 col-xl-6 offset-lg-3 col-lg-6 offset-md-3 col-md-6 col-sm-offset-3 col-sm-12 col-12"> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="section-scroll" id="section-faq">
+                                    <div class="pinside60">
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="section-title mb60">
+                                                    <h2>Preguntas Frecuentes</h2>
+                                                    <p>Si tiene una pregunta relacionada con los clientes, los clientes o el público en general, es probable que sea necesaria la página de preguntas frecuentes. </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="accordion" id="faqExample">
+                                                    <div class="card mb-0">
+                                                        <div class="card-header" id="faqOne">
+                                                            <h4 class="mb-0">
+                                                                <a href="#!" class="" data-toggle="collapse" data-target="#faqcollapseOne" aria-expanded="true" aria-controls="faqcollapseOne">
+                                                                    <i class="fa fa-plus-circle mr-2"></i>Cuanto puedo?
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                        <div id="faqcollapseOne" class="collapse show" aria-labelledby="faqOne" data-parent="#faqExample">
+                                                            <div class="card-body">
+                                                                Anim pariatur cliché reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, brunch de dolor sin patineta cupidatat. Food truck quinua nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua le puso un pájaro calamar café de origen único nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, trabajador de cerveza artesanal wes anderson cred nesciunt sapiente ea proident. Ad vegan excepcional carnicero vice lomo. Leggings.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card mb-0">
+                                                        <div class="card-header" id="faqTwo">
+                                                            <h4 class="mb-0">
+                                                                <a href="#!" class="collapsed" data-toggle="collapse" data-target="#faqcollapseTwo" aria-expanded="false" aria-controls="faqcollapseTwo">
+                                                                    <i class="fa fa-plus-circle mr-2"></i>¿Puedo cancelar mi préstamo antes de tiempo?
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                        <div id="faqcollapseTwo" class="collapse" aria-labelledby="faqTwo" data-parent="#faqExample">
+                                                            <div class="card-body">
+                                                                Anim pariatur cliché reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, brunch de dolor sin patineta cupidatat. Food truck quinua nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua le puso un pájaro calamar café de origen único nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, trabajador de cerveza artesanal wes anderson cred nesciunt sapiente ea proident. Ad vegan excepcional carnicero vice lomo. Leggings.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card mb-0">
+                                                        <div class="card-header" id="faqThree">
+                                                            <h4 class="mb-0">
+                                                                <a href="#!" class="collapsed" data-toggle="collapse" data-target="#faqcollapseThree" aria-expanded="false" aria-controls="faqcollapseThree">
+                                                                    <i class="fa fa-plus-circle mr-2"></i>¿Ofrecen refinanciamiento?
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                        <div id="faqcollapseThree" class="collapse" aria-labelledby="faqThree" data-parent="#faqExample">
+                                                            <div class="card-body">
+                                                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card mb-0">
+                                                        <div class="card-header" id="faqfour">
+                                                            <h4 class="mb-0">
+                                                                <a href="#!" class="collapsed" data-toggle="collapse" data-target="#faqcollapsefour" aria-expanded="false" aria-controls="faqcollapsefour">
+                                                                    <i class="fa fa-plus-circle mr-2"></i>¿Cuándo debo aplicar?
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                        <div id="faqcollapsefour" class="collapse" aria-labelledby="faqfour" data-parent="#faqExample">
+                                                            <div class="card-body">
+                                                                Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="widget-share">
+                                    <ul class="listnone">
+                                        <li><a href="#!" class="btn-share btn-facebook" title="Share on Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="#!" class="btn-share btn-twitter" title="Share on Twitter"><i class="fab fa-twitter"></i></a></li>
+                                        <li>
+                                            <a href="#!" class="btn-share btn-google" title="Share on Google"> <i class="fab fa-google"></i></a>
+                                        </li>
+                                        <li><a href="#!" class="btn-share btn-linkedin" title="Share on Linkedin"><i class="fab fa-linkedin"></i></a></li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <form class="">
-                                        <fieldset>
+                        </div>
+                        <div role="tabpanel" class="wantloan tab-pane fade show active" id="service2">
+                            <div class="wrapper-content bg-white">
+                                <div class="section-scroll" id="section-apply">
+                                    <div class="bg-light p-5">
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <div class="section-title mb60 text-center">
+                                                    <h1>Consigue una cotización</h1>
+                                                    <p>Ahora solicite un préstamo en línea. Todo lo que necesita hacer es proporcionar sus datos a continuación del formulario de solicitud.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" id="isAcceptedLoan" value="@(ViewBag.loan.Status == Models.data.LoanStatus.Interesting_Process ? "true" : "false")" />
+                                        @if (ViewBag.loan.Id > 0 && ViewBag.loan.Status != 0)
+                                        {
                                             <div class="row">
-                                                <!-- Text input-->
-                                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 form-group ">
-                                                    <label class="control-label" for="name">Name</label>
-                                                    <div class="">
-                                                        <input id="name" name="name" type="text" placeholder="Name" class="form-control input-md" required>
-                                                        <span class="help-block"> </span>
-                                                    </div>
-                                                </div>
-                                                <!-- Text input-->
-                                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 form-group ">
-                                                    <label class=" control-label" for="email">E-Mail</label>
-                                                    <div class="">
-                                                        <input id="email" name="email" type="text" placeholder="E-mail" class="form-control input-md">
-                                                    </div>
-                                                </div>
-                                                <!-- Text input-->
-                                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 form-group ">
-                                                    <label class="control-label" for="phone">Phone</label>
-                                                    <div class="">
-                                                        <input id="phone" name="phone" type="text" placeholder="Phone" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 form-group slide-ranger ">
-                                                    <p id="slider-range-min"></p>
-                                                    <label for="amount" class="control-label">Loan Amount</label>
-                                                    <input type="text" id="amount" readonly class="form-control">
-                                                </div>
-                                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 form-group slide-ranger ">
-                                                    <p id="slider-range-max"></p>
-                                                    <label for="amount" class="control-label">Year</label>
-                                                    <input type="text" id="j" readonly class="form-control">
-                                                </div>
-                                                <!-- Button -->
-                                                <div class="form-group col-xl-4 col-lg-12 col-md-6 col-sm-12 col-12">
-                                                    <div class="">
-                                                        <button id="Submit" name="Submit" class="btn btn-primary btn-block">Submit New Quote</button>
+                                                <div class="col-12">
+                                                    <div class="alert alert-danger" role="alert">
+                                                        <strong>@(SharedLocalizer["LoanRequestStatusAlert_" + ViewBag.loan.Status])</strong>
+                                                        @if (ViewBag.loan.StatusReason != null && !ViewBag.loan.StatusReason.Equals(""))
+                                                        {
+                                                            <p>@ViewBag.loan.StatusReason</p>
+                                                        }
                                                     </div>
                                                 </div>
                                             </div>
-                                        </fieldset>
-                                    </form>
+                                        }
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <form class="">
+                                                    <fieldset>
+                                                        <input class="form-control" type="hidden" placeholder="id" value="@ViewBag.loan.Id" id="edit_loan_id">
+                                                        <input class="form-control" type="hidden" placeholder="id" value="@user.Id" id="edit_loan_clientid">
+                                                        <input type="hidden" class="form-control" id="edit_loan_requesteddate" value="@DateTime.Now.ToString("yyyy-MM-dd")" placeholder="@SharedLocalizer["requesteddate"]" />
+                                                        @{
+                                                            var disabled = "disabled";
+                                                            if (ViewBag.loan.Status == Models.data.LoanStatus.New)
+                                                                disabled = "";
+                                                        }
+                                                        <div class="row">
+                                                            <!-- Text input-->
+                                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 form-group ">
+                                                                <label class="control-label" for="name">@SharedLocalizer["AMOUNT_"]@(ViewBag.loan.Id > 0?"(#"+ ViewBag.loan.Id + ")":"")<span class="text-danger">*</span></label>
+                                                                <div class="">
+                                                                    <input type="number" class="form-control input-md" @disabled id="edit_loan_amount" value="@ViewBag.loan.Amount" placeholder="@SharedLocalizer["amount"]" required />
+                                                                    <span class="help-block"></span>
+                                                                </div>
+                                                            </div>
+                                                            <!-- Text input-->
+                                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 form-group ">
+                                                                <label class=" control-label" for="email">@SharedLocalizer["FREQUENTLY_"]<span class="text-danger">*</span></label>
+                                                                <div class="">
+                                                                    <select class="form-control input-md" @disabled style="width:100%;" id="edit_loan_cycle">
+                                                                        @foreach (Models.data.LoanCycleModel rate in ViewBag.Rates)
+                                                                    {
+                                                                        if (ViewBag.loan.Cycle.Equals(rate.LoanCycle))
+                                                                        {
+                                                                        <option value="@rate.LoanCycle" class="@rate.Rate" selected>@(SharedLocalizer[rate.LoanCycle.ToString()])</option>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                        <option value="@rate.LoanCycle" class="@rate.Rate">@(SharedLocalizer[rate.LoanCycle.ToString()])</option>
+                                                                        }
+                                                                    }
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <!-- Text input-->
+                                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 form-group ">
+                                                                <label class="control-label" for="phone">@SharedLocalizer["INTEREST_"]<span class="text-danger">*</span></label>
+                                                                <div class="">
+                                                                    <input type="text" disabled class="form-control" value="@ViewBag.loan.InterestingRate" id="edit_loan_interestingrate" placeholder="@SharedLocalizer["interestrate"]" />
+                                                                </div>
+                                                            </div>
+                                                            <!-- Text input-->
+                                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 form-group ">
+                                                                <label class="control-label" for="phone">@SharedLocalizer["TIMES_"]<span class="text-danger">*</span></label>
+                                                                <div class="">
+                                                                    <input type="number" @disabled class="form-control" value="@ViewBag.loan.Times" id="edit_loan_times" placeholder="@SharedLocalizer["times"]" />
+                                                                </div>
+                                                            </div>
+                                                            <!-- Text input-->
+                                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 form-group ">
+                                                                <label class="control-label" for="phone">@SharedLocalizer["DESCRIPTION_"]<span class="text-danger">*</span></label>
+                                                                <div class="">
+                                                                    <textarea @disabled class="form-control" id="edit_loan_description" placeholder="@SharedLocalizer["DESCRIPTION_"]" style="min-height:100px;">@ViewBag.loan.Description</textarea>
+                                                                </div>
+                                                            </div>
+                                                            <!-- Button -->
+                                                            <div id="loan_request_form" class="form-group col-xl-4 col-lg-12 col-md-6 col-sm-12 col-12">
+                                                                @if (disabled.Equals(""))
+                                                            {
+                                                                <div>
+                                                                    <button type="button" onclick="submitLoanRequestForm();" class="btn btn-primary">@SharedLocalizer["Submit"]</button>
+                                                                </div>
+                                                            }
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12" style="padding-right:0px;">
+                                                                <div class="bg-light p-3 outline" id="cycle_div">
+                                                                    Monthly EMI
+                                                                    <h2 id='cycle_lab' class="mb-0"></h2>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12" style="padding-right:0px;padding-left:0px;">
+                                                                <div class="bg-light p-3 outline">
+                                                                    @SharedLocalizer["TotalInterest"]
+                                                                    <h2 id='interest_lab' class="mb-0"></h2>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12" style="padding-right:0px;padding-left:0px;">
+                                                                <div class="bg-light p-3 outline">
+                                                                    @SharedLocalizer["TotalBalance"]
+                                                                    <h2 id='balance_lab' class="mb-0"></h2>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-12" style="padding-left:0px;">
+                                                                <div class="bg-light p-3 outline">
+                                                                    @SharedLocalizer["InterestPercentage"]
+                                                                    <h2 id='percentage_lab' class="mb-0"></h2>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="datatable datatable-bordered datatable-head-custom kt_datatable_class" name="kt_datatable_calc" id="kt_datatable_calc"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row" id="message_area">
+                                                            <div class="col-12">
+                                                                <div class="comments-area mb40">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="widget-share">
-                        <ul class="listnone">
-                            <li><a href="#!" class="btn-share btn-facebook" title="Share on Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#!" class="btn-share btn-twitter" title="Share on Twitter"><i class="fab fa-twitter"></i></a></li>
-                            <li>
-                                <a href="#!" class="btn-share btn-google" title="Share on Google"> <i class="fab fa-google"></i></a>
-                            </li>
-                            <li><a href="#!" class="btn-share btn-linkedin" title="Share on Linkedin"><i class="fab fa-linkedin"></i></a></li>
-                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script src="~/home/js/pages/wantloan.js"></script>

@@ -152,30 +152,33 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown ">
-                            <a class="nav-link" id="iwantlend" href="@Url.Action("blog", "home")" aria-haspopup="true" aria-expanded="false">
-                                @SharedLocalizer["Blog"]
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown ">
-                            <a class="nav-link" id="iwantlend" href="@Url.Action("contact", "home")" aria-haspopup="true" aria-expanded="false">
-                                @SharedLocalizer["Contactus"]
-                            </a>
-                        </li>
                         @if (!SignInManager.IsSignedIn(User) || type == 1)
                         {
-
+                            <li class="nav-item dropdown ">
+                                <a class="nav-link @(current_url.Equals("/home/wantloan")?"active":"")" id="iwantaloan" asp-controller="home" asp-action="wantloan" aria-haspopup="true" aria-expanded="false">
+                                    @SharedLocalizer["Iwantloan"]
+                                </a>
+                            </li>
                         }
                         @if (!SignInManager.IsSignedIn(User) || type == 2)
                         {
-                            /*
                             <li class="nav-item dropdown ">
-                                <a class="nav-link" id="iwantlend" href="@Url.Action("wantlend", "home")" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link @(current_url.Equals("/home/wantlend")?"active":"")" id="iwantlend" asp-controller="home" asp-action="wantlend" aria-haspopup="true" aria-expanded="false">
                                     @SharedLocalizer["Iwanttolend"]
                                 </a>
                             </li>
-                            */
                         }
+                        <li class="nav-item dropdown">
+                            <a class="nav-link @(current_url.Equals("/home/blog")?"active":"")" id="iwantlend" href="@Url.Action("blog", "home")" aria-haspopup="true" aria-expanded="false">
+                                @SharedLocalizer["Blog"]
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link @(current_url.Equals("/home/contact")?"active":"")" id="iwantlend" href="@Url.Action("contact", "home")" aria-haspopup="true" aria-expanded="false">
+                                @SharedLocalizer["Contactus"]
+                            </a>
+                        </li>
+
                         @if (!SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item dropdown">
@@ -192,7 +195,7 @@
                         else
                         {
                             <li class="nav-item dropdown">
-                                <a class="btn btn-light mr-10" href="@Url.Action("cprofile", "home")" id="navbarBlog" role="button" aria-haspopup="true" aria-expanded="false">
+                                <a class="btn btn-light mr-10" href="@Url.Action(type==1?"cprofile":"iprofile", "home")" id="navbarBlog" role="button" aria-haspopup="true" aria-expanded="false">
                                     @SharedLocalizer["MyAccount"]
                                 </a>
                             </li>

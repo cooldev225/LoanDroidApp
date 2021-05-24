@@ -41,6 +41,63 @@ namespace App.Controllers
             ViewBag.client_count = _userManager.GetUsersInRoleAsync("cliente").Result.Count();
             ViewBag.investor_count = _userManager.GetUsersInRoleAsync("inversora").Result.Count();
         }
+        public async Task<int> GetProfileStep() {
+            var userId = _context.CurrentUserId;
+            if (userId == null || userId.Equals("")) return 0;
+            var q1 = _context.AccountPayment.Where(u => u.UserId.Equals(userId) && u.Type == 0).OrderByDescending(u => u.CreatedDate);
+            var q2 = _context.AccountPayment.Where(u => u.UserId.Equals(userId) && u.Type == 1).OrderByDescending(u => u.CreatedDate);
+            var q3 = _context.AccountPayment.Where(u => u.UserId.Equals(userId) && u.Type == 2).OrderByDescending(u => u.CreatedDate);
+            int step = 0;
+            ApplicationUser user = await _userManager.FindByIdAsync(userId);
+            if (user.FirstName != null && !user.FirstName.Equals(""))
+                if (user.LastName != null && !user.LastName.Equals(""))
+                    if (user.Passport != null && !user.Passport.Equals(""))
+                        if (user.Sex != Gender.None)
+                            if (user.PhoneNumber != null && !user.PhoneNumber.Equals(""))
+                                if (user.NumDependant != null && !user.NumDependant.Equals(""))
+                                    if (user.MotherName != null && !user.MotherName.Equals(""))
+                                        if (user.FatherName != null && !user.FatherName.Equals(""))
+                                            step = 1;
+            if (step > 0 && (q1.Count() > 0 || q2.Count() > 0 || q3.Count() > 0))
+            {
+                step = 2;
+            }
+            return step;
+        }
+        public List<LoanCycleModel> GetLoanRates()
+        {
+            List<LoanCycleModel> Rates = new List<LoanCycleModel>();
+            foreach (int i in Enum.GetValues(typeof(LoanCycle)))
+            {
+                var name = Enum.GetName(typeof(LoanCycle), i);
+                double val = 0;
+                if (_context.Option.Where(u => u.Key.Equals("LOAN_RATE_" + name)).Count() > 0)
+                    val = double.Parse(_context.Option.Where(u => u.Key.Equals("LOAN_RATE_" + name)).First().Value);
+                Rates.Add(new LoanCycleModel
+                {
+                    LoanCycle = (LoanCycle)Enum.GetValues(typeof(LoanCycle)).GetValue(i),
+                    Rate = val
+                });
+            }
+            return Rates;
+        }
+        public List<LoanCycleModel> GetSavingRates()
+        {
+            List<LoanCycleModel> Rates = new List<LoanCycleModel>();
+            foreach (int i in Enum.GetValues(typeof(LoanCycle)))
+            {
+                var name = Enum.GetName(typeof(LoanCycle), i);
+                double val = 0;
+                if (_context.Option.Where(u => u.Key.Equals("SAVING_RATE_" + name)).Count() > 0)
+                    val = double.Parse(_context.Option.Where(u => u.Key.Equals("SAVING_RATE_" + name)).First().Value);
+                Rates.Add(new LoanCycleModel
+                {
+                    LoanCycle = (LoanCycle)Enum.GetValues(typeof(LoanCycle)).GetValue(i),
+                    Rate = val
+                });
+            }
+            return Rates;
+        }
         [HttpGet]
         public IActionResult Index()
         {
@@ -49,21 +106,20 @@ namespace App.Controllers
         }
         [HttpGet]
         [Authorize(Roles = "cliente")]
-        public async Task<IActionResult> Cprofile()
+        public async Task<IActionResult> Cprofile(string returnUrl = "")
         {
+            ViewData["returnUrl"] = returnUrl;
             var userId = _context.CurrentUserId;
             ViewBag.AccountPaymentOnline = new AccountPayment();
             var q1 = _context.AccountPayment.Where(u => u.UserId.Equals(userId) && u.Type == 0).OrderByDescending(u => u.CreatedDate);
             var q2 = _context.AccountPayment.Where(u => u.UserId.Equals(userId) && u.Type == 1).OrderByDescending(u => u.CreatedDate);
             var q3 = _context.AccountPayment.Where(u => u.UserId.Equals(userId) && u.Type == 2).OrderByDescending(u => u.CreatedDate);
-            ViewBag.step = 0;
+            ViewBag.step = GetProfileStep().Result;
+            if (ViewBag.step == 2)
+            {
+                if(returnUrl.Equals("/home/wantloan"))return RedirectToAction(nameof(HomeController.Wantloan), "Home");
+            }
             ApplicationUser user = await _userManager.FindByIdAsync(userId);
-            if (user.FirstName != null && !user.FirstName.Equals(""))
-                if (user.LastName != null && !user.LastName.Equals(""))
-                    if (user.PhoneNumber != null && !user.PhoneNumber.Equals(""))
-                        ViewBag.step = 1;
-            if (ViewBag.step > 0 && (q1.Count() > 0 || q2.Count() > 0 || q3.Count() > 0))
-                ViewBag.step = 2;
             AccountPayment acc = new AccountPayment
             {
                 Id = 0,
@@ -97,17 +153,7 @@ namespace App.Controllers
             acc.Type = 2;
             ViewBag.Payment03 = q3.Count()>0?q3.First():acc;
             if (ViewBag.step > 1) {
-                var q = _context.LoanRequest.Where(u => u.ClientId.Equals(userId) && (
-                      u.Status == LoanStatus.Representante_Processing ||
-                      u.Status == LoanStatus.Collection_Processing ||
-                      u.Status == LoanStatus.Service_Processing ||
-                      u.Status == LoanStatus.Contactor_Checking ||
-                      u.Status == LoanStatus.Debug_Processing ||
-                      u.Status == LoanStatus.Interesting_Process ||
-                      u.Status == LoanStatus.Investor_Piad
-                  )).OrderByDescending(u => u.CreatedDate);
-                if (q.Count() > 0) ViewBag.loan = q.First();
-                else ViewBag.loan = new LoanRequest
+                ViewBag.loan = new LoanRequest
                 {
                     ClientId = userId,
                     Amount = 0,
@@ -123,6 +169,113 @@ namespace App.Controllers
             ViewBag.Province = _context.Province.OrderBy(u => u.Id).ToList();
             ViewBag.Nationality = _context.Nationality.OrderBy(u => u.Id).ToList();
 
+            ViewBag.Rates = GetLoanRates();
+
+            return View();
+        }
+        [HttpGet]
+        [Authorize(Roles = "inversora")]
+        public async Task<IActionResult> Iprofile(string returnUrl="")
+        {
+            ViewData["returnUrl"] = returnUrl;
+            var userId = _context.CurrentUserId;
+            ViewBag.AccountPaymentOnline = new AccountPayment();
+            var q1 = _context.AccountPayment.Where(u => u.UserId.Equals(userId) && u.Type == 0).OrderByDescending(u => u.CreatedDate);
+            var q2 = _context.AccountPayment.Where(u => u.UserId.Equals(userId) && u.Type == 1).OrderByDescending(u => u.CreatedDate);
+            var q3 = _context.AccountPayment.Where(u => u.UserId.Equals(userId) && u.Type == 2).OrderByDescending(u => u.CreatedDate);
+            ViewBag.step = GetProfileStep().Result;
+            ApplicationUser user = await _userManager.FindByIdAsync(userId);
+            if (ViewBag.step == 2)
+            {
+                if (returnUrl.Equals("/home/wantlend")) return RedirectToAction(nameof(HomeController.Wantlend), "Home");
+            }
+            AccountPayment acc = new AccountPayment
+            {
+                Id = 0,
+                UserId = userId,
+                GatewayName = "",
+                GatewayUrl = "",
+                GatewayEmail = user.Email,
+                GatewayUserName = user.UserName,
+                GatewayPassword = "",
+                CardFirstName = user.FirstName,
+                CardLastName = user.LastName,
+                CardNumber = "",
+                CardExpirationDate = "",
+                CardAddress1 = "",
+                CardAddress2 = "",
+                BankCountry = "",
+                BankAccountHolder = "",
+                BankName = "",
+                BankStreet = "",
+                BankCity = "",
+                BankRegion = "",
+                BankCurrency = "",
+                BankRoutingNumber = "",
+                BankSwiftBicNumber = "",
+                BankIBANNumber = "",
+                Type = 0
+            };
+            ViewBag.Payment01 = q1.Count() > 0 ? q1.First() : acc;
+            acc.Type = 1;
+            ViewBag.Payment02 = q2.Count() > 0 ? q2.First() : acc;
+            acc.Type = 2;
+            ViewBag.Payment03 = q3.Count() > 0 ? q3.First() : acc;
+            if (ViewBag.step > 1)
+            {
+                ViewBag.loan = new LoanRequest
+                {
+                    ClientId = userId,
+                    Amount = 0,
+                    InterestingRate = 8.9,
+                    Cycle = LoanCycle.SEMANAL,
+                    Times = 1,
+                    Status = LoanStatus.New,
+                    StatusReason = "",
+                    RequestedDate = DateTime.Now
+                };
+            }
+            ViewBag.Company = _context.Company.OrderBy(u => u.Name).ToList();
+            ViewBag.Province = _context.Province.OrderBy(u => u.Id).ToList();
+            ViewBag.Nationality = _context.Nationality.OrderBy(u => u.Id).ToList();
+
+            ViewBag.Rates = GetSavingRates();
+            return View();
+        }
+        [HttpGet]
+        public async Task<IActionResult> Wantloan()
+        {
+            var userId = _context.CurrentUserId;
+            if (userId == null || userId.Equals(""))
+                return RedirectToAction(nameof(HomeController.Login), "Home", new { returnUrl = "/home/wantloan" });
+            if(User.IsInRole("inversora")) return RedirectToAction(nameof(HomeController.Wantlend), "Home");
+            ViewBag.step = GetProfileStep().Result;
+            if (ViewBag.step < 2)
+                return RedirectToAction(nameof(HomeController.Cprofile), "Home", new { returnUrl = "/home/wantloan" });
+
+            var q = _context.LoanRequest.Where(u => u.ClientId.Equals(userId) && (
+                      u.Status == LoanStatus.New ||
+                      u.Status == LoanStatus.Representante_Processing ||
+                      u.Status == LoanStatus.Collection_Processing ||
+                      u.Status == LoanStatus.Service_Processing ||
+                      u.Status == LoanStatus.Contactor_Checking ||
+                      u.Status == LoanStatus.Debug_Processing ||
+                      u.Status == LoanStatus.Interesting_Process ||
+                      u.Status == LoanStatus.Investor_Piad
+                  )).OrderByDescending(u => u.CreatedDate);
+            if (q.Count() > 0) ViewBag.loan = q.First();
+            else ViewBag.loan = new LoanRequest
+            {
+                ClientId = userId,
+                Amount = 0,
+                InterestingRate = 8.9,
+                Cycle = LoanCycle.SEMANAL,
+                Times = 1,
+                Status = LoanStatus.New,
+                StatusReason = "",
+                RequestedDate = DateTime.Now,
+                Description=""
+            };
             ViewBag.Rates = new List<LoanCycleModel>();
             foreach (int i in Enum.GetValues(typeof(LoanCycle)))
             {
@@ -136,17 +289,82 @@ namespace App.Controllers
                     Rate = val
                 });
             }
-
             return View();
         }
         [HttpGet]
-        public IActionResult Wantloan()
+        public async Task<IActionResult> Wantlend(int tab=1)
         {
-            return View();
-        }
-        [HttpGet]
-        public IActionResult Wantlend()
-        {
+            ViewBag.tab = tab;
+            var userId = _context.CurrentUserId;
+            if (userId == null || userId.Equals("")) 
+                return RedirectToAction(nameof(HomeController.Login), "Home",new { returnUrl = "/home/wantlend" });
+            if (User.IsInRole("cliente")) return RedirectToAction(nameof(HomeController.Wantloan), "Home");
+            ViewBag.step = GetProfileStep().Result;
+            if (ViewBag.step < 2)
+                return RedirectToAction(nameof(HomeController.Iprofile), "Home", new { returnUrl = "/home/wantlend" });
+            IQueryable<ApplicationLoanRequest> query = (from a in _context.Set<LoanRequest>()
+                                                        join b in _context.Set<ApplicationUser>()
+                                                        on a.ClientId equals b.Id into g
+                                                        from b in g.DefaultIfEmpty()
+                                                        select new ApplicationLoanRequest
+                                                        {
+                                                            Id = a.Id,
+                                                            ClientId = a.ClientId,
+                                                            RequestedDate = a.RequestedDate,
+                                                            Amount = a.Amount,
+                                                            InterestingRate = a.InterestingRate,
+                                                            Cycle = a.Cycle,
+                                                            Times = a.Times,
+                                                            Status = a.Status,
+                                                            StatusReason = a.StatusReason,
+                                                            Description=a.Description,
+                                                            UserName = b.UserName,
+                                                            FriendlyName = b.FriendlyName,
+                                                            AvatarImage = b.AvatarImage,
+                                                            CreatedBy = a.CreatedBy,
+                                                            CreatedDate = a.CreatedDate,
+                                                            CreatedDevice = a.CreatedDevice,
+                                                            UpdatedBy = a.UpdatedBy,
+                                                            UpdatedDate = a.UpdatedDate,
+                                                            UpdatedDevice = a.UpdatedDevice
+                                                        });
+            //query = query.Where(u =>u.Status != LoanStatus.New);
+            List<ApplicationLoanRequest> loans = query.ToList();
+            for(int i=0;i< loans.Count();i++) {
+                loans[i].isApplied=_context.Investment.Where(u => u.LoanId == loans[i].Id).Count() > 0;
+            }
+            ViewBag.loans = loans;
+            IQueryable<ApplicationInvestment> iquery = (from a in _context.Set<Investment>()
+                                                        select new ApplicationInvestment
+                                                        {
+                                                            Id = a.Id,
+                                                            InvestorId = a.InvestorId,
+                                                            RequestedDate = a.RequestedDate,
+                                                            Amount = a.Amount,
+                                                            SavingRate = a.SavingRate,
+                                                            Cycle = a.Cycle,
+                                                            Times = a.Times,
+                                                            Status = a.Status,
+                                                            StatusReason = a.StatusReason,
+                                                            //Description = a.Description,
+                                                            LoanId=a.LoanId,
+                                                            CreatedBy = a.CreatedBy,
+                                                            CreatedDate = a.CreatedDate,
+                                                            CreatedDevice = a.CreatedDevice,
+                                                            UpdatedBy = a.UpdatedBy,
+                                                            UpdatedDate = a.UpdatedDate,
+                                                            UpdatedDevice = a.UpdatedDevice
+                                                        });
+            List<ApplicationInvestment> investments = iquery.ToList();
+            for (int i = 0; i < investments.Count(); i++)
+            {
+                investments[i].Paid = 0;
+                foreach (InvestmentStatus status in _context.InvestmentStatus.Where(u => u.InvestmentId == investments[i].Id&& u.Status==InvestStatus.Created_Milestone).ToList()){
+                    investments[i].Paid += status.Paid;
+                }
+            }
+            ViewBag.investments = investments;
+            ViewBag.Rates = GetSavingRates();
             return View();
         }
         [HttpGet]
@@ -180,8 +398,9 @@ namespace App.Controllers
             return View();
         }
         [HttpGet]
-        public IActionResult Login(string page="login")
+        public IActionResult Login(string page="login", string returnUrl = "")
         {
+            ViewData["returnUrl"] = returnUrl;
             ViewBag.page = page;
             return View();
         }
@@ -190,7 +409,7 @@ namespace App.Controllers
         {
             try
             {
-                ViewData["ReturnUrl"] = returnUrl;
+                ViewData["returnUrl"] = returnUrl;
                 var user = _userManager.Users.Where(u => u.Email.Equals(username)).SingleOrDefault(); 
                 if (user == null)
                 {
@@ -214,6 +433,7 @@ namespace App.Controllers
                     else if (_userManager.GetUsersInRoleAsync("inversora").Result.Where(u => u.Id.Equals(user.Id)).Count() > 0)
                     {
                         HttpContext.Session.SetString("loan.droid.app.loggedin.usertype", "investor");
+                        if (returnUrl == null || returnUrl.Equals("")) returnUrl = "/home/iprofile";
                     }
                     else return RedirectToAction(nameof(AdminController.Index), "Admin");
                     return RedirectToLocal(returnUrl);
@@ -228,7 +448,7 @@ namespace App.Controllers
                     ViewBag.error="Invalid login attempt.";
                     return View();
                 }
-                // If we got this far, something failed, redisplay form 
+                // If we got this far, something faild, redisplay form 
                 return View();
             }
             catch (Exception ex)
@@ -251,7 +471,8 @@ namespace App.Controllers
         }
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Register(int usertype,string username, string email,string password, string returnUrl = null)
+        public async Task<IActionResult> Register(
+            int usertype,string username, string email,string password, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             var isCurrentNameIsExist = _userManager.Users.Where(u => u.UserName.Equals(username)).Any();

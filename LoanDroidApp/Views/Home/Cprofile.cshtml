@@ -18,6 +18,7 @@
                 <div class="page-breadcrumb">
                     <ol class="breadcrumb">
                         <li><a href="/">@SharedLocalizer["Home"]</a></li>
+                        <li><a href="/">@SharedLocalizer["Client"]</a></li>
                         <li class="active">@SharedLocalizer["MyAccount"]</li>
                     </ol>
                 </div>
@@ -29,7 +30,16 @@
                             <h1 class="page-title">@SharedLocalizer["MyAccount"]</h1>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
-                            <div class="btn-action"> <a href="@Url.Action("howitwork", "home")" class="btn btn-secondary">@SharedLocalizer["howitworks"]</a> </div>
+                            <div class="btn-action">
+                                @if (ViewBag.step > 1)
+                                {
+                                    <a href="@Url.Action("wantloan", "home")" class="btn btn-primary">@SharedLocalizer["requestloan"]</a>
+                                    <a href="@Url.Action("faq", "home")" class="btn btn-secondary">@SharedLocalizer["FAQ"]</a>
+                                }
+                                else { 
+                                    <a href="@Url.Action("howitwork", "home")" class="btn btn-secondary">@SharedLocalizer["howitworks"]</a>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -461,7 +471,7 @@
                                                                     disabled = "";
                                                             }
                                                             <div class="form-group row" style="margin-top: 1rem;">
-                                                                <label for="example-search-input" class="col-5 col-form-label">@SharedLocalizer["AMOUNT_"]<span class="text-danger">*</span></label>
+                                                                <label for="example-search-input" class="col-5 col-form-label">@SharedLocalizer["AMOUNT_"]@(ViewBag.loan.Id > 0?"(#"+ ViewBag.loan.Id + ")":"")<span class="text-danger">*</span></label>
                                                                 <div class="col-7">
                                                                     <input type="number" class="form-control" @disabled id="edit_loan_amount" value="@ViewBag.loan.Amount" placeholder="@SharedLocalizer["amount"]" />
                                                                 </div>
@@ -490,19 +500,13 @@
                                                                     <input type="text" disabled class="form-control" value="@ViewBag.loan.InterestingRate" id="edit_loan_interestingrate" placeholder="@SharedLocalizer["interestrate"]" />
                                                                 </div>
                                                             </div>
-                                                            <select class="form-control" style="display:none;" id="edit_loan_cycle_val">
-                                                            @foreach (Models.data.LoanCycleModel rate in ViewBag.Rates)
-                                                            {
-                                                                
-                                                            }
-                                                            </select>
                                                             <div class="form-group row">
                                                                 <label for="example-search-input" class="col-5 col-form-label">@SharedLocalizer["TIMES_"]<span class="text-danger">*</span></label>
                                                                 <div class="col-7">
                                                                     <input type="number" @disabled class="form-control" value="@ViewBag.loan.Times" id="edit_loan_times" placeholder="@SharedLocalizer["times"]" />
                                                                 </div>
                                                             </div>
-                                                            @if (disabled.Equals(""))
+                                                            @if (disabled.Equals("")&&false)
                                                             {
                                                                 <div style="text-align:center;">
                                                                     <button type="button" onclick="submitLoanRequestForm();" class="btn btn-primary font-weight-bold">@SharedLocalizer["Submit"]</button>
@@ -533,7 +537,7 @@
                                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                                 <div class="bg-light p-3 outline">
                                                                     @SharedLocalizer["InterestPercentage"]
-                                                                    <h2 id='percentage_lab' class="mb-0"></h2>
+                                                                    <h2 id='percentage_lab' class="mb-0">0</h2>
                                                                 </div>
                                                             </div>
                                                         </div>

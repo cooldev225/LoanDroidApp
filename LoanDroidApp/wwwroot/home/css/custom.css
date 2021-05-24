@@ -2020,7 +2020,7 @@
     border:none;
 }
 #service3 #loan_request_form .form-group {
-    margin-bottom: 0px;
+    /*margin-bottom: 0px;*/
 }
 .bootstrap-select.datatable-pager-size .dropdown-menu {
     top:1100px;
@@ -2045,4 +2045,34 @@
 
 .st-tabs .btn-action a, .st-tabs .btn-action a:hover {
     color:#fff;
+}
+
+.navbar-light .navbar-nav .nav-link.active {
+    color: #f51f8a;
+}
+.st-tabs a.btn-secondary:hover, .st-tabs a.btn-primary:hover {
+    color: #fff;
+}
+.st-tabs a.btn-secondary, .st-tabs a.btn-primary, .st-tabs a.btn-share {
+    color: #fff;
+}
+.st-tabs .card-header a{
+    color: #f51f8a;
+}
+.st-tabs .card-header a:hover, .st-tabs .card-header a:focus {
+    color: #1a84ff;
+}
+.wantlend .mt60 {
+    margin-top:20px;
+    padding:20px;
+}
+.st-tabs a.btn-link {
+    color: #1a84ff;
+}
+.st-tabs a.btn-link:hover {
+    color: #f51f8a;
+}
+.comments-area {
+    padding-bottom: 0px;
+    padding-top: 40px;
 }

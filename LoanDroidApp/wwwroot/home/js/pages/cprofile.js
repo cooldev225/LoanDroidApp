@@ -555,7 +555,7 @@ function calculateEMI() {
             $("#cycle_lab").html(bala);
             $("#interest_lab").html(parseFloat(inte.toFixed(2)));
             $("#balance_lab").html(parseFloat((bala * response.data.length).toFixed(2)));
-            $("#percentage_lab").html(parseFloat((bala * response.data.length * 100 / capi - 100).toFixed(2)));
+            $("#percentage_lab").html(capi==0?0:parseFloat((bala * response.data.length * 100 / capi - 100).toFixed(2)));
         },
         error: function (response) {
 

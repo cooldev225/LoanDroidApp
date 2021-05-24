@@ -33,6 +33,12 @@
     <Compile Remove="Migrations\20210417013959_accountpayment.Designer.cs" />
     <Compile Remove="Migrations\20210423021815_update-permission.cs" />
     <Compile Remove="Migrations\20210423021815_update-permission.Designer.cs" />
+    <Compile Remove="Migrations\20210523214044_message.cs" />
+    <Compile Remove="Migrations\20210523214044_message.Designer.cs" />
+    <Compile Remove="Migrations\20210523233702_update-message.cs" />
+    <Compile Remove="Migrations\20210523233702_update-message.Designer.cs" />
+    <Compile Remove="Migrations\20210524011540_update-message-id-to-long.cs" />
+    <Compile Remove="Migrations\20210524011540_update-message-id-to-long.Designer.cs" />
   </ItemGroup>
 
 

@@ -10,7 +10,7 @@ namespace LoanDroidApp.Models
         public string UserName { get; set; }
         public string FriendlyName { get; set; }
         public byte[] AvatarImage { get; set; }
-        public string LoanCycle { get; set; }
+        public double Paid { get; set; }
     }
     public class DatatableInvestment : IDatatable
     {

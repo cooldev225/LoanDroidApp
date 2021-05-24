@@ -14,6 +14,7 @@ namespace LoanDroidApp.Models
         public InvestStatus Status { get; set; }
         public string StatusReason { get; set; }
         public DateTime RequestedDate { get; set; }
+        public long LoanId { get; set; }
 
         public string CreatedBy { get; set; }
         public string CreatedDevice { get; set; }

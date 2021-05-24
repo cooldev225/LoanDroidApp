@@ -467,6 +467,19 @@ namespace App.Controllers
                     Rate=val
                 });
             }
+            ViewBag.SRates = new List<LoanCycleModel>();
+            foreach (int i in Enum.GetValues(typeof(LoanCycle)))
+            {
+                var name = Enum.GetName(typeof(LoanCycle), i);
+                double val = 0;
+                if (_context.Option.Where(u => u.Key.Equals("SAVING_RATE_" + name)).Count() > 0)
+                    val = double.Parse(_context.Option.Where(u => u.Key.Equals("SAVING_RATE_" + name)).First().Value);
+                ViewBag.SRates.Add(new LoanCycleModel
+                {
+                    LoanCycle = (LoanCycle)Enum.GetValues(typeof(LoanCycle)).GetValue(i),
+                    Rate = val
+                });
+            }
             GlobalVariables();
             return View();
         }
@@ -485,6 +498,27 @@ namespace App.Controllers
                     Description=""
                 };
                 if (_context.Option.Where(u=>u.Key.Equals("LOAN_RATE_" + name)).Count()==0)
+                {
+                    await _context.Option.AddAsync(req);
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    _context.Entry(req).CurrentValues.SetValues(req);
+                    _context.Entry(req).State = EntityState.Modified;
+                    _context.SaveChanges();
+                }
+
+                sss = Request.Form["saving_"+name].FirstOrDefault();
+                val = double.Parse(sss);
+                req = new Option
+                {
+                    Key = "SAVING_RATE_" + name,
+                    Value = val.ToString(),
+                    Kind = "",
+                    Description = ""
+                };
+                if (_context.Option.Where(u => u.Key.Equals("SAVING_RATE_" + name)).Count() == 0)
                 {
                     await _context.Option.AddAsync(req);
                     await _context.SaveChangesAsync();
@@ -1128,7 +1162,8 @@ namespace App.Controllers
             double amount,
             double interestingrate,
             LoanCycle cycle,
-            int times
+            int times,
+            string description
         )
         {
             LoanRequest req = new LoanRequest
@@ -1138,7 +1173,8 @@ namespace App.Controllers
                 Amount=amount,
                 InterestingRate= interestingrate,
                 Cycle=cycle,
-                Times=times
+                Times=times,
+                Description=description
             };            
             if (!(User.IsInRole("cliente")||HasPermmision("loan.request") || HasPermmision("loan.service") || HasPermmision("loan.debug") || HasPermmision("loan.collection"))) return null;
             if (id==0)
@@ -1177,11 +1213,120 @@ namespace App.Controllers
             });
         }
         [HttpPost]
+        public DatatableMessage getMessageDataTable(string fromUserId="", string toUserId="", int type=0) {
+            int page = Request.Form["pagination[page]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[page]"].FirstOrDefault());
+            int perpage = Request.Form["pagination[perpage]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[perpage]"].FirstOrDefault());
+            string search = Request.Form["query[generalSearch]"].FirstOrDefault() == null ? "" : Request.Form["query[generalSearch]"].FirstOrDefault();
+            DatatableSort sort = new DatatableSort
+            {
+                field = Request.Form["sort[field]"].FirstOrDefault(),
+                sort = Request.Form["sort[sort]"].FirstOrDefault()
+            };
+
+            IQueryable<ApplicationMessage> query;
+            IQueryable<Message> messages = _context.Set<Message>();
+            if(fromUserId!=null&&!fromUserId.Equals(""))
+                messages= messages.Where(u => u.FromUserId.Equals(fromUserId));
+            if (toUserId != null && !toUserId.Equals(""))
+                messages = messages.Where(u => u.ToUserId.Equals(toUserId));
+            query = (
+            from a in messages.OrderBy(u=>u.CreatedDate)
+            join b in _context.Set<ApplicationUser>()
+            on a.FromUserId equals b.Id into g
+            from b in g.DefaultIfEmpty()
+            join c in _context.Set<ApplicationUser>()
+            on a.ToUserId equals c.Id into h
+            from c in h.DefaultIfEmpty()
+            select new ApplicationMessage
+            {
+                Id = a.Id,
+                FromUserId=a.FromUserId,
+                ToUserId=a.ToUserId,
+                Question=a.Question,
+                QuestionAttach=a.QuestionAttach,
+                Answer=a.Answer,
+                AnswerAttach=a.AnswerAttach,
+                FromUserName=b.UserName,
+                FromFriendlyName=b.FriendlyName,
+                FromAvatarImage=b.AvatarImage,
+                ToUserName=c.UserName,
+                ToFriendlyName=c.FriendlyName,
+                ToAvatarImage=c.AvatarImage,
+                CreatedBy = a.CreatedBy,
+                CreatedDate = a.CreatedDate,
+                CreatedDevice = a.CreatedDevice,
+                UpdatedBy = a.UpdatedBy,
+                UpdatedDate = a.UpdatedDate,
+                UpdatedDevice = a.UpdatedDevice
+            });            
+            int total = query.Count();
+            DatatableMessage res = new DatatableMessage
+            {
+                meta = new DatatablePagination
+                {
+                    total = total,
+                    page = page,
+                    perpage = perpage,
+                    pages = total / perpage + (total % perpage < 5 ? 1 : 0),
+                }
+            };
+            res.data = query.Skip((page - 1) * perpage)
+                      .Take(perpage)
+                      .ToList();
+            return res;
+        }
+        [HttpPost]
+        public async Task<JsonResult> saveMessage(
+            long id=0,
+            string fromUserId="",
+            string toUserId="",
+            string question="",
+            string answer=""
+        ) {
+            if (id == 0)
+            {
+                if (fromUserId.Equals("")) fromUserId = _context.CurrentUserId;
+                if (toUserId.Equals("")) toUserId = _context.CurrentUserId;
+                Message req = new Message { 
+                    FromUserId=fromUserId,
+                    ToUserId=toUserId,
+                    Question=question,
+                    Answer=answer
+                };
+                await _context.Message.AddAsync(req);
+                await _context.SaveChangesAsync();
+
+                string fromName = _accountManager.GetUserByIdAsync(req.FromUserId).Result.FriendlyName;
+                string toName = _accountManager.GetUserByIdAsync(req.ToUserId).Result.FriendlyName;
+                await SaveNotification("La usuario "+fromName+" envió un mensaje a la usuario "+toName, "users.cview");
+            }
+            else
+            {
+                Message req = _context.Message.Find(id);
+                if (!fromUserId.Equals("")) req.FromUserId = fromUserId;
+                if (!toUserId.Equals("")) req.ToUserId = toUserId;
+                if (!question.Equals("")) req.Question = question;
+                if (!answer.Equals("")) req.Answer = answer;
+                _context.Entry(req).CurrentValues.SetValues(req);
+                _context.Entry(req).State = EntityState.Modified;
+                _context.SaveChanges();
+
+                string fromName = _accountManager.GetUserByIdAsync(req.FromUserId).Result.FriendlyName;
+                string toName = _accountManager.GetUserByIdAsync(req.ToUserId).Result.FriendlyName;
+                await SaveNotification("La usuario " + fromName + " respondió un mensaje a la usuario " + toName, "users.cview");
+            }
+            return Json(new
+            {
+                msg = "ok"
+            });
+        }
+        [HttpPost]
         public DatatableLoanCalculator getLoanCalculatorDataTable(
             double amount, double interestingrate, LoanCycle cycle, DateTime requesteddate, int times,int loan_id=0
         )
         {
-            if (!(User.IsInRole("cliente")||HasPermmision("loan.request") || HasPermmision("loan.service") || HasPermmision("loan.debug") || HasPermmision("loan.collection"))) return null;
+            if (requesteddate == null|| requesteddate.Year<1000) requesteddate = DateTime.Now;
+            if (!(User.IsInRole("inversora") || User.IsInRole("cliente") || HasPermmision("loan.request") || HasPermmision("loan.service") || HasPermmision("loan.debug") || HasPermmision("loan.collection"))) return null;
             int page = Request.Form["pagination[page]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[page]"].FirstOrDefault());
             int perpage = Request.Form["pagination[perpage]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[perpage]"].FirstOrDefault());
             string search = Request.Form["query[generalSearch]"].FirstOrDefault() == null ? "" : Request.Form["query[generalSearch]"].FirstOrDefault();
@@ -1197,7 +1342,7 @@ namespace App.Controllers
                 c += t;
             }
             c = amount / c;
-            DateTime d = requesteddate;
+            DateTime d = LoanCycleCalculator.NextDate(cycle, requesteddate);//requesteddate;
             List<ApplicationLoanCalcuator> data = new List<ApplicationLoanCalcuator>();
             for (int i = 0; i < times; i++)
             {
@@ -1427,30 +1572,39 @@ namespace App.Controllers
                                                             UpdatedDate = a.UpdatedDate,
                                                             UpdatedDevice = a.UpdatedDevice
                                                         });
-            if (!User.IsInRole("administrator"))
+            if (User.IsInRole("inversora"))
             {
-                if (!HasPermmision("investment.representante") && !HasPermmision("investment.request")) query = query.Where(u =>
-                     u.Status != InvestStatus.New);
-                if (!HasPermmision("investment.representante")) query = query.Where(u =>
-                    u.Status != InvestStatus.Representante_Processing &&
-                    u.Status != InvestStatus.Representante_Rejected);
-                if (!HasPermmision("investment.request")) query = query.Where(u =>
-                    u.Status != InvestStatus.Contactor_Checking &&
-                    u.Status != InvestStatus.Contactor_Rejected);
-                if (!HasPermmision("investment.service")) query = query.Where(u =>
-                    u.Status != InvestStatus.Service_Processing &&
-                    u.Status != InvestStatus.Service_Rejected);
-                if (!HasPermmision("investment.debug")) query = query.Where(u =>
-                    u.Status != InvestStatus.Debug_Processing &&
-                    u.Status != InvestStatus.Debug_Rejected);
-                if (!HasPermmision("investment.collection")) query = query.Where(u =>
-                    u.Status != InvestStatus.Collection_Processing &&
-                    u.Status != InvestStatus.Created_Milestone &&
-                    u.Status != InvestStatus.Completed_Payment &&
-                    u.Status != InvestStatus.Saving_Process&&
-                    u.Status != InvestStatus.Completed_Investment &&
-                    u.Status != InvestStatus.Incompleted_Investment);
+                query = query.Where(u =>
+                         u.InvestorId.Equals(_context.CurrentUserId));
             }
+            else
+            {
+                if (!User.IsInRole("administrator"))
+                {
+                    if (!HasPermmision("investment.representante") && !HasPermmision("investment.request")) query = query.Where(u =>
+                         u.Status != InvestStatus.New);
+                    if (!HasPermmision("investment.representante")) query = query.Where(u =>
+                        u.Status != InvestStatus.Representante_Processing &&
+                        u.Status != InvestStatus.Representante_Rejected);
+                    if (!HasPermmision("investment.request")) query = query.Where(u =>
+                        u.Status != InvestStatus.Contactor_Checking &&
+                        u.Status != InvestStatus.Contactor_Rejected);
+                    if (!HasPermmision("investment.service")) query = query.Where(u =>
+                        u.Status != InvestStatus.Service_Processing &&
+                        u.Status != InvestStatus.Service_Rejected);
+                    if (!HasPermmision("investment.debug")) query = query.Where(u =>
+                        u.Status != InvestStatus.Debug_Processing &&
+                        u.Status != InvestStatus.Debug_Rejected);
+                    if (!HasPermmision("investment.collection")) query = query.Where(u =>
+                        u.Status != InvestStatus.Collection_Processing &&
+                        u.Status != InvestStatus.Created_Milestone &&
+                        u.Status != InvestStatus.Completed_Payment &&
+                        u.Status != InvestStatus.Saving_Process &&
+                        u.Status != InvestStatus.Completed_Investment &&
+                        u.Status != InvestStatus.Incompleted_Investment);
+                }
+            }
+            
             int total = query.Count();
             DatatableInvestment res = new DatatableInvestment
             {
@@ -1500,17 +1654,108 @@ namespace App.Controllers
             return res;
         }
         [HttpPost]
+        public DatatableMilestone getMilestoneDataTable(long investmentId=0,string investorId="")
+        {
+            if (investorId.Equals("")) investorId = _context.CurrentUserId;
+            int page = Request.Form.Keys.Where(u => u.Equals("pagination[page]")).Count() == 0||Request.Form["pagination[page]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[page]"].FirstOrDefault());
+            int perpage = Request.Form.Keys.Where(u=>u.Equals("pagination[perpage]")).Count()==0|| Request.Form["pagination[perpage]"].FirstOrDefault() == null ? 0 : int.Parse(Request.Form["pagination[perpage]"].FirstOrDefault());
+            string search = Request.Form.Keys.Where(u => u.Equals("pagination[generalSearch]")).Count() == 0 || Request.Form["query[generalSearch]"].FirstOrDefault() == null ? "" : Request.Form["query[generalSearch]"].FirstOrDefault();
+            DatatableSort sort = new DatatableSort
+            {
+                field = Request.Form["sort[field]"].FirstOrDefault(),
+                sort = Request.Form["sort[sort]"].FirstOrDefault()
+            };
+            IQueryable<ApplicationMilestone> query = (from a in _context.Set<InvestmentStatus>()
+                                                      join b in _context.Set<TransactionHistory>()
+                                                      on a.TransactionId equals b.Id into g
+                                                      from b in g.DefaultIfEmpty()
+                                                      join c in _context.Set<Investment>()
+                                                       on a.InvestmentId equals c.Id into h
+                                                      from c in h.DefaultIfEmpty()
+                                                      select new ApplicationMilestone
+                                                       {
+                                                           InvestmentId = a.InvestmentId,
+                                                           InvestorId = c.InvestorId,
+                                                           Amount = b.Amount,
+                                                           Description = a.StatusReason,
+                                                           CreatedDate=b.CreatedDate
+                                                       });
+            int total = query.Count();
+            DatatableMilestone res = new DatatableMilestone
+            {
+                meta = new DatatablePagination
+                {
+                    total = total,
+                    page = page,
+                    perpage = perpage,
+                    pages = total / perpage + (total % perpage < 5 ? 1 : 0),
+                }
+            };
+            res.data = query.Skip((page - 1) * perpage)
+                          .Take(perpage)
+                          .ToList();
+            return res;
+        }
+        [HttpPost]
+        public async Task<JsonResult> saveMilestone(
+            DateTime requestedDate,
+            long investmentId = 0,
+            string investorId = "",
+            double amount = 0,
+            string description = "")
+        {
+            if (requestedDate.Year < 1000) requestedDate = DateTime.Now;
+            if (investorId.Equals("")) investorId = _context.CurrentUserId;
+
+            TransactionHistory trans = new TransactionHistory
+            {
+                FromPaymentId = 0,
+                ToPaymentId = 0,
+                Amount = amount,
+                Fee = 0
+            };
+            await _context.TransactionHistory.AddAsync(trans);
+            await _context.SaveChangesAsync();
+
+            InvestmentStatus req = new InvestmentStatus
+            {
+                Status = InvestStatus.Created_Milestone,
+                StatusReason = description,
+                InvestmentId = investmentId,
+                Paid=amount,
+                TransactionId=trans.Id
+            };
+
+            await _context.InvestmentStatus.AddAsync(req);
+            await _context.SaveChangesAsync();
+
+            Investment invest = _context.Investment.Find(investmentId);
+            invest.Status = InvestStatus.Created_Milestone;
+            invest.StatusReason = description;
+            _context.Entry(invest).CurrentValues.SetValues(invest);
+            _context.Entry(invest).State = EntityState.Modified;
+            _context.SaveChanges();
+
+            return Json(new
+            {
+                msg = "ok"
+            });
+        }
+        [HttpPost]
         public async Task<JsonResult> saveInvestment(
             long id,
-            string investorid,
             DateTime requesteddate,
-            double amount,
-            double savingrate,
-            LoanCycle cycle,
-            int times
+            string investorid = "",
+            double amount=0,
+            double savingrate=0,
+            LoanCycle cycle=0,
+            int times=1,
+            long loanId=0
         )
         {
-            if (!(HasPermmision("investment.service") || HasPermmision("investment.debug") || HasPermmision("investment.collection"))) return null;
+            if (requesteddate.Year < 1000) requesteddate = DateTime.Now;
+            if (investorid.Equals("")) investorid = _context.CurrentUserId;
+            if (!(User.IsInRole("inversora")|| HasPermmision("investment.service") || HasPermmision("investment.debug") || HasPermmision("investment.collection"))) return null;
             Investment req = new Investment
             {
                 InvestorId = investorid,
@@ -1518,7 +1763,8 @@ namespace App.Controllers
                 Amount = amount,
                 SavingRate = savingrate,
                 Cycle = cycle,
-                Times = times
+                Times = times,
+                LoanId=loanId
             };
             if (id == 0)
             {
@@ -1541,7 +1787,7 @@ namespace App.Controllers
         [HttpPost]
         public async Task<ActionResult> DeleteInvestment(long id)
         {
-            if (!(HasPermmision("investment.service") || HasPermmision("investment.debug") || HasPermmision("investment.collection"))) return null;
+            if (!(User.IsInRole("inversora") || HasPermmision("investment.service") || HasPermmision("investment.debug") || HasPermmision("investment.collection"))) return null;
             try
             {
                 Investment req = await _context.Investment.FindAsync(id);
@@ -1568,17 +1814,17 @@ namespace App.Controllers
                 sort = Request.Form["sort[sort]"].FirstOrDefault()
             };
             IQueryable<ApplicationInvestmentStatus> query = (
-                from a in _context.Set<InvestmentStatus>().Where(u => u.InvestmenttId == investmentId)
+                from a in _context.Set<InvestmentStatus>().Where(u => u.InvestmentId == investmentId)
                 join b in _context.Set<ApplicationUser>()
                 on a.CreatedBy equals b.Id into g
                 from b in g.DefaultIfEmpty()
                 join c in _context.Set<LoanRequest>()
-                on a.InvestmenttId equals c.Id into h
+                on a.InvestmentId equals c.Id into h
                 from c in h.DefaultIfEmpty()
                 select new ApplicationInvestmentStatus
                 {
                     Id = a.Id,
-                    InvestmenttId = a.InvestmenttId,
+                    InvestmentId = a.InvestmentId,
                     Status = a.Status,
                     StatusReason = a.StatusReason,
                     ByUserName = b.UserName,
@@ -1635,7 +1881,7 @@ namespace App.Controllers
             {
                 Status = status,
                 StatusReason = statusreason,
-                InvestmenttId = investmentid
+                InvestmentId = investmentid
             };
 
             await _context.InvestmentStatus.AddAsync(req);
@@ -1655,16 +1901,16 @@ namespace App.Controllers
         [HttpPost]
         public async Task<ActionResult> deleteInvestmentStatus(long id)
         {
-            if (!(HasPermmision("investment.service") || HasPermmision("investment.debug") || HasPermmision("investment.collection"))) return null;
+            if (!(User.IsInRole("inversora") || HasPermmision("investment.service") || HasPermmision("investment.debug") || HasPermmision("investment.collection"))) return null;
             try
             {
                 InvestmentStatus req = await _context.InvestmentStatus.FindAsync(id);
-                long reqid = req.InvestmenttId;
+                long reqid = req.InvestmentId;
                 _context.Remove(req);
                 _context.SaveChanges();
 
                 Investment lreq = await _context.Investment.FindAsync(reqid);
-                var query = _context.InvestmentStatus.Where(u => u.InvestmenttId == reqid).OrderByDescending(u => u.CreatedDate);
+                var query = _context.InvestmentStatus.Where(u => u.InvestmentId == reqid).OrderByDescending(u => u.CreatedDate);
                 InvestStatus status = InvestStatus.Debug_Processing;
                 string statusreason = "";
                 if (query.Count() > 0)
