@@ -53,17 +53,20 @@ function expendDetailBody(e) {
                     template: function (row, index) {
                         var c = "";
                         if (row.status == 0) c = "New";
-                        else if (row.status == 1) c = "Service_Processing";
-                        else if (row.status == 2) c = "Service_rejected";
-                        else if (row.status == 3) c = "Created_Milestone";
-                        else if (row.status == 4) c = "Completed_Payment";
-                        else if (row.status == 5) c = "Debug_Processing";
-                        else if (row.status == 6) c = "Debug_rejected";
-                        else if (row.status == 7) c = "Collection_Processing";
-                        else if (row.status == 8) c = "Collection_Error";
-                        else if (row.status == 9) c = "Saving_Process";
-                        else if (row.status == 10) c = "Incompleted_Investment";
-                        else if (row.status == 11) c = "Completed_Investment";
+                        else if (row.status == 1) c = "Representante_Processing";
+                        else if (row.status == 2) c = "Representante_Rejected";
+                        else if (row.status == 3) c = "Contactor_Checking";
+                        else if (row.status == 4) c = "Contactor_Rejected";
+                        else if (row.status == 5) c = "Service_Processing";
+                        else if (row.status == 6) c = "Service_Rejected";
+                        else if (row.status == 7) c = "Debug_Processing";
+                        else if (row.status == 8) c = "Debug_Rejected";
+                        else if (row.status == 9) c = "Collection_Processing";
+                        else if (row.status == 10) c = "Created_Milestone";
+                        else if (row.status == 11) c = "Completed_Payment";
+                        else if (row.status == 12) c = "Saving_Process";
+                        else if (row.status == 13) c = "Incompleted_Investment";
+                        else if (row.status == 14) c = "Completed_Investment";
                         return '\
                             <span>\
                                 <div class="font-weight-bolder font-size-lg mb-0">' + c + '</div>\
@@ -186,11 +189,10 @@ function datatableInit() {
                     title: lang.frequently,
                     template: function (row) {
                         var c = "";
-                        if (row.cycle == 0) c= "Weekly";
-                        else if (row.cycle == 1) c = "Monthly";
-                        else if (row.cycle == 2) c = "Quarter";
-                        else if (row.cycle == 3) c = "HalfOfYear";
-                        else if (row.cycle == 4) c = "Annual";
+                        if (row.cycle == 0) c = lang.SEMANAL;
+                        else if (row.cycle == 1) c = lang.QUINCENAL;
+                        else if (row.cycle == 2) c = lang.MENSUAL;
+                        else if (row.cycle == 3) c = lang.DIARIO;
                         return '<span>\
                                 <div class="font-weight-bolder font-size-lg mb-0">' + c + '</div>\
                                 <div class="font-weight-bold text-muted">' + row.times + ' ' + lang.times + '</div>\
@@ -214,17 +216,20 @@ function datatableInit() {
                     template: function (row, index) {
                         var c = "";
                         if (row.status == 0) c = "New";
-                        else if (row.status == 1) c = "Service_Processing";
-                        else if (row.status == 2) c = "Service_rejected";
-                        else if (row.status == 3) c = "Created_Milestone";
-                        else if (row.status == 4) c = "Completed_Payment";
-                        else if (row.status == 5) c = "Debug_Processing";
-                        else if (row.status == 6) c = "Debug_rejected";
-                        else if (row.status == 7) c = "Collection_Processing";
-                        else if (row.status == 8) c = "Collection_Error";
-                        else if (row.status == 9) c = "Saving_Process";
-                        else if (row.status == 10) c = "Incompleted_Investment";
-                        else if (row.status == 11) c = "Completed_Investment";
+                        else if (row.status == 1) c = "Representante_Processing";
+                        else if (row.status == 2) c = "Representante_Rejected";
+                        else if (row.status == 3) c = "Contactor_Checking";
+                        else if (row.status == 4) c = "Contactor_Rejected";
+                        else if (row.status == 5) c = "Service_Processing";
+                        else if (row.status == 6) c = "Service_Rejected";
+                        else if (row.status == 7) c = "Debug_Processing";
+                        else if (row.status == 8) c = "Debug_Rejected";
+                        else if (row.status == 9) c = "Collection_Processing";
+                        else if (row.status == 10) c = "Created_Milestone";
+                        else if (row.status == 11) c = "Completed_Payment";
+                        else if (row.status == 12) c = "Saving_Process";
+                        else if (row.status == 13) c = "Incompleted_Investment";
+                        else if (row.status == 14) c = "Completed_Investment";
                         return '\
                             <span>\
                                 <div class="font-weight-bolder font-size-lg mb-0">' + c + '</div>\

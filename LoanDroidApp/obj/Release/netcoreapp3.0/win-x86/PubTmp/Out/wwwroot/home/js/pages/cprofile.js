@@ -1,4 +1,5 @@
-function setImgAvatar(obj,img) {
+var data_table_calc = null;
+function setImgAvatar(obj, img) {
     $(obj).prop('src', 'data:image/png;base64,' + img);
 }
 jQuery(document).ready(function () {
@@ -14,28 +15,53 @@ jQuery(document).ready(function () {
     $('.fileinput-delete').on('click', function () {
         $('#avatar_img').prop('src', $('#default_img').prop('src'));
     });
+    $('#edit_user_birth').datepicker({
+        rtl: KTUtil.isRTL(),
+        todayHighlight: true,
+        orientation: 'bottom left',
+        format: "dd/mm/yyyy",
+    });
+    $("#edit_user_passport").inputmask({
+        mask: "999-9999999-9",
+        definitions: { '5': { validator: "[0-5]" } }
+    });
+    //$("#edit_user_company").select2();
+    //$("#edit_user_nationality").select2();
+    //$("#edit_user_province").select2();
+    if (eval($("#step_div").prop('class')) > 1) {
+        $("#edit_loan_amount").on(
+            "change",
+            function (event, data) {
+                calculateEMI();
+            }
+        );
 
-    $("#edit_loan_amount").on(
-        "changed",
-        function (event, data) {
-            calculateEMI();
-        }
-    );
+        $("#edit_loan_times").on(
+            "change",
+            function (event, data) {
+                calculateEMI();
+            }
+        );
 
-    $("#edit_loan_times").on(
-        "changed",
-        function (event, data) {
-            calculateEMI();
-        }
-    );
+        $("#edit_loan_cycle").on(
+            "change",
+            function (event, data) {
+                $("#edit_loan_interestingrate").val($("#edit_loan_cycle ").children("option:selected").prop("class"));
+                calculateEMI();
+            }
+        );
 
-    $("#edit_loan_interestingrate").on(
-        "changed",
-        function (event, data) {
-            calculateEMI();
-        }
-    );
-    calculateEMI();
+        $("#edit_loan_interestingrate").on(
+            "change",
+            function (event, data) {
+                calculateEMI();
+            }
+        );
+        datatableCalcInit();
+        $("#edit_loan_interestingrate").val($("#edit_loan_cycle ").children("option:selected").prop("class"));
+        calculateEMI();
+    }
+    datatableLoansInit();
 });
 function setAvatar(img) {
     $('#avatar_img').prop('src', 'data:image/png;base64,' + img);
@@ -45,6 +71,18 @@ function isValidateEditUserModal() {
         $('#edit_user_username').focus();
         return false;
     }
+    if ($('#edit_user_email').val() == '') {
+        $('#edit_user_email').focus();
+        return false;
+    }
+    if ($('#edit_user_passport').val() == '') {
+        $('#edit_user_passport').focus();
+        return false;
+    }
+    if ($('#edit_user_sex').val() == 0) {
+        $('#edit_user_sex').focus();
+        return false;
+    }
     if ($('#edit_user_firstname').val() == '') {
         $('#edit_user_firstname').focus();
         return false;
@@ -52,13 +90,25 @@ function isValidateEditUserModal() {
     if ($('#edit_user_lastname').val() == '') {
         $('#edit_user_lastname').focus();
         return false;
-    }
-    if ($('#edit_user_email').val() == '') {
-        $('#edit_user_email').focus();
-        return false;
-    }
+    }    
     if ($('#edit_user_phonenumber').val() == '') {
         $('#edit_user_phonenumber').focus();
+        return false;
+    } 
+    if ($('#edit_user_birth').val() == '') {
+        $('#edit_user_birth').focus();
+        return false;
+    }
+    if ($('#edit_user_numdependant').val() == '') {
+        $('#edit_user_numdependant').focus();
+        return false;
+    }
+    if ($('#edit_user_mothername').val() == '') {
+        $('#edit_user_mothername').focus();
+        return false;
+    }
+    if ($('#edit_user_fathername').val() == '') {
+        $('#edit_user_fathername').focus();
         return false;
     }
     return true;
@@ -68,13 +118,27 @@ function submitProfile() {
     var form_data = new FormData();
     form_data.append('id', $('#edit_user_id').val());
     form_data.append('username', $('#edit_user_username').val());
+    form_data.append('email', $('#edit_user_email').val());
+    form_data.append('passport', $('#edit_user_passport').val());
     form_data.append('firstname', $('#edit_user_firstname').val());
     form_data.append('lastname', $('#edit_user_lastname').val());
-    form_data.append('email', $('#edit_user_email').val());
+    form_data.append('sex', $('#edit_user_sex').val()); 
+    form_data.append('marital', $('#edit_user_marital').val());
     form_data.append('phonenumber', $('#edit_user_phonenumber').val());
-    form_data.append('otherphone', $('#edit_user_otherphone').val());
+    form_data.append('otherphone', $('#edit_user_otherphone').val()); 
+    form_data.append('birth', $('#edit_user_birth').val());
+    form_data.append('numdependant', $('#edit_user_numdependant').val()); 
+    form_data.append('residence', $('#edit_user_residence').val());
+    form_data.append('residenceperiod', $('#edit_user_residenceperiod').val()); 
+    form_data.append('company', $('#edit_user_company').val());
     form_data.append('officenumber', $('#edit_user_officenumber').val());
-    form_data.append('address', $('#edit_user_address').val());
+    form_data.append('address', $('#edit_user_address').val()); 
+    form_data.append('nationality', $('#edit_user_nationality').val());
+    form_data.append('province', $('#edit_user_province').val());
+    form_data.append('mothername', $('#edit_user_mothername').val());
+    form_data.append('motherphone', $('#edit_user_motherphone').val());
+    form_data.append('fathername', $('#edit_user_fathername').val());
+    form_data.append('fatherphone', $('#edit_user_fatherphone').val());
     form_data.append('avatarimage', $('#avatar_img').prop('src'));
     form_data.append('role', 'cliente');
     $.ajax({
@@ -90,6 +154,7 @@ function submitProfile() {
         dataType: "json",
         success: function (response) {
             var $toast = toastr["success"](lang.success_saved, "ok");
+            if (eval($("#step_div").prop('class')) == 0) location.reload(true);
         },
         error: function (response) {
 
@@ -139,6 +204,7 @@ function submitPaymentEditForm() {
         dataType: "json",
         success: function (response) {
             var $toast = toastr["success"](lang.success_saved, "ok");
+            if (eval($("#step_div").prop('class')) == 1) location.reload(true);
         },
         error: function (response) {
 
@@ -279,61 +345,329 @@ function setPaymentActiveTab(type) {
     $('#editPaymentModal .modal-content .card-toolbar ul li:nth-child('+(type+1)+')').css('display', 'block');
 }
 
-
-
-function calculateEMI() {
-    const apexChart = "#calculator_chart";
-    var options = {
-        series: [{
-            name: 'Net Profit',
-            data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
-        }, {
-            name: 'Revenue',
-            data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
-        }, {
-            name: 'Free Cash Flow',
-            data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
-        }],
-        chart: {
-            type: 'bar',
-            height: 350
+function isValidateEditLoanModal() {
+    if ($('#edit_loan_requesteddate').val() == '') {
+        $('#edit_loan_requesteddate').focus();
+        return false;
+    }
+    if ($('#edit_loan_amount').val() == '') {
+        $('#edit_loan_amount').focus();
+        return false;
+    }
+    if ($('#edit_loan_interestingrate').val() == '') {
+        $('#edit_loan_interestingrate').focus();
+        return false;
+    }
+    if ($('#edit_loan_times').val() == '') {
+        $('#edit_loan_times').focus();
+        return false;
+    }
+    return true;
+}
+function submitLoanRequestForm() {
+    if (!isValidateEditLoanModal()) return;
+    var form_data = new FormData();
+    form_data.append('id', $('#edit_loan_id').val());
+    form_data.append('clientid', $('#edit_loan_clientid').val());
+    form_data.append('requesteddate', $('#edit_loan_requesteddate').val());
+    form_data.append('amount', $('#edit_loan_amount').val());
+    form_data.append('interestingrate', $('#edit_loan_interestingrate').val());
+    form_data.append('times', $('#edit_loan_times').val());
+    form_data.append('cycle', $('#edit_loan_cycle').val());
+    $.ajax({
+        url: '/admin/saveLoanRequest',
+        headers: {
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
         },
-        plotOptions: {
-            bar: {
-                horizontal: false,
-                columnWidth: '55%',
-                endingShape: 'rounded'
+        data: form_data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        type: 'POST',
+        dataType: "json",
+        success: function (response) {
+            var $toast = toastr["success"](lang.success_saved, "ok");
+            calculateEMI();
+        },
+        error: function (response) {
+
+        }
+    });
+}
+function datatableCalcInit() {
+    data_table_calc = $('#kt_datatable_calc').KTDatatable({
+        data: {
+            type: 'remote',
+            source: {
+                read: {
+                    url: '/admin/getLoanCalculatorDataTable',
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    params: {
+                        amount: $('#edit_loan_amount').val(),
+                        interestingrate: $('#edit_loan_interestingrate').val(),
+                        requesteddate: $('#edit_loan_requesteddate').val(),
+                        cycle: $('#edit_loan_cycle').val(),
+                        times: $('#edit_loan_times').val(),
+                        loan_id: $('#edit_loan_id').val(),
+                    }
+                },
             },
+            pageSize: 10,
+            serverPaging: true,
+            serverFiltering: false,
+            serverSorting: true
         },
-        dataLabels: {
-            enabled: false
+        layout: {
+            scroll: true,
+            footer: true,
         },
-        stroke: {
-            show: true,
-            width: 2,
-            colors: ['transparent']
-        },
-        xaxis: {
-            categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-        },
-        yaxis: {
-            title: {
-                text: '$ (thousands)'
-            }
-        },
-        fill: {
-            opacity: 1
-        },
-        tooltip: {
-            y: {
-                formatter: function (val) {
-                    return "$ " + val + " thousands"
+        sortable: false,
+        pagination: true,
+        columns:
+            [
+                {
+                    field: 'date',
+                    title: lang.date,
+                    template: function (row, index) {
+                        return getJustDateWIthYear(row.date);
+                    },
+                    //width:200,
+                },
+                {
+                    field: 'capital',
+                    title: lang.capital,
+                    textAlign: 'left',
+                    //width: 100,
+                },
+                {
+                    field: 'interest',
+                    title: lang.interest,
+                    textAlign: 'left',
+                    //width: 100,
+                },
+                {
+                    field: 'dues',
+                    title: lang.dues,
+                    //width: 200,
+                },
+                {
+                    field: 'balance',
+                    title: lang.balance,
+                    //width: 200,
+                }, {
+                    field: 'actions',
+                    title: $("#isAcceptedLoan").val() == "true" ? lang.global_tbl_action : '',
+                    sortable: false,
+                    overflow: $("#isAcceptedLoan").val() == "true" ? 'visible' : '',
+                    autoHide: false,
+                    width: 180,
+                    template: function (row,index) {
+                        return $("#isAcceptedLoan").val() == "false" ? '' :'\
+                            <div class="dropdown dropdown-inline">\
+                            '+ (row.status == 0 ? '<a onclick="javascript:paynow(' + row.capital + ',' + row.interest + ',' + row.dues + ',' + index + ');" class="datatable-cell btn btn-primary" title="Reset password">\
+                                <span class="">'+ lang.paynow + '</span>\
+                            </a > ': row.status==1?'\
+                            <span class="datatable-cell notnow">'+ lang.notnow +'</span>\
+                            ': '<span class="datatable-cell paid">' + getJustDateWIthYear(row.paidDate)+' '+lang.paid +'</span>')+
+                            '</div>\
+                        ';
+                    },
                 }
-            }
+            ],
+        translate: trans_pagination,
+    });
+}
+function calculateLoan() {
+    data_table_calc.setDataSourceParam('amount', $('#edit_loan_amount').val());
+    data_table_calc.setDataSourceParam('interestingrate', $('#edit_loan_interestingrate').val());
+    data_table_calc.setDataSourceParam('requesteddate', $('#edit_loan_requesteddate').val());
+    data_table_calc.setDataSourceParam('cycle', $('#edit_loan_cycle').val());
+    data_table_calc.setDataSourceParam('times', $('#edit_loan_times').val());
+    data_table_calc.setDataSourceParam('loan_id', $('#edit_loan_id').val());
+    data_table_calc.reload();
+    $(".bootstrap-select.datatable-pager-size .dropdown-menu").css('top','1200px');
+}
+function paynow(capital,interest,balance,index) {
+    var form_data = new FormData();
+    form_data.append('LoanRequestId', $('#edit_loan_id').val()); 
+    form_data.append('Capital', capital);
+    form_data.append('Interest', interest);
+    form_data.append('Balabnce', balance);
+    form_data.append('TimesNum', index);
+    $.ajax({
+        url: '/admin/saveLoanInterestPayment',
+        headers: {
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
         },
-        colors: [color_primary, color_success, color_warning]
-    };
+        data: form_data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        type: 'POST',
+        dataType: "json",
+        success: function (response) {
+            var $toast = toastr["success"](lang.success_saved, "ok");
+            calculateEMI();
+        },
+        error: function (response) {
 
-    var chart = new ApexCharts(document.querySelector(apexChart), options);
-    chart.render();
+        }
+    });
+}
+function calculateEMI() {
+    $("#cycle_div").html('\
+        '+ $("#edit_loan_cycle option:selected").html()+'\
+        <h2 id="cycle_lab" class="mb-0"></h2>\
+    ');
+    if (!isValidateEditLoanModal()) return;
+    var form_data = new FormData();
+    form_data.append('requesteddate', $('#edit_loan_requesteddate').val());
+    form_data.append('amount', $('#edit_loan_amount').val());
+    form_data.append('interestingrate', $('#edit_loan_interestingrate').val());
+    form_data.append('times', $('#edit_loan_times').val());
+    form_data.append('cycle', $('#edit_loan_cycle').val());
+    form_data.append('pagination[page]', 1);
+    form_data.append('pagination[perpage]', $('#edit_loan_times').val());
+    $.ajax({
+        url: '/admin/getLoanCalculatorDataTable',
+        headers: {
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        },
+        data: form_data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        type: 'POST',
+        dataType: "json",
+        success: function (response) {
+            var inte = 0;
+            var bala = 0;
+            var capi = 0;
+            for (var i = 0; i < response.data.length; i++) {
+                if (i == 0) {
+                    bala = eval(response.data[i].dues);
+                    capi = eval(response.data[i].balance) + eval(response.data[i].capital);
+                }
+                inte += eval(response.data[i].interest);
+            }
+            $("#cycle_lab").html(bala);
+            $("#interest_lab").html(parseFloat(inte.toFixed(2)));
+            $("#balance_lab").html(parseFloat((bala * response.data.length).toFixed(2)));
+            $("#percentage_lab").html(capi==0?0:parseFloat((bala * response.data.length * 100 / capi - 100).toFixed(2)));
+        },
+        error: function (response) {
+
+        }
+    });
+    calculateLoan();
+}
+function datatableLoansInit() {
+    var data_table_loans = $('#kt_datatable_loans').KTDatatable({
+        data: {
+            type: 'remote',
+            source: {
+                read: {
+                    url: '/admin/getLoanRequestsDataTable',
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                },
+            },
+            pageSize: 10,
+            serverPaging: true,
+            serverFiltering: false,
+            serverSorting: true
+        },
+        layout: {
+            scroll: true,
+            footer: false,
+        },
+        sortable: false,
+        pagination: false,
+
+        search: {
+            input: $('#kt_datatable_search_query'),
+            key: 'generalSearch'
+        },
+        columns:
+            [
+                {
+                    field: 'clientid',
+                    title: '#',
+                    template: function (row, index) {
+                        return index + 1;
+                    },
+                    width: 30,
+                },
+                {
+                    field: 'amount',
+                    title: lang.amount,
+                    width: 100,
+                    template: function (row, index) {
+                        return '\
+                            <span>\
+                                <div class="font-weight-bolder font-size-lg mb-0">' + row.amount + '</div>\
+                                <div class="font-weight-bold text-muted">' + row.interestingRate + '%</div>\
+                            </span>\
+                        ';
+                    },
+                },
+                {
+                    field: 'loanCycle',
+                    title: lang.frequently,
+                    template: function (row) {
+                        var c = "";
+                        if (row.cycle == 0) c = lang.SEMANAL;
+                        else if (row.cycle == 1) c = lang.QUINCENAL;
+                        else if (row.cycle == 2) c = lang.MENSUAL;
+                        else if (row.cycle == 3) c = lang.DIARIO;
+                        return '<span>\
+                                <div class="font-weight-bolder font-size-lg mb-0">' + c + '</div>\
+                                <div class="font-weight-bold text-muted">' + row.times + ' ' + lang.times + '</div>\
+                            </span>';
+                    },
+                },
+                {
+                    field: 'requestedDate',
+                    title: lang.global_tbl_createddate,
+                    template: function (row, index) {
+                        return '\
+                            <span>\
+                                <div class="font-weight-bolder font-size-lg mb-0">' + getJustDateWIthYear(row.requestedDate) + '</div>\
+                                <div class="font-weight-bold text-muted">' + getJustDateWIthYear(row.updatedDate) + '</div>\
+                            </span>\
+                        ';
+                    },
+                }, {
+                    field: 'status',
+                    title: lang.status,
+                    template: function (row, index) {
+                        var c = "";
+                        if (row.status == 0) c = lang.New;
+                        else if (row.status == 1) c = lang.Representante_Processing;
+                        else if (row.status == 2) c = lang.Representante_Rejected;
+                        else if (row.status == 3) c = lang.Contactor_Checking;
+                        else if (row.status == 4) c = lang.Contactor_Rejected;
+                        else if (row.status == 5) c = lang.Service_Processing;
+                        else if (row.status == 6) c = lang.Service_Rejected;
+                        else if (row.status == 7) c = lang.Debug_Processing;
+                        else if (row.status == 8) c = lang.Debug_Rejected;
+                        else if (row.status == 9) c = lang.Collection_Processing;
+                        else if (row.status == 10) c = lang.Investor_Piad;
+                        else if (row.status == 11) c = lang.Interesting_Process;
+                        else if (row.status == 12) c = lang.Interesting_completed;
+                        else if (row.status == 13) c = lang.Interesting_Incompleted;
+                        return '\
+                            <span>\
+                                <div class="font-weight-bolder font-size-lg mb-0">' + c + '</div>\
+                                <div class="font-weight-bold text-muted">' + (row.statusReason == null ? "" : row.statusReason) + '</div>\
+                            </span>\
+                        ';
+                    },
+                }
+            ],
+        translate: trans_pagination,
+    });
 }

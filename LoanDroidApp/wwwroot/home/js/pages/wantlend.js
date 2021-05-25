@@ -139,6 +139,7 @@ jQuery(document).ready(function () {
     $('.wantlend-SavingItems-invest').each(function () {
         SavingItem = $(this);
         item_id = SavingItem.parent().find('.id').html();
+        var amount = $('#paid_amount_' + item_id).html().replace('<small>$</small>', '');
         item_amount = SavingItem.parent().find('.amount').html();
         item_times = SavingItem.parent().find('.times').html();
         item_rate = SavingItem.parent().find('.rate').html();
@@ -157,7 +158,7 @@ jQuery(document).ready(function () {
         );
         var form_data = new FormData();
         form_data.append('investorId', item_id);
-        form_data.append('amount', item_amount);
+        form_data.append('amount', amount>0?amount:item_amount);
         form_data.append('interestingrate', item_rate);
         form_data.append('times', item_times);
         form_data.append('cycle', item_cycle);

@@ -25,7 +25,11 @@ var lang = {
     //investors page
     investors_alert_editauser: "Editar un inversor",
     investors_alert_confirmdeleteauser: "¿Estás segura de eliminar una inversora",
-    //loanrequest
+    //
+    company_alert_edit: "Edit a company",
+    company_alert_confirmdelete: "Are you sure to delete a company",
+
+
     amount: "Cantidad",
     frequently: "Frecuencia",
     capital: "Capital",
@@ -37,6 +41,14 @@ var lang = {
     status: "Status",
     investor: "Inversora",
     savingRate: "Tasa de ahorro",
+    saving: "Ahorro",
+    paynow: "Paga ahora",
+    paid: "Pagado",
+    notnow: "Ahora no",
+    name: "Nombre",
+    purpose: "Propósito",
+    direction: "Dirección",
+    phone: "Teléfono",
     //transactionhistory
     from: "De",
     to: "Para",
@@ -58,6 +70,26 @@ var lang = {
     global_tbl_action: "Acción",
     global_tbl_createddate: "Fecha de creación",
     global_tbl_updateddate: "Fecha actualizada",
+
+    New: "Nuevo",
+    Representante_Processing: "Tramitación de Representante",
+    Representante_Rejected: "Rechazado por Representante",
+    Contactor_Checking: "Comprobación de contactor",
+    Contactor_Rejected: "Rechazado por contactor",
+    Service_Processing: "Responsable de tramitación del servicio",
+    Service_rejected: "Rechazado por el administrador del servicio",
+    Debug_Processing: "Procesamiento de depurador",
+    Debug_Rejected: "Rechazado por el depurador",
+    Collection_Processing: "Procesamiento de la colección",
+    Investor_Piad: "Pagado por el inversor",
+    Interesting_Process: "Procesamiento de interés",
+    Interesting_completed: "Solicitud completada",
+    Interesting_Incompleted: "Solicitud incompleta",
+
+    SEMANAL: "SEMANAL",
+    QUINCENAL: "QUINCENAL",
+    MENSUAL: "MENSUAL",
+    DIARIO: "DIARIO",
 };
 const trans_pagination={
     records: {

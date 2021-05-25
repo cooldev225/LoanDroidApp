@@ -184,3 +184,8 @@ E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\LoanDroidApp.dll
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\LoanDroidApp.pdb
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\LoanDroidApp.genruntimeconfig.cache
+E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\Razor\Views\Admin\Company.cshtml.g.cs
+E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\Razor\Views\Admin\Loanrate.cshtml.g.cs
+E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\Razor\Views\Home\FAQ.cshtml.g.cs
+E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\Razor\Views\Home\Howitwork.cshtml.g.cs
+E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\Razor\Views\Home\Iprofile.cshtml.g.cs

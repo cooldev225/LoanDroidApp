@@ -15,6 +15,7 @@ E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\PubTmp\Out\wwwroot\admin\js\bootstrap-fileinput.js
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\PubTmp\Out\wwwroot\admin\js\clients.js
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\PubTmp\Out\wwwroot\admin\js\common.js
+E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\PubTmp\Out\wwwroot\admin\js\company.js
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\PubTmp\Out\wwwroot\admin\js\dashboard.js
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\PubTmp\Out\wwwroot\admin\js\index.js
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\PubTmp\Out\wwwroot\admin\js\investment.js
@@ -22,6 +23,7 @@ E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\PubTmp\Out\wwwroot\admin\js\jquery.cpfcnpj.min.js
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\PubTmp\Out\wwwroot\admin\js\lang\en-US.js
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\PubTmp\Out\wwwroot\admin\js\lang\es-ES.js
+E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\PubTmp\Out\wwwroot\admin\js\loanrate.js
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\PubTmp\Out\wwwroot\admin\js\loanreq.js
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\PubTmp\Out\wwwroot\admin\js\roles.js
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\PubTmp\Out\wwwroot\admin\js\transhistory.js
@@ -206,6 +208,9 @@ E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\PubTmp\Out\wwwroot\home\js\nice-select.js
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\PubTmp\Out\wwwroot\home\js\owl.carousel.min.js
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\PubTmp\Out\wwwroot\home\js\pages\cprofile.js
+E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\PubTmp\Out\wwwroot\home\js\pages\iprofile.js
+E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\PubTmp\Out\wwwroot\home\js\pages\wantlend.js
+E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\PubTmp\Out\wwwroot\home\js\pages\wantloan.js
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\PubTmp\Out\wwwroot\home\js\popup-gallery.js
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\PubTmp\Out\wwwroot\home\js\scrolling-nav.js
 E:\2021-development\21-04-05-bank-asp-donglong-6k\LoanDroidApp\LoanDroidApp\obj\Release\netcoreapp3.0\win-x86\PubTmp\Out\wwwroot\home\js\simple-slider.js

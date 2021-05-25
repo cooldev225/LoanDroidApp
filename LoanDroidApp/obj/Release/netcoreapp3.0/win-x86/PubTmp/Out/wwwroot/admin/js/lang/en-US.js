@@ -25,7 +25,11 @@ var lang = {
     //investors page
     investors_alert_editauser: "Edit an investor",
     investors_alert_confirmdeleteauser: "Are you sure to delete an investor",
-    //loanrequest
+    //
+    company_alert_edit: "Edit a company",
+    company_alert_confirmdelete: "Are you sure to delete a company",
+
+
     amount: "Amount",
     frequently: "Frequently",
     capital: "Capital",
@@ -37,6 +41,14 @@ var lang = {
     status: "Status",
     investor: "Investor",
     savingRate: "Saving Rate",
+    saving: "Saving",
+    paynow: "Pay now",
+    paid: "Paid",
+    notnow: "Not now",
+    name: "Name",
+    purpose: "Purpose",
+    direction: "Direction",
+    phone:"Phone",
     //transactionhistory
     from: "From",
     to: "To",
@@ -57,7 +69,27 @@ var lang = {
     currency: "Currency",
     global_tbl_action: "Action",
     global_tbl_createddate:"Created Date",
-    global_tbl_updateddate:"Updated Date",
+    global_tbl_updateddate: "Updated Date",
+
+    New:"New",
+    Representante_Processing: "Processing of Representante",
+    Representante_Rejected: "Rejected by Representante",
+    Contactor_Checking: "Checking of Contactor",
+    Contactor_Rejected: "Rejected by Contactor",
+    Service_Processing:"Processing of Service manager",
+    Service_Rejected:"Rejected by Service manager",
+    Debug_Processing:"Processing of Debugger",
+    Debug_Rejected:"Rejected by Debugger",
+    Collection_Processing:"Processing of Collection",
+    Investor_Piad:"Paid from investor",
+    Interesting_Process:"Processing of interst",
+    Interesting_completed:"Completed request",
+    Interesting_Incompleted: "Incompleted request",
+
+    SEMANAL: "WEEKLY",
+    QUINCENAL: "BIWEEKLY",
+    MENSUAL: "MONTHLY",
+    DIARIO: "DAILY",
 };
 const trans_pagination={
     records: {

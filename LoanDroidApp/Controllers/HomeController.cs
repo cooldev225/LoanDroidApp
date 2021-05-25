@@ -72,7 +72,7 @@ namespace App.Controllers
                 var name = Enum.GetName(typeof(LoanCycle), i);
                 double val = 0;
                 if (_context.Option.Where(u => u.Key.Equals("LOAN_RATE_" + name)).Count() > 0)
-                    val = double.Parse(_context.Option.Where(u => u.Key.Equals("LOAN_RATE_" + name)).First().Value);
+                    val = double.Parse(_context.Option.Where(u => u.Key.Equals("LOAN_RATE_" + name)).First().Value, new System.Globalization.NumberFormatInfo() { NumberDecimalSeparator = "." });
                 Rates.Add(new LoanCycleModel
                 {
                     LoanCycle = (LoanCycle)Enum.GetValues(typeof(LoanCycle)).GetValue(i),
@@ -89,7 +89,7 @@ namespace App.Controllers
                 var name = Enum.GetName(typeof(LoanCycle), i);
                 double val = 0;
                 if (_context.Option.Where(u => u.Key.Equals("SAVING_RATE_" + name)).Count() > 0)
-                    val = double.Parse(_context.Option.Where(u => u.Key.Equals("SAVING_RATE_" + name)).First().Value);
+                    val = double.Parse(_context.Option.Where(u => u.Key.Equals("SAVING_RATE_" + name)).First().Value, new System.Globalization.NumberFormatInfo() { NumberDecimalSeparator = "." });
                 Rates.Add(new LoanCycleModel
                 {
                     LoanCycle = (LoanCycle)Enum.GetValues(typeof(LoanCycle)).GetValue(i),
@@ -282,7 +282,7 @@ namespace App.Controllers
                 var name = Enum.GetName(typeof(LoanCycle), i);
                 double val = 0;
                 if (_context.Option.Where(u => u.Key.Equals("LOAN_RATE_" + name)).Count() > 0)
-                    val = double.Parse(_context.Option.Where(u => u.Key.Equals("LOAN_RATE_" + name)).First().Value);
+                    val = double.Parse(_context.Option.Where(u => u.Key.Equals("LOAN_RATE_" + name)).First().Value, new System.Globalization.NumberFormatInfo() { NumberDecimalSeparator = "." });
                 ViewBag.Rates.Add(new LoanCycleModel
                 {
                     LoanCycle = (LoanCycle)Enum.GetValues(typeof(LoanCycle)).GetValue(i),

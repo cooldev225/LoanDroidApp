@@ -36,6 +36,7 @@ namespace App.Controllers
             _signInManager = signInManager;            
             _context = context;
             _accountManager = accountManager;
+
         }
         public bool HasPermmision(string Cliam)
         {
@@ -461,7 +462,7 @@ namespace App.Controllers
                 var name = Enum.GetName(typeof(LoanCycle), i);
                 double val = 0;
                 if (_context.Option.Where(u => u.Key.Equals("LOAN_RATE_" + name)).Count() > 0)
-                    val = double.Parse(_context.Option.Where(u => u.Key.Equals("LOAN_RATE_" + name)).First().Value);
+                    val = double.Parse(_context.Option.Where(u => u.Key.Equals("LOAN_RATE_" + name)).First().Value, new System.Globalization.NumberFormatInfo() { NumberDecimalSeparator = "." });
                 ViewBag.Rates.Add(new LoanCycleModel {
                     LoanCycle = (LoanCycle)Enum.GetValues(typeof(LoanCycle)).GetValue(i),
                     Rate=val
@@ -473,7 +474,7 @@ namespace App.Controllers
                 var name = Enum.GetName(typeof(LoanCycle), i);
                 double val = 0;
                 if (_context.Option.Where(u => u.Key.Equals("SAVING_RATE_" + name)).Count() > 0)
-                    val = double.Parse(_context.Option.Where(u => u.Key.Equals("SAVING_RATE_" + name)).First().Value);
+                    val = double.Parse(_context.Option.Where(u => u.Key.Equals("SAVING_RATE_" + name)).First().Value, new System.Globalization.NumberFormatInfo() { NumberDecimalSeparator = "." });
                 ViewBag.SRates.Add(new LoanCycleModel
                 {
                     LoanCycle = (LoanCycle)Enum.GetValues(typeof(LoanCycle)).GetValue(i),
@@ -489,7 +490,7 @@ namespace App.Controllers
             foreach (int i in Enum.GetValues(typeof(LoanCycle))) {
                 var name = Enum.GetName(typeof(LoanCycle), i);
                 var sss = Request.Form[name].FirstOrDefault();
-                double val = double.Parse(sss);
+                double val = double.Parse(sss, new System.Globalization.NumberFormatInfo() { NumberDecimalSeparator = "." });
                 Option req = new Option
                 {
                     Key = "LOAN_RATE_"+name,
@@ -510,7 +511,7 @@ namespace App.Controllers
                 }
 
                 sss = Request.Form["saving_"+name].FirstOrDefault();
-                val = double.Parse(sss);
+                val = double.Parse(sss, new System.Globalization.NumberFormatInfo() { NumberDecimalSeparator = "." });
                 req = new Option
                 {
                     Key = "SAVING_RATE_" + name,

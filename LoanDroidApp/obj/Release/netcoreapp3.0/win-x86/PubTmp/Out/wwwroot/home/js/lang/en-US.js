@@ -17,4 +17,71 @@ var lang = {
     err_dblaccess: "You are Logged in on other devices.",
     //
     success_saved: "Successfully saved!",
+
+    //loanrequest
+    amount: "Amount",
+    frequently: "Frequently",
+    capital: "Capital",
+    interest: "Interest",
+    dues: "Dues",
+    balance: "Balance",
+    date: "Date",
+    times: "Times",
+    status: "Status",
+    investor: "Investor",
+    savingRate: "Saving Rate",
+    saving: "Saving",
+    paynow: "Pay now",
+    paid: "Paid",
+    notnow: "Not now",
+    questions: "Questions",
+    milestones: "Milestones",
+    reply:"Reply",
+
+    global_tbl_action: "Action",
+    global_tbl_createddate: "Created Date",
+    global_tbl_updateddate: "Updated Date",
+
+    New: "New",
+    Representante_Processing: "Processing of Representante",
+    Representante_Rejected: "Rejected by Representante",
+    Contactor_Checking: "Checking of Contactor",
+    Contactor_Rejected: "Rejected by Contactor",
+    Service_Processing: "Processing of Service manager",
+    Service_Rejected: "Rejected by Service manager",
+    Debug_Processing: "Processing of Debugger",
+    Debug_Rejected: "Rejected by Debugger",
+    Collection_Processing: "Processing of Collection",
+    Investor_Piad: "Paid from investor",
+    Interesting_Process: "Processing of interst",
+    Interesting_completed: "Completed request",
+    Interesting_Incompleted: "Incompleted request",
+
+    SEMANAL:"WEEKLY",
+    QUINCENAL:"BIWEEKLY",
+    MENSUAL:"MONTHLY",
+    DIARIO:"DAILY",
+};
+
+const trans_pagination = {
+    records: {
+        processing: 'Loading...',
+        noRecords: 'there is no record',
+    },
+    toolbar: {
+        pagination: {
+            items: {
+                default: {
+                    first: 'First',
+                    prev: 'Previous',
+                    next: 'Next',
+                    last: 'Last',
+                    more: 'More pages',
+                    input: 'Page number',
+                    select: 'Page size',
+                },
+                info: 'showing {{start}} - {{end}} of {{total}} records',
+            },
+        },
+    },
 };
