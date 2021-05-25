@@ -132,6 +132,9 @@
   <data name="ACCOUNT_" xml:space="preserve">
     <value>ACCOUNT</value>
   </data>
+  <data name="Addfunds" xml:space="preserve">
+    <value>Add funds</value>
+  </data>
   <data name="Addnewclient" xml:space="preserve">
     <value>Add new client</value>
   </data>
@@ -399,6 +402,9 @@
   <data name="FREQUENTLY_" xml:space="preserve">
     <value>FREQUENTLY</value>
   </data>
+  <data name="Fundingrequests" xml:space="preserve">
+    <value>Funding requests</value>
+  </data>
   <data name="Getacallback" xml:space="preserve">
     <value>Get a call back</value>
   </data>
@@ -410,6 +416,9 @@
   </data>
   <data name="GetLoans" xml:space="preserve">
     <value>Get Loans</value>
+  </data>
+  <data name="Gotolend" xml:space="preserve">
+    <value>Go to lend</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
@@ -597,6 +606,12 @@
   <data name="MyLoanHistories" xml:space="preserve">
     <value>My Loan Histories</value>
   </data>
+  <data name="Myloans" xml:space="preserve">
+    <value>My loans</value>
+  </data>
+  <data name="Mymoves" xml:space="preserve">
+    <value>My moves</value>
+  </data>
   <data name="MyRequest" xml:space="preserve">
     <value>My Request</value>
   </data>
@@ -729,6 +744,9 @@
   <data name="RESIDENCETYPE_" xml:space="preserve">
     <value>RESIDENCE TYPE</value>
   </data>
+  <data name="Resume" xml:space="preserve">
+    <value>Resume</value>
+  </data>
   <data name="RoleDialog" xml:space="preserve">
     <value>Role Dialog</value>
   </data>
@@ -776,6 +794,9 @@
   </data>
   <data name="Service_Rejected" xml:space="preserve">
     <value>Rejected by Service manager</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
   </data>
   <data name="SEX_" xml:space="preserve">
     <value>SEX</value>
@@ -893,5 +914,8 @@
   </data>
   <data name="Withdraw" xml:space="preserve">
     <value>Withdraw</value>
+  </data>
+  <data name="Withdrawfunds" xml:space="preserve">
+    <value>Withdraw funds</value>
   </data>
 </root>

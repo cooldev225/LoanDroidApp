@@ -634,10 +634,11 @@ namespace App.Controllers
         public async Task<JsonResult> saveUser(
             string id,
             string username,string email,string passport,string firstname,string lastname,Gender sex,
-            Marital marital,string phonenumber,string otherphone,DateTime birth,string numdependant,
-            Residence residence,string residenceperiod,int company,string officenumber,string address,
-            int nationality,int province,string mothername,string motherphone,
-            string fathername,string fatherphone,string avatarimage, string role, string department
+            Marital marital,string phonenumber,string otherphone,
+            Residence residence,string residenceperiod,string officenumber,string address,
+            int nationality,int province,string mothername="",string motherphone="", 
+            int company = 0, string numdependant="", DateTime birth = new DateTime(),
+            string fathername="",string fatherphone="",string avatarimage=null, string role="", string department=""
         ) {
             if (role.Equals("cliente"))
             {

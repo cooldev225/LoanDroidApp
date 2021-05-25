@@ -316,8 +316,8 @@ function viewUser(uid) {
             $('#edit_user_sex').val(response.user.sex);
             $('#edit_user_marital').val(response.user.marital);
             $('#edit_user_phonenumber').val(response.user.phoneNumber);
-            $('#edit_user_otherphone').val(response.user.otherPhone);
-            $('#edit_user_birth').val(response.user.birth);
+            $('#edit_user_otherphone').val(response.user.otherPhone); alert(response.user.birth);
+            $('#edit_user_birth').val(getJustDateWIthYear(response.user.birth));
             $('#edit_user_numdependant').val(response.user.numDependant);
             $('#edit_user_residence').val(response.user.residence);
             $('#edit_user_residenceperiod').val(response.user.residencePeriod);

@@ -1,3 +1,6 @@
 appsettings.Development.json
 appsettings.json
 .vs
+LoanDroidApp/bin
+LoanDroidApp/.config
+LoanDroidApp/obj

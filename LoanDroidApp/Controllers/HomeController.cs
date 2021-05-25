@@ -54,9 +54,9 @@ namespace App.Controllers
                     if (user.Passport != null && !user.Passport.Equals(""))
                         if (user.Sex != Gender.None)
                             if (user.PhoneNumber != null && !user.PhoneNumber.Equals(""))
-                                if (user.NumDependant != null && !user.NumDependant.Equals(""))
-                                    if (user.MotherName != null && !user.MotherName.Equals(""))
-                                        if (user.FatherName != null && !user.FatherName.Equals(""))
+                                //if (user.NumDependant != null && !user.NumDependant.Equals(""))
+                                //    if (user.MotherName != null && !user.MotherName.Equals(""))
+                                //       if (user.FatherName != null && !user.FatherName.Equals(""))
                                             step = 1;
             if (step > 0 && (q1.Count() > 0 || q2.Count() > 0 || q3.Count() > 0))
             {
@@ -175,7 +175,53 @@ namespace App.Controllers
         }
         [HttpGet]
         [Authorize(Roles = "inversora")]
-        public async Task<IActionResult> Iprofile(string returnUrl="")
+        public async Task<IActionResult> Iloans(string returnUrl="")
+        {
+            var userId = _context.CurrentUserId;
+            if (userId == null || userId.Equals(""))
+                return RedirectToAction(nameof(HomeController.Login), "Home", new { returnUrl = "/home/wantlend" });
+            if (User.IsInRole("cliente")) return RedirectToAction(nameof(HomeController.Wantloan), "Home");
+            ViewBag.step = GetProfileStep().Result;
+            if (ViewBag.step < 2)
+                return RedirectToAction(nameof(HomeController.Iprofile), "Home", new { returnUrl = "/home/Iloans" });
+            IQueryable<ApplicationLoanRequest> query = (from a in _context.Set<LoanRequest>()
+                                                        join b in _context.Set<ApplicationUser>()
+                                                        on a.ClientId equals b.Id into g
+                                                        from b in g.DefaultIfEmpty()
+                                                        select new ApplicationLoanRequest
+                                                        {
+                                                            Id = a.Id,
+                                                            ClientId = a.ClientId,
+                                                            RequestedDate = a.RequestedDate,
+                                                            Amount = a.Amount,
+                                                            InterestingRate = a.InterestingRate,
+                                                            Cycle = a.Cycle,
+                                                            Times = a.Times,
+                                                            Status = a.Status,
+                                                            StatusReason = a.StatusReason,
+                                                            Description = a.Description,
+                                                            UserName = b.UserName,
+                                                            FriendlyName = b.FriendlyName,
+                                                            AvatarImage = b.AvatarImage,
+                                                            CreatedBy = a.CreatedBy,
+                                                            CreatedDate = a.CreatedDate,
+                                                            CreatedDevice = a.CreatedDevice,
+                                                            UpdatedBy = a.UpdatedBy,
+                                                            UpdatedDate = a.UpdatedDate,
+                                                            UpdatedDevice = a.UpdatedDevice
+                                                        });
+            //query = query.Where(u =>u.Status != LoanStatus.New);
+            List<ApplicationLoanRequest> loans = query.ToList();
+            for (int i = 0; i < loans.Count(); i++)
+            {
+                loans[i].isApplied = _context.Investment.Where(u => u.LoanId == loans[i].Id).Count() > 0;
+            }
+            ViewBag.loans = loans;
+            ViewBag.Rates = GetSavingRates();
+            return View();
+        }
+        [Authorize(Roles = "inversora")]
+        public async Task<IActionResult> Iprofile(string returnUrl = "")
         {
             ViewData["returnUrl"] = returnUrl;
             var userId = _context.CurrentUserId;

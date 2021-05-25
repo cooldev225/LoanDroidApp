@@ -132,6 +132,9 @@
   <data name="ACCOUNT_" xml:space="preserve">
     <value>CUENTA</value>
   </data>
+  <data name="Addfunds" xml:space="preserve">
+    <value>Agregar fondos</value>
+  </data>
   <data name="Addnewclient" xml:space="preserve">
     <value>Agregar nueva cliente</value>
   </data>
@@ -420,6 +423,9 @@
   <data name="FREQUENTLY_" xml:space="preserve">
     <value>FRECUENTEMENTE</value>
   </data>
+  <data name="Fundingrequests" xml:space="preserve">
+    <value>Solicitudes de financiamiento</value>
+  </data>
   <data name="Getacallback" xml:space="preserve">
     <value>Reciba una llamada</value>
   </data>
@@ -431,6 +437,9 @@
   </data>
   <data name="GetLoans" xml:space="preserve">
     <value>Obtener Préstamos</value>
+  </data>
+  <data name="Gotolend" xml:space="preserve">
+    <value>Ir a prestar</value>
   </data>
   <data name="hi" xml:space="preserve">
     <value>hola</value>
@@ -624,6 +633,12 @@
   <data name="MyLoanHistories" xml:space="preserve">
     <value>Meus históricos de empréstimos</value>
   </data>
+  <data name="Myloans" xml:space="preserve">
+    <value>Mis prestamos</value>
+  </data>
+  <data name="Mymoves" xml:space="preserve">
+    <value>Mis movimientos</value>
+  </data>
   <data name="MyRequest" xml:space="preserve">
     <value>Mi petición</value>
   </data>
@@ -774,6 +789,9 @@
   <data name="RESIDENCETYPE_" xml:space="preserve">
     <value>TIPO DE RESIDENCIA</value>
   </data>
+  <data name="Resume" xml:space="preserve">
+    <value>Reanudar</value>
+  </data>
   <data name="RoleDialog" xml:space="preserve">
     <value>Diálogo de rol</value>
   </data>
@@ -827,6 +845,9 @@
   </data>
   <data name="Service_Rejected" xml:space="preserve">
     <value>Rechazado por el administrador del servicio</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Ajustes</value>
   </data>
   <data name="SEX_" xml:space="preserve">
     <value>SEXO</value>
@@ -950,5 +971,8 @@
   </data>
   <data name="Withdraw" xml:space="preserve">
     <value>Retirada</value>
+  </data>
+  <data name="Withdrawfunds" xml:space="preserve">
+    <value>Retirar Fondos</value>
   </data>
 </root>

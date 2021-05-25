@@ -177,16 +177,6 @@
                                                     </div>
                                                     <div class="form-group row">
                                                         <div class="col-6">
-                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["DATEOFBIRTH_"] <span class="text-danger">*</span></label>
-                                                            <input type="text" class="form-control" value="@(LoanDroidApp.CommonUtil.DateTimeToFriendly(user.Birth))" id="edit_user_birth" />
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["NUMOFDEPENDANT_"]  <span class="text-danger">*</span></label>
-                                                            <input type="text" class="form-control" value="@user.NumDependant" id="edit_user_numdependant" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <div class="col-6">
                                                             <label for="example-search-input" class="col-form-label">@SharedLocalizer["RESIDENCETYPE_"] <span class="text-danger">*</span></label>
                                                             <select class="form-control" style="width:100%;" id="edit_user_residence">
                                                                 @foreach (int i in Enum.GetValues(typeof(Models.data.Residence)))
@@ -206,24 +196,6 @@
                                                         <div class="col-6">
                                                             <label for="example-search-input" class="col-form-label">@SharedLocalizer["RESIDENCETIME_"]</label>
                                                             <input type="text" class="form-control" value="@user.ResidencePeriod" id="edit_user_residenceperiod" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <div class="col-12">
-                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["COMPANYSTR_"] <span class="text-danger">*</span></label>
-                                                            <select class="form-control" style="width:100%;" id="edit_user_company">
-                                                                @foreach (Models.data.Company company in ViewBag.Company)
-                                                                {
-                                                                    if (user.CompanyId == company.Id)
-                                                                    {
-                                                                        <option value="@company.Id" selected>@company.Name</option>
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        <option value="@company.Id">@company.Name</option>
-                                                                    }
-                                                                }
-                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row" style="display:none;">
@@ -268,26 +240,6 @@
                                                                     }
                                                                 }
                                                             </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <div class="col-6">
-                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["MOTHERNAME_"] <span class="text-danger">*</span></label>
-                                                            <input type="text" class="form-control" value="@user.MotherName" id="edit_user_mothername" />
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["MOTHERPHONE_"]</label>
-                                                            <input type="text" class="form-control" value="@user.MotherPhone" id="edit_user_motherphone" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <div class="col-6">
-                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["FATHERNAME_"] <span class="text-danger">*</span></label>
-                                                            <input type="text" class="form-control" value="@user.FatherName" id="edit_user_fathername" />
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <label for="example-search-input" class="col-form-label">@SharedLocalizer["FATHERPHONE_"]</label>
-                                                            <input type="text" class="form-control" value="@user.FatherPhone" id="edit_user_fatherphone" />
                                                         </div>
                                                     </div>
                                                 </div>

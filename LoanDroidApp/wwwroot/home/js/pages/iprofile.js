@@ -15,19 +15,10 @@ jQuery(document).ready(function () {
     $('.fileinput-delete').on('click', function () {
         $('#avatar_img').prop('src', $('#default_img').prop('src'));
     });
-    $('#edit_user_birth').datepicker({
-        rtl: KTUtil.isRTL(),
-        todayHighlight: true,
-        orientation: 'bottom left',
-        format: "dd/mm/yyyy",
-    });
     $("#edit_user_passport").inputmask({
         mask: "999-9999999-9",
         definitions: { '5': { validator: "[0-5]" } }
     });
-    //$("#edit_user_company").select2();
-    //$("#edit_user_nationality").select2();
-    //$("#edit_user_province").select2();
     datatableLoansInit();
 });
 function setAvatar(img) {
@@ -62,22 +53,6 @@ function isValidateEditUserModal() {
         $('#edit_user_phonenumber').focus();
         return false;
     } 
-    if ($('#edit_user_birth').val() == '') {
-        $('#edit_user_birth').focus();
-        return false;
-    }
-    if ($('#edit_user_numdependant').val() == '') {
-        $('#edit_user_numdependant').focus();
-        return false;
-    }
-    if ($('#edit_user_mothername').val() == '') {
-        $('#edit_user_mothername').focus();
-        return false;
-    }
-    if ($('#edit_user_fathername').val() == '') {
-        $('#edit_user_fathername').focus();
-        return false;
-    }
     return true;
 }
 function submitProfile() {
@@ -93,19 +68,12 @@ function submitProfile() {
     form_data.append('marital', $('#edit_user_marital').val());
     form_data.append('phonenumber', $('#edit_user_phonenumber').val());
     form_data.append('otherphone', $('#edit_user_otherphone').val()); 
-    form_data.append('birth', $('#edit_user_birth').val());
-    form_data.append('numdependant', $('#edit_user_numdependant').val()); 
     form_data.append('residence', $('#edit_user_residence').val());
     form_data.append('residenceperiod', $('#edit_user_residenceperiod').val()); 
-    form_data.append('company', $('#edit_user_company').val());
     form_data.append('officenumber', $('#edit_user_officenumber').val());
     form_data.append('address', $('#edit_user_address').val()); 
     form_data.append('nationality', $('#edit_user_nationality').val());
     form_data.append('province', $('#edit_user_province').val());
-    form_data.append('mothername', $('#edit_user_mothername').val());
-    form_data.append('motherphone', $('#edit_user_motherphone').val());
-    form_data.append('fathername', $('#edit_user_fathername').val());
-    form_data.append('fatherphone', $('#edit_user_fatherphone').val());
     form_data.append('avatarimage', $('#avatar_img').prop('src'));
     form_data.append('role', 'inversora');
     $.ajax({
